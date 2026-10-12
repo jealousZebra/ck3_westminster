@@ -44,3 +44,43 @@ wm_prime_minister_female = {
 		spouse_takes_title = no
 	}
 }
+wm_prime_minister_spouse_male = {
+	type = character
+	gender = male
+	special = holder
+	priority = 9790
+	titles = { e_united_kingdom }
+	flavourization_rules = {
+		spouse_takes_title = yes
+	}
+}
+wm_prime_minister_spouse_female = {
+	type = character
+	gender = female
+	special = holder
+	priority = 9790
+	titles = { e_united_kingdom }
+	flavourization_rules = {
+		spouse_takes_title = yes
+	}
+}
+wm_party_leader_spouse_male = {
+	type = character
+	gender = male
+	special = holder
+	priority = 9690
+	titles = { k_party_alliance k_party_conservative k_party_dup k_party_green k_party_labour k_party_lib_dem k_party_new_1 k_party_new_2 k_party_new_3 k_party_new_4 k_party_new_5 k_party_new_6 k_party_plaid k_party_reform k_party_sdlp k_party_sinn_fein k_party_snp k_party_tuv k_party_uup }
+	flavourization_rules = {
+		spouse_takes_title = yes
+	}
+}
+wm_party_leader_spouse_female = {
+	type = character
+	gender = female
+	special = holder
+	priority = 9690
+	titles = { k_party_alliance k_party_conservative k_party_dup k_party_green k_party_labour k_party_lib_dem k_party_new_1 k_party_new_2 k_party_new_3 k_party_new_4 k_party_new_5 k_party_new_6 k_party_plaid k_party_reform k_party_sdlp k_party_sinn_fein k_party_snp k_party_tuv k_party_uup }
+	flavourization_rules = {
+		spouse_takes_title = yes
+	}
+}

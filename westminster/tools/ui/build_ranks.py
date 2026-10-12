@@ -45,6 +45,14 @@ def write_party_leader_flavour(keys):
                 "\tpriority = 9800", "\ttitles = { e_united_kingdom }", "\tflavourization_rules = {",
                 "\t\tonly_holder = yes", "\t\tspouse_takes_title = no", "\t}", "}"]
         keys["wm_prime_minister_%s" % g] = "Prime Minister"
+    # Their spouses take no rank (without these, a PM's wife fell through to vanilla's "Empress", a party leader's
+    # husband to "King"), as wm_spouse_titles.txt does for every other politician
+    for who, prio, titles in (("prime_minister", 9790, "e_united_kingdom"), ("party_leader", 9690, " ".join(parties))):
+        for g in ("male", "female"):
+            out += ["wm_%s_spouse_%s = {" % (who, g), "\ttype = character", "\tgender = %s" % g, "\tspecial = holder",
+                    "\tpriority = %d" % prio, "\ttitles = { %s }" % titles, "\tflavourization_rules = {",
+                    "\t\tspouse_takes_title = yes", "\t}", "}"]
+            keys["wm_%s_spouse_%s" % (who, g)] = ""
     # Vanilla's special title holders (the Pope, the Orthodox patriarchs...) name titles Westminster doesn't have
     van = MOD / "common" / "flavorization" / "00_title_holders.txt"
     van.write_text("# Westminster: replaces Crusader Kings III's own common/flavorization/00_title_holders.txt (Paradox\n"
