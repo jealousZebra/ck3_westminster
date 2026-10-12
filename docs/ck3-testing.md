@@ -1,6 +1,6 @@
 # Testing mods in the real game
 
-> These notes started in the [ck3mod](https://github.com/jealousZebra/ck3mod) repo, which Westminster shared with
+> These notes started in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo, which Westminster shared with
 > another mod, Realm Forge. Examples that mention Realm Forge or `realm_forge/` refer to that repo; Westminster's own
 > commands are in this repo's README.md.
 

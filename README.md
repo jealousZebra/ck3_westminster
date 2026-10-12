@@ -66,5 +66,5 @@ westminster/
 
 ## History
 
-Westminster began in the [ck3mod](https://github.com/jealousZebra/ck3mod) repo alongside Realm Forge, and moved here
+Westminster began in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo alongside Realm Forge, and moved here
 on 2026-10-12 for its own roadmap and releases.
