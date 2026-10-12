@@ -1,0 +1,12 @@
+﻿# Character: holds a Westminster seat (a county title that isn't a landless office or peerage)
+wm_is_mp_trigger = {
+	any_held_title = {
+		tier = tier_county
+		is_landless_type_title = no
+	}
+}
+
+# County title: a riot is under way here
+wm_riot_is_active_trigger = {
+	has_variable = wm_riot_demand
+}

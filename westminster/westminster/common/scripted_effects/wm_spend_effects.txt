@@ -1,0 +1,265 @@
+﻿# Campaign spending: party leaders and MPs pay money each month for a press campaign that lifts their party's
+# national poll, or a smear campaign against a rival party (amounts: common/script_values/wm_spend_values.txt).
+# Campaigns are about parties and policies, never anyone's private life.
+#
+#   Press campaign: +0.15 points a month for a leader's party, +0.03 for a backbencher's. Costs 30% of monthly income.
+#   Smear campaign: -0.2 points a month for the rival party (-0.05 from a backbencher). Costs 40% of monthly income,
+#     wears down public trust (-0.3 a month) and can backfire (2-15% a month, less for a good schemer): the spender's
+#     own party loses a point, trust falls 3, the rival leader resents them, and the press holds a story about it
+#     (the secret wm_secret_smear_campaign, which a rival can expose later).
+#   A campaign stops when its money runs out, after a year (six months for the AI), when the spender leaves their
+#   party, or when they stop it (decision).
+#   Call In a Favour: a party leader spends party standing for a hook on a rival party's leader.
+# Poll moves go through wm_campaign_party_poll_effect (wm_campaign_effects.txt), which scales a regional party's
+# shift to its nation.
+#
+# State: on the spender, var:wm_spend_kind (1 press, 2 smear), var:wm_spend_target (the smeared party's title),
+# var:wm_spend_months; the spender is on global_var list wm_spend_campaigners. global_var:wm_spend_amount is scratch.
+
+# Scope: a character in a party. Starts a press campaign ($KIND$ = 1) or a smear campaign ($KIND$ = 2) against
+# $TARGET$ (a party title; use the spender's own party for a press campaign).
+wm_spend_start_effect = {
+	wm_spend_stop_effect = yes
+	set_variable = { name = wm_spend_kind value = $KIND$ }
+	set_variable = { name = wm_spend_target value = $TARGET$ }
+	set_variable = { name = wm_spend_months value = 0 }
+	add_to_global_variable_list = { name = wm_spend_campaigners target = this }
+}
+
+# Scope: a character. Ends their campaign, if any.
+wm_spend_stop_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_spend_campaigners }
+		remove_list_global_variable = { name = wm_spend_campaigners target = this }
+	}
+	remove_variable = wm_spend_kind
+	remove_variable = wm_spend_target
+	remove_variable = wm_spend_months
+}
+
+# The month's campaigns (run by wm_polls_monthly_effect), then AI party leaders consider starting one.
+wm_spend_monthly_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_spend_campaigners }
+		every_in_global_list = {
+			variable = wm_spend_campaigners
+			add_to_temporary_list = wm_spend_this_month
+		}
+		every_in_list = {
+			list = wm_spend_this_month
+			wm_spend_month_effect = yes
+		}
+	}
+	wm_spend_ai_effect = yes
+}
+
+# Scope: a campaigner. One month of their campaign.
+wm_spend_month_effect = {
+	if = {
+		limit = {
+			OR = {
+				is_alive = no
+				NOT = { exists = var:wm_party }
+				NOT = { exists = var:wm_spend_kind }
+				gold < wm_spend_monthly_cost
+				var:wm_spend_months >= wm_spend_max_months
+				AND = {
+					is_ai = yes
+					var:wm_spend_months >= wm_spend_ai_max_months
+				}
+				# A smear on a party that is gone, or that the spender has since joined
+				AND = {
+					var:wm_spend_kind = 2
+					OR = {
+						NOT = { exists = var:wm_spend_target.holder }
+						var:wm_spend_target = var:wm_party
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				is_alive = yes
+				is_ai = no
+				exists = var:wm_spend_kind
+			}
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_spend_ended_toast
+				left_icon = this
+				custom_tooltip = wm_spend_ended_toast_desc
+			}
+		}
+		wm_spend_stop_effect = yes
+	}
+	else = {
+		remove_short_term_gold = wm_spend_monthly_cost
+		change_variable = { name = wm_spend_months add = 1 }
+		if = {
+			limit = { var:wm_spend_kind = 1 }
+			if = {
+				limit = { has_title = var:wm_party }
+				set_global_variable = { name = wm_campaign_amount value = wm_spend_press_leader }
+			}
+			else = {
+				set_global_variable = { name = wm_campaign_amount value = wm_spend_press_mp }
+			}
+			wm_campaign_party_poll_effect = { PARTY = var:wm_party }
+		}
+		else = {
+			if = {
+				limit = { has_title = var:wm_party }
+				set_global_variable = { name = wm_campaign_amount value = wm_spend_smear_leader }
+			}
+			else = {
+				set_global_variable = { name = wm_campaign_amount value = wm_spend_smear_mp }
+			}
+			wm_campaign_party_poll_effect = { PARTY = var:wm_spend_target }
+			wm_trust_smear_month_effect = yes
+			random = {
+				chance = wm_spend_backfire_chance
+				wm_spend_backfire_effect = yes
+			}
+		}
+	}
+}
+
+# Scope: the spender. Their smear campaign is exposed: their party loses a point, trust falls, the rival party's
+# leader resents them, the press keeps the story (a secret), and the campaign ends.
+wm_spend_backfire_effect = {
+	save_scope_as = wm_spend_spender
+	var:wm_spend_target = { save_scope_as = wm_spend_target_party }
+	set_global_variable = { name = wm_campaign_amount value = wm_spend_backfire_own_poll }
+	wm_campaign_party_poll_effect = { PARTY = var:wm_party }
+	wm_trust_scandal_effect = { AMOUNT = wm_trust_smear_backfire }
+	add_prestige = minor_prestige_loss
+	if = {
+		limit = { NOT = { any_secret = { type = wm_secret_smear_campaign } } }
+		add_secret = { type = wm_secret_smear_campaign }
+	}
+	var:wm_spend_target.holder ?= {
+		if = {
+			limit = { NOT = { this = scope:wm_spend_spender } }
+			add_opinion = { target = scope:wm_spend_spender modifier = wm_spend_smeared_opinion }
+		}
+	}
+	if = {
+		limit = { NOT = { has_global_variable = wm_test_quiet } }
+		every_player = {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = wm_spend_backfire_toast
+				left_icon = scope:wm_spend_spender
+				custom_tooltip = wm_spend_backfire_toast_desc
+			}
+		}
+	}
+	set_variable = { name = wm_spend_backfired value = yes days = 30 }
+	wm_spend_stop_effect = yes
+}
+
+# Scope: a party member. Saves the rival party leaders they can target: scope:wm_spend_rival_1 (the Prime Minister,
+# or the largest other party's leader for the PM's own party), scope:wm_spend_rival_2 and wm_spend_rival_3 (the next
+# largest other parties' leaders, by seats), and their parties as scope:wm_spend_party_1-3.
+wm_spend_find_rivals_effect = {
+	save_scope_as = wm_spend_self
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = {
+				NOT = { var:wm_party ?= scope:wm_spend_self.var:wm_party }
+				exists = var:wm_party
+			}
+			save_scope_as = wm_spend_rival_1
+		}
+		every_vassal = {
+			limit = {
+				exists = var:wm_party
+				has_title = var:wm_party
+				NOT = { var:wm_party = scope:wm_spend_self.var:wm_party }
+			}
+			add_to_temporary_list = wm_spend_rival_leaders
+		}
+	}
+	if = {
+		limit = { NOT = { exists = scope:wm_spend_rival_1 } }
+		ordered_in_list = {
+			list = wm_spend_rival_leaders
+			order_by = wm_commons_party_seats_value
+			position = 0
+			save_scope_as = wm_spend_rival_1
+		}
+		ordered_in_list = {
+			list = wm_spend_rival_leaders
+			order_by = wm_commons_party_seats_value
+			position = 1
+			save_scope_as = wm_spend_rival_2
+		}
+		ordered_in_list = {
+			list = wm_spend_rival_leaders
+			order_by = wm_commons_party_seats_value
+			position = 2
+			save_scope_as = wm_spend_rival_3
+		}
+	}
+	else = {
+		ordered_in_list = {
+			list = wm_spend_rival_leaders
+			order_by = wm_commons_party_seats_value
+			position = 0
+			save_scope_as = wm_spend_rival_2
+		}
+		ordered_in_list = {
+			list = wm_spend_rival_leaders
+			order_by = wm_commons_party_seats_value
+			position = 1
+			save_scope_as = wm_spend_rival_3
+		}
+	}
+	scope:wm_spend_rival_1 ?= { var:wm_party ?= { save_scope_as = wm_spend_party_1 } }
+	scope:wm_spend_rival_2 ?= { var:wm_party ?= { save_scope_as = wm_spend_party_2 } }
+	scope:wm_spend_rival_3 ?= { var:wm_party ?= { save_scope_as = wm_spend_party_3 } }
+}
+
+# Scope: a party leader. Calls in a favour: a hook on $RIVAL$, another party's leader (the decision charges the party
+# standing).
+wm_spend_favour_effect = {
+	add_hook = {
+		type = favor_hook
+		target = $RIVAL$
+	}
+}
+
+# AI party leaders now and then fund a press campaign; rarely, one smears the biggest rival.
+wm_spend_ai_effect = {
+	every_living_character = {
+		limit = {
+			is_ai = yes
+			exists = var:wm_party
+			has_title = var:wm_party
+			NOT = { exists = var:wm_spend_kind }
+			NOT = { has_variable = wm_spend_backfired }
+		}
+		random_list = {
+			96 = {}
+			3 = {
+				trigger = { gold >= wm_spend_press_cost }
+				wm_spend_start_effect = { KIND = 1 TARGET = var:wm_party }
+			}
+			1 = {
+				trigger = {
+					gold >= wm_spend_smear_cost
+					NOT = { has_trait = honest }
+				}
+				modifier = {
+					add = 1
+					has_trait = deceitful
+				}
+				wm_spend_find_rivals_effect = yes
+				if = {
+					limit = { exists = scope:wm_spend_rival_1.var:wm_party }
+					wm_spend_start_effect = { KIND = 2 TARGET = scope:wm_spend_rival_1.var:wm_party }
+				}
+			}
+		}
+	}
+}

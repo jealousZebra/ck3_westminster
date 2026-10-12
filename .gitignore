@@ -1,0 +1,31 @@
+.DS_Store
+__pycache__/
+# Build output (made by westminster/tools/release.sh)
+*/dist/
+# In-game test output (logs and walkthrough screenshots, remade by the test tools)
+*/tools/ck3_test/*.log
+*/tools/ck3_test/ui_*/
+# The suite each gen_*.py writes into the test harness (run a generator before a test; see docs/ck3-testing.md)
+*/tools/ck3_test/harness/common/scripted_effects/rf_test_effects.txt
+.venv/
+# Downloaded source data and test output for Westminster (see westminster/data/README.md)
+westminster/data/raw/
+westminster/tools/test_out/
+# Generated map images (rebuilt by westminster/tools/map/build_map.py)
+westminster/westminster/map_data/*.png
+
+# Test saves (copied from the game; see docs/ck3-testing.md)
+*/tools/ck3_test/saves/
+# Generated map textures (rebuilt by westminster/tools/map/build_map.py)
+westminster/westminster/gfx/map/terrain/*.tga
+westminster/westminster/gfx/map/terrain/*.dds
+westminster/westminster/gfx/map/terrain/flat_maps/
+westminster/westminster/gfx/map/water/
+# Generated interface textures (rebuilt by westminster/tools/ui/*.py)
+westminster/westminster/gfx/interface/
+# Generated flags and flat CoA textures (rebuilt by westminster/tools/ui/build_flags.py and build_coa_frames.py)
+westminster/westminster/gfx/coat_of_arms/textured_emblems/wm_flag_*.dds
+westminster/westminster/gfx/coat_of_arms/colored_emblems/ce_wm_layout_*.dds
+westminster/westminster/gfx/coat_of_arms/colored_emblems/ce_wm_charge_*.dds
+westminster/westminster/gfx/coat_of_arms/colored_emblems/ce_wm_box.dds
+westminster/westminster/gfx/coat_of_arms/coa_mask_texture.dds

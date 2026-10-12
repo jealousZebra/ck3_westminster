@@ -1,0 +1,553 @@
+﻿# General elections. Each seat's result comes from its 2024 vote shares (var:wm_lean_<party> on the county title,
+# wm_election_seat_leans.txt) swung by the national polls (global_var:wm_poll_<party>, wm_polls_effects.txt) with
+# a little local randomness and a bonus for a sitting MP's party. Seats that change hands go to a new MP in one
+# title and vassal change each, as in spike c. Afterwards the leader of the largest party is Prime Minister.
+#
+# State (global variables):
+#   wm_el_months          months since the last general election (Parliament's term is five years)
+#   wm_el_scheduled       Parliament is dissolved and an election is coming
+#   wm_el_campaign        set for the campaign's 35 days; polling day is when it has gone
+#   wm_seats_<party>      seats per party (wm_seats_ind independents, wm_seats_spk the Speaker), and
+#   wm_seats_prev_<party> the same before the last election
+#   wm_el_largest         the largest party's title, wm_el_largest_seats its seats
+#   wm_el_gov_changed     the last election (or by-election) changed the government
+#   wm_el_old_pm          the Prime Minister before the last election
+#   wm_test_quiet           (set by the in-game tests) no results event or toasts for players
+# On a seat after an election: var:wm_seat_share (the winner's share) and var:wm_seat_majority (in tenths of a
+# percent). On a defeated MP: var:wm_lost_seat (the seat, for 90 days).
+# Per-party effects are generated: wm_election_parties.txt (tools/data/build_seat_leans.py).
+
+# Game start (and old saves): polls, seat leans and seat counts.
+wm_election_init_effect = {
+	wm_polls_init_effect = yes
+	wm_init_seat_leans_effect = yes
+	if = {
+		limit = { NOT = { has_global_variable = wm_el_months } }
+		set_global_variable = { name = wm_el_months value = 0 }
+	}
+	wm_election_count_seats_effect = yes
+	wm_election_copy_prev_seats_effect = yes
+	wm_election_find_largest_effect = yes
+}
+
+# Dissolve Parliament: polling day in five weeks (event wm_election.1 on the Prime Minister; if that is lost, the
+# monthly tick holds it when the campaign is over).
+wm_election_schedule_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_el_scheduled } }
+		set_global_variable = { name = wm_el_scheduled value = yes }
+		set_global_variable = { name = wm_el_campaign value = yes days = 35 }
+		title:e_united_kingdom.holder ?= {
+			trigger_event = { id = wm_election.1 days = 36 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_test_quiet } }
+			every_player = {
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_election_dissolution_toast
+					custom_tooltip = wm_election_dissolution_toast_desc
+				}
+			}
+		}
+	}
+}
+
+# Polling day: every seat, then the government, then the front page for every player.
+wm_election_general_effect = {
+	remove_global_variable = wm_el_scheduled
+	remove_global_variable = wm_election_required		# a lost confidence vote's election is this one
+	remove_global_variable = wm_el_campaign
+	remove_global_variable = wm_el_gov_changed
+	wm_speaker_before_election_effect = yes		# the Speaker stands again or stands down (wm_speaker_effects.txt)
+	wm_dispute_clear_open_effect = yes				# the last Parliament's close results are history
+	wm_election_count_seats_effect = yes
+	wm_election_copy_prev_seats_effect = yes
+	if = {
+		limit = { exists = title:e_united_kingdom.holder }
+		set_global_variable = { name = wm_el_old_pm value = title:e_united_kingdom.holder }
+	}
+
+	title:e_united_kingdom = {
+		every_in_de_jure_hierarchy = {
+			limit = { tier = tier_county }
+			wm_election_general_seat_effect = yes
+		}
+	}
+
+	# By-elections still to come are settled by the general election
+	if = {
+		limit = { has_global_variable_list = wm_byelection_queue }
+		every_in_global_list = {
+			variable = wm_byelection_queue
+			remove_variable = wm_byelection_due
+			remove_variable = wm_byelection_wait
+			remove_variable = wm_byelection_party
+		}
+		clear_global_variable_list = wm_byelection_queue
+	}
+
+	wm_election_form_government_effect = yes
+	wm_election_rewire_effect = yes
+	wm_election_count_seats_effect = yes
+	set_global_variable = { name = wm_el_months value = 0 }
+	title:e_united_kingdom.holder ?= { remove_character_flag = wm_early_election_promised }
+	global_var:wm_el_old_pm ?= { remove_character_flag = wm_early_election_promised }
+	wm_election_after_general_effect = yes
+
+	if = {
+		limit = { NOT = { has_global_variable = wm_test_quiet } }
+		every_player = { trigger_event = wm_election_results.1 }
+	}
+}
+
+# Scope: a seat. Its general-election result.
+wm_election_general_seat_effect = {
+	save_scope_as = wm_el_seat
+	clear_saved_scope = wm_el_loser
+	remove_variable = wm_el_inc
+	remove_variable = wm_el_ind
+	# Who is defending it: a party MP (incumbency bonus for the party) or an independent (their personal vote).
+	# A seat waiting for a by-election, or whose Speaker is standing down (var:wm_el_open_seat), has no incumbent.
+	if = {
+		limit = {
+			exists = holder
+			NOT = { has_variable = wm_byelection_due }
+			NOT = { has_variable = wm_el_open_seat }
+		}
+		if = {
+			limit = { holder = { has_variable = wm_party } }
+			set_variable = { name = wm_el_inc value = holder.var:wm_party }
+		}
+		else_if = {
+			limit = { holder = { wm_election_is_independent_mp_trigger = yes } }
+			set_variable = { name = wm_el_ind value = yes }
+		}
+	}
+	wm_election_decide_seat_effect = yes
+
+	if = {
+		# Party leaders, the Prime Minister and the Speaker keep their seats
+		limit = {
+			NOT = { has_variable = wm_byelection_due }
+			NOT = { has_variable = wm_el_open_seat }
+			holder ?= { wm_election_safe_seat_trigger = yes }
+		}
+		if = {
+			limit = { has_variable = wm_el_inc_score }
+			set_variable = { name = wm_seat_share value = var:wm_el_inc_score }
+			if = {
+				limit = {
+					exists = var:wm_el_inc
+					var:wm_el_winner ?= var:wm_el_inc
+				}
+				set_variable = {
+					name = wm_seat_majority
+					value = {
+						value = var:wm_el_best
+						subtract = var:wm_el_second
+						max = var:wm_el_best
+					}
+				}
+			}
+			else = {
+				# Held against the tide, by a whisker
+				set_variable = { name = wm_seat_majority value = 1 }
+			}
+		}
+	}
+	else_if = {
+		limit = { has_variable = wm_el_ind_holds }
+		wm_election_record_result_effect = yes
+	}
+	else_if = {
+		limit = { exists = var:wm_el_winner }
+		if = {
+			limit = {
+				NOT = { has_variable = wm_byelection_due }
+				NOT = { has_variable = wm_el_open_seat }
+				holder ?= { var:wm_party ?= scope:wm_el_seat.var:wm_el_winner }
+			}
+			# Hold: the sitting MP is re-elected
+		}
+		else = {
+			wm_election_new_mp_effect = yes
+		}
+		wm_election_record_result_effect = yes
+		wm_dispute_record_effect = yes		# a close result can be challenged (wm_dispute_effects.txt)
+	}
+	remove_variable = wm_el_open_seat
+	wm_election_clear_seat_effect = yes
+}
+
+# Scope: a seat. Scores every candidate (wm_election_score_parties_effect) and leaves the result in
+# var:wm_el_winner (party title) or var:wm_el_ind_holds (the independent MP holds), var:wm_el_best and
+# var:wm_el_second (the top two shares). The caller sets var:wm_el_inc (the defending party) or var:wm_el_ind.
+wm_election_decide_seat_effect = {
+	set_variable = { name = wm_el_best value = -1 }
+	set_variable = { name = wm_el_second value = -1 }
+	remove_variable = wm_el_winner
+	remove_variable = wm_el_runner
+	remove_variable = wm_el_ind_holds
+	remove_variable = wm_el_inc_score
+	wm_election_score_parties_effect = yes
+	if = {
+		limit = {
+			has_variable = wm_el_ind
+			has_variable = wm_lean_ind
+		}
+		set_variable = {
+			name = wm_el_score
+			value = {
+				value = var:wm_lean_ind
+				add = wm_election_incumbency_bonus
+				add = {
+					integer_range = {
+						min = -15
+						max = 15
+					}
+				}
+			}
+		}
+		set_variable = { name = wm_el_inc_score value = var:wm_el_score }
+		if = {
+			limit = { var:wm_el_score > var:wm_el_best }
+			set_variable = { name = wm_el_second value = var:wm_el_best }
+			set_variable = { name = wm_el_best value = var:wm_el_score }
+			set_variable = { name = wm_el_ind_holds value = yes }
+			if = {
+				limit = { exists = var:wm_el_winner }
+				set_variable = { name = wm_el_runner value = var:wm_el_winner }
+			}
+			remove_variable = wm_el_winner
+		}
+		else_if = {
+			limit = { var:wm_el_score > var:wm_el_second }
+			set_variable = { name = wm_el_second value = var:wm_el_score }
+			remove_variable = wm_el_runner		# an independent runner-up: no party to dispute it
+		}
+	}
+}
+
+# Scope: a seat. One party's score: its share under the swing (wm_election_seat_share_$P$, wm_polls_values.txt),
+# local randomness, and the incumbency bonus if it is defending the seat. $P$: variable key; $PARTY$: party title.
+wm_election_score_party_effect = {
+	if = {
+		limit = { has_variable = wm_lean_$P$ }
+		set_variable = { name = wm_el_score value = wm_election_seat_share_$P$ }
+		change_variable = {
+			name = wm_el_score
+			add = {
+				integer_range = {
+					min = -15
+					max = 15
+				}
+			}
+		}
+		if = {
+			limit = { var:wm_el_inc ?= title:$PARTY$ }
+			change_variable = { name = wm_el_score add = wm_election_incumbency_bonus }
+			set_variable = { name = wm_el_inc_score value = var:wm_el_score }
+		}
+		if = {
+			limit = { var:wm_el_score > var:wm_el_best }
+			set_variable = { name = wm_el_second value = var:wm_el_best }
+			if = {	# the runner-up's party, for disputed results (wm_dispute_effects.txt)
+				limit = { exists = var:wm_el_winner }
+				set_variable = { name = wm_el_runner value = var:wm_el_winner }
+			}
+			set_variable = { name = wm_el_best value = var:wm_el_score }
+			set_variable = { name = wm_el_winner value = title:$PARTY$ }
+		}
+		else_if = {
+			limit = { var:wm_el_score > var:wm_el_second }
+			set_variable = { name = wm_el_second value = var:wm_el_score }
+			set_variable = { name = wm_el_runner value = title:$PARTY$ }
+		}
+	}
+}
+
+# Scope: a seat. Keep the winner's share and majority for the results.
+wm_election_record_result_effect = {
+	set_variable = { name = wm_seat_share value = var:wm_el_best }
+	set_variable = {
+		name = wm_seat_majority
+		value = {
+			value = var:wm_el_best
+			subtract = var:wm_el_second
+			max = var:wm_el_best
+		}
+	}
+}
+
+# Scope: a seat. Remove the counting variables.
+wm_election_clear_seat_effect = {
+	remove_variable = wm_el_best
+	remove_variable = wm_el_second
+	remove_variable = wm_el_score
+	remove_variable = wm_el_winner
+	remove_variable = wm_el_inc
+	remove_variable = wm_el_ind
+	remove_variable = wm_el_ind_holds
+	remove_variable = wm_el_inc_score
+	remove_variable = wm_el_runner
+}
+
+# Scope: a seat won by var:wm_el_winner (a party title) from whoever holds it. A new MP from the area takes the
+# seat and serves their party leader; the defeated MP keeps their party and becomes unlanded. If the party has no
+# leader, the new MP becomes its leader.
+wm_election_new_mp_effect = {
+	save_scope_as = wm_el_seat
+	var:wm_el_winner = { save_scope_as = wm_el_party }
+	if = {
+		limit = { exists = holder }
+		holder = { save_scope_as = wm_el_loser }
+	}
+	else = {
+		clear_saved_scope = wm_el_loser
+	}
+	# Unlanded careers (wm_career_effects.txt): if the party selected a candidate for this seat, they become the MP
+	# (saved as scope:wm_el_new_mp); otherwise a new local character does, as before.
+	clear_saved_scope = wm_el_new_mp
+	wm_career_find_candidate_effect = yes
+	if = {
+		limit = { NOT = { exists = scope:wm_el_new_mp } }
+		title:e_united_kingdom.holder = {
+			create_character = {
+				age = { 30 62 }
+				gender_female_chance = 45
+				culture = scope:wm_el_seat.culture
+				faith = scope:wm_el_seat.faith
+				dynasty = generate
+				location = scope:wm_el_seat.title_province
+				save_scope_as = wm_el_new_mp
+			}
+		}
+	}
+	scope:wm_el_new_mp = {
+		set_variable = { name = wm_party value = scope:wm_el_party }
+		wm_party_sync_house_effect = yes	# parties are houses (wm_party_effects.txt)
+	}
+	create_title_and_vassal_change = {
+		type = granted
+		save_scope_as = wm_el_change
+		add_claim_on_loss = no
+	}
+	change_title_holder = {
+		holder = scope:wm_el_new_mp
+		change = scope:wm_el_change
+	}
+	if = {
+		limit = { exists = scope:wm_el_party.holder }
+		scope:wm_el_new_mp = {
+			change_liege = {
+				liege = scope:wm_el_party.holder
+				change = scope:wm_el_change
+			}
+		}
+	}
+	else = {
+		scope:wm_el_new_mp = {
+			change_liege = {
+				liege = title:e_united_kingdom.holder
+				change = scope:wm_el_change
+			}
+		}
+	}
+	resolve_title_and_vassal_change = scope:wm_el_change
+	if = {
+		limit = { NOT = { exists = scope:wm_el_party.holder } }
+		scope:wm_el_new_mp = { get_title = scope:wm_el_party }
+	}
+	scope:wm_el_new_mp = { wm_career_took_seat_effect = yes }	# unlanded careers: a candidate winds up their campaign
+	if = {
+		limit = { exists = scope:wm_el_loser }
+		scope:wm_el_loser = {
+			if = {
+				limit = { NOT = { wm_is_mp_trigger = yes } }
+				set_variable = { name = wm_lost_seat value = scope:wm_el_seat days = 90 }
+			}
+		}
+	}
+}
+
+# The leader of the largest party becomes Prime Minister if they aren't already: they leave the old PM's service and
+# take the United Kingdom and the nations the old PM held. The old PM's other followers who aren't in the old PM's
+# party (other parties' leaders, independents, the devolved First Ministers) follow the title to the new PM.
+# The leader must hold a seat (a kingdom-tier title is lost by someone with no land).
+wm_election_form_government_effect = {
+	wm_election_count_seats_effect = yes
+	wm_election_find_largest_effect = yes
+	if = {
+		limit = {
+			exists = global_var:wm_el_largest
+			exists = global_var:wm_el_largest.holder
+			global_var:wm_el_largest.holder = {
+				is_alive = yes
+				wm_is_mp_trigger = yes
+				NOT = { has_title = title:e_united_kingdom }
+			}
+		}
+		global_var:wm_el_largest.holder = { save_scope_as = wm_el_new_pm }
+		if = {
+			limit = { exists = title:e_united_kingdom.holder }
+			title:e_united_kingdom.holder = { save_scope_as = wm_el_old_pm }
+		}
+		else = {
+			clear_saved_scope = wm_el_old_pm
+		}
+		if = {
+			limit = { scope:wm_el_new_pm = { is_independent_ruler = no } }
+			create_title_and_vassal_change = {
+				type = independency
+				save_scope_as = wm_el_gov_change
+				add_claim_on_loss = no
+			}
+			scope:wm_el_new_pm = {
+				becomes_independent = { change = scope:wm_el_gov_change }
+			}
+			resolve_title_and_vassal_change = scope:wm_el_gov_change
+		}
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = wm_el_gov_change2
+			add_claim_on_loss = no
+		}
+		title:e_united_kingdom = {
+			change_title_holder = {
+				holder = scope:wm_el_new_pm
+				change = scope:wm_el_gov_change2
+			}
+		}
+		wm_election_hand_over_nation_effect = { NATION = k_england }
+		wm_election_hand_over_nation_effect = { NATION = k_scotland }
+		wm_election_hand_over_nation_effect = { NATION = k_wales }
+		wm_election_hand_over_nation_effect = { NATION = k_northern_ireland }
+		resolve_title_and_vassal_change = scope:wm_el_gov_change2
+		if = {
+			limit = { exists = scope:wm_el_old_pm }
+			create_title_and_vassal_change = {
+				type = swear_fealty
+				save_scope_as = wm_el_gov_change3
+				add_claim_on_loss = no
+			}
+			scope:wm_el_old_pm = {
+				if = {
+					limit = { has_variable = wm_party }
+					every_vassal = {
+						limit = {
+							NOT = { this = scope:wm_el_new_pm }
+							NOT = { var:wm_party ?= scope:wm_el_old_pm.var:wm_party }
+						}
+						change_liege = {
+							liege = scope:wm_el_new_pm
+							change = scope:wm_el_gov_change3
+						}
+					}
+				}
+				else = {
+					every_vassal = {
+						limit = { NOT = { this = scope:wm_el_new_pm } }
+						change_liege = {
+							liege = scope:wm_el_new_pm
+							change = scope:wm_el_gov_change3
+						}
+					}
+				}
+				if = {
+					limit = { is_alive = yes }
+					change_liege = {
+						liege = scope:wm_el_new_pm
+						change = scope:wm_el_gov_change3
+					}
+				}
+			}
+			resolve_title_and_vassal_change = scope:wm_el_gov_change3
+		}
+		set_global_variable = { name = wm_el_gov_changed value = yes }
+	}
+	# Coalitions hook (common/scripted_effects/wm_coalition_effects.txt): with no majority, the new government looks
+	# for a coalition or confidence-and-supply partner, or governs as a minority. After a by-election it only keeps
+	# an existing deal in step with the government.
+	wm_coalition_after_formation_effect = yes
+}
+
+# Needs scope:wm_el_new_pm, scope:wm_el_old_pm and scope:wm_el_gov_change2. $NATION$: k_england etc.
+wm_election_hand_over_nation_effect = {
+	if = {
+		limit = {
+			exists = scope:wm_el_old_pm
+			title:$NATION$.holder ?= scope:wm_el_old_pm
+		}
+		title:$NATION$ = {
+			change_title_holder = {
+				holder = scope:wm_el_new_pm
+				change = scope:wm_el_gov_change2
+			}
+		}
+	}
+}
+
+# Everyone in their place: each MP serves their party leader; party leaders, independents and the Speaker serve the
+# Prime Minister. Only those in the wrong place move, all in one title and vassal change.
+wm_election_rewire_effect = {
+	title:e_united_kingdom.holder ?= {
+		save_scope_as = wm_el_pm
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = wm_el_rewire
+			add_claim_on_loss = no
+		}
+		wm_election_party_leaders_serve_pm_effect = yes
+		title:e_united_kingdom = {
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_county
+					exists = holder
+					holder = { is_alive = yes }		# a seat can still name a holder who died this tick
+					NOT = { holder = scope:wm_el_pm }
+				}
+				holder = { add_to_temporary_list = wm_el_seat_holders }
+			}
+		}
+		every_in_list = {
+			list = wm_el_seat_holders
+			limit = { is_alive = yes }		# temporary lists last the whole script run; someone on it may have died since
+			if = {
+				limit = {
+					exists = var:wm_party.holder
+					NOT = { this = var:wm_party.holder }
+				}
+				if = {
+					limit = { NOT = { liege ?= var:wm_party.holder } }
+					change_liege = {
+						liege = var:wm_party.holder
+						change = scope:wm_el_rewire
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { liege ?= scope:wm_el_pm } }
+				change_liege = {
+					liege = scope:wm_el_pm
+					change = scope:wm_el_rewire
+				}
+			}
+		}
+		resolve_title_and_vassal_change = scope:wm_el_rewire
+	}
+}
+
+# After a general election, once the government is formed: the new House elects a Speaker if the chair is empty,
+# the working majority starts afresh, close results can be challenged, and beaten party leaders may stand down.
+wm_election_after_general_effect = {
+	wm_speaker_after_election_effect = yes				# wm_speaker_effects.txt
+	wm_majority_reset_effect = yes						# wm_majority_effects.txt
+	wm_dispute_after_election_effect = yes				# wm_dispute_effects.txt
+	if = {
+		limit = { has_global_variable = wm_el_gov_changed }
+		set_global_variable = { name = wm_dispute_national_window value = yes days = 60 }
+	}
+	wm_election_leadership_after_election_effect = yes	# wm_election_leadership_effects.txt
+	wm_seatchart_record_effect = yes					# the seat chart's history (wm_seatchart_effects.txt)
+}

@@ -1,0 +1,637 @@
+﻿# Coalitions, confidence-and-supply and minority government after a hung parliament. The state is described in
+# common/script_values/wm_coalition_values.txt; the events are in events/wm_coalition_events.txt.
+#
+# After a general election (wm_election_form_government_effect calls wm_coalition_after_formation_effect):
+#   - a party with a working majority (325 of the 649 MPs who vote) governs alone;
+#   - otherwise the largest party's leader, now Prime Minister, looks for a partner. Every other party (but Sinn
+#     Fein, who don't take their seats) is ranked by wm_coalition_fit_value: left-right distance, whether the two
+#     together reach a majority, size, and its leader's opinion of the Prime Minister;
+#   - a player Prime Minister negotiates (events wm_coalition.1/.2/.4): picks a partner and offers terms;
+#   - an AI Prime Minister offers the best partner a coalition (one cabinet seat and a policy concession, then two
+#     seats), or confidence-and-supply; a small party (under 20 seats) is offered confidence-and-supply first;
+#   - an AI partner accepts when wm_coalition_offer_margin_value >= 0; a player partner decides (wm_coalition.3);
+#   - if nobody accepts, the Prime Minister governs as a minority.
+# A coalition makes the partner's leader Deputy Prime Minister (a diarchy on the Prime Minister,
+# wm_coalition_deputyship) and its MPs take the government whip. A confidence-and-supply partner backs the
+# government on confidence motions and the Finance Bill only, and is paid for it. Each quarter the junior partner
+# may walk out (wm_coalition_breakdown_chance_value), or its leader can take the decision to leave.
+
+# Called at the end of wm_election_form_government_effect (general elections and by-elections).
+# A by-election (scope:wm_by_seat is saved by wm_byelection_hold_effect) only keeps an existing deal in step with a
+# new Prime Minister; a general election settles the government afresh.
+wm_coalition_after_formation_effect = {
+	if = {
+		limit = { exists = scope:wm_by_seat }
+		wm_coalition_keep_in_step_effect = yes
+	}
+	else = {
+		wm_coalition_resolve_effect = yes
+	}
+}
+
+# After a general election: majority, or find a partner.
+wm_coalition_resolve_effect = {
+	wm_coalition_clear_effect = yes
+	remove_global_variable = wm_coalition_talks
+	remove_global_variable = wm_coalition_talks_partner
+	remove_global_variable = wm_coalition_offer_refused
+	if = {
+		limit = { exists = title:e_united_kingdom.holder.var:wm_party }
+		set_global_variable = { name = wm_coalition_senior value = title:e_united_kingdom.holder.var:wm_party }
+		if = {
+			limit = {
+				global_var:wm_coalition_senior = { wm_coalition_party_seats_value >= wm_coalition_majority_value }
+			}
+			set_global_variable = { name = wm_coalition_outcome value = 1 }
+		}
+		else = {
+			# Hung parliament. Put everyone in their place first, so the partner's leader serves the new Prime Minister
+			# before becoming their deputy (the election runs this again afterwards; it only moves the misplaced).
+			wm_election_rewire_effect = yes
+			wm_coalition_rank_partners_effect = yes
+			if = {
+				limit = { NOT = { has_global_variable = wm_coalition_choice_1 } }
+				wm_coalition_minority_effect = yes
+			}
+			else_if = {
+				limit = {
+					title:e_united_kingdom.holder = { is_ai = no }
+					wm_coalition_loud_trigger = yes
+				}
+				set_global_variable = { name = wm_coalition_outcome value = 5 }
+				set_global_variable = { name = wm_coalition_talks value = yes days = 90 }
+				title:e_united_kingdom.holder = { trigger_event = { id = wm_coalition.1 days = 1 } }
+			}
+			else = {
+				set_global_variable = { name = wm_coalition_talks_partner value = global_var:wm_coalition_choice_1 }
+				wm_coalition_ai_negotiate_effect = yes
+			}
+		}
+	}
+	else = {
+		# A Prime Minister with no party (it shouldn't happen): nobody to make deals with
+		remove_global_variable = wm_coalition_senior
+		set_global_variable = { name = wm_coalition_outcome value = 2 }
+	}
+}
+
+# After a by-election (or each quarter): the deal follows the government. If another party now holds No 10 the
+# deal is over; if the same party has a new Prime Minister, or the partner a new leader, the Deputy Prime Minister
+# is reappointed.
+wm_coalition_keep_in_step_effect = {
+	if = {
+		limit = { wm_coalition_deal_trigger = yes }
+		if = {
+			limit = {
+				OR = {
+					NOT = { exists = title:e_united_kingdom.holder.var:wm_party }
+					NOT = { title:e_united_kingdom.holder.var:wm_party = global_var:wm_coalition_senior }
+					NOT = { exists = global_var:wm_coalition_junior.holder }
+				}
+			}
+			wm_coalition_clear_effect = yes
+			set_global_variable = { name = wm_coalition_outcome value = 2 }
+		}
+		else_if = {
+			limit = {
+				has_global_variable = wm_coalition_partner
+				OR = {
+					NOT = { has_global_variable = wm_coalition_pm }
+					NOT = { global_var:wm_coalition_pm = title:e_united_kingdom.holder }
+					NOT = { has_global_variable = wm_coalition_dpm }
+					NOT = { global_var:wm_coalition_dpm = global_var:wm_coalition_partner.holder }
+				}
+			}
+			wm_coalition_end_dpm_effect = yes
+			wm_coalition_start_dpm_effect = yes
+		}
+	}
+}
+
+# Ranks every possible partner for global_var:wm_coalition_senior into wm_coalition_choice_1/2/3 (best first).
+wm_coalition_rank_partners_effect = {
+	remove_global_variable = wm_coalition_choice_1
+	remove_global_variable = wm_coalition_choice_2
+	remove_global_variable = wm_coalition_choice_3
+	set_global_variable = { name = wm_coalition_fit_1 value = -1000 }
+	set_global_variable = { name = wm_coalition_fit_2 value = -1000 }
+	set_global_variable = { name = wm_coalition_fit_3 value = -1000 }
+	wm_coalition_rank_party_effect = { PARTY = k_party_labour }
+	wm_coalition_rank_party_effect = { PARTY = k_party_conservative }
+	wm_coalition_rank_party_effect = { PARTY = k_party_lib_dem }
+	wm_coalition_rank_party_effect = { PARTY = k_party_reform }
+	wm_coalition_rank_party_effect = { PARTY = k_party_green }
+	wm_coalition_rank_party_effect = { PARTY = k_party_snp }
+	wm_coalition_rank_party_effect = { PARTY = k_party_plaid }
+	wm_coalition_rank_party_effect = { PARTY = k_party_dup }
+	wm_coalition_rank_party_effect = { PARTY = k_party_sdlp }
+	wm_coalition_rank_party_effect = { PARTY = k_party_alliance }
+	wm_coalition_rank_party_effect = { PARTY = k_party_uup }
+	wm_coalition_rank_party_effect = { PARTY = k_party_tuv }
+	remove_global_variable = wm_coalition_fit
+}
+
+# One party into the ranking. $PARTY$: a party title (k_party_*).
+wm_coalition_rank_party_effect = {
+	if = {
+		limit = {
+			NOT = { global_var:wm_coalition_senior = title:$PARTY$ }
+			exists = title:$PARTY$.holder
+			title:$PARTY$ = { wm_coalition_party_seats_value >= 1 }
+		}
+		title:$PARTY$ = {
+			set_global_variable = { name = wm_coalition_fit value = wm_coalition_fit_value }
+		}
+		if = {
+			limit = { global_var:wm_coalition_fit > global_var:wm_coalition_fit_1 }
+			if = {
+				limit = { has_global_variable = wm_coalition_choice_2 }
+				set_global_variable = { name = wm_coalition_choice_3 value = global_var:wm_coalition_choice_2 }
+			}
+			set_global_variable = { name = wm_coalition_fit_3 value = global_var:wm_coalition_fit_2 }
+			if = {
+				limit = { has_global_variable = wm_coalition_choice_1 }
+				set_global_variable = { name = wm_coalition_choice_2 value = global_var:wm_coalition_choice_1 }
+			}
+			set_global_variable = { name = wm_coalition_fit_2 value = global_var:wm_coalition_fit_1 }
+			set_global_variable = { name = wm_coalition_choice_1 value = title:$PARTY$ }
+			set_global_variable = { name = wm_coalition_fit_1 value = global_var:wm_coalition_fit }
+		}
+		else_if = {
+			limit = { global_var:wm_coalition_fit > global_var:wm_coalition_fit_2 }
+			if = {
+				limit = { has_global_variable = wm_coalition_choice_2 }
+				set_global_variable = { name = wm_coalition_choice_3 value = global_var:wm_coalition_choice_2 }
+			}
+			set_global_variable = { name = wm_coalition_fit_3 value = global_var:wm_coalition_fit_2 }
+			set_global_variable = { name = wm_coalition_choice_2 value = title:$PARTY$ }
+			set_global_variable = { name = wm_coalition_fit_2 value = global_var:wm_coalition_fit }
+		}
+		else_if = {
+			limit = { global_var:wm_coalition_fit > global_var:wm_coalition_fit_3 }
+			set_global_variable = { name = wm_coalition_choice_3 value = title:$PARTY$ }
+			set_global_variable = { name = wm_coalition_fit_3 value = global_var:wm_coalition_fit }
+		}
+	}
+}
+
+# Sets the offer on the table, unless an acceptable one has already been found, and notes whether the partner
+# (global_var:wm_coalition_talks_partner) would accept it. KIND: 1 coalition, 2 confidence-and-supply.
+wm_coalition_try_offer_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_coalition_offer_ok } }
+		set_global_variable = { name = wm_coalition_offer_kind value = $KIND$ }
+		set_global_variable = { name = wm_coalition_offer_seats value = $SEATS$ }
+		set_global_variable = { name = wm_coalition_offer_policy value = $POLICY$ }
+		if = {
+			limit = {
+				global_var:wm_coalition_talks_partner = { wm_coalition_offer_margin_value >= 0 }
+			}
+			set_global_variable = { name = wm_coalition_offer_ok value = yes }
+		}
+	}
+}
+
+# An AI Prime Minister's offer to global_var:wm_coalition_talks_partner: the cheapest one it expects to be
+# accepted. A big partner is offered a coalition first, a small one (under 20 seats) confidence-and-supply. If none
+# would be accepted, the most generous offer of the preferred kind stays on the table (wm_coalition_offer_ok unset).
+wm_coalition_ai_pick_offer_effect = {
+	remove_global_variable = wm_coalition_offer_ok
+	if = {
+		limit = {
+			global_var:wm_coalition_talks_partner = { wm_coalition_party_seats_value < 20 }
+		}
+		wm_coalition_try_offer_effect = { KIND = 2 SEATS = 0 POLICY = 0 }
+		wm_coalition_try_offer_effect = { KIND = 1 SEATS = 1 POLICY = 1 }
+		wm_coalition_try_offer_effect = { KIND = 1 SEATS = 2 POLICY = 1 }
+		if = {
+			limit = { NOT = { has_global_variable = wm_coalition_offer_ok } }
+			wm_coalition_try_offer_effect = { KIND = 2 SEATS = 0 POLICY = 0 }
+		}
+	}
+	else = {
+		wm_coalition_try_offer_effect = { KIND = 1 SEATS = 1 POLICY = 1 }
+		wm_coalition_try_offer_effect = { KIND = 1 SEATS = 2 POLICY = 1 }
+		wm_coalition_try_offer_effect = { KIND = 2 SEATS = 0 POLICY = 0 }
+		if = {
+			limit = { NOT = { has_global_variable = wm_coalition_offer_ok } }
+			wm_coalition_try_offer_effect = { KIND = 1 SEATS = 2 POLICY = 1 }
+		}
+	}
+}
+
+# An AI Prime Minister negotiates with global_var:wm_coalition_talks_partner. An AI partner answers at once by the
+# score; a player partner gets the offer (wm_coalition.3).
+wm_coalition_ai_negotiate_effect = {
+	wm_coalition_ai_pick_offer_effect = yes
+	if = {
+		limit = {
+			global_var:wm_coalition_talks_partner.holder ?= { is_ai = no }
+			wm_coalition_loud_trigger = yes
+		}
+		set_global_variable = { name = wm_coalition_outcome value = 5 }
+		set_global_variable = { name = wm_coalition_talks value = yes days = 90 }
+		global_var:wm_coalition_talks_partner.holder = { trigger_event = { id = wm_coalition.3 days = 1 } }
+	}
+	else_if = {
+		limit = { has_global_variable = wm_coalition_offer_ok }
+		wm_coalition_form_effect = yes
+	}
+	else = {
+		wm_coalition_minority_effect = yes
+	}
+}
+
+# A player Prime Minister's offer (globals set by event wm_coalition.2): an AI partner answers at once and the
+# Prime Minister hears back (wm_coalition.4); a player partner gets the offer (wm_coalition.3).
+wm_coalition_send_offer_effect = {
+	remove_global_variable = wm_coalition_offer_refused
+	if = {
+		limit = {
+			global_var:wm_coalition_talks_partner.holder ?= { is_ai = no }
+			wm_coalition_loud_trigger = yes
+		}
+		global_var:wm_coalition_talks_partner.holder = { trigger_event = wm_coalition.3 }
+	}
+	else_if = {
+		limit = {
+			global_var:wm_coalition_talks_partner = { wm_coalition_offer_margin_value >= 0 }
+		}
+		wm_coalition_form_effect = yes
+		title:e_united_kingdom.holder ?= { trigger_event = wm_coalition.4 }
+	}
+	else = {
+		set_global_variable = { name = wm_coalition_offer_refused value = yes }
+		title:e_united_kingdom.holder ?= { trigger_event = wm_coalition.4 }
+	}
+}
+
+# The deal is done: global_var:wm_coalition_talks_partner joins the government (offer kind 1) or agrees
+# confidence-and-supply (kind 2) on the terms in global_var:wm_coalition_offer_*.
+wm_coalition_form_effect = {
+	wm_coalition_clear_effect = yes
+	set_global_variable = { name = wm_coalition_junior value = global_var:wm_coalition_talks_partner }
+	set_global_variable = { name = wm_coalition_pm value = title:e_united_kingdom.holder }
+	if = {
+		limit = { NOT = { has_global_variable = wm_coalition_senior } }
+		set_global_variable = { name = wm_coalition_senior value = title:e_united_kingdom.holder.var:wm_party }
+	}
+	title:e_united_kingdom.holder = { save_scope_as = wm_coal_pm }
+	global_var:wm_coalition_junior = {
+		set_global_variable = { name = wm_coalition_partner_poll_start value = wm_coalition_party_poll_value }
+		holder ?= { save_scope_as = wm_coal_leader }
+	}
+	if = {
+		limit = { global_var:wm_coalition_offer_kind = 1 }
+		set_global_variable = { name = wm_coalition_partner value = global_var:wm_coalition_junior }
+		set_global_variable = { name = wm_coalition_cabinet_seats value = global_var:wm_coalition_offer_seats }
+		set_global_variable = { name = wm_coalition_policy value = global_var:wm_coalition_offer_policy }
+		wm_coalition_start_dpm_effect = yes
+		if = {
+			limit = { global_var:wm_coalition_policy = 1 }
+			scope:wm_coal_pm = {
+				add_character_modifier = { modifier = wm_coalition_compromise_modifier years = 5 }
+			}
+		}
+		set_global_variable = { name = wm_coalition_outcome value = 3 }
+	}
+	else = {
+		set_global_variable = { name = wm_coalition_supply_partner value = global_var:wm_coalition_junior }
+		set_global_variable = { name = wm_coalition_cabinet_seats value = 0 }
+		set_global_variable = { name = wm_coalition_policy value = 0 }
+		scope:wm_coal_pm = { remove_short_term_gold = wm_coalition_supply_gold }
+		scope:wm_coal_leader ?= {
+			add_gold = wm_coalition_supply_gold
+			add_character_modifier = { modifier = wm_coalition_supply_deal_modifier }
+		}
+		set_global_variable = { name = wm_coalition_outcome value = 4 }
+	}
+	if = {
+		limit = { exists = scope:wm_coal_leader }
+		scope:wm_coal_pm = {
+			add_opinion = { target = scope:wm_coal_leader modifier = wm_coalition_partner_opinion }
+		}
+		scope:wm_coal_leader = {
+			add_opinion = { target = scope:wm_coal_pm modifier = wm_coalition_partner_opinion }
+		}
+	}
+	remove_global_variable = wm_coalition_talks
+	remove_global_variable = wm_coalition_talks_partner
+	remove_global_variable = wm_coalition_offer_refused
+	wm_coalition_headline_effect = yes
+}
+
+# Nobody would deal (or the Prime Minister chose to go it alone): a minority government.
+wm_coalition_minority_effect = {
+	set_global_variable = { name = wm_coalition_outcome value = 2 }
+	remove_global_variable = wm_coalition_talks
+	remove_global_variable = wm_coalition_talks_partner
+	remove_global_variable = wm_coalition_offer_refused
+	wm_coalition_headline_effect = yes
+}
+
+# The coalition partner's leader becomes Deputy Prime Minister: a diarchy on the Prime Minister.
+wm_coalition_start_dpm_effect = {
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_partner
+			exists = title:e_united_kingdom.holder
+			exists = global_var:wm_coalition_partner.holder
+			NOT = { global_var:wm_coalition_partner.holder = title:e_united_kingdom.holder }
+		}
+		global_var:wm_coalition_partner.holder = { save_scope_as = wm_coal_dpm }
+		set_global_variable = { name = wm_coalition_dpm value = scope:wm_coal_dpm }
+		set_global_variable = { name = wm_coalition_pm value = title:e_united_kingdom.holder }
+		scope:wm_coal_dpm = {
+			if = {
+				limit = { NOT = { has_character_modifier = wm_coalition_deputy_pm_modifier } }
+				add_character_modifier = { modifier = wm_coalition_deputy_pm_modifier }
+			}
+		}
+		title:e_united_kingdom.holder = {
+			if = {
+				limit = { has_active_diarchy = yes }
+				end_diarchy = yes
+			}
+			try_start_diarchy = wm_coalition_deputyship
+			set_diarch = scope:wm_coal_dpm
+		}
+	}
+}
+
+# The Deputy Prime Minister leaves office: the diarchy ends.
+wm_coalition_end_dpm_effect = {
+	if = {
+		limit = { has_global_variable = wm_coalition_pm }
+		global_var:wm_coalition_pm = {
+			if = {
+				limit = {
+					is_alive = yes
+					has_diarchy_type = wm_coalition_deputyship
+				}
+				end_diarchy = yes
+			}
+		}
+	}
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = { has_diarchy_type = wm_coalition_deputyship }
+			end_diarchy = yes
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_dpm }
+		global_var:wm_coalition_dpm = { remove_character_modifier = wm_coalition_deputy_pm_modifier }
+		remove_global_variable = wm_coalition_dpm
+	}
+}
+
+# Ends any deal quietly (a new election, or a breakdown after its consequences are applied).
+wm_coalition_clear_effect = {
+	wm_coalition_end_dpm_effect = yes
+	if = {
+		limit = { has_global_variable = wm_coalition_pm }
+		global_var:wm_coalition_pm = { remove_character_modifier = wm_coalition_compromise_modifier }
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_junior }
+		global_var:wm_coalition_junior.holder ?= { remove_character_modifier = wm_coalition_supply_deal_modifier }
+	}
+	remove_global_variable = wm_coalition_junior
+	remove_global_variable = wm_coalition_partner
+	remove_global_variable = wm_coalition_supply_partner
+	remove_global_variable = wm_coalition_cabinet_seats
+	remove_global_variable = wm_coalition_policy
+	remove_global_variable = wm_coalition_partner_poll_start
+	remove_global_variable = wm_coalition_pm
+}
+
+# The front-page headline for every player: COALITION AGREED, CONFIDENCE-AND-SUPPLY DEAL, MINORITY GOVERNMENT.
+# (A majority needs none: the results-night front page says it all.)
+wm_coalition_headline_effect = {
+	if = {
+		limit = {
+			wm_coalition_loud_trigger = yes
+			exists = title:e_united_kingdom.holder
+		}
+		title:e_united_kingdom.holder = { save_scope_as = wm_coal_pm }
+		if = {
+			limit = { has_global_variable = wm_coalition_senior }
+			global_var:wm_coalition_senior = {
+				save_scope_as = wm_coal_senior
+				save_scope_value_as = { name = wm_coal_senior_seats value = wm_coalition_party_seats_value }
+			}
+		}
+		if = {
+			limit = { has_global_variable = wm_coalition_junior }
+			global_var:wm_coalition_junior = {
+				save_scope_as = wm_coal_party
+				save_scope_value_as = { name = wm_coal_party_seats value = wm_coalition_party_seats_value }
+				holder ?= { save_scope_as = wm_coal_leader }
+			}
+		}
+		every_player = {
+			if = {
+				limit = {
+					global_var:wm_coalition_outcome = 3
+					exists = scope:wm_coal_party
+					exists = scope:wm_coal_leader
+				}
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_coalition_headline_coalition
+					left_icon = scope:wm_coal_pm
+					right_icon = scope:wm_coal_leader
+					custom_tooltip = wm_coalition_headline_coalition_desc
+				}
+			}
+			else_if = {
+				limit = {
+					global_var:wm_coalition_outcome = 4
+					exists = scope:wm_coal_party
+					exists = scope:wm_coal_leader
+				}
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_coalition_headline_supply
+					left_icon = scope:wm_coal_pm
+					right_icon = scope:wm_coal_leader
+					custom_tooltip = wm_coalition_headline_supply_desc
+				}
+			}
+			else_if = {
+				limit = {
+					global_var:wm_coalition_outcome = 2
+					exists = scope:wm_coal_senior
+				}
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_coalition_headline_minority
+					left_icon = scope:wm_coal_pm
+					custom_tooltip = wm_coalition_headline_minority_desc
+				}
+			}
+		}
+	}
+}
+
+# The junior partner walks out (its leader's decision, event wm_coalition.20, or the quarterly roll). The deal ends;
+# the Prime Minister resents it. Then the Prime Minister soldiers on, calls an election, or faces a motion of no
+# confidence (a player Prime Minister chooses: wm_coalition.21).
+wm_coalition_breakdown_effect = {
+	if = {
+		limit = { wm_coalition_deal_trigger = yes }
+		global_var:wm_coalition_junior = { save_scope_as = wm_coal_party }
+		global_var:wm_coalition_junior.holder ?= { save_scope_as = wm_coal_leader }
+		title:e_united_kingdom.holder ?= { save_scope_as = wm_coal_pm }
+		if = {
+			limit = {
+				exists = scope:wm_coal_pm
+				exists = scope:wm_coal_leader
+				NOT = { scope:wm_coal_pm = scope:wm_coal_leader }
+			}
+			scope:wm_coal_pm = {
+				add_opinion = { target = scope:wm_coal_leader modifier = wm_coalition_walked_out_opinion }
+			}
+			scope:wm_coal_leader = {
+				remove_opinion = { target = scope:wm_coal_pm modifier = wm_coalition_partner_opinion }
+				add_prestige = minor_prestige_gain	# standing on principle
+			}
+			scope:wm_coal_pm = {
+				remove_opinion = { target = scope:wm_coal_leader modifier = wm_coalition_partner_opinion }
+				add_prestige = minor_prestige_loss
+			}
+		}
+		wm_coalition_clear_effect = yes
+		set_global_variable = { name = wm_coalition_outcome value = 6 }
+		if = {
+			limit = {
+				wm_coalition_loud_trigger = yes
+				exists = scope:wm_coal_pm
+			}
+			every_player = {
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_coalition_headline_collapse
+					left_icon = scope:wm_coal_pm
+					custom_tooltip = wm_coalition_headline_collapse_desc
+				}
+			}
+			wm_coalition_aftermath_effect = yes
+		}
+	}
+}
+
+# After a breakdown: what the Prime Minister does next. A player chooses (wm_coalition.21). An AI Prime Minister
+# soldiers on (40%), calls an election (30%), or the Leader of the Opposition tables a motion of no confidence (30%).
+wm_coalition_aftermath_effect = {
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = { is_ai = no }
+			trigger_event = wm_coalition.21
+		}
+		else = {
+			random_list = {
+				40 = {}
+				30 = {
+					trigger = { NOT = { has_global_variable = wm_el_scheduled } }
+					wm_election_schedule_effect = yes
+				}
+				30 = {
+					trigger = {
+						NOT = { has_global_variable = wm_el_scheduled }
+						NOT = { has_global_variable = wm_election_required }
+						wm_commons_house_free_trigger = yes
+						any_vassal = { wm_commons_is_opposition_party_leader_trigger = yes }
+					}
+					ordered_vassal = {
+						limit = { wm_commons_is_opposition_party_leader_trigger = yes }
+						order_by = wm_commons_party_seats_value
+						wm_commons_table_confidence_motion_effect = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Each quarter, on the Prime Minister: keep the deal in step, then the junior partner may walk out.
+wm_coalition_quarterly_effect = {
+	wm_coalition_keep_in_step_effect = yes
+	if = {
+		limit = {
+			wm_coalition_deal_trigger = yes
+			NOT = { has_global_variable = wm_el_scheduled }
+			NOT = { has_global_variable = wm_coalition_talks }
+		}
+		random = {
+			chance = wm_coalition_breakdown_chance_value
+			global_var:wm_coalition_junior.holder ?= {
+				if = {
+					limit = {
+						is_ai = no
+						wm_coalition_loud_trigger = yes
+					}
+					trigger_event = wm_coalition.20
+				}
+				else = {
+					wm_coalition_breakdown_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# For the events' text: saves the people, parties and numbers in the talks as scopes (from the globals).
+wm_coalition_event_scopes_effect = {
+	title:e_united_kingdom.holder ?= { save_scope_as = wm_coal_pm }
+	save_scope_value_as = { name = wm_coal_majority value = wm_coalition_majority_value }
+	if = {
+		limit = { has_global_variable = wm_coalition_senior }
+		global_var:wm_coalition_senior = {
+			save_scope_as = wm_coal_senior
+			save_scope_value_as = { name = wm_coal_senior_seats value = wm_coalition_party_seats_value }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_choice_1 }
+		global_var:wm_coalition_choice_1 = {
+			save_scope_as = wm_coal_choice_1
+			save_scope_value_as = { name = wm_coal_choice_1_seats value = wm_coalition_party_seats_value }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_choice_2 }
+		global_var:wm_coalition_choice_2 = {
+			save_scope_as = wm_coal_choice_2
+			save_scope_value_as = { name = wm_coal_choice_2_seats value = wm_coalition_party_seats_value }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_choice_3 }
+		global_var:wm_coalition_choice_3 = {
+			save_scope_as = wm_coal_choice_3
+			save_scope_value_as = { name = wm_coal_choice_3_seats value = wm_coalition_party_seats_value }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_talks_partner }
+		global_var:wm_coalition_talks_partner = {
+			save_scope_as = wm_coal_talks
+			save_scope_value_as = { name = wm_coal_talks_seats value = wm_coalition_party_seats_value }
+			save_scope_value_as = { name = wm_coal_combined_seats value = wm_coalition_combined_seats_value }
+			holder ?= { save_scope_as = wm_coal_talks_leader }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_junior }
+		global_var:wm_coalition_junior = {
+			save_scope_as = wm_coal_party
+			holder ?= { save_scope_as = wm_coal_leader }
+		}
+	}
+	if = {
+		limit = { has_global_variable = wm_coalition_offer_seats }
+		save_scope_value_as = { name = wm_coal_offer_seats value = global_var:wm_coalition_offer_seats }
+	}
+}

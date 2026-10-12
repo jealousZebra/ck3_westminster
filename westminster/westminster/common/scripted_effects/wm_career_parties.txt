@@ -1,0 +1,73 @@
+﻿# Unlanded careers: the per-party calls (wm_career_effects.txt). Selections and candidates are stored per party on
+# the seat with the party's poll key (var:wm_candidate_lab, var:wm_sel_wait_con...), so each needs the key and the
+# party title together. Keep this list in step with wm_election_score_parties_effect (wm_election_parties.txt).
+
+# Scope: a seat won by scope:wm_el_party (wm_election_new_mp_effect). Saves the party's living candidate for the
+# seat as scope:wm_el_new_mp, if there is one.
+wm_career_find_candidate_effect = {
+	wm_career_find_candidate_party_effect = { P = lab PARTY = k_party_labour }
+	wm_career_find_candidate_party_effect = { P = con PARTY = k_party_conservative }
+	wm_career_find_candidate_party_effect = { P = ld PARTY = k_party_lib_dem }
+	wm_career_find_candidate_party_effect = { P = ruk PARTY = k_party_reform }
+	wm_career_find_candidate_party_effect = { P = grn PARTY = k_party_green }
+	wm_career_find_candidate_party_effect = { P = snp PARTY = k_party_snp }
+	wm_career_find_candidate_party_effect = { P = pc PARTY = k_party_plaid }
+	wm_career_find_candidate_party_effect = { P = sf PARTY = k_party_sinn_fein }
+	wm_career_find_candidate_party_effect = { P = dup PARTY = k_party_dup }
+	wm_career_find_candidate_party_effect = { P = sdlp PARTY = k_party_sdlp }
+	wm_career_find_candidate_party_effect = { P = apni PARTY = k_party_alliance }
+	wm_career_find_candidate_party_effect = { P = uup PARTY = k_party_uup }
+	wm_career_find_candidate_party_effect = { P = tuv PARTY = k_party_tuv }
+}
+
+# Scope: a seat going to a by-election. Every party with a real chance there (a 15% share in 2024) selects a
+# candidate, unless it already has one.
+wm_career_open_byelection_selections_effect = {
+	wm_career_open_byelection_party_effect = { P = lab PARTY = k_party_labour }
+	wm_career_open_byelection_party_effect = { P = con PARTY = k_party_conservative }
+	wm_career_open_byelection_party_effect = { P = ld PARTY = k_party_lib_dem }
+	wm_career_open_byelection_party_effect = { P = ruk PARTY = k_party_reform }
+	wm_career_open_byelection_party_effect = { P = grn PARTY = k_party_green }
+	wm_career_open_byelection_party_effect = { P = snp PARTY = k_party_snp }
+	wm_career_open_byelection_party_effect = { P = pc PARTY = k_party_plaid }
+	wm_career_open_byelection_party_effect = { P = sf PARTY = k_party_sinn_fein }
+	wm_career_open_byelection_party_effect = { P = dup PARTY = k_party_dup }
+	wm_career_open_byelection_party_effect = { P = sdlp PARTY = k_party_sdlp }
+	wm_career_open_byelection_party_effect = { P = apni PARTY = k_party_alliance }
+	wm_career_open_byelection_party_effect = { P = uup PARTY = k_party_uup }
+	wm_career_open_byelection_party_effect = { P = tuv PARTY = k_party_tuv }
+}
+
+# Each party opens a selection in one seat it could win (wm_career_open_target_party_effect).
+wm_career_open_target_selections_effect = {
+	wm_career_open_target_party_effect = { P = lab PARTY = k_party_labour }
+	wm_career_open_target_party_effect = { P = con PARTY = k_party_conservative }
+	wm_career_open_target_party_effect = { P = ld PARTY = k_party_lib_dem }
+	wm_career_open_target_party_effect = { P = ruk PARTY = k_party_reform }
+	wm_career_open_target_party_effect = { P = grn PARTY = k_party_green }
+	wm_career_open_target_party_effect = { P = snp PARTY = k_party_snp }
+	wm_career_open_target_party_effect = { P = pc PARTY = k_party_plaid }
+	wm_career_open_target_party_effect = { P = sf PARTY = k_party_sinn_fein }
+	wm_career_open_target_party_effect = { P = dup PARTY = k_party_dup }
+	wm_career_open_target_party_effect = { P = sdlp PARTY = k_party_sdlp }
+	wm_career_open_target_party_effect = { P = apni PARTY = k_party_alliance }
+	wm_career_open_target_party_effect = { P = uup PARTY = k_party_uup }
+	wm_career_open_target_party_effect = { P = tuv PARTY = k_party_tuv }
+}
+
+# Scope: a seat with selections open. Closes those whose time is up.
+wm_career_close_due_selections_effect = {
+	wm_career_close_due_party_effect = { P = lab PARTY = k_party_labour }
+	wm_career_close_due_party_effect = { P = con PARTY = k_party_conservative }
+	wm_career_close_due_party_effect = { P = ld PARTY = k_party_lib_dem }
+	wm_career_close_due_party_effect = { P = ruk PARTY = k_party_reform }
+	wm_career_close_due_party_effect = { P = grn PARTY = k_party_green }
+	wm_career_close_due_party_effect = { P = snp PARTY = k_party_snp }
+	wm_career_close_due_party_effect = { P = pc PARTY = k_party_plaid }
+	wm_career_close_due_party_effect = { P = sf PARTY = k_party_sinn_fein }
+	wm_career_close_due_party_effect = { P = dup PARTY = k_party_dup }
+	wm_career_close_due_party_effect = { P = sdlp PARTY = k_party_sdlp }
+	wm_career_close_due_party_effect = { P = apni PARTY = k_party_alliance }
+	wm_career_close_due_party_effect = { P = uup PARTY = k_party_uup }
+	wm_career_close_due_party_effect = { P = tuv PARTY = k_party_tuv }
+}

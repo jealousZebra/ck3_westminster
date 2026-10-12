@@ -1,0 +1,10 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt), appended to vanilla's on_game_start. The monthly
+# movement runs from the polls' tick (wm_polls_monthly_effect).
+on_game_start = {
+	on_actions = { wm_devolution_on_game_start }
+}
+wm_devolution_on_game_start = {
+	effect = {
+		wm_devolution_init_effect = yes
+	}
+}

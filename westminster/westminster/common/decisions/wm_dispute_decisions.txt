@@ -1,0 +1,67 @@
+﻿# Disputed results (common/scripted_effects/wm_dispute_effects.txt). Players only.
+
+# A defeated MP challenges the count in the seat they lost (up to 90 days after).
+wm_dispute_seat_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_count.dds"
+	}
+	desc = wm_dispute_seat_decision_desc
+	selection_tooltip = wm_dispute_seat_decision_tooltip
+
+	is_shown = {
+		has_variable = wm_lost_seat
+		NOT = { wm_is_mp_trigger = yes }
+		NOT = { has_variable = wm_speaker_retired }		# a Speaker who stood down didn't lose
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_dispute_not_disputed_tt
+			var:wm_lost_seat = {
+				NOT = { has_variable = wm_dispute_state }
+				NOT = { has_variable = wm_dispute_done }
+			}
+		}
+		custom_tooltip = {
+			text = wm_dispute_no_byelection_tt
+			var:wm_lost_seat = { NOT = { has_variable = wm_byelection_due } }
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_dispute_seat_decision_effect_tt
+		hidden_effect = {
+			set_variable = { name = wm_dispute_offer value = var:wm_lost_seat days = 30 }
+			trigger_event = wm_dispute.1
+		}
+	}
+
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# A Prime Minister turned out at a general election refuses to accept the result (up to 60 days after).
+wm_dispute_national_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_press.dds"
+	}
+	desc = wm_dispute_national_decision_desc
+	selection_tooltip = wm_dispute_national_decision_tooltip
+
+	is_shown = {
+		has_global_variable = wm_dispute_national_window
+		global_var:wm_el_old_pm ?= root
+		NOT = { has_title = title:e_united_kingdom }
+		NOT = { has_variable = wm_dispute_refused }
+	}
+
+	effect = {
+		custom_tooltip = wm_dispute_national_decision_effect_tt
+		hidden_effect = {
+			wm_dispute_national_effect = yes
+		}
+	}
+
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}

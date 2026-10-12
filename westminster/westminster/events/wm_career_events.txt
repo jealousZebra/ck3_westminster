@@ -1,0 +1,189 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt). Events 1, 2 and 10 are hidden; 20 and 21 are for
+# player hopefuls only (AI hopefuls decide in script), and never fire while global_var:wm_test_quiet is set.
+namespace = wm_career
+
+# The month in careers: selections, target seats, defeated MPs, jobs (three times a quarter, on the Prime Minister).
+wm_career.1 = {
+	hidden = yes
+	immediate = {
+		wm_career_monthly_effect = yes
+	}
+}
+
+# Selections whose time is up close (a fortnight after a by-election selection opened).
+wm_career.2 = {
+	hidden = yes
+	immediate = {
+		wm_career_process_selections_effect = yes
+	}
+}
+
+# Jobs taken three weeks ago are settled (root: the taker).
+wm_career.10 = {
+	hidden = yes
+	immediate = {
+		wm_career_resolve_jobs_effect = yes
+	}
+}
+
+# A local party invites applications, and the player is eligible.
+wm_career.20 = {
+	type = character_event
+	title = wm_career.20.t
+	desc = wm_career.20.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	trigger = {
+		exists = var:wm_career_invite_seat
+		wm_career_can_apply_trigger = yes
+		var:wm_career_invite_seat = { wm_career_seat_open_for_trigger = { CHAR = root } }
+	}
+	immediate = {
+		var:wm_career_invite_seat = { save_scope_as = wm_sel_seat }
+		var:wm_party = { save_scope_as = wm_sel_party }
+	}
+
+	# Put my name forward
+	option = {
+		name = wm_career.20.a
+		wm_career_apply_effect = yes
+		ai_chance = { base = 100 }
+	}
+
+	# Not this one
+	option = {
+		name = wm_career.20.b
+		remove_variable = wm_career_invite_seat
+		ai_chance = { base = 0 }
+	}
+}
+
+# Hustings: the player makes their pitch to the local members. A skill check (duel) of the skill they choose.
+wm_career.21 = {
+	type = character_event
+	title = wm_career.21.t
+	desc = wm_career.21.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	trigger = {
+		exists = var:wm_career_applied
+	}
+	immediate = {
+		var:wm_career_applied = { save_scope_as = wm_sel_seat }
+		var:wm_party = { save_scope_as = wm_sel_party }
+	}
+
+	# Talk about the area: its high street, its buses, its people
+	option = {
+		name = wm_career.21.a
+		duel = {
+			skill = diplomacy
+			value = average_skill_rating
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_career.21.success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_career.21.success
+					wm_career_hustings_result_effect = { SKILL = diplomacy BASE = 60 }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_career.21.failure
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_career.21.failure
+					wm_career_hustings_result_effect = { SKILL = diplomacy BASE = 20 }
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+
+	# Set out a costed plan, policy by policy
+	option = {
+		name = wm_career.21.b
+		duel = {
+			skill = learning
+			value = average_skill_rating
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_career.21.success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_career.21.success
+					wm_career_hustings_result_effect = { SKILL = learning BASE = 60 }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_career.21.failure
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_career.21.failure
+					wm_career_hustings_result_effect = { SKILL = learning BASE = 20 }
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+
+	# Quietly remind the members what the other applicants have said in the past
+	option = {
+		name = wm_career.21.c
+		duel = {
+			skill = intrigue
+			value = average_skill_rating
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_career.21.success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_career.21.success
+					wm_career_hustings_result_effect = { SKILL = intrigue BASE = 60 }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_career.21.failure
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_career.21.failure
+					wm_career_hustings_result_effect = { SKILL = intrigue BASE = 20 }
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}

@@ -1,0 +1,1819 @@
+﻿# Westminster: the backgrounds of Crusader Kings III's own common/event_backgrounds/01_event_backgrounds.txt (Paradox Interactive), with modern scenes, by westminster/tools/ui/build_event_backgrounds.py - edit there.
+alley_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+alley_day = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_camp_steppe"
+	}
+}
+armory = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+battlefield = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_battlefield"
+	}
+}
+temple = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_ep3_living_tent_interior"
+	}
+}
+temple_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_mpo_temple_steppe"
+	}
+}
+temple_church = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_church"
+	}
+}
+temple_mosque = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_mosque"
+	}
+}
+temple_generic = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_church"
+	}
+}
+corridor_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+corridor_day = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_camp_steppe"
+	}
+}
+council_chamber = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_church"
+	}
+}
+courtyard = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_western_wedding"
+	}
+}
+courtyard_location = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_western_wedding"
+	}
+}
+courtyard_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_western_wedding"
+	}
+}
+dungeon = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/dungeon.dds"
+		environment = "environment_event_fp1_tribal_prison"
+	}
+}
+dungeon_scope = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/dungeon.dds"
+		environment = "environment_event_fp1_tribal_prison"
+	}
+}
+wilderness = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_hunt_snowy_forest"
+	}
+}
+wilderness_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_hunt_snowy_forest"
+	}
+}
+wilderness_activity = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_hunt_snowy_forest"
+	}
+}
+wilderness_desert = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_bp1_desert"
+	}
+}
+wilderness_forest = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_forest"
+	}
+}
+wilderness_wetlands = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_bp1_wetlands"
+	}
+}
+wilderness_jungle = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_bp1_jungle"
+	}
+}
+wilderness_forest_pine = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_forest_pine"
+	}
+}
+wilderness_mountains = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_mountains"
+	}
+}
+wilderness_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_steppe"
+	}
+}
+drylands = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_desert"
+	}
+}
+ocean = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_fp1_ocean"
+	}
+}
+plains = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_bp1_plains"
+	}
+}
+hills = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_bp1_hills"
+	}
+}
+terrain = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_riverside"
+	}
+}
+terrain_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_riverside"
+	}
+}
+terrain_activity = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_riverside"
+	}
+}
+terrain_travel = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_bridge"
+	}
+}
+docks = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_tgp_village_sea"
+	}
+}
+farmland = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_rice_fields"
+	}
+}
+feast = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+feast_event = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+gallows = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/dungeon.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+garden = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+garden_location = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+market = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+market_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+market_east = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_market_east"
+	}
+}
+market_india = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_market_east"
+	}
+}
+market_tribal = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_market_tribal"
+	}
+}
+market_west = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_market_west"
+	}
+}
+village = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+burning_building = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_raid_burning_asian"
+	}
+}
+burning_building_west = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep3_constantinople_on_fire"
+	}
+}
+sitting_room = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+bedchamber = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+study = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+location_study = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+relaxing_room = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+relaxing_room_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_ep3_relaxing_room"
+	}
+}
+physicians_study = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+tavern = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+western_tavern = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_event_tavern"
+	}
+}
+throne_room = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_church"
+	}
+}
+throne_room_scope = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_church"
+	}
+}
+throne_room_east = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_frontend_east_main"
+	}
+}
+throne_room_india = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_frontend_india_main"
+	}
+}
+throne_room_mediterranean = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_frontend_mediterranean_main"
+	}
+}
+throne_room_tribal = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_frontend_tribal_main"
+	}
+}
+throne_room_west = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_frontend_west_main"
+	}
+}
+estate = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_tgp_tanabata_festival_night_japan"
+	}
+}
+army_camp = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+bath_house = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_event_fp3_bathhouse"
+	}
+}
+fp1_ocean = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_fp1_ocean"
+	}
+}
+fp1_ocean_norse = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_fp1_ocean"
+	}
+}
+fp1_runestone = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp1_runestone"
+	}
+}
+fp1_runestone_circle = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp1_runestone_circle"
+	}
+}
+fp1_beached_longships = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_fp1_beached_longship"
+	}
+}
+fp1_steward_study = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_event_fp1_steward_study"
+	}
+}
+fp1_tribal_temple = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp1_tribal_temple"
+	}
+}
+fp1_throneroom_nontribal = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_fp1_throneroom_nontribal"
+	}
+}
+fp1_throneroom_tribal = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_fp1_throneroom_tribal"
+	}
+}
+fp1_tribal_corridor = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_fp1_tribal_corridor"
+	}
+}
+fp1_viking_feast = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_event_fp1_viking_feast"
+	}
+}
+fp1_tribal_prison = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/dungeon.dds"
+		environment = "environment_event_fp1_tribal_prison"
+	}
+}
+fp2_test = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_fp2_throneroom"
+	}
+}
+fp2_fullscreen_intro = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+fp2_fullscreen_hostility = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+fp2_fullscreen_compromise = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+fp2_fullscreen_conciliation = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+fp3_fullscreen_intro = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+fp3_fullscreen_concession = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+fp3_fullscreen_rekindle = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+fp3_fullscreen_strength = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+fp3_fullscreen_temper = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+fp3_fullscreen_sunder = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_steppe"
+	}
+}
+bp1_indian_corridor_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_bp1_corridor_indian_night"
+	}
+}
+bp1_indian_corridor_day = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_bp1_corridor_indian_day"
+	}
+}
+bp1_relaxing_room_western = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_event_bp1_relaxing_room_western"
+	}
+}
+bp1_relaxing_room_mena = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_event_bp1_relaxing_room_mena"
+	}
+}
+bp1_kitchen_western = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+bp1_bonfire = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+bp1_courtyard_indian = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_bp1_courtyard_indian"
+	}
+}
+bp1_courtyard_mena = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_bp1_courtyard_mena"
+	}
+}
+bp1_wine_cellar = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+bp1_crossroads_inn = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_travel_desert"
+	}
+}
+bp1_docks_tribal = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_bp1_docks_tribal"
+	}
+}
+fp3_courtyard_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_fp3_courtyard_night"
+	}
+}
+fp3_cave = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_sittingroom"
+	}
+}
+fp3_zoroastrian_temple = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp3_temple"
+	}
+}
+fp3_iranian_docks = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_event_fp3_docks"
+	}
+}
+fp3_iranian_throne_room = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_event_temple"
+	}
+}
+tour_arrival_turned_away = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep2_tour_arrival_norse_suspicious"
+	}
+}
+tour_arrival = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep2_tour_arrival_norse_neutral"
+	}
+}
+ep2_tournament = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_village_festival"
+	}
+}
+tournament_contest = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep2_horse_racing"
+	}
+}
+holy_site_generic = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp3_temple"
+	}
+}
+holy_site_generic_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_event_fp3_temple"
+	}
+}
+holy_site_unique = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_jerusalem"
+	}
+}
+holy_site_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_jerusalem"
+	}
+}
+holy_site_mecca = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_mecca"
+	}
+}
+ep2_travel_settlement_farm = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_farmlands"
+	}
+}
+ep2_travel_settlement_ruin_desert = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_desert"
+	}
+}
+ep2_travel_nomad_settlement_desert = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_desert"
+	}
+}
+ep2_travel_settlement_desert = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_desert"
+	}
+}
+ep2_travel_settlement_hills = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_hills_settlement"
+	}
+}
+ep2_travel_settlement_mountains = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_mountain_settlement"
+	}
+}
+ep2_travel_settlement_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_steppe_settlement"
+	}
+}
+ep2_travel_bridge = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_bridge"
+	}
+}
+ep2_hunt_forest_hut = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_generic_hunt"
+	}
+}
+ep2_hunt_forest_cave = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_hunt_forest_cave"
+	}
+}
+ep2_hunt_falconry_mews = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_hunt_falconry_mews"
+	}
+}
+ep2_hunt_foggy_forest = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_hunt_foggy_forest"
+	}
+}
+ep2_forest_managed = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_ep2_forest_managed"
+	}
+}
+ep2_dog_kennels = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_dog_kennels"
+	}
+}
+ep2_video_test = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_forest_pine"
+	}
+}
+ep2_hunt_snowy_forest = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_hunt_snowy_forest"
+	}
+}
+ep2_hunt_poachers_camp = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_forest_pine"
+	}
+}
+ep2_hunt_activity_camp = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_hunt_snowy_forest"
+	}
+}
+ep2_wedding_ceremony = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_indian_wedding"
+	}
+}
+ep2_involved_activity = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_village_festival"
+	}
+}
+ep2_activity = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_examination_room"
+	}
+}
+contest_bg_horseracing = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep2_horse_racing"
+	}
+}
+contest_bg_melee = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep2_melee"
+	}
+}
+contest_bg_boardgames = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep2_boardgames"
+	}
+}
+contest_bg_archery = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep2_archery"
+	}
+}
+pivotal_archery_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_archery_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_archery_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_boardgame_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_boardgame_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_boardgame_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_wrestling_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_wrestling_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_wrestling_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_horse_racing_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_horse_racing_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_horse_racing_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_melee_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_melee_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_melee_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_recital_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_recital_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_recital_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_joust_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_joust_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_joust_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_duel_win = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_duel_neutral = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_duel_fail = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+ep2_holy_site_mena = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_generic_holy_site_mena"
+	}
+}
+ep2_holy_site_indian = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_indian_holy_site"
+	}
+}
+ep2_travel_farms = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_farmlands"
+	}
+}
+ep2_village_festival = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_village_festival"
+	}
+}
+bp2_nursery = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+bp2_courtyard = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_mpo_camp_steppe"
+	}
+}
+bp2_tavern_mena = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_bp2_tavern_mena"
+	}
+}
+bp2_indian_garden = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp2_garden_india_day"
+	}
+}
+bp2_university = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_ep3_byzantine_study"
+	}
+}
+bp2_university_scope = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_ep3_byzantine_study"
+	}
+}
+bp2_study_indian = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_bp2_study_indian"
+	}
+}
+ce1_catacombs = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/dungeon.dds"
+		environment = "environment_ce1_catacombs"
+	}
+}
+ce1_condemned_village = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+ce1_funeral_pyre = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_mpo_raid_burning_asian"
+	}
+}
+ce1_legendary_oasis = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_ce1_legendary_oasis"
+	}
+}
+ce1_legendary_spring = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_legendary_spring"
+	}
+}
+ce1_legendary_battlefield = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_legendary_battlefield"
+	}
+}
+ce1_fullscreen_legitimizing_legend = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_legendary_battlefield"
+	}
+}
+ce1_fullscreen_holy_legend = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_legendary_battlefield"
+	}
+}
+ce1_fullscreen_heroic_legend = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_legendary_battlefield"
+	}
+}
+ce1_fullscreen_black_death = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+ce1_fullscreen_apocalyptic = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+ep3_holy_site_orthodox = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_ep3_holysite_orthodox"
+	}
+}
+ep3_constantinople = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep3_constantinople"
+	}
+}
+ep3_constantinople_riot = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep3_constantinople_on_fire"
+	}
+}
+ep3_hippodrome = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep3_chariot_race"
+	}
+}
+ep3_triumph = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep3_constantinople"
+	}
+}
+ep3_hippodrome_track = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_ep3_chariot_track"
+	}
+}
+ep3_hagia_sophia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_ep3_hagia_sophia"
+	}
+}
+ep3_byzantine_feast = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_ep3_byzantine_feast"
+	}
+}
+ep3_city_gate = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep3_castle_gates"
+	}
+}
+ep3_mediterranean_estate = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_ep3_family_estate"
+	}
+}
+ep3_relaxing_room = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_ep3_relaxing_room"
+	}
+}
+ep3_relaxing_tent = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+ep3_medi_market = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_ep3_medi_market"
+	}
+}
+journey_activity_background = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mecca"
+	}
+}
+survey_activity_background = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_ep3_constantinople"
+	}
+}
+ep3_medi_study = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_ep3_byzantine_study"
+	}
+}
+ep3_byzantium_throneroom = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_ep3_byzantine_throne_room"
+	}
+}
+pivotal_chariots_win_blue = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_win_green = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_win_red = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_win_white = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_fail_blue = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_fail_green = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_fail_red = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+pivotal_chariots_fail_white = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_genericcamp"
+	}
+}
+terrain_settlement = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_farmlands"
+	}
+}
+terrain_settlement_no_owner = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_farmlands"
+	}
+}
+ep3_campfire = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+relaxing_room_location = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+ep3_camp = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_camp_steppe"
+	}
+}
+ep3_camp_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+ep3_military_tent = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+ep3_fullscreen_adventurer_positive = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+ep3_fullscreen_adventurer_negative = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+ep3_fullscreen_restore_rome = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+ep3_fullscreen_harrying_of_the_north = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_event_battlefield"
+	}
+}
+village_festival = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_steppe_feast"
+	}
+}
+bp3_mountain_winter = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_mountain_winter"
+	}
+}
+bp3_steppe_winter = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_steppe_winter"
+	}
+}
+bp3_wetlands_winter = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_wetlands_winter"
+	}
+}
+bp3_plains_winter = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_plains_winter"
+	}
+}
+bp3_hills_winter = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_bp3_hills_winter"
+	}
+}
+bp3_riverside = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_bp3_riverside"
+	}
+}
+bp3_coast = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_bp3_coast"
+	}
+}
+mpo_camp_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_camp_steppe"
+	}
+}
+mpo_city_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_city_steppe"
+	}
+}
+mpo_campfire_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_mpo_campfire_steppe"
+	}
+}
+mpo_tent_interior_mongol = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_mpo_tent_interior_mongol"
+	}
+}
+mpo_steppe_evening = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_steppe_evening"
+	}
+}
+mpo_rural_village_asian = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_mpo_rural_village_asian"
+	}
+}
+mpo_raid_burning_asian = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_raid_burning_asian"
+	}
+}
+mpo_hunt_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_mpo_hunt_steppe"
+	}
+}
+mpo_temple_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_mpo_temple_steppe"
+	}
+}
+mpo_travel_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_travel_steppe_settlement"
+	}
+}
+mpo_nomadic_throneroom = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_mpo_frontend_nomad_main"
+	}
+}
+mpo_fullscreen_the_great_steppe = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+mpo_fullscreen_greatest_of_khans = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_event_study_physician"
+	}
+}
+tgp_examination_room = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_tgp_examination_room"
+	}
+}
+tgp_chinese_city = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_chinese_city"
+	}
+}
+tgp_chinese_corridor_night = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_chinese_corridor_night"
+	}
+}
+tgp_crossroad_inn_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_crossroad_inn_asia"
+	}
+}
+tgp_holysite_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_holysite_asia"
+	}
+}
+tgp_overflowing_river = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_tgp_overflowing_river"
+	}
+}
+tgp_physician_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_tgp_physician_asia"
+	}
+}
+tgp_relaxing_room_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_tgp_relaxing_room_asia"
+	}
+}
+tgp_ruined_holding = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_ruined_holding"
+	}
+}
+ruined_holding = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_ruined_holding"
+	}
+}
+tgp_study_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_tgp_study_asia"
+	}
+}
+tgp_study_japan = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/office.dds"
+		environment = "environment_tgp_study_japan"
+	}
+}
+tgp_tavern_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_tavern_asia"
+	}
+}
+tgp_temple_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_tgp_temple_asia"
+	}
+}
+tgp_wedding_bedroom_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/hospital.dds"
+		environment = "environment_tgp_wedding_bedroom_asia"
+	}
+}
+tgp_wedding_ceremony_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_tgp_wedding_ceremony_asia"
+	}
+}
+tgp_feast_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_feast_asia"
+	}
+}
+tgp_garden_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_garden_asia"
+	}
+}
+tgp_kitchen_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_kitchen_asia"
+	}
+}
+festival_event_background = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_ep2_horse_racing"
+	}
+}
+tanabata_festival_japan = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_tanabata_festival_japan"
+	}
+}
+tanabata_festival_night_japan = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_tanabata_festival_night_japan"
+	}
+}
+moon_festival_night_japan = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/pub.dds"
+		environment = "environment_tgp_tanabata_festival_night_japan"
+	}
+}
+tgp_market_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_market_asia"
+	}
+}
+tgp_alley_day_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_alley_day_asia"
+	}
+}
+tgp_alley_night_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_alley_night_asia"
+	}
+}
+tgp_camp_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_tgp_camp_asia"
+	}
+}
+tgp_chinese_corridor_day = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_chinese_corridor_day"
+	}
+}
+tgp_courtyard_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_courtyard_asia"
+	}
+}
+tgp_docks_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_tgp_docks_asia"
+	}
+}
+tgp_farm_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_farm_asia"
+	}
+}
+tgp_hunt_generic_asia = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/protest.dds"
+		environment = "environment_tgp_hunt_generic_asia"
+	}
+}
+tgp_rice_fields = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/countryside.dds"
+		environment = "environment_tgp_rice_fields"
+	}
+}
+tgp_asia_throne_room = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_tgp_frontend_celestial_main"
+	}
+}
+tgp_japan_throne_room = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_tgp_frontend_japan_main"
+	}
+}
+tgp_fullscreen_dynastic_cycle_stability = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_jerusalem"
+	}
+}
+tgp_fullscreen_dynastic_cycle_instability = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_jerusalem"
+	}
+}
+tgp_fullscreen_dynastic_cycle_chaos = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_jerusalem"
+	}
+}
+tgp_asia_estate = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/home.dds"
+		environment = "environment_tgp_asia_estate"
+	}
+}
+tgp_japanese_city = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_japanese_city"
+	}
+}
+tgp_village_sea = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/seaside.dds"
+		environment = "environment_tgp_village_sea"
+	}
+}
+coronation_activity_background = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_travel_desert"
+	}
+}
+tgp_fullscreen_japanese_shogunate = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/street.dds"
+		environment = "environment_tgp_frontend_japan_main"
+	}
+}
+pam_investiture_council_event_background = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_western_holy_site"
+	}
+}
+pam_ecumenical_council_activity_background = {
+	background = {
+		reference = "gfx/interface/skinned/illustrations/councilchamber_bg.dds"
+		environment = "environment_jerusalem"
+	}
+}
+pam_cathedral_construction = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_cathedral_construction"
+	}
+}
+pam_gothic_cathedral_interior = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+pam_romanesque_church_exterior = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_romanesque_church_exterior"
+	}
+}
+pam_romanesque_church_interior = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_romanesque_church_interior"
+	}
+}
+pam_simple_church_western_interior = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_simple_church_western_interior"
+	}
+}
+pam_papal_throne_room_interior = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+holy_site_jerusalem = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_jerusalem"
+	}
+}
+pam_the_christian_church_crisis = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+pam_the_christian_church_instability = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+pam_the_christian_church_stability = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+pam_the_christian_church_zeal = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}
+pam_the_christian_church_crusade = {
+	background = {
+		reference = "gfx/interface/illustrations/wm/church.dds"
+		environment = "environment_pam_gothic_cathedral_interior"
+	}
+}

@@ -1,0 +1,25 @@
+﻿# Public trust (common/scripted_effects/wm_trust_effects.txt), appended to vanilla's on_actions. The monthly
+# movement runs from the polls' tick (wm_polls_monthly_effect).
+
+on_game_start = {
+	on_actions = { wm_trust_on_game_start }
+}
+wm_trust_on_game_start = {
+	effect = {
+		set_global_variable = { name = wm_public_trust value = wm_trust_start }
+	}
+}
+
+yearly_global_pulse = {
+	on_actions = { wm_trust_yearly_pulse }
+}
+
+# No root. The year's set piece, if any: a row engulfs Westminster, or the country pulls together.
+wm_trust_yearly_pulse = {
+	trigger = {
+		exists = title:e_united_kingdom.holder
+	}
+	effect = {
+		wm_trust_set_piece_effect = yes
+	}
+}

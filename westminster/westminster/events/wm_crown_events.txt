@@ -1,0 +1,56 @@
+﻿# The Crown. wm_crown.1: an MP hears that the monarch has spoken out against them
+# (wm_crown_speak_out_effect in common/scripted_effects/wm_crown_effects.txt).
+namespace = wm_crown
+
+wm_crown.1 = {
+	type = character_event
+	title = wm_crown.1.t
+	desc = wm_crown.1.desc
+	theme = crown
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	right_portrait = {
+		character = scope:actor
+		animation = disapproval
+	}
+
+	# Bite your tongue
+	option = {
+		name = wm_crown.1.a
+		add_prestige = miniscule_prestige_loss
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 20
+				has_trait = humble
+			}
+			modifier = {
+				add = 20
+				has_trait = craven
+			}
+		}
+	}
+
+	# Hit back at the Palace
+	option = {
+		name = wm_crown.1.b
+		add_prestige = minor_prestige_gain
+		scope:actor = {
+			add_prestige = minor_prestige_loss
+			add_opinion = { target = root modifier = wm_hit_back_at_crown_opinion }
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 30
+				has_trait = arrogant
+			}
+			modifier = {
+				add = 20
+				has_trait = wrathful
+			}
+		}
+	}
+}

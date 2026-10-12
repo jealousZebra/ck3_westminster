@@ -1,0 +1,1 @@
+Versión 0.3.1: los logros ahora están desactivados mientras Westminster esté activo.

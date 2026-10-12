@@ -1,0 +1,5 @@
+﻿# The royal house (history/characters/wm_royal_family.txt).
+wm_dyn_royal_windsor = {
+	name = "wm_dyn_royal_windsor"
+	culture = english
+}

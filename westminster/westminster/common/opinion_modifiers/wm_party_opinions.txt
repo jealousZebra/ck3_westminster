@@ -1,0 +1,14 @@
+﻿# Parties are houses (common/scripted_effects/wm_party_effects.txt)
+
+# A party leader of a member who crossed the floor to another party, or resigned the whip
+wm_party_crossed_floor_opinion = {
+	opinion = -30
+	years = 10
+	decaying = yes
+}
+# A party leader of a member who walked out to found their own party
+wm_party_split_opinion = {
+	opinion = -50
+	years = 15
+	decaying = yes
+}

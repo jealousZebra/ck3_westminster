@@ -1,0 +1,53 @@
+﻿# The working majority, shortlist ballots, the Speaker and disputed results (appended to vanilla's on_actions).
+
+on_game_start = {
+	on_actions = { wm_majority_on_game_start }
+}
+
+# The weekly watcher (event wm_majority.100) starts; it counts the majority on its first run.
+wm_majority_on_game_start = {
+	effect = {
+		wm_majority_start_watch_effect = yes
+	}
+}
+
+quarterly_playable_pulse = {
+	on_actions = { wm_majority_quarterly_pulse }
+}
+
+# Root: the Prime Minister. Keeps the weekly watcher running, and an AI colleague may challenge a struggling party
+# leader (wm_election_leadership_quarterly_effect).
+wm_majority_quarterly_pulse = {
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	effect = {
+		wm_majority_start_watch_effect = yes
+		wm_election_leadership_quarterly_effect = yes
+	}
+}
+
+on_death = {
+	on_actions = { wm_majority_on_death }
+}
+
+# Root: a character about to die. A party leader's death opens a leadership contest (once the engine has handed
+# the party to an acting leader); the Speaker's death empties the chair.
+wm_majority_on_death = {
+	trigger = {
+		OR = {
+			wm_commons_is_party_leader_trigger = yes
+			has_character_flag = wm_speaker
+		}
+	}
+	effect = {
+		if = {
+			limit = { wm_commons_is_party_leader_trigger = yes }
+			wm_election_leadership_leader_died_effect = { PARTY = var:wm_party }
+		}
+		if = {
+			limit = { has_character_flag = wm_speaker }
+			wm_majority_host_event_effect = { ID = wm_speaker.11 DAYS = 2 }
+		}
+	}
+}

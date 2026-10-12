@@ -1,0 +1,120 @@
+﻿# House of Commons (common/scripted_effects/wm_commons_effects.txt).
+
+# Character: the Prime Minister
+wm_commons_is_pm_trigger = {
+	exists = title:e_united_kingdom.holder
+	this = title:e_united_kingdom.holder
+}
+
+# Character: leads their party (holds the party title named by their var:wm_party)
+wm_commons_is_party_leader_trigger = {
+	exists = var:wm_party
+	has_title = var:wm_party
+}
+
+# Character: a member of the Prime Minister's party
+wm_commons_in_pm_party_trigger = {
+	exists = var:wm_party
+	title:e_united_kingdom.holder.var:wm_party ?= var:wm_party
+}
+
+# Character: an MP who leads a party that isn't in government
+wm_commons_is_opposition_party_leader_trigger = {
+	wm_is_mp_trigger = yes
+	wm_commons_is_party_leader_trigger = yes
+	NOT = { wm_commons_in_pm_party_trigger = yes }
+	NOT = { wm_commons_is_pm_trigger = yes }
+	NOT = { var:wm_party = title:k_party_sinn_fein }	# abstentionists: they don't take their seats
+	# Coalitions hook (wm_coalition_effects.txt): a coalition partner's leader sits in government
+	NAND = {
+		has_global_variable = wm_coalition_partner
+		var:wm_party = global_var:wm_coalition_partner
+	}
+}
+
+# --- Coalitions hook (common/scripted_effects/wm_coalition_effects.txt) ---
+# Character: an MP of a party in government: the governing party (global_var:wm_commons_government, set for the
+# business before the House) or its coalition partner (global_var:wm_coalition_partner). They take the government
+# whip on everything and can rebel against it.
+wm_commons_is_government_mp_trigger = {
+	exists = var:wm_party
+	OR = {
+		AND = {
+			has_global_variable = wm_commons_government
+			var:wm_party = global_var:wm_commons_government
+		}
+		AND = {
+			has_global_variable = wm_coalition_partner
+			var:wm_party = global_var:wm_coalition_partner
+		}
+	}
+}
+
+# Character: whipped to vote with the government on the business before the House: a government MP, or an MP of a
+# confidence-and-supply partner (global_var:wm_coalition_supply_partner) on a motion of no confidence (type 5) or
+# the Finance Bill (type 1).
+wm_commons_whipped_with_government_trigger = {
+	OR = {
+		wm_commons_is_government_mp_trigger = yes
+		AND = {
+			exists = var:wm_party
+			has_global_variable = wm_coalition_supply_partner
+			var:wm_party = global_var:wm_coalition_supply_partner
+			has_global_variable = wm_commons_bill_type
+			OR = {
+				global_var:wm_commons_bill_type = 1
+				global_var:wm_commons_bill_type = 5
+			}
+		}
+	}
+}
+
+# Character: the Leader of the Opposition, who leads the largest party not in government.
+# $WHO$ is the character being checked (the comparison needs it inside the Prime Minister's scope).
+wm_commons_is_leader_of_opposition_trigger = {
+	wm_commons_is_opposition_party_leader_trigger = yes
+	title:e_united_kingdom.holder = {
+		NOT = {
+			any_vassal = {
+				NOT = { this = $WHO$ }
+				wm_commons_is_opposition_party_leader_trigger = yes
+				wm_commons_party_seats_value > $WHO$.wm_commons_party_seats_value
+			}
+		}
+	}
+}
+
+# No bill or motion is waiting for its division
+wm_commons_house_free_trigger = {
+	NOT = { has_global_variable = wm_commons_pending }
+}
+
+# Character (an MP): the business before the House leans towards their wing of the party
+wm_commons_bill_suits_wing_trigger = {
+	has_variable = wm_commons_wing
+	OR = {
+		AND = {
+			var:wm_commons_wing = -1
+			global_var:wm_commons_bill_lean = -1
+		}
+		AND = {
+			var:wm_commons_wing = 1
+			global_var:wm_commons_bill_lean = 1
+		}
+	}
+}
+
+# Character (an MP): the business before the House leans against their wing of the party
+wm_commons_bill_offends_wing_trigger = {
+	has_variable = wm_commons_wing
+	OR = {
+		AND = {
+			var:wm_commons_wing = -1
+			global_var:wm_commons_bill_lean = 1
+		}
+		AND = {
+			var:wm_commons_wing = 1
+			global_var:wm_commons_bill_lean = -1
+		}
+	}
+}

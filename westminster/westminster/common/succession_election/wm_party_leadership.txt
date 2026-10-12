@@ -1,0 +1,50 @@
+﻿# Party leadership election: the party's MPs (direct vassals of the leader who are party members and hold a
+# seat; not, say, a First Minister who is a member) vote, and stand. Since the shortlist ballots
+# (common/scripted_effects/wm_election_leadership_effects.txt) this only picks an acting leader when a leader dies:
+# a two-round contest (the MPs' nominations, then the members' ballot) opens a day later and decides.
+wm_party_leadership = {
+	elector_vote_strength = { base = 1 }
+
+	electors = {
+		character_sets = {
+			wm_party_mps = {
+				type = holder_direct_vassals
+				limit = {
+					var:wm_party ?= scope:title
+					any_held_title = { tier = tier_county is_landless_type_title = no }	# MPs only (holds a seat)
+				}
+			}
+			wm_party_leader = { type = holder }
+		}
+	}
+
+	candidates = {
+		character_sets = {
+			wm_party_mp_candidates = {
+				type = holder_direct_vassals
+				limit = {
+					var:wm_party ?= scope:title
+					is_adult = yes
+					NOT = { has_character_flag = wm_speaker }	# the Speaker is above party
+					any_held_title = { tier = tier_county is_landless_type_title = no }	# MPs only (holds a seat)
+				}
+			}
+		}
+	}
+
+	candidate_score = {
+		base = 0
+		modifier = {	# backing the most prominent colleague
+			add = 10
+			scope:candidate = { prestige >= 500 }
+		}
+		modifier = {	# friends
+			add = 20
+			opinion = { target = scope:candidate value >= 20 }
+		}
+		modifier = {	# a safe pair of hands to act until the contest is over
+			add = 5
+			scope:candidate = { diplomacy >= 12 }
+		}
+	}
+}

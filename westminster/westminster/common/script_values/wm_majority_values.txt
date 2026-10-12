@@ -1,0 +1,68 @@
+﻿# The government's working majority, tracked live (common/scripted_effects/wm_majority_effects.txt).
+#
+# State (global variables):
+#   wm_majority               the working majority: MPs on the government side minus every other MP who votes.
+#                             0 or less: the government has no majority.
+#   wm_majority_gov_seats     MPs on the government side: the Prime Minister's party, a coalition partner and a
+#                             confidence-and-supply partner (who back the government on confidence)
+#   wm_majority_voting        MPs who vote: everyone but the Speaker and Sinn Féin, who don't take their seats
+#   wm_majority_held          set while the government has a majority, so losing it can be noticed
+#   wm_majority_motion_due    the majority has gone; the Opposition tables a confidence motion when the House is free
+#   wm_majority_loss_run      by-elections the government has lost in a row (a hold or a gain breaks the run)
+#   wm_majority_loss_recent   set for two years after each by-election loss; when it lapses the run is forgotten
+#   wm_majority_watch         set for 10 days by each run of the weekly watcher (event wm_majority.100); the
+#                             quarterly pulse restarts the watcher when it has lapsed
+
+# MPs on the government side (the seat counts must be fresh: wm_election_count_seats_effect)
+wm_majority_gov_seats_value = {
+	value = 0
+	if = {
+		limit = { exists = title:e_united_kingdom.holder.var:wm_party }
+		add = title:e_united_kingdom.holder.var:wm_party.wm_coalition_party_seats_value
+	}
+	else_if = {
+		limit = { exists = title:e_united_kingdom.holder }
+		add = 1		# a Prime Minister without a party has only their own vote
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_partner
+			NOT = { title:e_united_kingdom.holder.var:wm_party ?= global_var:wm_coalition_partner }
+		}
+		add = global_var:wm_coalition_partner.wm_coalition_party_seats_value
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_supply_partner
+			NOT = { title:e_united_kingdom.holder.var:wm_party ?= global_var:wm_coalition_supply_partner }
+		}
+		add = global_var:wm_coalition_supply_partner.wm_coalition_party_seats_value
+	}
+}
+
+# MPs who vote: all but the Speaker and the abstentionists
+wm_majority_voting_value = {
+	value = wm_election_total_seats
+	subtract = global_var:wm_seats_spk
+	subtract = global_var:wm_seats_sf
+}
+
+# For the seat chart and descriptions
+wm_majority_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_majority }
+		value = global_var:wm_majority
+	}
+}
+wm_majority_loss_run_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_majority_loss_run }
+		value = global_var:wm_majority_loss_run
+	}
+}
+
+# The run of by-election defeats at which the Prime Minister's standing suffers more
+wm_majority_blues_run = 2
+wm_majority_streak_run = 3

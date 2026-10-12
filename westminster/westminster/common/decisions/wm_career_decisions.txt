@@ -1,0 +1,106 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt). AI hopefuls apply and come back in script.
+
+# A hopeful puts their name forward for a selection their party has open (one in their own nation if possible).
+wm_career_apply_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_polling.dds"
+	}
+	decision_group_type = major
+	sort_order = 90
+	ai_check_interval = 0
+
+	desc = wm_career_apply_decision_desc
+	selection_tooltip = wm_career_apply_decision_tooltip
+
+	is_shown = {
+		has_variable = wm_career_hopeful
+		has_variable = wm_party
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_career_apply_decision_free_tt
+			NOT = { has_variable = wm_career_applied }
+			NOT = { has_variable = wm_career_selected_seat }
+		}
+		custom_tooltip = {
+			text = wm_career_apply_decision_standing_tt
+			wm_career_can_apply_trigger = yes
+		}
+		custom_tooltip = {
+			text = wm_career_apply_decision_open_tt
+			has_global_variable_list = wm_career_selection_seats
+			any_in_global_list = {
+				variable = wm_career_selection_seats
+				wm_career_seat_open_for_trigger = { CHAR = root }
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_career_apply_decision_effect_tt
+		hidden_effect = {
+			random_in_global_list = {
+				variable = wm_career_selection_seats
+				limit = { wm_career_seat_open_for_trigger = { CHAR = root } }
+				weight = {
+					base = 1
+					modifier = {
+						add = 4
+						culture = root.culture
+					}
+				}
+				save_scope_as = wm_sel_seat
+			}
+			root.var:wm_party = { save_scope_as = wm_sel_party }
+			wm_career_apply_effect = yes
+		}
+	}
+
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# An MP who lost their seat goes back on the campaign trail: a campaign team, on the approved list.
+wm_career_return_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_polling.dds"
+	}
+	decision_group_type = major
+	sort_order = 89
+	ai_check_interval = 0
+
+	desc = wm_career_return_decision_desc
+	selection_tooltip = wm_career_return_decision_tooltip
+
+	is_shown = {
+		has_variable = wm_party
+		NOT = { has_variable = wm_career_hopeful }
+		NOT = { wm_is_mp_trigger = yes }
+		OR = {
+			has_variable = wm_lost_seat
+			has_variable = wm_career_former_mp
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_career_return_decision_effect_tt
+		hidden_effect = {
+			wm_career_start_campaign_effect = yes
+			wm_career_former_mp_effect = yes
+		}
+	}
+
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

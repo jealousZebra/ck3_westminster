@@ -1,0 +1,82 @@
+[h1]Westminster: modern UK politics for Crusader Kings III[/h1]
+[b]A total conversion that turns CK3 into British politics.[/b] Start on 5 July 2024, the day after the general election, with all 650 real MPs on a map of the real constituencies. Play any MP, or start as a young party activist, and climb from the doorstep to Downing Street: win selection, fight elections, whip the Commons and survive a confidence vote.
+
+[h2]Beta 0.3[/h2]
+This is the first public release and it is a [b]beta[/b]. The map, the 2024 Parliament, the Commons, elections, campaigns, careers, parties and the new interface all work and are covered by automated in-game tests. Still rough:
+[list]
+[*]AI balance over long games is untested: expect odd polls or strange governments after a decade or so.
+[*]Portraits still wear the game's medieval clothes.
+[*]Some vanilla screens still look medieval.
+[*]Only one bookmark: 2024. Earlier Prime Ministers come later.
+[*]English only for now. Translations later.
+[/list]
+Bug reports and ideas are very welcome in the comments.
+
+[h2]Features[/h2]
+[h3]The 2024 Parliament[/h3]
+[list]
+[*]All 650 MPs elected on 4 July 2024, in their real seats, on a map of the 2024 Westminster constituencies built from official boundary data.
+[*]Keir Starmer in Number 10, the 13 parties that won seats, and the devolved governments in Edinburgh, Cardiff and Belfast.
+[*]Recognisable portraits for senior figures: CK3 faces with their hair, colouring and build.
+[/list]
+
+[h3]From activist to Prime Minister[/h3]
+[list]
+[*]Start without a seat: canvass, fundraise and write speeches to build Party Standing, pass the candidate assessment and win a selection contest.
+[*]Parties are houses: Cross the Floor to another party, or Found a Party of your own.
+[*]Leadership contests: MPs nominate, then the members choose between the top two. Challenge your leader if you dare.
+[*]The Speaker is elected by all MPs in a secret ballot, and leaves their party.
+[/list]
+
+[h3]Elections[/h3]
+[list]
+[*]Opinion polls for every party drift month by month, pulled by the PM's standing, riots and mid-term blues.
+[*]Each seat swings from its real 2024 result. Parliament runs out after five years, or the PM goes to the country early.
+[*]By-elections, front-page results ("LABOUR LANDSLIDE", "HUNG PARLIAMENT"), recounts and election courts for disputed seats.
+[*]Hung parliaments: coalitions with a Deputy PM, or confidence-and-supply deals that can collapse.
+[/list]
+
+[h3]The House of Commons[/h3]
+[list]
+[*]Government bills: finance, public services, reform, emergency powers.
+[*]The Chief Whip forecasts the vote. Whip hard or concede. Three rebellions and an MP loses the whip.
+[*]A live working majority: by-election losses and defections shrink it, and losing it brings a motion of no confidence.
+[/list]
+
+[h3]Politics every day[/h3]
+[list]
+[*]Weekly campaign choices: rallies, TV debates, policy launches, door-knocking and the odd gaffe.
+[*]Party conferences: the leader's speech, fringe meetings and plotting.
+[*]Public trust, which riots, U-turns and scandals wear down.
+[*]Campaign spending: press campaigns, and smear campaigns that can backfire.
+[*]Party wings: keep Labour's Left, Soft Left and Centrists (or the Conservatives' One Nation, Free-marketeers and Traditionalists) happy, or face rebellions.
+[*]Devolution: independence support, referendum demands, powers devolved or clawed back, Stormont's collapse and return.
+[*]Ideology instead of religion: 15 ideologies in five camps (Left, Centre, Right, Nationalist, Unionist).
+[*]Riots that make demands and march on Westminster: concede, negotiate or send in the police.
+[*]The Crown as a minor, ceremonial figure who very rarely speaks out.
+[/list]
+
+[h3]A modern look[/h3]
+[list]
+[*]A newspaper-style interface: newsprint, ink and one red accent, set in Playfair Display and Source Serif.
+[*]The State of the Parties panel: latest poll, public trust, the Commons seat chart and a poll tracker.
+[*]Real flags for the nations and for the counties and cities that have one, and press-photo style pictures instead of medieval art.
+[*]Modern terms: Charisma, Economy, Security, Spin, Policy and Stamina; Funds, Profile, Political Capital, Party Brand, Clout, Pressure and Mandate.
+[*]No medieval events, holy wars, crusades or popes. Murder, abduction and seduction schemes are switched off.
+[/list]
+
+[h2]Real names, fictional events[/h2]
+Real politicians and public figures appear under their real names, but every event is generic and fictional. Nothing in the mod says or implies anything about any real person. MPs' spouses and families are invented. Westminster is not affiliated with Parliament, any political party or the Royal Household, and party emblems are simplified designs, not party logos.
+
+[h2]Compatibility[/h2]
+[list]
+[*]Crusader Kings III 1.20. Start a new game from the 2024 bookmark: it can't be added to an existing save.
+[*]Playing a character without a seat (the activist start and the career ladder) needs the [b]Roads to Power[/b] expansion, as in the base game. Playing any MP doesn't.
+[*]A total conversion: don't combine it with other mods that change the map, titles, history or interface.
+[*]Achievements are switched off while Westminster is active.
+[/list]
+
+[h2]Credits[/h2]
+CREDITS.txt in the mod folder lists every source and licence: constituency boundaries (ONS, Open Government Licence), election results and MPs (UK Parliament, Open Parliament Licence), towns (GeoNames), elevation (Copernicus), the fonts (SIL Open Font License) and each flag from Wikimedia Commons. The pictures are AI-generated (FLUX.1 [dev]) and released under CC0. Not made or endorsed by Paradox Interactive.
+
+[b]Source code:[/b] open source, coming soon to GitHub.

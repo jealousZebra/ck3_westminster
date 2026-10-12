@@ -1,0 +1,238 @@
+﻿# Shortlist ballots for party leaders (common/scripted_effects/wm_election_leadership_effects.txt).
+#
+# State on a party title during a contest:
+#   wm_lead_state        1 nominations open (MPs), 2 the members' ballot
+#   wm_lead_kind         1 a vacancy (the leader died), 2 a challenge, 3 the leader is standing down
+#   wm_lead_incumbent    the leader who died, is challenged or is standing down
+#   wm_lead_timer        set while the current round is open (nominations 10 days, the ballot 21)
+#   wm_lead_electors     the party's MPs; wm_lead_threshold the nominations a candidate needs; wm_lead_noms_cast
+#                        the nominations made (one per MP)
+#   wm_lead_total        the members' ballot: the sum of the candidates' scores
+#   lists wm_lead_members (the MPs), wm_lead_candidates, wm_lead_ballot (the shortlist)
+# After a contest (for the front page): wm_lead_last_winner, wm_lead_last_second, wm_lead_last_share (the winner's
+# share of the members' vote, tenths of a percent), wm_lead_last_noms, wm_lead_last_electors, wm_lead_last_held (1: a challenged leader held on), wm_lead_last_outcome (1 a members' ballot,
+# 2 unopposed, 3 the challenge failed to reach the ballot).
+# On candidates: wm_lead_cand (the party), wm_lead_noms (MPs' nominations), wm_lead_pref (an MP's view, while they nominate), wm_lead_score and wm_lead_share (the
+# members' ballot), wm_lead_campaign (a player's campaign), wm_lead_noise. On every member: wm_lead_stand.
+# On a player: wm_lead_contest (the party whose contest they're asked about), wm_lead_news (a result to read).
+# On a new leader: wm_lead_honeymoon (two years without a challenge).
+# Global list wm_lead_contests: parties with a contest under way; wm_lead_pending_open: parties whose leader just
+# died (opened a day later, once the title has passed).
+
+# Share of the party's MPs a candidate needs to reach the members' ballot, and a challenger to force a contest
+wm_election_leadership_threshold_pct = 15
+wm_election_leadership_challenge_pct = 20
+
+# Character (a party MP): how keen and how plausible a leadership candidate they are
+wm_election_leadership_stand_value = {
+	value = 0
+	add = {
+		value = prestige_level
+		multiply = 10
+	}
+	add = diplomacy
+	add = {
+		value = learning
+		divide = 2
+	}
+	add = {
+		value = intrigue
+		divide = 2
+	}
+	if = {
+		limit = { has_trait = ambitious }
+		add = 15
+	}
+	if = {
+		limit = { has_trait = arrogant }
+		add = 5
+	}
+	if = {
+		limit = { has_trait = content }
+		add = -15
+	}
+	if = {
+		limit = { has_trait = shy }
+		add = -10
+	}
+	if = {
+		limit = { age < 30 }
+		add = -10
+	}
+	if = {
+		limit = { age >= 72 }
+		add = -15
+	}
+}
+
+# Candidate, with scope:wm_lead_voter (an MP of the party) and scope:wm_lead_party: how much the MP wants to
+# nominate them. Their opinion of the candidate, the candidate's profile and skill, the same wing of the party,
+# loyalty to a sitting leader.
+wm_election_leadership_nomination_value = {
+	value = "reverse_opinion(scope:wm_lead_voter)"
+	add = {
+		value = prestige_level
+		multiply = 8
+	}
+	add = diplomacy
+	if = {
+		limit = {
+			has_variable = wm_commons_wing
+			exists = scope:wm_lead_voter.var:wm_commons_wing
+			scope:wm_lead_voter.var:wm_commons_wing = var:wm_commons_wing
+		}
+		add = 10
+	}
+	if = {
+		limit = { has_title = scope:wm_lead_party }
+		add = 15
+	}
+	if = {
+		limit = { has_variable = wm_lead_noise }
+		add = var:wm_lead_noise
+	}
+}
+
+# Candidate on the members' ballot, with scope:wm_lead_party: the members' verdict. Skills (diplomacy above all),
+# profile (prestige), party standing (piety), the MPs' backing, the campaign, and for a sitting leader their record.
+wm_election_leadership_members_value = {
+	value = 40
+	add = {
+		value = diplomacy
+		multiply = 3
+	}
+	add = stewardship
+	add = learning
+	add = {
+		value = prestige_level
+		multiply = 10
+	}
+	add = {
+		value = piety_level
+		multiply = 6
+	}
+	if = {
+		limit = {
+			has_variable = wm_lead_noms
+			exists = scope:wm_lead_party.var:wm_lead_noms_cast
+			scope:wm_lead_party.var:wm_lead_noms_cast > 0
+		}
+		add = {
+			value = var:wm_lead_noms
+			multiply = 50
+			divide = scope:wm_lead_party.var:wm_lead_noms_cast
+		}
+	}
+	if = {
+		limit = { has_trait = gregarious }
+		add = 8
+	}
+	if = {
+		limit = { has_trait = shy }
+		add = -8
+	}
+	if = {
+		limit = { has_trait = honest }
+		add = 4
+	}
+	if = {
+		limit = { has_variable = wm_lead_campaign }
+		add = var:wm_lead_campaign
+	}
+	if = {
+		limit = { has_title = scope:wm_lead_party }
+		add = 10
+		if = {
+			limit = { has_title = title:e_united_kingdom }
+			subtract = {
+				value = wm_majority_loss_run_value
+				multiply = 5
+			}
+		}
+		if = {
+			limit = { has_character_modifier = wm_majority_losing_streak_modifier }
+			add = -10
+		}
+		if = {
+			limit = { has_character_modifier = wm_commons_lost_confidence_modifier }
+			add = -10
+		}
+		if = {
+			limit = { has_character_modifier = wm_conference_disaster_modifier }
+			add = -8
+		}
+		if = {
+			limit = { has_character_modifier = wm_conference_triumph_modifier }
+			add = 8
+		}
+	}
+	min = 5
+}
+
+# Party leader: the chance (%) each quarter that an AI colleague challenges them
+wm_election_leadership_challenge_chance_value = {
+	value = 0
+	if = {
+		limit = { prestige_level <= 1 }
+		add = 2
+	}
+	if = {
+		limit = {
+			has_legitimacy = yes
+			legitimacy_level <= 1
+		}
+		add = 2
+	}
+	if = {
+		limit = { has_character_modifier = wm_majority_byelection_blues_modifier }
+		add = 2
+	}
+	if = {
+		limit = { has_character_modifier = wm_majority_losing_streak_modifier }
+		add = 6
+	}
+	if = {
+		limit = { has_character_modifier = wm_commons_lost_confidence_modifier }
+		add = 5
+	}
+	if = {
+		limit = { has_character_modifier = wm_conference_disaster_modifier }
+		add = 4
+	}
+	if = {
+		limit = {
+			exists = var:wm_party.var:wm_conference_rumblings
+			var:wm_party.var:wm_conference_rumblings >= 3
+		}
+		add = 5
+	}
+	if = {
+		limit = { has_variable = wm_lead_honeymoon }
+		multiply = 0
+	}
+	max = 15
+}
+
+# For the front page (wm_leadership.4): scope:wm_lead_news_party's last result, root-free through global variables
+wm_election_leadership_news_share = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_lead_news_share }
+		value = global_var:wm_lead_news_share
+		divide = 10
+	}
+}
+wm_election_leadership_news_noms = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_lead_news_noms }
+		value = global_var:wm_lead_news_noms
+	}
+}
+wm_election_leadership_news_electors = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_lead_news_electors }
+		value = global_var:wm_lead_news_electors
+	}
+}

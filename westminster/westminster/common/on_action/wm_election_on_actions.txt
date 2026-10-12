@@ -1,0 +1,58 @@
+﻿# Elections, polls and by-elections, appended to vanilla's on_actions.
+
+on_game_start = {
+	on_actions = { wm_election_on_game_start }
+}
+
+# Polls start from the 2024 result; each seat stores its 2024 vote shares; seats are counted.
+wm_election_on_game_start = {
+	effect = {
+		wm_election_init_effect = yes
+	}
+}
+
+quarterly_playable_pulse = {
+	on_actions = { wm_polls_quarterly_pulse }
+}
+
+# Root: the Prime Minister. Three monthly ticks a quarter (event wm_polls.1).
+wm_polls_quarterly_pulse = {
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	effect = {
+		# Saves from before elections existed set themselves up at the first pulse
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_global_variable = wm_poll_lab }
+					NOT = { has_global_variable = wm_el_months }
+				}
+			}
+			wm_election_init_effect = yes
+		}
+		trigger_event = wm_polls.1
+		trigger_event = { id = wm_polls.1 days = 30 }
+		trigger_event = { id = wm_polls.1 days = 61 }
+	}
+}
+
+on_death = {
+	on_actions = { wm_byelection_on_death }
+}
+
+# Root: a character about to die. If they are an MP, their seat goes to a by-election.
+wm_byelection_on_death = {
+	trigger = {
+		wm_is_mp_trigger = yes
+	}
+	effect = {
+		every_held_title = {
+			limit = {
+				tier = tier_county
+				is_landless_type_title = no
+			}
+			wm_byelection_call_effect = yes
+		}
+	}
+}

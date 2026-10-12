@@ -1,0 +1,2 @@
+﻿gui/wm_polls.gui = wm_polls_opener
+gui/wm_polls.gui = wm_polls_window

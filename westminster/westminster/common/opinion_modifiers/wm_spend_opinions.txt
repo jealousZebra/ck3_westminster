@@ -1,0 +1,8 @@
+﻿# Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+
+# A party leader whose party was the target of a smear campaign that came to light
+wm_spend_smeared_opinion = {
+	opinion = -30
+	years = 5
+	decaying = yes
+}

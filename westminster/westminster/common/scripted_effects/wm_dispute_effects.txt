@@ -1,0 +1,489 @@
+﻿# Disputed results. A seat won by under a point (wm_dispute_close_margin) after a general election or by-election
+# can be challenged by the runner-up: accept it, demand a recount (a week; costs money; may overturn the result) or
+# petition the election court (four months; expensive; may declare the election void and order a re-run
+# by-election). Contesting a result lost badly costs standing (prestige and party standing) and can start a riot in
+# the seat (wm_riot_start_effect); a party leader who refuses to accept a general election defeat
+# (wm_dispute_national_effect) pays for it nationally. State: common/script_values/wm_dispute_values.txt.
+#
+# Who disputes: the defeated MP if they were the runner-up, otherwise the runner-up party's leader. An AI decides by
+# the margin; a player is asked (event wm_dispute.1) about their own seat, or as party leader about the closest
+# of their party's near misses. A defeated MP can also take the decision Challenge the Count for up to 90 days.
+
+# Scope: a seat just decided (wm_election_general_seat_effect or wm_byelection_hold_effect), with var:wm_el_runner
+# (the runner-up's party), var:wm_seat_majority, and scope:wm_el_loser if the seat changed hands. Records a close
+# result so it can be challenged.
+wm_dispute_record_effect = {
+	wm_dispute_clear_seat_effect = yes
+	if = {
+		limit = {
+			exists = var:wm_el_runner
+			exists = holder
+			has_variable = wm_seat_majority
+			var:wm_seat_majority < wm_dispute_close_margin
+			NOT = { holder.var:wm_party ?= var:wm_el_runner }
+		}
+		set_variable = { name = wm_dispute_runner value = var:wm_el_runner }
+		set_variable = { name = wm_dispute_margin value = var:wm_seat_majority }
+		set_variable = { name = wm_dispute_window value = yes days = 60 }
+		if = {
+			limit = {
+				exists = scope:wm_el_loser
+				NOT = { holder = scope:wm_el_loser }
+				scope:wm_el_loser = {
+					is_alive = yes
+					exists = var:wm_party
+				}
+				scope:wm_el_loser.var:wm_party ?= var:wm_el_runner
+			}
+			set_variable = { name = wm_dispute_loser value = scope:wm_el_loser }
+		}
+		add_to_global_variable_list = { name = wm_dispute_open target = this }
+	}
+}
+
+# Scope: a seat. Forgets a recorded close result (not one under way).
+wm_dispute_clear_seat_effect = {
+	if = {
+		limit = { NOT = { has_variable = wm_dispute_state } }
+		remove_variable = wm_dispute_runner
+		remove_variable = wm_dispute_loser
+		remove_variable = wm_dispute_margin
+		remove_variable = wm_dispute_window
+		remove_variable = wm_dispute_by
+	}
+}
+
+# Any scope. A general election: the last election's close results can no longer be challenged.
+wm_dispute_clear_open_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_dispute_open }
+		every_in_global_list = {
+			variable = wm_dispute_open
+			wm_dispute_clear_seat_effect = yes
+		}
+		clear_global_variable_list = wm_dispute_open
+	}
+}
+
+# Scope: a seat with a recorded close result. Saves scope:wm_dispute_by: the defeated MP if they were the
+# runner-up and are free to fight it, otherwise the runner-up party's leader.
+wm_dispute_find_disputer_effect = {
+	clear_saved_scope = wm_dispute_by
+	if = {
+		limit = {
+			exists = var:wm_dispute_loser
+			var:wm_dispute_loser = {
+				is_alive = yes
+				NOT = { wm_is_mp_trigger = yes }
+			}
+		}
+		var:wm_dispute_loser = { save_scope_as = wm_dispute_by }
+	}
+	else_if = {
+		limit = { exists = var:wm_dispute_runner.holder }
+		var:wm_dispute_runner.holder = { save_scope_as = wm_dispute_by }
+	}
+}
+
+# Any scope. After a general election: the runner-up in each close seat decides whether to fight it.
+wm_dispute_after_election_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_dispute_open }
+		every_in_global_list = {
+			variable = wm_dispute_open
+			add_to_temporary_list = wm_dispute_to_consider
+		}
+		every_in_list = {
+			list = wm_dispute_to_consider
+			wm_dispute_consider_effect = yes
+		}
+	}
+}
+
+# Scope: a seat with a close result. An AI runner-up decides now (by the margin and their purse); a player is asked,
+# once per result (one seat per player at a time).
+wm_dispute_consider_effect = {
+	save_scope_as = wm_dispute_seat
+	wm_dispute_find_disputer_effect = yes
+	if = {
+		limit = {
+			exists = scope:wm_dispute_by
+			has_variable = wm_dispute_window
+			NOT = { has_variable = wm_dispute_state }
+			NOT = { has_variable = wm_dispute_done }
+			NOT = { holder ?= { wm_election_safe_seat_trigger = yes } }
+		}
+		if = {
+			limit = { scope:wm_dispute_by = { wm_majority_ask_player_trigger = yes } }
+			scope:wm_dispute_by = {
+				if = {
+					limit = { NOT = { has_variable = wm_dispute_offer } }
+					set_variable = { name = wm_dispute_offer value = scope:wm_dispute_seat days = 30 }
+					trigger_event = { id = wm_dispute.1 days = 1 }
+				}
+			}
+		}
+		else = {
+			random_list = {
+				0 = {
+					modifier = { add = wm_dispute_ai_recount_weight }
+					trigger = { scope:wm_dispute_by = { gold >= wm_dispute_recount_cost } }
+					wm_dispute_start_effect = { KIND = 1 }
+				}
+				0 = {
+					modifier = { add = wm_dispute_ai_court_weight }
+					trigger = { scope:wm_dispute_by = { gold >= wm_dispute_court_cost } }
+					wm_dispute_start_effect = { KIND = 2 }
+				}
+				100 = {}	# accept the result
+			}
+		}
+	}
+}
+
+# Scope: a seat; scope:wm_dispute_by disputes its result. $KIND$: 1 a recount, 2 an election petition. Pays, and
+# if the result wasn't close, pays in standing too (and a heavy defeat can bring rioters out).
+wm_dispute_start_effect = {
+	save_scope_as = wm_dispute_seat
+	set_variable = { name = wm_dispute_state value = $KIND$ }
+	set_variable = { name = wm_dispute_by value = scope:wm_dispute_by }
+	if = {
+		limit = { NOT = { has_variable = wm_dispute_margin } }
+		set_variable = { name = wm_dispute_margin value = wm_dispute_margin_value }
+	}
+	if = {
+		limit = {
+			NOT = { has_variable = wm_dispute_runner }
+			exists = scope:wm_dispute_by.var:wm_party
+		}
+		set_variable = { name = wm_dispute_runner value = scope:wm_dispute_by.var:wm_party }
+	}
+	if = {
+		limit = {
+			NOT = { has_variable = wm_dispute_loser }
+			scope:wm_dispute_by = {
+				NOT = { wm_is_mp_trigger = yes }
+				var:wm_lost_seat ?= scope:wm_dispute_seat
+			}
+		}
+		set_variable = { name = wm_dispute_loser value = scope:wm_dispute_by }
+	}
+	remove_variable = wm_dispute_window
+	if = {
+		limit = { is_target_in_global_variable_list = { name = wm_dispute_open target = this } }
+		remove_list_global_variable = { name = wm_dispute_open target = this }
+	}
+	add_to_global_variable_list = { name = wm_dispute_pending target = this }
+	if = {
+		limit = { var:wm_dispute_state = 1 }
+		set_variable = { name = wm_dispute_timer value = yes days = 7 }
+		scope:wm_dispute_by = { remove_short_term_gold = wm_dispute_recount_cost }
+		wm_majority_host_event_effect = { ID = wm_dispute.10 DAYS = 8 }
+	}
+	else = {
+		set_variable = { name = wm_dispute_timer value = yes days = 120 }
+		scope:wm_dispute_by = { remove_short_term_gold = wm_dispute_court_cost }
+		wm_majority_host_event_effect = { ID = wm_dispute.10 DAYS = 121 }
+	}
+	# Not close: the public takes a dim view
+	if = {
+		limit = { var:wm_dispute_margin >= wm_dispute_close_margin }
+		scope:wm_dispute_by = {
+			add_prestige = medium_prestige_loss
+			add_piety = minor_piety_loss
+		}
+		if = {
+			limit = { var:wm_dispute_margin >= wm_dispute_bad_margin }
+			scope:wm_dispute_by = {
+				add_prestige = major_prestige_loss
+				add_piety = medium_piety_loss
+				add_character_modifier = { modifier = wm_dispute_bad_loser_modifier years = 3 }
+			}
+			wm_trust_change_effect = { AMOUNT = -1 }	# public trust (wm_trust_effects.txt)
+			random = {
+				chance = 50
+				wm_dispute_riot_effect = yes
+			}
+		}
+	}
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = {
+			if = {
+				limit = { scope:wm_dispute_seat.var:wm_dispute_state = 1 }
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_recount_toast
+					left_icon = scope:wm_dispute_by
+					custom_tooltip = wm_dispute_recount_toast_desc
+				}
+			}
+			else = {
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_court_toast
+					left_icon = scope:wm_dispute_by
+					custom_tooltip = wm_dispute_court_toast_desc
+				}
+			}
+		}
+	}
+}
+
+# Scope: a seat. The disputer's supporters take to the streets (a riot demanding a fresh election), if the seat
+# isn't already rioting and there aren't many riots already.
+wm_dispute_riot_effect = {
+	if = {
+		limit = {
+			exists = holder
+			NOT = { wm_riot_is_active_trigger = yes }
+			OR = {
+				NOT = { has_global_variable_list = wm_active_riots }
+				NOT = {
+					any_in_global_list = {
+						variable = wm_active_riots
+						count >= 3
+					}
+				}
+			}
+		}
+		wm_riot_start_effect = { DEMAND = 3 }
+	}
+}
+
+# Any scope. Settles every recount and petition whose time is up.
+wm_dispute_process_due_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_dispute_pending }
+		every_in_global_list = {
+			variable = wm_dispute_pending
+			limit = { NOT = { has_variable = wm_dispute_timer } }
+			add_to_temporary_list = wm_disputes_due
+		}
+		every_in_list = {
+			list = wm_disputes_due
+			limit = { has_variable = wm_dispute_state }		# (a temporary list lasts the whole run)
+			wm_dispute_resolve_effect = yes
+		}
+	}
+}
+
+# Scope: a seat whose recount or petition is done.
+wm_dispute_resolve_effect = {
+	save_scope_as = wm_dispute_seat
+	clear_saved_scope = wm_dispute_by
+	var:wm_dispute_by ?= { save_scope_as = wm_dispute_by }
+	remove_list_global_variable = { name = wm_dispute_pending target = this }
+	set_variable = { name = wm_dispute_outcome value = 0 }
+	if = {
+		limit = { has_global_variable = wm_test_dispute_force }
+		if = {
+			limit = { global_var:wm_test_dispute_force = 1 }
+			set_variable = { name = wm_dispute_outcome value = 1 }
+		}
+	}
+	else_if = {
+		limit = { var:wm_dispute_state = 1 }
+		random = {
+			chance = wm_dispute_recount_chance_value
+			set_variable = { name = wm_dispute_outcome value = 1 }
+		}
+	}
+	else = {
+		random = {
+			chance = wm_dispute_court_chance_value
+			set_variable = { name = wm_dispute_outcome value = 1 }
+		}
+	}
+	# Nobody unseats a party leader, the Prime Minister or the Speaker on a recount; a seat already going to a
+	# by-election has nothing left to decide
+	if = {
+		limit = {
+			OR = {
+				holder ?= { wm_election_safe_seat_trigger = yes }
+				has_variable = wm_byelection_due
+				NOT = { exists = holder }
+			}
+		}
+		set_variable = { name = wm_dispute_outcome value = 0 }
+	}
+	set_variable = { name = wm_dispute_kind value = var:wm_dispute_state }
+	remove_variable = wm_dispute_state
+	if = {
+		limit = { var:wm_dispute_kind = 1 }
+		if = {
+			limit = {
+				var:wm_dispute_outcome = 1
+				exists = var:wm_dispute_runner
+			}
+			wm_dispute_overturn_effect = yes
+		}
+		else = {
+			scope:wm_dispute_by ?= { add_prestige = minor_prestige_loss }
+		}
+	}
+	else = {
+		if = {
+			limit = { var:wm_dispute_outcome = 1 }
+			# The election is void: a fresh by-election, the sitting MP defending it
+			wm_byelection_call_effect = yes
+			wm_trust_change_effect = { AMOUNT = -2 }	# public trust (wm_trust_effects.txt)
+		}
+		else = {
+			scope:wm_dispute_by ?= {
+				add_prestige = medium_prestige_loss
+				remove_short_term_gold = wm_dispute_costs_awarded
+			}
+		}
+	}
+	holder ?= { save_scope_as = wm_dispute_mp }
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = {
+			if = {
+				limit = {
+					scope:wm_dispute_seat.var:wm_dispute_kind = 1
+					scope:wm_dispute_seat.var:wm_dispute_outcome = 1
+				}
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_overturned_toast
+					left_icon = scope:wm_dispute_mp
+					custom_tooltip = wm_dispute_overturned_toast_desc
+				}
+			}
+			else_if = {
+				limit = { scope:wm_dispute_seat.var:wm_dispute_kind = 1 }
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_upheld_toast
+					left_icon = scope:wm_dispute_mp
+					custom_tooltip = wm_dispute_upheld_toast_desc
+				}
+			}
+			else_if = {
+				limit = { scope:wm_dispute_seat.var:wm_dispute_outcome = 1 }
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_void_toast
+					left_icon = scope:wm_dispute_mp
+					custom_tooltip = wm_dispute_void_toast_desc
+				}
+			}
+			else = {
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_dispute_dismissed_toast
+					left_icon = scope:wm_dispute_mp
+					custom_tooltip = wm_dispute_dismissed_toast_desc
+				}
+			}
+		}
+	}
+	set_variable = { name = wm_dispute_done value = yes days = 365 }
+	remove_variable = wm_dispute_timer
+	remove_variable = wm_dispute_by
+	remove_variable = wm_dispute_margin
+	remove_variable = wm_dispute_loser
+}
+
+# Scope: a seat. The recount finds the runner-up won after all: the defeated MP gets the seat back if they were the
+# runner-up, otherwise the runner-up party's candidate takes it (wm_election_new_mp_effect).
+wm_dispute_overturn_effect = {
+	save_scope_as = wm_dispute_seat
+	clear_saved_scope = wm_dispute_old_mp
+	clear_saved_scope = wm_dispute_restored
+	holder ?= { save_scope_as = wm_dispute_old_mp }
+	if = {
+		limit = {
+			exists = var:wm_dispute_loser
+			var:wm_dispute_loser = {
+				is_alive = yes
+				NOT = { wm_is_mp_trigger = yes }
+				exists = var:wm_party
+			}
+			var:wm_dispute_loser.var:wm_party ?= var:wm_dispute_runner
+		}
+		var:wm_dispute_loser = { save_scope_as = wm_dispute_restored }
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = wm_dispute_change
+			add_claim_on_loss = no
+		}
+		change_title_holder = {
+			holder = scope:wm_dispute_restored
+			change = scope:wm_dispute_change
+		}
+		resolve_title_and_vassal_change = scope:wm_dispute_change
+		scope:wm_dispute_restored = { remove_variable = wm_lost_seat }
+	}
+	else = {
+		set_variable = { name = wm_el_winner value = var:wm_dispute_runner }
+		wm_election_new_mp_effect = yes
+		remove_variable = wm_el_winner
+	}
+	scope:wm_dispute_old_mp ?= {
+		if = {
+			limit = {
+				is_alive = yes
+				NOT = { wm_is_mp_trigger = yes }
+			}
+			set_variable = { name = wm_lost_seat value = scope:wm_dispute_seat days = 90 }
+		}
+	}
+	set_variable = { name = wm_seat_majority value = 1 }		# a handful of votes
+	wm_election_rewire_effect = yes
+	wm_majority_update_effect = yes
+}
+
+# Scope: a party leader who has lost a general election refuses to accept it. It changes nothing but costs them
+# dearly: standing, the party's poll, the new Prime Minister's goodwill, and their supporters riot.
+wm_dispute_national_effect = {
+	save_scope_as = wm_dispute_sore_loser
+	add_prestige = massive_prestige_loss
+	add_piety = major_piety_loss
+	add_character_modifier = { modifier = wm_dispute_sore_loser_modifier years = 5 }
+	set_variable = { name = wm_dispute_refused value = yes years = 5 }
+	wm_trust_change_effect = { AMOUNT = -5 }	# public trust (wm_trust_effects.txt)
+	if = {
+		limit = { exists = var:wm_party }
+		wm_commons_poll_effect = { PARTY = var:wm_party AMOUNT = -3 }
+	}
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = { NOT = { this = scope:wm_dispute_sore_loser } }
+			add_opinion = { target = scope:wm_dispute_sore_loser modifier = wm_dispute_sore_loser_opinion }
+		}
+	}
+	title:e_united_kingdom = {
+		random_in_de_jure_hierarchy = {
+			limit = {
+				tier = tier_county
+				holder ?= { var:wm_party ?= scope:wm_dispute_sore_loser.var:wm_party }
+			}
+			wm_dispute_riot_effect = yes
+		}
+		random_in_de_jure_hierarchy = {
+			limit = {
+				tier = tier_county
+				exists = holder
+				NOT = { wm_riot_is_active_trigger = yes }
+			}
+			random = {
+				chance = 50
+				wm_dispute_riot_effect = yes
+			}
+		}
+	}
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = wm_dispute_national_toast
+				left_icon = scope:wm_dispute_sore_loser
+				custom_tooltip = wm_dispute_national_toast_desc
+			}
+		}
+	}
+}

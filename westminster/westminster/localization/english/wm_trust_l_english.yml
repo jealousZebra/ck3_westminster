@@ -1,0 +1,24 @@
+﻿l_english:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "Pledge to Clean Up Politics"
+ wm_trust_clean_up_decision_desc: "#bold Public trust in politics: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] out of 100#!, with turnout at a general election expected around [EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%.\n\nLow trust makes riots likelier, lifts small and new parties in the polls and keeps voters at home; high trust helps the government. U-turns, broken promises, riots and how they are policed, scandals and dirty campaigns wear it down; popular bills, kept promises and clean campaigns build it up.\n\nA package of standards reforms would show the country that Westminster is listening."
+ wm_trust_clean_up_decision_tooltip: "Public trust: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] out of 100."
+ wm_trust_clean_up_decision_confirm: "Make the Pledge"
+ wm_trust_clean_up_decision_not_pledged_tt: "You haven't already made a clean-up pledge that still stands"
+ wm_trust_clean_up_decision_effect_tt: "Public trust rises by #P 5#! points. If a scandal breaks in the next three years, the pledge is broken: trust falls a further #N 4#! points and you lose face."
+
+ wm_trust_promise_broken_toast: "PROMISE BROKEN"
+ wm_trust_promise_broken_toast_desc: "The early election promised to the protesters never came. Public trust falls by #N 6#! points."
+
+ wm_trust.10.t_expenses: "Expenses Row Engulfs Westminster"
+ wm_trust.10.t_lobbying: "Lobbying Row"
+ wm_trust.10.t_unity: "A Moment of National Unity"
+ wm_trust.10.t_standards: "A Clean Bill of Health"
+ wm_trust.10.desc_expenses: "#italic Front page#!\n\nA freedom of information request has prised open MPs' expense claims, and the papers are running them a page a day: a trouser press here, a patio heater there, a second home that turns out to be the first. Nobody has broken a rule, says the House authorities, which is rather the point.\n\nNo one party is spared, and the public is unimpressed with all of them."
+ wm_trust.10.desc_lobbying: "#italic Front page#!\n\nUndercover reporters posing as a foreign consultancy have filmed a string of former ministers offering to open doors for a fee. The government insists the rules were followed; the rules, it turns out, were written by former ministers.\n\nThe government takes the worst of it."
+ wm_trust.10.desc_unity: "#italic Front page#!\n\nFor once the whole country is watching the same thing: a sporting triumph, a heroic rescue, a national celebration. Politicians of every party are pictured cheering together, and for a few days nobody is booing them.\n\nThe government gets a share of the warm glow."
+ wm_trust.10.desc_standards: "#italic Inside pages#!\n\nThe annual report of the Committee on Standards finds Westminster's conduct the best in years: fewer complaints, faster investigations, and nobody filmed doing anything regrettable. It is not a headline-grabbing story, which is exactly why it helps."
+ wm_trust.10.desc_trust: "\n\n#bold Public trust in politics is now [EmptyScope.ScriptValue('wm_ui_public_trust')|0] out of 100.#!"
+ wm_trust.10.a: "Publish every receipt."
+ wm_trust.10.b: "Keep your head down."
+ wm_trust.10.c: "Enjoy it while it lasts."

@@ -1,0 +1,433 @@
+﻿# Election campaigns: the five weeks between dissolution and polling day.
+#
+# The elections code (wm_election_effects.txt) sets global_var:wm_el_scheduled when Parliament is dissolved and
+# global_var:wm_el_campaign for the 35 days of the campaign. It has no hook for us, so a weekly watcher reads that
+# state: hidden event wm_campaign.100, which reschedules itself on the Prime Minister every 7 days (restarted by
+# the quarterly pulse and at game start: common/on_action/wm_campaign_on_actions.txt). The watcher also opens the
+# autumn party conferences (wm_conference_effects.txt).
+#
+# Each campaign week, AI party leaders roll an automatic campaign move (wm_campaign_ai_week_effect) and every player
+# campaigner (a party MP or leader) gets event wm_campaign.1: a rally, a TV debate against a rival leader, a policy
+# launch, door-knocking in their own seat, or a quiet week. Gaffes (wm_campaign.2) happen.
+#
+# State (global variables):
+#   wm_campaign_active      a campaign is under way (cleared once polling day has passed)
+#   wm_campaign_week        the campaign's week, 1-5
+#   wm_campaign_ticked      the watcher ran in the last 5 days (a second, stray watcher chain stops itself)
+#   wm_campaign_watch_alive the watcher chain is running (refreshed every week, lasts 10 days)
+#   wm_campaign_amount, wm_campaign_lean_amount, wm_campaign_knock   scratch values for the effects below
+# On characters: flag wm_campaign_on_trail (fighting this campaign), wm_campaign_debated (had their TV debate).
+# On seats: var:wm_lean_<party> is raised by door-knocking (it is the seat's lean that elections swing from).
+
+# No root. The weekly watch: end a finished campaign, start a new one, run a campaign week, open conferences.
+wm_campaign_watch_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_campaign_ticked } }
+		set_global_variable = { name = wm_campaign_ticked value = yes days = 5 }
+		# Polling day has been
+		if = {
+			limit = {
+				has_global_variable = wm_campaign_active
+				NOT = { has_global_variable = wm_el_scheduled }
+			}
+			wm_campaign_end_effect = yes
+		}
+		if = {
+			limit = {
+				has_global_variable = wm_el_scheduled
+				has_global_variable = wm_el_campaign
+				NOT = { has_global_variable = wm_campaign_active }
+			}
+			wm_campaign_start_effect = yes
+		}
+		else_if = {
+			limit = {
+				has_global_variable = wm_campaign_active
+				has_global_variable = wm_el_campaign
+			}
+			wm_campaign_week_effect = yes
+		}
+		# Conference season (never during a campaign: a conference due then is held after polling day)
+		if = {
+			limit = { NOT = { has_global_variable = wm_el_scheduled } }
+			wm_conference_autumn_effect = yes
+		}
+	}
+}
+
+# Scope: a character (the Prime Minister). Starts the weekly watcher if it isn't running.
+wm_campaign_ensure_watch_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_campaign_watch_alive } }
+		set_global_variable = { name = wm_campaign_watch_alive value = yes days = 10 }
+		trigger_event = { id = wm_campaign.100 days = 1 }
+	}
+}
+
+# No root. Parliament is dissolved: every party's MPs and leaders hit the campaign trail.
+wm_campaign_start_effect = {
+	set_global_variable = { name = wm_campaign_active value = yes }
+	set_global_variable = { name = wm_campaign_week value = 0 }
+	every_living_character = {
+		limit = { wm_campaign_is_campaigner_trigger = yes }
+		add_character_flag = { flag = wm_campaign_on_trail days = 40 }
+	}
+	wm_campaign_week_effect = yes
+}
+
+# No root. A week of the campaign.
+wm_campaign_week_effect = {
+	change_global_variable = { name = wm_campaign_week add = 1 }
+	# AI party leaders campaign automatically
+	every_living_character = {
+		limit = {
+			exists = var:wm_party
+			has_title = var:wm_party
+			wm_campaign_auto_trigger = yes
+		}
+		wm_campaign_ai_week_effect = yes
+	}
+	# Players choose this week's move, and might put their foot in it
+	if = {
+		limit = { NOT = { has_global_variable = wm_test_quiet } }
+		every_player = {
+			limit = { wm_campaign_is_campaigner_trigger = yes }
+			trigger_event = wm_campaign.1
+			random = {
+				chance = 15
+				trigger_event = { id = wm_campaign.2 days = { 2 4 } }
+			}
+		}
+	}
+}
+
+# No root. Polling day has been: the campaign is over.
+wm_campaign_end_effect = {
+	remove_global_variable = wm_campaign_active
+	remove_global_variable = wm_campaign_week
+}
+
+# Scope: an AI party leader. A week on the campaign trail, rolled: a good week, a steady one, or a gaffe.
+wm_campaign_ai_week_effect = {
+	random_list = {
+		35 = {
+			modifier = { add = wm_campaign_diplomacy_weight }
+			wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_ai_good_week }
+			add_prestige = miniscule_prestige_gain
+		}
+		45 = {
+			wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_ai_steady_week }
+		}
+		20 = {
+			modifier = { add = wm_campaign_gaffe_risk }
+			wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_ai_bad_week }
+			add_prestige = minor_prestige_loss
+		}
+	}
+}
+
+# Scope: a party leader. Saves scope:wm_campaign_rival, who they debate on television: for the Prime Minister,
+# the leader of the biggest other party; for anyone else, the Prime Minister.
+wm_campaign_find_rival_effect = {
+	save_temporary_scope_as = wm_campaign_self
+	if = {
+		limit = { has_title = title:e_united_kingdom }
+		ordered_vassal = {
+			limit = {
+				exists = var:wm_party
+				has_title = var:wm_party
+				NOT = { var:wm_party = scope:wm_campaign_self.var:wm_party }
+			}
+			order_by = wm_commons_party_seats_value
+			save_scope_as = wm_campaign_rival
+		}
+	}
+	else_if = {
+		limit = {
+			exists = title:e_united_kingdom.holder
+			NOT = { title:e_united_kingdom.holder.var:wm_party ?= scope:wm_campaign_self.var:wm_party }
+		}
+		title:e_united_kingdom.holder = { save_scope_as = wm_campaign_rival }
+	}
+}
+
+# --- Campaign moves (scope: the campaigner). The events wrap these in toasts. ---
+
+# A rally that goes well: national for a party leader, local (and a little national) for an MP.
+wm_campaign_rally_success_effect = {
+	if = {
+		limit = { has_title = var:wm_party }
+		wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_rally_gain }
+		add_prestige = minor_prestige_gain
+	}
+	else = {
+		wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_mp_rally_gain }
+		set_global_variable = { name = wm_campaign_knock value = 5 }
+		wm_campaign_own_seat_lean_effect = yes
+		add_prestige = miniscule_prestige_gain
+	}
+}
+wm_campaign_rally_flat_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_rally_flat }
+}
+wm_campaign_rally_flop_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_rally_flop }
+	add_prestige = minor_prestige_loss
+}
+
+# A policy launch (party leaders): the pledge cuts through, or the costings fall apart on the radio.
+wm_campaign_policy_success_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_policy_gain }
+	add_prestige = minor_prestige_gain
+}
+wm_campaign_policy_flop_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_policy_flop }
+	add_prestige = minor_prestige_loss
+}
+
+# The TV debate. $RIVAL$: the other leader.
+wm_campaign_debate_win_effect = {
+	save_temporary_scope_as = wm_campaign_debate_winner
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_debate_win }
+	add_prestige = medium_prestige_gain
+	$RIVAL$ = {
+		wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_debate_loss }
+		add_prestige = minor_prestige_loss
+		add_opinion = {
+			target = scope:wm_campaign_debate_winner
+			modifier = wm_campaign_debate_humiliated_opinion
+		}
+	}
+}
+wm_campaign_debate_loss_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_debate_loss }
+	add_prestige = minor_prestige_loss
+	$RIVAL$ = {
+		wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_debate_win }
+		add_prestige = minor_prestige_gain
+	}
+}
+
+# Door-knocking in the campaigner's own seat: their party's share there (var:wm_lean_<party>) goes up by
+# 0.8 to 1.5 points, and the voters warm to them a little.
+wm_campaign_door_knock_effect = {
+	set_global_variable = {
+		name = wm_campaign_knock
+		value = {
+			integer_range = {
+				min = 8
+				max = 15
+			}
+		}
+	}
+	wm_campaign_own_seat_lean_effect = yes
+	add_prestige = miniscule_prestige_gain
+	random_held_title = {
+		limit = {
+			tier = tier_county
+			is_landless_type_title = no
+			NOT = { has_county_modifier = wm_campaign_doorstep_county_modifier }
+		}
+		add_county_modifier = {
+			modifier = wm_campaign_doorstep_county_modifier
+			years = 1
+		}
+	}
+}
+
+# Gaffes. Laughed off (charm), blamed on a staffer, doubled down on (a gamble), or simply a disaster.
+wm_campaign_gaffe_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_gaffe_loss }
+	add_prestige = minor_prestige_loss
+	add_character_modifier = {
+		modifier = wm_campaign_viral_gaffe_modifier
+		months = 6
+	}
+}
+wm_campaign_gaffe_shrugged_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_gaffe_shrugged }
+	add_prestige = miniscule_prestige_gain
+}
+wm_campaign_gaffe_staffer_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_gaffe_staffer }
+	add_prestige = minor_prestige_loss
+}
+wm_campaign_gaffe_viral_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_gaffe_viral }
+	add_prestige = minor_prestige_gain
+}
+wm_campaign_gaffe_doubled_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_campaign_gaffe_doubled }
+	add_prestige = medium_prestige_loss
+	add_character_modifier = {
+		modifier = wm_campaign_viral_gaffe_modifier
+		months = 6
+	}
+}
+
+# --- Plumbing ---
+
+# Scope: a character with a seat. Raises their party's share in the seat by global_var:wm_campaign_knock.
+wm_campaign_own_seat_lean_effect = {
+	random_held_title = {
+		limit = {
+			tier = tier_county
+			is_landless_type_title = no
+		}
+		wm_campaign_seat_lean_effect = { AMOUNT = global_var:wm_campaign_knock }
+	}
+}
+
+# Scope: a character in a party (var:wm_party). Moves their party's poll by $AMOUNT$ (tenths of a percent in the
+# party's own nation; a number or a script value).
+wm_campaign_own_poll_effect = {
+	if = {
+		limit = { exists = var:wm_party }
+		set_global_variable = { name = wm_campaign_amount value = $AMOUNT$ }
+		wm_campaign_party_poll_effect = { PARTY = var:wm_party }
+	}
+}
+
+# Moves $PARTY$'s (a party title) poll by global_var:wm_campaign_amount through the polls' own hook,
+# wm_polls_shift_effect. Regional parties poll UK-wide, so their shift is divided by their nation's factor
+# (as in wm_polls_values.txt: Scotland 11.9, Wales 21.8, Northern Ireland 36.9).
+wm_campaign_party_poll_effect = {
+	$PARTY$ = { save_temporary_scope_as = wm_campaign_poll_party }
+	if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_labour }
+		wm_polls_shift_effect = { P = lab AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_conservative }
+		wm_polls_shift_effect = { P = con AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_lib_dem }
+		wm_polls_shift_effect = { P = ld AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_reform }
+		wm_polls_shift_effect = { P = ruk AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_green }
+		wm_polls_shift_effect = { P = grn AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_snp }
+		change_global_variable = { name = wm_campaign_amount divide = 11.9 }
+		wm_polls_shift_effect = { P = snp AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_plaid }
+		change_global_variable = { name = wm_campaign_amount divide = 21.8 }
+		wm_polls_shift_effect = { P = pc AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_sinn_fein }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = sf AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_dup }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = dup AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_sdlp }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = sdlp AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_alliance }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = apni AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_uup }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = uup AMOUNT = global_var:wm_campaign_amount }
+	}
+	else_if = {
+		limit = { scope:wm_campaign_poll_party = title:k_party_tuv }
+		change_global_variable = { name = wm_campaign_amount divide = 36.9 }
+		wm_polls_shift_effect = { P = tuv AMOUNT = global_var:wm_campaign_amount }
+	}
+}
+
+# Scope: a seat held by a party MP. Raises the holder's party's share here (var:wm_lean_<party>) by $AMOUNT$
+# tenths of a percent, up to wm_campaign_lean_cap.
+wm_campaign_seat_lean_effect = {
+	if = {
+		limit = { exists = holder.var:wm_party }
+		set_global_variable = { name = wm_campaign_lean_amount value = $AMOUNT$ }
+		holder.var:wm_party = { save_temporary_scope_as = wm_campaign_lean_party }
+		if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_labour }
+			wm_campaign_lean_add_effect = { P = lab }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_conservative }
+			wm_campaign_lean_add_effect = { P = con }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_lib_dem }
+			wm_campaign_lean_add_effect = { P = ld }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_reform }
+			wm_campaign_lean_add_effect = { P = ruk }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_green }
+			wm_campaign_lean_add_effect = { P = grn }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_snp }
+			wm_campaign_lean_add_effect = { P = snp }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_plaid }
+			wm_campaign_lean_add_effect = { P = pc }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_sinn_fein }
+			wm_campaign_lean_add_effect = { P = sf }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_dup }
+			wm_campaign_lean_add_effect = { P = dup }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_sdlp }
+			wm_campaign_lean_add_effect = { P = sdlp }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_alliance }
+			wm_campaign_lean_add_effect = { P = apni }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_uup }
+			wm_campaign_lean_add_effect = { P = uup }
+		}
+		else_if = {
+			limit = { scope:wm_campaign_lean_party = title:k_party_tuv }
+			wm_campaign_lean_add_effect = { P = tuv }
+		}
+	}
+}
+
+# Scope: a seat. $P$: the party's variable key. Needs global_var:wm_campaign_lean_amount.
+wm_campaign_lean_add_effect = {
+	if = {
+		limit = { has_variable = wm_lean_$P$ }
+		change_variable = { name = wm_lean_$P$ add = global_var:wm_campaign_lean_amount }
+	}
+	else = {
+		set_variable = { name = wm_lean_$P$ value = global_var:wm_campaign_lean_amount }
+	}
+	if = {
+		limit = { var:wm_lean_$P$ > wm_campaign_lean_cap }
+		set_variable = { name = wm_lean_$P$ value = wm_campaign_lean_cap }
+	}
+}

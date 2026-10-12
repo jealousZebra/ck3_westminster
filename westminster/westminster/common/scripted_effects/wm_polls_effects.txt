@@ -1,0 +1,100 @@
+﻿# Opinion polls: national vote share per party as global variables, global_var:wm_poll_<party> in tenths of a
+# percent (Labour on 33.7% is 337), adding up to 1000 with wm_poll_oth. They start from the 2024 result
+# (wm_polls_init_effect) and move once a month (wm_polls_monthly_effect, run by event wm_polls.1 three times a
+# quarter): a random walk, a pull back towards each party's anchor (its 2024 share, plus or minus the government's
+# fortunes for the PM's party: wm_polls_government_pressure in wm_election_values.txt), public trust's pull
+# (wm_trust_poll_effect), then normalised to 1000.
+# The per-party effects are generated (wm_election_parties.txt, tools/data/build_seat_leans.py).
+
+# A month in politics: polls move, the Parliament's clock ticks, elections and by-elections that are due happen.
+# Runs at most once every 20 days, whoever triggers it.
+wm_polls_monthly_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_polls_ticked } }
+		set_global_variable = { name = wm_polls_ticked value = yes days = 20 }
+		# Saves from before elections existed
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_global_variable = wm_poll_lab }
+					NOT = { has_global_variable = wm_el_months }
+				}
+			}
+			wm_election_init_effect = yes
+		}
+		# Campaign spending moves the polls before they drift (wm_spend_effects.txt)
+		wm_spend_monthly_effect = yes
+		wm_polls_drift_all_effect = yes
+		change_global_variable = { name = wm_el_months add = 1 }
+		# Public trust, the party wings and the devolved nations (wm_trust_effects.txt, wm_wing_effects.txt,
+		# wm_devolution_effects.txt)
+		wm_trust_monthly_effect = yes
+		wm_wing_monthly_effect = yes
+		wm_devolution_monthly_effect = yes
+		wm_ideo_monthly_effect = yes	# seats drift towards their MP's ideology (wm_ideo_effects.txt)
+		# Parliament's five years are nearly up: dissolve
+		if = {
+			limit = {
+				global_var:wm_el_months >= wm_election_deadline_months
+				NOT = { has_global_variable = wm_el_scheduled }
+			}
+			wm_election_schedule_effect = yes
+		}
+		# Polling day has passed but the election event was lost (its carrier died): hold it now
+		if = {
+			limit = {
+				has_global_variable = wm_el_scheduled
+				NOT = { has_global_variable = wm_el_campaign }
+			}
+			wm_election_general_effect = yes
+		}
+		wm_byelection_process_due_effect = yes
+	}
+}
+
+# One party's poll for the month. $P$: the party's variable key (lab, con, ... oth).
+wm_polls_drift_party_effect = {
+	set_global_variable = {
+		name = wm_poll_$P$
+		value = {
+			value = global_var:wm_poll_$P$
+			# Random walk: up to 5% of the party's own share either way
+			add = {
+				value = global_var:wm_poll_$P$
+				multiply = {
+					integer_range = {
+						min = -50
+						max = 50
+					}
+				}
+				divide = 1000
+			}
+			# Mean reversion: 5% of the gap to the party's anchor
+			add = {
+				value = wm_polls_anchor_$P$
+				subtract = global_var:wm_poll_$P$
+				multiply = 0.05
+			}
+			min = 1
+		}
+	}
+	# Public trust: low trust lifts small parties, high trust the government's (wm_trust_effects.txt)
+	wm_trust_poll_effect = { P = $P$ }
+}
+
+# A one-off shift in a party's poll, for events (a scandal, a good conference...). $P$: the party key (lab, con...);
+# $AMOUNT$: tenths of a percent (-20 is two points down). The other parties make up the difference at the next
+# monthly normalisation, and the shift fades as the poll drifts back to its anchor.
+wm_polls_shift_effect = {
+	if = {
+		limit = { has_global_variable = wm_poll_$P$ }
+		set_global_variable = {
+			name = wm_poll_$P$
+			value = {
+				value = global_var:wm_poll_$P$
+				add = $AMOUNT$
+				min = 1
+			}
+		}
+	}
+}

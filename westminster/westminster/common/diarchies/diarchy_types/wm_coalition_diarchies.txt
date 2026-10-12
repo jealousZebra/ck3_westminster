@@ -1,0 +1,33 @@
+﻿# The Deputy Prime Minister in a coalition: the junior partner's leader, as diarch of the Prime Minister. Started and
+# ended only by script (wm_coalition_start_dpm_effect, wm_coalition_end_dpm_effect in
+# common/scripted_effects/wm_coalition_effects.txt), and with none of vanilla's diarch powers.
+wm_coalition_deputyship = {
+	start = { always = yes }
+
+	# Empty: the diarchy ends only through script
+	end = {}
+
+	mandate = fill_coffers
+	mandate = swell_armies
+	mandate = promote_authority
+	aptitude_score = {
+		add = mandate_type_qualification:fill_coffers
+		add = mandate_type_qualification:swell_armies
+		add = mandate_type_qualification:promote_authority
+	}
+
+	power_level = {
+		swing = 0
+		hidden_parameter = wm_diarchy_is_coalition
+	}
+
+	swing_balance = {
+		value = 0
+	}
+
+	succession = no
+
+	loyalty_score = {
+		value = 50
+	}
+}

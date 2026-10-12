@@ -1,0 +1,675 @@
+﻿# House of Commons: bills, divisions, whips and confidence motions. The state is described in
+# common/script_values/wm_commons_values.txt; the events are in events/wm_commons_events.txt.
+#
+# How a division works: every seat's holder (an MP) casts one vote, except the Speaker, who doesn't vote.
+# Each MP is on the government side (side 1), the other side (2), or abstains (3):
+#   - government MPs follow the whip unless they rebel (wm_commons_rebel_chance_value: the bill's controversy,
+#     their wing against the bill, their opinion of their leader, the Prime Minister's authority, the whips);
+#   - opposition MPs follow their party's whip (usually against) and rarely defy it;
+#   - party leaders always vote with their party; Sinn Fein MPs abstain (they don't take their seats);
+#   - MPs with no whip (independents) vote by wing and their opinion of the Prime Minister;
+#   - a player MP who answered the division bell (event wm_commons.5) votes as they chose.
+# Rebels are noted by their leader (an opinion modifier); a third rebellion loses them the whip.
+
+# The single hook into the opinion polls, which another system owns: adds $AMOUNT$ to
+# global_var:wm_poll_mood_<party> if the polls have created it. $PARTY$ is a party title (k_party_*).
+wm_commons_poll_effect = {
+	$PARTY$ = { save_temporary_scope_as = wm_commons_poll_party }
+	if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_labour
+			has_global_variable = wm_poll_mood_labour
+		}
+		change_global_variable = { name = wm_poll_mood_labour add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_conservative
+			has_global_variable = wm_poll_mood_conservative
+		}
+		change_global_variable = { name = wm_poll_mood_conservative add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_lib_dem
+			has_global_variable = wm_poll_mood_lib_dem
+		}
+		change_global_variable = { name = wm_poll_mood_lib_dem add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_snp
+			has_global_variable = wm_poll_mood_snp
+		}
+		change_global_variable = { name = wm_poll_mood_snp add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_sinn_fein
+			has_global_variable = wm_poll_mood_sinn_fein
+		}
+		change_global_variable = { name = wm_poll_mood_sinn_fein add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_reform
+			has_global_variable = wm_poll_mood_reform
+		}
+		change_global_variable = { name = wm_poll_mood_reform add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_dup
+			has_global_variable = wm_poll_mood_dup
+		}
+		change_global_variable = { name = wm_poll_mood_dup add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_green
+			has_global_variable = wm_poll_mood_green
+		}
+		change_global_variable = { name = wm_poll_mood_green add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_plaid
+			has_global_variable = wm_poll_mood_plaid
+		}
+		change_global_variable = { name = wm_poll_mood_plaid add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_sdlp
+			has_global_variable = wm_poll_mood_sdlp
+		}
+		change_global_variable = { name = wm_poll_mood_sdlp add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_alliance
+			has_global_variable = wm_poll_mood_alliance
+		}
+		change_global_variable = { name = wm_poll_mood_alliance add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_uup
+			has_global_variable = wm_poll_mood_uup
+		}
+		change_global_variable = { name = wm_poll_mood_uup add = $AMOUNT$ }
+	}
+	else_if = {
+		limit = {
+			scope:wm_commons_poll_party = title:k_party_tuv
+			has_global_variable = wm_poll_mood_tuv
+		}
+		change_global_variable = { name = wm_poll_mood_tuv add = $AMOUNT$ }
+	}
+}
+
+# The poll effect for the governing party, if it has one
+wm_commons_government_poll_effect = {
+	if = {
+		limit = { has_global_variable = wm_commons_government }
+		wm_commons_poll_effect = { PARTY = global_var:wm_commons_government AMOUNT = $AMOUNT$ }
+	}
+}
+
+# Scope: an MP. Gives them a wing of their party, once: -1 left, 0 centre, 1 right.
+wm_commons_ensure_wing_effect = {
+	if = {
+		limit = { NOT = { has_variable = wm_commons_wing } }
+		random_list = {
+			30 = {
+				modifier = {
+					add = 15
+					has_trait = compassionate
+				}
+				modifier = {
+					add = 10
+					has_trait = generous
+				}
+				set_variable = { name = wm_commons_wing value = -1 }
+			}
+			40 = {
+				modifier = {
+					add = 10
+					has_trait = content
+				}
+				set_variable = { name = wm_commons_wing value = 0 }
+			}
+			30 = {
+				modifier = {
+					add = 15
+					has_trait = greedy
+				}
+				modifier = {
+					add = 10
+					has_trait = callous
+				}
+				set_variable = { name = wm_commons_wing value = 1 }
+			}
+		}
+	}
+}
+
+# Any scope. Sets up the business before the House for the current Prime Minister. TYPE: 1-4 a bill, 5 a motion
+# of no confidence. MOVER: who moved it.
+wm_commons_setup_business_effect = {
+	set_global_variable = { name = wm_commons_bill_type value = $TYPE$ }
+	set_global_variable = { name = wm_commons_mover value = $MOVER$ }
+	set_global_variable = { name = wm_commons_pending value = yes days = 60 }
+	set_global_variable = { name = wm_commons_whip_bonus value = 0 }
+	set_global_variable = { name = wm_commons_bill_strength value = 100 }
+	set_global_variable = { name = wm_commons_opp_whip value = 2 }
+	set_global_variable = { name = wm_commons_opp_base value = 1 }
+	set_global_variable = { name = wm_commons_whip_strength value = 0 }
+	title:e_united_kingdom.holder ?= {
+		set_global_variable = { name = wm_commons_whip_strength value = wm_commons_whip_strength_value }
+	}
+	if = {
+		limit = { exists = title:e_united_kingdom.holder.var:wm_party }
+		set_global_variable = { name = wm_commons_government value = title:e_united_kingdom.holder.var:wm_party }
+	}
+	else = {
+		remove_global_variable = wm_commons_government
+	}
+	if = {
+		limit = { global_var:wm_commons_bill_type = 1 }	# Finance Bill: taxes up
+		set_global_variable = { name = wm_commons_bill_lean value = -1 }
+		set_global_variable = { name = wm_commons_bill_controversy value = 10 }
+	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 2 }	# Public Services Bill: spending up
+		set_global_variable = { name = wm_commons_bill_lean value = -1 }
+		set_global_variable = { name = wm_commons_bill_controversy value = 0 }
+	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 3 }	# Public Service Reform Bill: controversial
+		set_global_variable = { name = wm_commons_bill_lean value = 1 }
+		set_global_variable = { name = wm_commons_bill_controversy value = 30 }
+	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 4 }	# Emergency Powers Bill: the opposition may back it
+		set_global_variable = { name = wm_commons_bill_lean value = 0 }
+		set_global_variable = { name = wm_commons_bill_controversy value = 10 }
+		random = {
+			chance = 70
+			set_global_variable = { name = wm_commons_opp_whip value = 1 }
+		}
+	}
+	else = {	# Motion of no confidence: MPs rarely bring down their own government
+		set_global_variable = { name = wm_commons_bill_lean value = 0 }
+		set_global_variable = { name = wm_commons_bill_controversy value = -25 }
+		set_global_variable = { name = wm_commons_opp_base value = 0 }
+	}
+}
+
+# Scope: the Prime Minister. Introduces bill $TYPE$ (1-4).
+wm_commons_introduce_bill_effect = {
+	save_temporary_scope_as = wm_commons_pm
+	wm_commons_setup_business_effect = { TYPE = $TYPE$ MOVER = scope:wm_commons_pm }
+}
+
+# Scope: the Leader of the Opposition. Tables a motion of no confidence; the Prime Minister's whips get to work.
+wm_commons_table_confidence_motion_effect = {
+	save_temporary_scope_as = wm_commons_motion_mover
+	wm_commons_setup_business_effect = { TYPE = 5 MOVER = scope:wm_commons_motion_mover }
+	title:e_united_kingdom.holder ?= {
+		trigger_event = wm_commons.2
+	}
+}
+
+# Any scope. The Chief Whip's count: how many MPs each side has, and how many government MPs might rebel.
+wm_commons_forecast_effect = {
+	set_global_variable = { name = wm_commons_forecast_rebels value = 0 }
+	set_global_variable = { name = wm_commons_gov_mps value = 0 }
+	set_global_variable = { name = wm_commons_opp_mps value = 0 }
+	title:e_united_kingdom = {
+		every_in_de_jure_hierarchy = {
+			continue = { tier >= tier_duchy }
+			limit = {
+				tier = tier_county
+				exists = holder
+			}
+			holder = {
+				if = {
+					limit = { NOT = { has_character_flag = wm_speaker } }
+					wm_commons_ensure_wing_effect = yes
+					if = {
+						# Coalitions hook: coalition and confidence-and-supply partners count with the government
+						limit = { wm_commons_whipped_with_government_trigger = yes }
+						change_global_variable = { name = wm_commons_gov_mps add = 1 }
+						if = {
+							limit = {
+								NOT = { wm_commons_is_party_leader_trigger = yes }
+								wm_commons_is_government_mp_trigger = yes
+							}
+							change_global_variable = { name = wm_commons_forecast_rebels add = wm_commons_rebel_chance_value }
+						}
+					}
+					else_if = {
+						limit = {
+							NOT = { var:wm_party ?= title:k_party_sinn_fein }
+						}
+						change_global_variable = { name = wm_commons_opp_mps add = 1 }
+					}
+				}
+			}
+		}
+	}
+	change_global_variable = { name = wm_commons_forecast_rebels divide = 100 }
+}
+
+# Scope: the Prime Minister, after choosing how to whip. Rings the division bell for player MPs and holds the
+# division a week later.
+wm_commons_call_division_effect = {
+	save_temporary_scope_as = wm_commons_pm
+	every_player = {
+		limit = {
+			wm_is_mp_trigger = yes
+			NOT = { this = scope:wm_commons_pm }
+			NOT = { has_character_flag = wm_speaker }
+		}
+		trigger_event = wm_commons.5
+	}
+	trigger_event = { id = wm_commons.3 days = 7 }
+}
+
+# Scope: an MP who has just defied their whip.
+wm_commons_rebel_effect = {
+	save_temporary_scope_as = wm_commons_rebel
+	if = {
+		limit = { wm_commons_is_government_mp_trigger = yes }	# Coalitions hook: includes a coalition partner
+		change_global_variable = { name = wm_commons_gov_rebels add = 1 }
+	}
+	if = {
+		limit = { NOT = { has_variable = wm_commons_rebellions } }
+		set_variable = { name = wm_commons_rebellions value = 0 }
+	}
+	change_variable = { name = wm_commons_rebellions add = 1 }
+	add_to_global_variable_list = { name = wm_commons_rebel_list target = this }
+	var:wm_party.holder ?= {
+		if = {
+			limit = { NOT = { this = scope:wm_commons_rebel } }
+			add_opinion = { target = scope:wm_commons_rebel modifier = wm_commons_defied_whip_opinion }
+		}
+	}
+}
+
+# Scope: an MP. Casts and counts their vote in the current division (once, even if they hold two seats: voters go
+# on global list wm_commons_voters, cleared at the start of each division).
+wm_commons_cast_vote_effect = {
+	if = {
+		limit = {
+			NOT = { has_character_flag = wm_speaker }
+			NOT = { is_target_in_global_variable_list = { name = wm_commons_voters target = this } }
+		}
+		add_to_global_variable_list = { name = wm_commons_voters target = this }
+		wm_commons_ensure_wing_effect = yes
+		# Which way their whip says to vote (0: no whip)
+		set_variable = { name = wm_commons_whip value = 0 }
+		if = {
+			limit = { exists = var:wm_party }
+			if = {
+				# Coalitions hook: the governing party, a coalition partner, or a confidence-and-supply partner on
+				# confidence and the Finance Bill (wm_commons_triggers.txt)
+				limit = { wm_commons_whipped_with_government_trigger = yes }
+				set_variable = { name = wm_commons_whip value = 1 }
+			}
+			else_if = {
+				limit = { NOT = { var:wm_party = title:k_party_sinn_fein } }
+				set_variable = { name = wm_commons_whip value = global_var:wm_commons_opp_whip }
+			}
+		}
+
+		# How they vote: 1 with the government, 2 against, 3 abstain
+		if = {
+			limit = { has_variable = wm_commons_player_vote }
+			set_variable = { name = wm_commons_side value = var:wm_commons_player_vote }
+			remove_variable = wm_commons_player_vote
+		}
+		else_if = {
+			limit = { var:wm_party ?= title:k_party_sinn_fein }
+			set_variable = { name = wm_commons_side value = 3 }
+		}
+		else_if = {
+			limit = { var:wm_commons_whip = 0 }	# no whip: independents
+			if = {
+				limit = { wm_commons_independent_lean_value > 10 }
+				set_variable = { name = wm_commons_side value = 1 }
+			}
+			else_if = {
+				limit = { wm_commons_independent_lean_value < -10 }
+				set_variable = { name = wm_commons_side value = 2 }
+			}
+			else = {
+				set_variable = { name = wm_commons_side value = 3 }
+			}
+		}
+		else_if = {
+			limit = { wm_commons_is_party_leader_trigger = yes }
+			set_variable = { name = wm_commons_side value = var:wm_commons_whip }
+		}
+		else_if = {
+			limit = { var:wm_commons_whip = 1 }
+			set_variable = { name = wm_commons_side value = 1 }
+			if = {
+				limit = { wm_commons_is_government_mp_trigger = yes }	# Coalitions hook: includes a coalition partner
+				random = {
+					chance = wm_commons_rebel_chance_value
+					random_list = {
+						65 = { set_variable = { name = wm_commons_side value = 2 } }
+						35 = { set_variable = { name = wm_commons_side value = 3 } }
+					}
+				}
+			}
+			else = {	# an opposition party backing the government
+				random = {
+					chance = wm_commons_opposition_rebel_chance_value
+					random_list = {
+						65 = { set_variable = { name = wm_commons_side value = 2 } }
+						35 = { set_variable = { name = wm_commons_side value = 3 } }
+					}
+				}
+			}
+		}
+		else = {
+			set_variable = { name = wm_commons_side value = 2 }
+			random = {
+				chance = wm_commons_opposition_rebel_chance_value
+				random_list = {
+					50 = { set_variable = { name = wm_commons_side value = 1 } }
+					50 = { set_variable = { name = wm_commons_side value = 3 } }
+				}
+			}
+		}
+
+		# Count it
+		if = {
+			limit = { var:wm_commons_side = 1 }
+			change_global_variable = { name = wm_commons_gov_votes add = 1 }
+		}
+		else_if = {
+			limit = { var:wm_commons_side = 2 }
+			change_global_variable = { name = wm_commons_opp_votes add = 1 }
+		}
+		else = {
+			change_global_variable = { name = wm_commons_abstentions add = 1 }
+		}
+		# Defied the whip? (Party leaders and abstentionists can't.)
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						var:wm_commons_whip = 1
+						NOT = { var:wm_commons_side = 1 }
+					}
+					AND = {
+						var:wm_commons_whip = 2
+						NOT = { var:wm_commons_side = 2 }
+					}
+				}
+				NOT = { wm_commons_is_party_leader_trigger = yes }
+			}
+			wm_commons_rebel_effect = yes
+		}
+		remove_variable = wm_commons_whip
+		remove_variable = wm_commons_side
+	}
+}
+
+# Any scope. Holds the division on the business before the House and records the result:
+#   wm_commons_gov_votes / wm_commons_opp_votes / wm_commons_abstentions   the government side, the other, neither
+#   wm_commons_ayes / wm_commons_noes   the lobbies (a motion of no confidence's ayes are against the government)
+#   wm_commons_margin                   government votes minus the other side's
+#   wm_commons_result                   1 the government won, 2 it lost
+#   wm_commons_gov_rebels               government MPs who defied the whip; list wm_commons_rebel_list: every rebel
+wm_commons_division_effect = {
+	set_global_variable = { name = wm_commons_gov_votes value = 0 }
+	set_global_variable = { name = wm_commons_opp_votes value = 0 }
+	set_global_variable = { name = wm_commons_abstentions value = 0 }
+	set_global_variable = { name = wm_commons_gov_rebels value = 0 }
+	if = {
+		limit = { has_global_variable_list = wm_commons_rebel_list }
+		clear_global_variable_list = wm_commons_rebel_list
+	}
+	if = {
+		limit = { has_global_variable_list = wm_commons_voters }
+		clear_global_variable_list = wm_commons_voters
+	}
+
+	title:e_united_kingdom = {
+		every_in_de_jure_hierarchy = {
+			continue = { tier >= tier_duchy }
+			limit = {
+				tier = tier_county
+				exists = holder
+			}
+			holder = { wm_commons_cast_vote_effect = yes }
+		}
+	}
+
+	set_global_variable = { name = wm_commons_margin value = global_var:wm_commons_gov_votes }
+	change_global_variable = { name = wm_commons_margin subtract = global_var:wm_commons_opp_votes }
+	if = {
+		limit = { global_var:wm_commons_bill_type = 5 }
+		set_global_variable = { name = wm_commons_ayes value = global_var:wm_commons_opp_votes }
+		set_global_variable = { name = wm_commons_noes value = global_var:wm_commons_gov_votes }
+		# A tie defeats the motion (the Speaker's casting vote keeps things as they are)
+		if = {
+			limit = { global_var:wm_commons_margin >= 0 }
+			set_global_variable = { name = wm_commons_result value = 1 }
+		}
+		else = {
+			set_global_variable = { name = wm_commons_result value = 2 }
+		}
+	}
+	else = {
+		set_global_variable = { name = wm_commons_ayes value = global_var:wm_commons_gov_votes }
+		set_global_variable = { name = wm_commons_noes value = global_var:wm_commons_opp_votes }
+		# A bill needs more ayes than noes
+		if = {
+			limit = { global_var:wm_commons_margin > 0 }
+			set_global_variable = { name = wm_commons_result value = 1 }
+		}
+		else = {
+			set_global_variable = { name = wm_commons_result value = 2 }
+		}
+	}
+
+	# A third rebellion costs an MP the whip
+	if = {
+		limit = { has_global_variable_list = wm_commons_rebel_list }
+		every_in_global_list = {
+			variable = wm_commons_rebel_list
+			limit = {
+				exists = var:wm_party
+				var:wm_commons_rebellions >= 3
+			}
+			wm_commons_withdraw_whip_effect = yes
+		}
+	}
+	remove_global_variable = wm_commons_pending
+}
+
+# Scope: an MP. Their party withdraws the whip: they sit as an independent, serving the Prime Minister directly.
+wm_commons_withdraw_whip_effect = {
+	save_scope_as = wm_commons_whipless
+	if = {
+		limit = { exists = var:wm_party }
+		var:wm_party.holder ?= {
+			save_temporary_scope_as = wm_commons_whipless_leader
+			if = {
+				limit = { NOT = { this = scope:wm_commons_whipless } }
+				scope:wm_commons_whipless = {
+					add_opinion = { target = scope:wm_commons_whipless_leader modifier = wm_commons_whip_withdrawn_opinion }
+				}
+			}
+		}
+		remove_variable = wm_party
+		remove_variable = wm_commons_rebellions
+		wm_party_sync_house_effect = yes	# parties are houses: to the Independent house (wm_party_effects.txt)
+		if = {
+			limit = {
+				exists = title:e_united_kingdom.holder
+				NOT = { this = title:e_united_kingdom.holder }
+				NOT = { liege ?= title:e_united_kingdom.holder }
+			}
+			create_title_and_vassal_change = {
+				type = granted
+				save_scope_as = wm_commons_whip_change
+				add_claim_on_loss = no
+			}
+			change_liege = {
+				liege = title:e_united_kingdom.holder
+				change = scope:wm_commons_whip_change
+			}
+			resolve_title_and_vassal_change = scope:wm_commons_whip_change
+		}
+		send_interface_toast = {
+			type = event_toast_effect_bad
+			title = wm_commons_whip_withdrawn_toast
+			left_icon = scope:wm_commons_whipless
+			custom_tooltip = wm_commons_whip_withdrawn_toast_desc
+		}
+		title:e_united_kingdom.holder ?= {
+			if = {
+				limit = { NOT = { this = scope:wm_commons_whipless } }
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_commons_whip_withdrawn_toast
+					left_icon = scope:wm_commons_whipless
+					custom_tooltip = wm_commons_whip_withdrawn_toast_desc
+				}
+			}
+		}
+		# The government's working majority: a government MP losing the whip shrinks it (wm_majority_effects.txt)
+		wm_majority_update_effect = yes
+	}
+}
+
+# Scope: the Prime Minister. What the division's result does.
+wm_commons_apply_result_effect = {
+	save_temporary_scope_as = wm_commons_pm
+	if = {
+		limit = { global_var:wm_commons_bill_type = 5 }
+		if = {
+			limit = { global_var:wm_commons_result = 2 }
+			# The government has lost the confidence of the House: there must be a general election
+			# (the election system reads global_var:wm_election_required)
+			set_global_variable = { name = wm_election_required value = yes }
+			wm_election_schedule_effect = yes		# dissolution: polling day in five weeks
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = major_legitimacy_loss
+			}
+			add_prestige = major_prestige_loss
+			add_character_modifier = { modifier = wm_commons_lost_confidence_modifier years = 2 }
+			wm_commons_government_poll_effect = { AMOUNT = -3 }
+			global_var:wm_commons_mover ?= {
+				add_prestige = medium_prestige_gain
+			}
+		}
+		else = {
+			add_prestige = minor_prestige_gain
+			global_var:wm_commons_mover ?= {
+				save_temporary_scope_as = wm_commons_motion_mover
+				add_prestige = medium_prestige_loss
+				if = {
+					limit = { NOT = { this = scope:wm_commons_pm } }
+					scope:wm_commons_pm = {
+						add_opinion = { target = scope:wm_commons_motion_mover modifier = wm_commons_tabled_no_confidence_opinion }
+					}
+				}
+			}
+			wm_commons_government_poll_effect = { AMOUNT = 1 }
+		}
+	}
+	else_if = {
+		limit = { global_var:wm_commons_result = 1 }
+		wm_commons_bill_passed_effect = yes
+	}
+	else = {
+		# A government bill defeated
+		if = {
+			limit = { global_var:wm_commons_margin <= -50 }
+			add_prestige = major_prestige_loss
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = medium_legitimacy_loss
+			}
+		}
+		else = {
+			add_prestige = medium_prestige_loss
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = minor_legitimacy_loss
+			}
+		}
+		add_character_modifier = { modifier = wm_commons_defeated_in_commons_modifier years = 2 }
+		wm_commons_government_poll_effect = { AMOUNT = -2 }
+	}
+}
+
+# Scope: the Prime Minister. A bill has passed: what it does (halved, roughly, if concessions watered it down).
+wm_commons_bill_passed_effect = {
+	if = {
+		limit = { global_var:wm_commons_bill_type = 1 }	# Finance Bill
+		if = {
+			limit = { global_var:wm_commons_bill_strength >= 100 }
+			add_gold = major_gold_value
+			add_character_modifier = { modifier = wm_commons_tax_rise_modifier years = 4 }
+			wm_commons_government_poll_effect = { AMOUNT = -2 }
+		}
+		else = {
+			add_gold = medium_gold_value
+			add_character_modifier = { modifier = wm_commons_tax_rise_modifier years = 2 }
+			wm_commons_government_poll_effect = { AMOUNT = -1 }
+		}
+	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 2 }	# Public Services Bill
+		if = {
+			limit = { global_var:wm_commons_bill_strength >= 100 }
+			add_character_modifier = { modifier = wm_commons_public_services_modifier years = 4 }
+			wm_commons_government_poll_effect = { AMOUNT = 3 }
+		}
+		else = {
+			add_character_modifier = { modifier = wm_commons_public_services_modifier years = 2 }
+			wm_commons_government_poll_effect = { AMOUNT = 2 }
+		}
+	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 3 }	# Public Service Reform Bill
+		if = {
+			limit = { global_var:wm_commons_bill_strength >= 100 }
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = medium_legitimacy_gain
+			}
+			add_character_modifier = { modifier = wm_commons_reformer_modifier years = 5 }
+			wm_commons_government_poll_effect = { AMOUNT = -1 }
+		}
+		else = {
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = minor_legitimacy_gain
+			}
+			add_character_modifier = { modifier = wm_commons_reformer_modifier years = 2 }
+		}
+	}
+	else = {	# Emergency Powers Bill
+		if = {
+			limit = { global_var:wm_commons_bill_strength >= 100 }
+			add_prestige = medium_prestige_gain
+			add_character_modifier = { modifier = wm_commons_emergency_powers_modifier years = 3 }
+		}
+		else = {
+			add_prestige = minor_prestige_gain
+			add_character_modifier = { modifier = wm_commons_emergency_powers_modifier years = 1 }
+		}
+		wm_commons_government_poll_effect = { AMOUNT = 1 }
+	}
+}

@@ -1,0 +1,177 @@
+﻿# Election campaigns and party conferences (common/scripted_effects/wm_campaign_effects.txt,
+# wm_conference_effects.txt). Poll amounts are in tenths of a percent, like global_var:wm_poll_<party>, and are
+# for the party's own nation: a regional party's shift is scaled down to UK-wide (wm_campaign_party_poll_effect).
+
+# --- Campaign (a party leader's moves are national; an MP's are mostly local) ---
+wm_campaign_rally_gain = 12
+wm_campaign_rally_flat = 2
+wm_campaign_rally_flop = -6
+wm_campaign_mp_rally_gain = 3
+wm_campaign_debate_win = 20
+wm_campaign_debate_loss = -15
+wm_campaign_policy_gain = 15
+wm_campaign_policy_flop = -10
+wm_campaign_gaffe_loss = -12
+wm_campaign_gaffe_shrugged = 3
+wm_campaign_gaffe_staffer = -6
+wm_campaign_gaffe_viral = 8
+wm_campaign_gaffe_doubled = -15
+# AI party leaders' weekly campaign, rolled automatically
+wm_campaign_ai_good_week = 8
+wm_campaign_ai_steady_week = 3
+wm_campaign_ai_bad_week = -8
+# Door-knocking: the party's share in the MP's own seat (var:wm_lean_<party> on the seat) goes up by 0.8 to 1.5
+# points, up to this cap
+wm_campaign_lean_cap = 850
+
+# Scope: a character. Weight for things that go well with charm.
+wm_campaign_diplomacy_weight = {
+	value = diplomacy
+	multiply = 3
+}
+# Scope: a character. Weight for a policy launch that holds together.
+wm_campaign_stewardship_weight = {
+	value = stewardship
+	add = learning
+	multiply = 1.5
+}
+# Scope: a character. Extra risk of putting your foot in it.
+wm_campaign_gaffe_risk = {
+	value = 15
+	subtract = diplomacy
+	min = 0
+}
+
+# The campaign's week, for localization ([EmptyScope.ScriptValue('wm_campaign_week_value')|0])
+wm_campaign_week_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_campaign_week }
+		value = global_var:wm_campaign_week
+	}
+}
+
+# --- Party conferences ---
+wm_conference_triumph_poll = 20
+wm_conference_solid_poll = 5
+wm_conference_disaster_poll = -15
+wm_conference_policy_poll = 25
+wm_conference_policy_flop_poll = -10
+wm_conference_fringe_poll = 2
+wm_conference_rumblings_poll = -8
+wm_conference_shrug_poll = -5
+# Plotters in the bar (var:wm_conference_rumblings on the party title) needed for leadership rumblings
+wm_conference_rumblings_threshold = 3
+
+# Scope: a party leader. A good speech needs charm and a grip on the detail.
+wm_conference_speech_weight = {
+	value = diplomacy
+	add = stewardship
+	multiply = 1.5
+}
+# Scope: a party leader. A leader without much charm (or prestige) is likelier to cough their way through it.
+wm_conference_disaster_risk = {
+	value = 20
+	subtract = diplomacy
+	if = {
+		limit = { prestige_level <= 1 }
+		add = 10
+	}
+	min = 0
+}
+
+# Scope: a seat. Its MP's party's share here (var:wm_lean_<party>), which door-knocking raises; 0 if none.
+wm_campaign_own_lean_value = {
+	value = 0
+	if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_labour
+			has_variable = wm_lean_lab
+		}
+		value = var:wm_lean_lab
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_conservative
+			has_variable = wm_lean_con
+		}
+		value = var:wm_lean_con
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_lib_dem
+			has_variable = wm_lean_ld
+		}
+		value = var:wm_lean_ld
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_reform
+			has_variable = wm_lean_ruk
+		}
+		value = var:wm_lean_ruk
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_green
+			has_variable = wm_lean_grn
+		}
+		value = var:wm_lean_grn
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_snp
+			has_variable = wm_lean_snp
+		}
+		value = var:wm_lean_snp
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_plaid
+			has_variable = wm_lean_pc
+		}
+		value = var:wm_lean_pc
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_sinn_fein
+			has_variable = wm_lean_sf
+		}
+		value = var:wm_lean_sf
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_dup
+			has_variable = wm_lean_dup
+		}
+		value = var:wm_lean_dup
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_sdlp
+			has_variable = wm_lean_sdlp
+		}
+		value = var:wm_lean_sdlp
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_alliance
+			has_variable = wm_lean_apni
+		}
+		value = var:wm_lean_apni
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_uup
+			has_variable = wm_lean_uup
+		}
+		value = var:wm_lean_uup
+	}
+	else_if = {
+		limit = {
+			holder.var:wm_party ?= title:k_party_tuv
+			has_variable = wm_lean_tuv
+		}
+		value = var:wm_lean_tuv
+	}
+}

@@ -1,0 +1,34 @@
+﻿# The working majority (common/scripted_effects/wm_majority_effects.txt) and shared triggers for the shortlist
+# ballots, the Speaker and disputed results.
+
+# Party title: in government (the Prime Minister's party or its coalition partner)
+wm_majority_is_government_party_trigger = {
+	OR = {
+		AND = {
+			exists = title:e_united_kingdom.holder.var:wm_party
+			this = title:e_united_kingdom.holder.var:wm_party
+		}
+		AND = {
+			has_global_variable = wm_coalition_partner
+			this = global_var:wm_coalition_partner
+		}
+	}
+}
+
+# The in-game tests are running (global_var:wm_test_quiet): no choice events for players, who are treated like
+# the AI, and no toasts
+wm_majority_quiet_trigger = {
+	has_global_variable = wm_test_quiet
+}
+
+# Character: a player who should be asked (not during the tests)
+wm_majority_ask_player_trigger = {
+	is_ai = no
+	NOT = { has_global_variable = wm_test_quiet }
+}
+
+# Parliament is sitting: no general election under way
+wm_majority_parliament_sitting_trigger = {
+	NOT = { has_global_variable = wm_el_scheduled }
+	NOT = { has_global_variable = wm_election_required }
+}

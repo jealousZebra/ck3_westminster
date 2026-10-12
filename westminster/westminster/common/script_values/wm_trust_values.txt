@@ -1,0 +1,95 @@
+﻿# Public trust (common/scripted_effects/wm_trust_effects.txt): one national score of trust in politics, 0-100, in
+# global_var:wm_public_trust. Each bookmark starts at its era's level and drifts back to it.
+
+wm_trust_start = 35			# 2024: trust in politicians is low
+wm_trust_baseline = 35		# the era's level: trust drifts back towards it
+wm_trust_drift = 0.04		# share of the gap to the baseline closed each month
+
+# The score, for the UI and loc (the Latest Poll panel shows it). Safe before the variable exists.
+wm_ui_public_trust = {
+	value = wm_trust_start
+	if = {
+		limit = { has_global_variable = wm_public_trust }
+		value = global_var:wm_public_trust
+	}
+}
+
+# Expected turnout at a general election, in percent: 50% plus 0.3 per point of trust (2024: about 60%).
+wm_trust_turnout = {
+	value = wm_ui_public_trust
+	multiply = 0.3
+	add = 50
+}
+wm_ui_trust_turnout = {
+	value = wm_trust_turnout
+}
+
+# The yearly chance of a riot (wm_riot_yearly_pulse): 75% at trust 40, more when trust is low, less when high.
+wm_trust_riot_chance = {
+	value = 40
+	subtract = wm_ui_public_trust
+	multiply = 0.6
+	add = 75
+	min = 50
+	max = 95
+}
+
+# Polls (wm_trust_poll_effect, each month for each party). Low trust helps small and new parties: a party polling
+# under 15% (and the independents and small parties in wm_poll_oth) gains this share of its own poll each month,
+# 0.02% per point of trust under 50. Against the polls' 5% pull back to the anchor that settles about 6% above the
+# anchor at trust 35 and 20% at trust 5.
+wm_trust_small_party_share = 150
+wm_trust_small_party_pull = {
+	value = 50
+	subtract = wm_ui_public_trust
+	multiply = 0.0002
+	min = 0
+}
+# High trust helps the government (0.02% of its poll a month per point over 50); very low trust hurts it (per
+# point under 25).
+wm_trust_government_pull = {
+	value = 0
+	if = {
+		limit = { wm_ui_public_trust > 50 }
+		add = {
+			value = wm_ui_public_trust
+			subtract = 50
+			multiply = 0.0002
+		}
+	}
+	else_if = {
+		limit = { wm_ui_public_trust < 25 }
+		add = {
+			value = wm_ui_public_trust
+			subtract = 25
+			multiply = 0.0002
+		}
+	}
+}
+
+# How much events move trust (points)
+wm_trust_riot_started = -1
+wm_trust_riot_conceded = 1
+wm_trust_riot_negotiated = 1
+wm_trust_riot_policed = -2
+wm_trust_riot_crackdown = -5
+wm_trust_u_turn = -3
+wm_trust_tax_rise = -2
+wm_trust_popular_bill = 3
+wm_trust_emergency_powers = -1
+wm_trust_defeated_in_commons = -2
+wm_trust_lost_confidence = -4
+wm_trust_promise_kept = 2
+wm_trust_promise_broken = -6
+wm_trust_clean_campaign = 3
+wm_trust_dirty_campaign = -2		# per smear campaign run during an election campaign (at most 3 counted)
+wm_trust_smear_month = -0.3			# each month a smear campaign runs
+wm_trust_smear_backfire = -3
+wm_trust_scandal_exposed = -2
+wm_trust_clean_up_pledge = 5
+wm_trust_clean_up_pledge_cost = 250	# prestige
+wm_trust_expenses_row = -8
+wm_trust_lobbying_row = -5
+wm_trust_national_moment = 6
+wm_trust_standards_report = 4
+wm_trust_pledge_broken = -4			# a scandal while a clean-up pledge stands

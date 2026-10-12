@@ -1,0 +1,384 @@
+﻿# Devolution: Scotland, Wales and Northern Ireland (amounts: common/script_values/wm_devolution_values.txt).
+#
+# Each devolved government's title (k_gov_scotland, k_gov_wales, k_gov_northern_ireland) carries:
+#   var:wm_dev_support        support for leaving the UK, percent (independence; in Northern Ireland, a united
+#                             Ireland). Each month it wanders a little and drifts towards an anchor: its 2024 level,
+#                             plus low public trust in Westminster, plus powers clawed back (minus powers devolved),
+#                             plus a bonus while the nationalist party (SNP, Plaid Cymru, Sinn Fein) runs the
+#                             devolved government (var:wm_dev_nationalist_led) or Stormont is suspended.
+#   var:wm_dev_powers         how much is devolved, 1-10: the Prime Minister can devolve a power or claw one back
+#                             (decisions; each moves support and the First Minister's opinion)
+#   var:wm_dev_base_support, var:wm_dev_base_powers   the 2024 levels the anchor is measured from
+#   var:wm_dev_ref_months     a referendum is agreed: months to polling day
+#   var:wm_dev_ref_cooldown   no new request yet (after a referendum, 15 years; after a refusal, 3)
+#   var:wm_dev_ref_yes        the last referendum's Yes share (for the result toast); var:wm_dev_indep_mandate
+#                             after a Yes vote (negotiations on leaving: secession itself isn't modelled yet)
+# Northern Ireland also has var:wm_dev_stability (0-100): power-sharing can collapse when it is low
+# (var:wm_dev_suspended, and the First Minister gets wm_dev_assembly_suspended_modifier) and comes back through
+# talks (decision) or, sometimes, on its own.
+#
+# Referendum requests: once support passes 50% and the nationalist party runs the devolved government, the
+# government may formally ask Westminster for a referendum (10% a month). The Prime Minister grants it (polling
+# day in six months), refuses (support rises, the First Minister resents it), or offers more powers instead.
+# Requests come from the government as an institution; events never put words in a named person's mouth.
+
+# No scope. Game start (and old saves): each nation's numbers.
+wm_devolution_init_effect = {
+	wm_devolution_init_nation_effect = { GOV = k_gov_scotland NAT = scotland }
+	wm_devolution_init_nation_effect = { GOV = k_gov_wales NAT = wales }
+	wm_devolution_init_nation_effect = { GOV = k_gov_northern_ireland NAT = northern_ireland }
+	title:k_gov_northern_ireland = {
+		if = {
+			limit = { NOT = { has_variable = wm_dev_stability } }
+			set_variable = { name = wm_dev_stability value = wm_dev_start_stability }
+		}
+	}
+}
+wm_devolution_init_nation_effect = {
+	title:$GOV$ = {
+		if = {
+			limit = { NOT = { has_variable = wm_dev_support } }
+			set_variable = { name = wm_dev_support value = wm_dev_start_support_$NAT$ }
+			set_variable = { name = wm_dev_powers value = wm_dev_start_powers_$NAT$ }
+			set_variable = { name = wm_dev_base_support value = wm_dev_start_support_$NAT$ }
+			set_variable = { name = wm_dev_base_powers value = wm_dev_start_powers_$NAT$ }
+		}
+	}
+}
+
+# The month for the devolved nations (run by wm_polls_monthly_effect).
+wm_devolution_monthly_effect = {
+	wm_devolution_init_effect = yes
+	wm_devolution_nation_month_effect = { GOV = k_gov_scotland NAT = scotland PARTY = k_party_snp }
+	wm_devolution_nation_month_effect = { GOV = k_gov_wales NAT = wales PARTY = k_party_plaid }
+	wm_devolution_nation_month_effect = { GOV = k_gov_northern_ireland NAT = northern_ireland PARTY = k_party_sinn_fein }
+	wm_devolution_stormont_month_effect = yes
+}
+
+# One nation's month. $GOV$ its government's title, $NAT$ its key, $PARTY$ its nationalist party.
+wm_devolution_nation_month_effect = {
+	title:$GOV$ = {
+		save_scope_as = wm_dev_gov
+		if = {
+			limit = { holder ?= { var:wm_party ?= title:$PARTY$ } }
+			set_variable = { name = wm_dev_nationalist_led value = yes }
+		}
+		else = {
+			remove_variable = wm_dev_nationalist_led
+		}
+		set_variable = {
+			name = wm_dev_support
+			value = {
+				value = wm_dev_support_anchor
+				subtract = var:wm_dev_support
+				multiply = wm_dev_drift
+				add = var:wm_dev_support
+				add = {
+					integer_range = {
+						min = -8
+						max = 8
+					}
+					divide = 10
+				}
+				min = 5
+				max = 90
+			}
+		}
+		# A referendum that is due
+		if = {
+			limit = { has_variable = wm_dev_ref_months }
+			change_variable = { name = wm_dev_ref_months add = -1 }
+			if = {
+				limit = { var:wm_dev_ref_months <= 0 }
+				wm_devolution_referendum_effect = { NAT = $NAT$ }
+			}
+		}
+		# A formal request for one
+		else_if = {
+			limit = {
+				var:wm_dev_support >= wm_dev_referendum_threshold
+				has_variable = wm_dev_nationalist_led
+				NOT = { has_variable = wm_dev_ref_cooldown }
+				NOT = { has_variable = wm_dev_suspended }
+				NOT = { has_variable = wm_dev_indep_mandate }		# already voted to leave
+				exists = title:e_united_kingdom.holder
+			}
+			random = {
+				chance = wm_dev_referendum_demand_chance
+				wm_devolution_request_effect = yes
+			}
+		}
+	}
+}
+
+# Scope: a devolved government's title (scope:wm_dev_gov). It asks the Prime Minister for a referendum.
+wm_devolution_request_effect = {
+	set_variable = { name = wm_dev_ref_cooldown value = yes days = wm_dev_refusal_cooldown_days }
+	set_global_variable = { name = wm_dev_request_gov value = this }
+	title:e_united_kingdom.holder = {
+		if = {
+			limit = {
+				is_ai = no
+				NOT = { has_global_variable = wm_test_quiet }
+			}
+			trigger_event = wm_devolution.1
+		}
+		else = {
+			random_list = {
+				10 = {
+					modifier = {
+						add = {
+							value = scope:wm_dev_gov.var:wm_dev_support
+							subtract = 50
+							multiply = 4
+							min = -9
+						}
+					}
+					wm_devolution_grant_effect = yes
+				}
+				60 = {
+					wm_devolution_refuse_effect = yes
+				}
+				30 = {
+					wm_devolution_offer_powers_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_dev_gov the government asking. Agree to a referendum in six months.
+wm_devolution_grant_effect = {
+	add_prestige = minor_prestige_loss
+	scope:wm_dev_gov = {
+		set_variable = { name = wm_dev_ref_months value = wm_dev_referendum_months }
+		holder ?= { add_opinion = { target = title:e_united_kingdom.holder modifier = wm_dev_granted_opinion } }
+	}
+	wm_devolution_toast_effect = { TITLE = wm_dev_referendum_agreed_toast }
+}
+
+# Refuse: support rises and the First Minister resents it.
+wm_devolution_refuse_effect = {
+	scope:wm_dev_gov = {
+		set_variable = {
+			name = wm_dev_support
+			value = {
+				value = var:wm_dev_support
+				add = 4
+				max = 90
+			}
+		}
+		holder ?= { add_opinion = { target = title:e_united_kingdom.holder modifier = wm_dev_refused_opinion } }
+	}
+	wm_devolution_toast_effect = { TITLE = wm_dev_referendum_refused_toast }
+}
+
+# Offer more powers instead.
+wm_devolution_offer_powers_effect = {
+	add_prestige = minor_prestige_loss
+	scope:wm_dev_gov = { wm_devolution_powers_change_effect = { AMOUNT = 1 } }
+	wm_devolution_toast_effect = { TITLE = wm_dev_referendum_powers_toast }
+}
+
+# Scope: a devolved government's title. Powers move by $AMOUNT$ (1-10); support moves the other way (3 per power
+# now, as well as through the anchor).
+wm_devolution_powers_change_effect = {
+	set_variable = {
+		name = wm_dev_powers
+		value = {
+			value = var:wm_dev_powers
+			add = $AMOUNT$
+			min = 1
+			max = 10
+		}
+	}
+	set_variable = {
+		name = wm_dev_support
+		value = {
+			value = $AMOUNT$
+			multiply = -3
+			add = var:wm_dev_support
+			min = 5
+			max = 90
+		}
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_dev_gov the title. Devolve a power (decision): support falls, the First
+# Minister is pleased, trust rises a little.
+wm_devolution_devolve_effect = {
+	scope:wm_dev_gov = {
+		wm_devolution_powers_change_effect = { AMOUNT = 1 }
+		holder ?= { add_opinion = { target = title:e_united_kingdom.holder modifier = wm_dev_devolved_opinion } }
+	}
+	wm_trust_change_effect = { AMOUNT = 1 }
+}
+
+# Claw a power back (decision): support jumps, the First Minister is furious, trust falls; the Prime Minister looks
+# strong to the unionist press.
+wm_devolution_claw_back_effect = {
+	scope:wm_dev_gov = {
+		wm_devolution_powers_change_effect = { AMOUNT = -1 }
+		holder ?= { add_opinion = { target = title:e_united_kingdom.holder modifier = wm_dev_clawed_back_opinion } }
+	}
+	add_prestige = minor_prestige_gain
+	wm_trust_change_effect = { AMOUNT = -2 }
+}
+
+# Scope: a devolved government's title on polling day. $NAT$ its key.
+wm_devolution_referendum_effect = {
+	save_scope_as = wm_dev_gov
+	remove_variable = wm_dev_ref_months
+	set_variable = { name = wm_dev_ref_cooldown value = yes days = wm_dev_referendum_cooldown_days }
+	set_variable = {
+		name = wm_dev_ref_yes
+		value = {
+			value = var:wm_dev_support
+			add = {
+				integer_range = {
+					min = -8
+					max = 8
+				}
+			}
+			min = 1
+			max = 99
+		}
+	}
+	if = {
+		limit = { var:wm_dev_ref_yes > 50 }
+		set_variable = { name = wm_dev_indep_mandate value = yes }
+		set_variable = { name = wm_dev_powers value = 10 }
+		holder ?= { add_prestige = major_prestige_gain }
+		title:e_united_kingdom.holder ?= {
+			add_prestige = major_prestige_loss
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = major_legitimacy_loss
+			}
+		}
+		wm_devolution_toast_effect = { TITLE = wm_dev_referendum_yes_toast_$NAT$ }
+	}
+	else = {
+		set_variable = {
+			name = wm_dev_support
+			value = {
+				value = var:wm_dev_support
+				add = -8
+				min = 5
+			}
+		}
+		holder ?= { add_prestige = medium_prestige_loss }
+		title:e_united_kingdom.holder ?= { add_prestige = medium_prestige_gain }
+		wm_devolution_toast_effect = { TITLE = wm_dev_referendum_no_toast_$NAT$ }
+	}
+}
+
+# Northern Ireland's power-sharing: stability wanders, drifts towards 60 while the Assembly sits (and creeps up
+# while it is suspended, as the pressure for a deal builds), and suffers when trust is low. Low stability can
+# collapse the Assembly; high stability can bring it back.
+wm_devolution_stormont_month_effect = {
+	title:k_gov_northern_ireland = {
+		save_scope_as = wm_dev_gov
+		set_variable = {
+			name = wm_dev_stability
+			value = {
+				value = var:wm_dev_stability
+				add = {
+					integer_range = {
+						min = -3
+						max = 2
+					}
+				}
+				min = 0
+				max = 100
+			}
+		}
+		if = {
+			limit = { has_variable = wm_dev_suspended }
+			change_variable = { name = wm_dev_stability add = 1 }
+		}
+		else = {
+			set_variable = {
+				name = wm_dev_stability
+				value = {
+					value = 60
+					subtract = var:wm_dev_stability
+					multiply = wm_dev_drift
+					add = var:wm_dev_stability
+				}
+			}
+		}
+		if = {
+			limit = { wm_ui_public_trust < 30 }
+			change_variable = { name = wm_dev_stability add = -0.5 }
+		}
+		if = {
+			limit = {
+				NOT = { has_variable = wm_dev_suspended }
+				var:wm_dev_stability < wm_dev_collapse_below
+			}
+			random = {
+				chance = wm_dev_collapse_chance
+				wm_devolution_stormont_collapse_effect = yes
+			}
+		}
+		else_if = {
+			limit = {
+				has_variable = wm_dev_suspended
+				var:wm_dev_stability >= wm_dev_restore_above
+			}
+			random = {
+				chance = wm_dev_restore_chance
+				wm_devolution_stormont_restore_effect = yes
+			}
+		}
+	}
+}
+
+# Scope: title:k_gov_northern_ireland. Power-sharing collapses: the Assembly is suspended.
+wm_devolution_stormont_collapse_effect = {
+	save_scope_as = wm_dev_gov
+	set_variable = { name = wm_dev_suspended value = yes }
+	holder ?= { add_character_modifier = wm_dev_assembly_suspended_modifier }
+	wm_trust_change_effect = { AMOUNT = -3 }
+	wm_devolution_toast_effect = { TITLE = wm_dev_stormont_collapse_toast }
+}
+
+# Scope: title:k_gov_northern_ireland. Power-sharing is restored.
+wm_devolution_stormont_restore_effect = {
+	save_scope_as = wm_dev_gov
+	remove_variable = wm_dev_suspended
+	set_variable = { name = wm_dev_stability value = 60 }
+	holder ?= { remove_character_modifier = wm_dev_assembly_suspended_modifier }
+	wm_trust_change_effect = { AMOUNT = 2 }
+	wm_devolution_toast_effect = { TITLE = wm_dev_stormont_restored_toast }
+}
+
+# Scope: the Prime Minister. Stormont talks (decision): a deal restores power-sharing; failure still helps a little.
+wm_devolution_stormont_talks_effect = {
+	random_list = {
+		50 = {
+			modifier = { add = wm_dev_talks_success_weight }
+			add_prestige = medium_prestige_gain
+			title:k_gov_northern_ireland = { wm_devolution_stormont_restore_effect = yes }
+		}
+		50 = {
+			title:k_gov_northern_ireland = { change_variable = { name = wm_dev_stability add = 5 } }
+			wm_devolution_toast_effect = { TITLE = wm_dev_stormont_talks_failed_toast }
+		}
+	}
+}
+
+# A toast for every player about scope:wm_dev_gov. $TITLE$ the loc key (with $TITLE$_desc).
+wm_devolution_toast_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_test_quiet } }
+		every_player = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = $TITLE$
+				custom_tooltip = $TITLE$_desc
+			}
+		}
+	}
+}

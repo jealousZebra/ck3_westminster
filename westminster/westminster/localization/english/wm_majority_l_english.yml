@@ -1,0 +1,16 @@
+﻿l_english:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "GOVERNMENT LOSES ITS MAJORITY"
+ wm_majority.1.desc: "#italic Westminster#!\n\nAfter a run of by-election defeats and defections, [wm_majority_pm.GetName]'s government can no longer count on a majority in the House of Commons. The whips' arithmetic now puts it [EmptyScope.ScriptValue('wm_sc_short_by')|0] votes short of winning a division on its own.\n\nThe Opposition smells blood: a motion of no confidence is expected as soon as the House has time for it."
+ wm_majority.1.a_pm: "We have governed with less."
+ wm_majority.1.a: "The end of an era?"
+ wm_majority.2.t: "The Government Has No Majority"
+ wm_majority.2.desc: "The numbers have finally turned. [wm_majority_pm.GetName] can no longer command a majority of the House, and the lobby is full of talk of a confidence vote.\n\nAs Leader of the Opposition, the next move is yours. Table a motion of no confidence now, and if the government falls there will be a general election."
+ wm_majority.2.a: "Table a motion of no confidence."
+ wm_majority.2.b: "Not yet. Let them stew."
+ wm_majority_losing_run_toast: "Another By-election Defeat for Number 10"
+ wm_majority_losing_run_toast_desc: "The government has now lost [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] by-elections in a row, and [wm_majority_pm.GetName]'s colleagues are starting to count. The working majority is down to [EmptyScope.ScriptValue('wm_majority_value')|0]."
+ wm_majority_byelection_blues_modifier: "By-election Blues"
+ wm_majority_byelection_blues_modifier_desc: "Two by-election defeats in a row have dented this Prime Minister's authority."
+ wm_majority_losing_streak_modifier: "Losing Streak"
+ wm_majority_losing_streak_modifier_desc: "By-election after by-election has gone against the government, and its own backbenchers are wondering who should lead them into the next election."

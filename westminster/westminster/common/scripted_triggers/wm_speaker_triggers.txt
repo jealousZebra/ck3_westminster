@@ -1,0 +1,27 @@
+﻿# Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt).
+
+# Any scope: a living MP sits in the Speaker's chair
+wm_speaker_chair_filled_trigger = {
+	title:e_united_kingdom = {
+		any_in_de_jure_hierarchy = {
+			tier = tier_county
+			holder ?= {
+				is_alive = yes
+				has_character_flag = wm_speaker
+			}
+		}
+	}
+}
+
+# Character: can stand for Speaker (a backbench MP of some experience: not the Prime Minister, a party leader or a
+# member of the Cabinet)
+wm_speaker_can_stand_trigger = {
+	is_alive = yes
+	wm_is_mp_trigger = yes
+	is_adult = yes
+	age >= 40
+	NOT = { has_character_flag = wm_speaker }
+	NOT = { has_title = title:e_united_kingdom }
+	NOT = { wm_commons_is_party_leader_trigger = yes }
+	is_councillor = no
+}

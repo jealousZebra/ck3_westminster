@@ -1,0 +1,63 @@
+﻿# Scope: anything; scope:actor is the monarch and scope:recipient the MP. The monarch speaks out
+# against the MP (common/character_interactions/wm_monarch_interactions.txt). The prestige cost is the
+# interaction's cost; this is what happens to everyone else.
+wm_crown_speak_out_effect = {
+	scope:recipient = {
+		add_prestige = wm_crown_speak_out_mp_prestige_loss
+		add_character_modifier = { modifier = wm_rebuked_by_the_crown_modifier years = 5 }
+		add_opinion = { target = scope:actor modifier = wm_spoken_against_by_crown_opinion }
+		every_held_title = {
+			limit = {
+				tier = tier_county
+				is_landless_type_title = no
+			}
+			add_county_modifier = { modifier = wm_crown_criticism_county_modifier years = 5 }
+		}
+	}
+	# The MP's party leader (their liege) is embarrassed
+	scope:recipient.liege ?= {
+		if = {
+			limit = { NOT = { this = scope:recipient } }
+			add_opinion = { target = scope:recipient modifier = wm_embarrassed_party_opinion }
+		}
+	}
+	# Number 10 doesn't like the Palace meddling in politics
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = {
+				NOR = {
+					this = scope:recipient
+					this = scope:actor
+				}
+			}
+			add_opinion = { target = scope:actor modifier = wm_crown_meddling_opinion }
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_crown_speak_out_toast
+				left_icon = scope:actor
+				right_icon = scope:recipient
+				custom_tooltip = wm_crown_speak_out_toast_desc
+			}
+		}
+	}
+	scope:actor = {
+		add_character_flag = { flag = wm_crown_spoke_out_recently years = 10 }
+	}
+	scope:recipient = { trigger_event = wm_crown.1 }
+}
+
+# The monarch (this scope) speaks out against $TARGET$ from script (the AI's yearly pulse, tests). run_interaction
+# applies the interaction's effects but not its cost, so the prestige is charged here, after it has run
+# (charging first would leave the monarch unable to afford it): once, as in the UI.
+wm_crown_speak_out_by_script_effect = {
+	run_interaction = {		# first: it checks the monarch can afford it
+		interaction = wm_speak_out_against_mp_interaction
+		actor = this		# the monarch: root would be the original root, not this scope
+		recipient = $TARGET$
+		execute_threshold = accept
+	}
+	add_prestige = {
+		value = wm_crown_speak_out_prestige_cost
+		multiply = -1
+	}
+}

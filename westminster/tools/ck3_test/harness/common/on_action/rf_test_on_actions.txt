@@ -1,0 +1,14 @@
+﻿on_title_gain = {
+	on_actions = { rf_test_on_gain }
+}
+rf_test_on_gain = {
+	trigger = {
+		is_ai = no
+		scope:title = { tier >= tier_kingdom }
+	}
+	effect = {
+		scope:transfer_type = { save_temporary_scope_as = rft_type }
+		debug_log = "RFT_GAIN"
+		debug_log_scopes = yes
+	}
+}

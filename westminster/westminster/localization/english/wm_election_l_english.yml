@@ -1,0 +1,28 @@
+﻿l_english:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "Parliament Dissolved"
+ wm_election_dissolution_toast_desc: "The Prime Minister has been to the Palace and Parliament is dissolved. Every seat is up for grabs: polling day is in five weeks."
+
+ wm_election_results.1.a: "Read all about it."
+ wm_election_results_intro_hold: "#italic Results night#!\n\nThe voters have spoken: #bold [wm_el_seats|0]#! of the 650 seats for the [wm_el_party.GetNameNoTier], a majority of [wm_el_majority|0]. [wm_el_pm.GetName] stays in Downing Street with a fresh mandate.\n"
+ wm_election_results_intro_change: "#italic Results night#!\n\nThe voters have spoken: #bold [wm_el_seats|0]#! of the 650 seats for the [wm_el_party.GetNameNoTier], and [wm_el_pm.GetName] is the new Prime Minister. The removal vans are already outside Number 10.\n"
+ wm_election_results_intro_hung: "#italic Results night#!\n\nNo party has a majority. The largest is the [wm_el_party.GetNameNoTier] with #bold [wm_el_seats|0]#! seats, short of the 326 needed, and [wm_el_pm.GetName] will try to govern without a majority.\n"
+ wm_election_results_table: "\n#bold Seats (change)#!"
+ wm_election_results_my_seat_held: "\n\n#bold Your seat:#! you held [wm_my_seat.GetNameNoTier] with [wm_my_share|1]% of the vote, a majority of [wm_my_majority|1] points."
+ wm_election_results_my_seat_lost: "\n\n#bold Your seat:#! the voters of [wm_my_lost_seat.GetNameNoTier] have thrown you out. [wm_my_lost_seat.GetHolder.GetName] is their new MP, and you are off the green benches."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "By-election: [wm_by_party.GetAdjective] Hold"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] has held [wm_by_seat.GetNameNoTier] for the [wm_by_party.GetNameNoTier] in the by-election."
+ wm_byelection_gain_toast: "By-election: [wm_by_party.GetAdjective] Gain"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] has won [wm_by_seat.GetNameNoTier] for the [wm_by_party.GetNameNoTier] in the by-election, a gain that will be all over tomorrow's front pages."
+
+ wm_election_call_decision: "Call a General Election"
+ wm_election_call_decision_desc: "Ask the monarch to dissolve Parliament and go to the country. Every seat will be fought on the national mood: the government's party is polling [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%, with a lead of [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] points over the best-placed rival (negative means behind). Parliament has sat for [EmptyScope.ScriptValue('wm_election_months_sat')|0] months; it must face the voters within five years."
+ wm_election_call_decision_tooltip: "Go to the country while the polls are kind, or before they turn."
+ wm_election_call_decision_confirm: "Dissolve Parliament"
+ wm_election_call_decision_not_scheduled_tt: "A general election hasn't already been called"
+ wm_election_call_decision_min_months_tt: "Parliament has sat for at least six months"
+ wm_election_call_decision_effect_tt: "Parliament is dissolved and a #bold general election#! is held in five weeks. Seats that change hands go to new MPs, and the leader of the largest party becomes Prime Minister."

@@ -1,0 +1,124 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt).
+#   wm_wing.1    a party leader chooses which wing to court (decision wm_wing_court_decision)
+#   wm_wing.10   a wing challenges a player leader: concede, or face the challenger down
+namespace = wm_wing
+
+wm_wing.1 = {
+	type = character_event
+	title = wm_wing.1.t
+	desc = wm_wing.1.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	# Labour
+	option = {
+		name = wm_wing.1.w1
+		trigger = { var:wm_party ?= title:k_party_labour }
+		wm_wing_court_effect = { WING = 1 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_1 < 30
+			}
+		}
+	}
+	option = {
+		name = wm_wing.1.w2
+		trigger = { var:wm_party ?= title:k_party_labour }
+		wm_wing_court_effect = { WING = 2 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_2 < 30
+			}
+		}
+	}
+	option = {
+		name = wm_wing.1.w3
+		trigger = { var:wm_party ?= title:k_party_labour }
+		wm_wing_court_effect = { WING = 3 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_3 < 30
+			}
+		}
+	}
+	# Conservatives
+	option = {
+		name = wm_wing.1.w4
+		trigger = { var:wm_party ?= title:k_party_conservative }
+		wm_wing_court_effect = { WING = 4 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_4 < 30
+			}
+		}
+	}
+	option = {
+		name = wm_wing.1.w5
+		trigger = { var:wm_party ?= title:k_party_conservative }
+		wm_wing_court_effect = { WING = 5 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_5 < 30
+			}
+		}
+	}
+	option = {
+		name = wm_wing.1.w6
+		trigger = { var:wm_party ?= title:k_party_conservative }
+		wm_wing_court_effect = { WING = 6 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 50
+				wm_ui_wing_approval_6 < 30
+			}
+		}
+	}
+}
+
+# A wing moves against its leader (wm_wing_challenge_effect). scope:wm_wing_challenger was saved by the caller;
+# the global variables carry it too.
+wm_wing.10 = {
+	type = character_event
+	title = wm_wing.10.t
+	desc = wm_wing.10.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = global_var:wm_wing_challenger
+		animation = anger
+	}
+	trigger = {
+		exists = global_var:wm_wing_challenger
+	}
+	immediate = {
+		global_var:wm_wing_challenger = { save_scope_as = wm_wing_challenger }
+	}
+
+	option = {
+		name = wm_wing.10.a
+		custom_tooltip = wm_wing.10.a.tt
+		wm_wing_concede_effect = yes
+	}
+	option = {
+		name = wm_wing.10.b
+		custom_tooltip = wm_wing.10.b.tt
+		wm_wing_face_down_effect = yes
+	}
+}

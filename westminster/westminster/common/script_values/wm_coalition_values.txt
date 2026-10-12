@@ -1,0 +1,508 @@
+﻿# Coalitions, confidence-and-supply and minority government after a hung parliament
+# (common/scripted_effects/wm_coalition_effects.txt, events/wm_coalition_events.txt).
+#
+# State (global variables; saved scopes don't survive into later events):
+#   wm_coalition_outcome          how the government stands after the last election: 1 majority, 2 minority,
+#                                 3 coalition, 4 confidence-and-supply, 5 talks under way, 6 the deal collapsed
+#   wm_coalition_senior           the governing (senior) party's title
+#   wm_coalition_pm               the Prime Minister who made the deal (the Deputy Prime Minister's diarchy is on them)
+#   wm_coalition_junior           the partner party (either kind of deal)
+#   wm_coalition_partner          a coalition partner: its MPs take the government whip on everything (read by the
+#                                 Commons, wm_commons_is_government_mp_trigger)
+#   wm_coalition_supply_partner   a confidence-and-supply partner: its MPs back the government on confidence motions
+#                                 and the Finance Bill only (wm_commons_whipped_with_government_trigger)
+#   wm_coalition_dpm              the Deputy Prime Minister (the coalition partner's leader)
+#   wm_coalition_cabinet_seats    cabinet seats given to the coalition partner (1 or 2)
+#   wm_coalition_policy           1 if the senior party gave a policy concession, 0 if not
+#   wm_coalition_partner_poll_start  the partner's poll when the deal was made (a slump strains the deal)
+#   wm_coalition_talks            set while a player is negotiating (expires after 90 days)
+#   wm_coalition_talks_partner    the party being negotiated with
+#   wm_coalition_offer_kind       the offer on the table: 1 coalition, 2 confidence-and-supply
+#   wm_coalition_offer_seats      cabinet seats offered (coalition)
+#   wm_coalition_offer_policy     1 if a policy concession is offered
+#   wm_coalition_offer_ok         the AI found an offer the partner accepts
+#   wm_coalition_offer_refused    the last offer was turned down (for event wm_coalition.4)
+#   wm_coalition_choice_1/2/3     the three best partners for the senior party, with wm_coalition_fit_1/2/3
+
+# Seats needed for a working majority: half of the MPs who vote (all but the Speaker) plus one, 325 of 650.
+wm_coalition_majority_value = {
+	value = wm_election_total_seats
+	subtract = global_var:wm_seats_spk
+	divide = 2
+	floor = yes
+	add = 1
+}
+
+# What a partner gets out of each offer, and what it needs before it signs (wm_coalition_offer_margin_value)
+wm_coalition_seat_worth = 10			# each cabinet seat
+wm_coalition_policy_worth = 10			# a policy concession
+wm_coalition_supply_worth = 10			# the money for the partner's priorities in a confidence-and-supply deal
+wm_coalition_coalition_threshold = 30	# joining a government is a big step: it needs a lot
+wm_coalition_supply_threshold = 15		# propping one up from outside needs less
+
+# Money the Prime Minister finds for a confidence-and-supply partner's priorities
+wm_coalition_supply_gold = { value = medium_gold_value }
+
+# Scope: a party title. Its seats (global_var:wm_seats_<party>, counted by wm_election_count_seats_effect).
+wm_coalition_party_seats_value = {
+	value = 0
+	if = {
+		limit = { this = title:k_party_labour }
+		add = global_var:wm_seats_lab
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		add = global_var:wm_seats_con
+	}
+	else_if = {
+		limit = { this = title:k_party_lib_dem }
+		add = global_var:wm_seats_ld
+	}
+	else_if = {
+		limit = { this = title:k_party_reform }
+		add = global_var:wm_seats_ruk
+	}
+	else_if = {
+		limit = { this = title:k_party_green }
+		add = global_var:wm_seats_grn
+	}
+	else_if = {
+		limit = { this = title:k_party_snp }
+		add = global_var:wm_seats_snp
+	}
+	else_if = {
+		limit = { this = title:k_party_plaid }
+		add = global_var:wm_seats_pc
+	}
+	else_if = {
+		limit = { this = title:k_party_sinn_fein }
+		add = global_var:wm_seats_sf
+	}
+	else_if = {
+		limit = { this = title:k_party_dup }
+		add = global_var:wm_seats_dup
+	}
+	else_if = {
+		limit = { this = title:k_party_sdlp }
+		add = global_var:wm_seats_sdlp
+	}
+	else_if = {
+		limit = { this = title:k_party_alliance }
+		add = global_var:wm_seats_apni
+	}
+	else_if = {
+		limit = { this = title:k_party_uup }
+		add = global_var:wm_seats_uup
+	}
+	else_if = {
+		limit = { this = title:k_party_tuv }
+		add = global_var:wm_seats_tuv
+	}
+}
+
+# Scope: a party title. Its national poll in tenths of a percent (global_var:wm_poll_<party>).
+wm_coalition_party_poll_value = {
+	value = 0
+	if = {
+		limit = { this = title:k_party_labour }
+		if = {
+			limit = { has_global_variable = wm_poll_lab }
+			add = global_var:wm_poll_lab
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		if = {
+			limit = { has_global_variable = wm_poll_con }
+			add = global_var:wm_poll_con
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_lib_dem }
+		if = {
+			limit = { has_global_variable = wm_poll_ld }
+			add = global_var:wm_poll_ld
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_reform }
+		if = {
+			limit = { has_global_variable = wm_poll_ruk }
+			add = global_var:wm_poll_ruk
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_green }
+		if = {
+			limit = { has_global_variable = wm_poll_grn }
+			add = global_var:wm_poll_grn
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_snp }
+		if = {
+			limit = { has_global_variable = wm_poll_snp }
+			add = global_var:wm_poll_snp
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_plaid }
+		if = {
+			limit = { has_global_variable = wm_poll_pc }
+			add = global_var:wm_poll_pc
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_sinn_fein }
+		if = {
+			limit = { has_global_variable = wm_poll_sf }
+			add = global_var:wm_poll_sf
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_dup }
+		if = {
+			limit = { has_global_variable = wm_poll_dup }
+			add = global_var:wm_poll_dup
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_sdlp }
+		if = {
+			limit = { has_global_variable = wm_poll_sdlp }
+			add = global_var:wm_poll_sdlp
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_alliance }
+		if = {
+			limit = { has_global_variable = wm_poll_apni }
+			add = global_var:wm_poll_apni
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_uup }
+		if = {
+			limit = { has_global_variable = wm_poll_uup }
+			add = global_var:wm_poll_uup
+		}
+	}
+	else_if = {
+		limit = { this = title:k_party_tuv }
+		if = {
+			limit = { has_global_variable = wm_poll_tuv }
+			add = global_var:wm_poll_tuv
+		}
+	}
+}
+
+# Scope: a party title. Where it sits from left (-10) to right (10). Used for the ideological distance
+# between two parties. Sinn Fein is listed for completeness but never takes part (it doesn't take its seats).
+wm_coalition_lr_value = {
+	value = 0
+	if = {
+		limit = { this = title:k_party_labour }
+		add = -3
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		add = 5
+	}
+	else_if = {
+		limit = { this = title:k_party_lib_dem }
+		add = 0
+	}
+	else_if = {
+		limit = { this = title:k_party_reform }
+		add = 9
+	}
+	else_if = {
+		limit = { this = title:k_party_green }
+		add = -7
+	}
+	else_if = {
+		limit = { this = title:k_party_snp }
+		add = -4
+	}
+	else_if = {
+		limit = { this = title:k_party_plaid }
+		add = -5
+	}
+	else_if = {
+		limit = { this = title:k_party_sinn_fein }
+		add = -6
+	}
+	else_if = {
+		limit = { this = title:k_party_dup }
+		add = 6
+	}
+	else_if = {
+		limit = { this = title:k_party_sdlp }
+		add = -3
+	}
+	else_if = {
+		limit = { this = title:k_party_alliance }
+		add = 0
+	}
+	else_if = {
+		limit = { this = title:k_party_uup }
+		add = 4
+	}
+	else_if = {
+		limit = { this = title:k_party_tuv }
+		add = 8
+	}
+}
+
+# Scope: a party title (a possible partner). How far it is from the senior party, left to right (0-19).
+wm_coalition_distance_value = {
+	value = wm_coalition_lr_value
+	if = {
+		limit = { has_global_variable = wm_coalition_senior }
+		subtract = global_var:wm_coalition_senior.wm_coalition_lr_value
+	}
+	abs = yes
+}
+
+# Scope: a party title (a possible partner). Its seats plus the senior party's.
+wm_coalition_combined_seats_value = {
+	value = wm_coalition_party_seats_value
+	if = {
+		limit = { has_global_variable = wm_coalition_senior }
+		add = global_var:wm_coalition_senior.wm_coalition_party_seats_value
+	}
+}
+
+# Scope: a party title (a possible partner). How keen it is on a deal with the senior party, before any terms:
+#   10, minus 6 per point of left-right distance (Labour and the Lib Dems are 3 apart: -18; the Conservatives and
+#   the Lib Dems 5: -30; the Conservatives and the DUP 1: -6),
+#   +20 if together they have a majority (a deal that can govern),
+#   +10 for a small party (under 20 seats) that holds the balance and can name its price,
+#   -40 for a big party (150 seats or more): the main opposition doesn't prop up its rival,
+#   and its leader's opinion of the Prime Minister (-12 to +12).
+wm_coalition_base_value = {
+	value = 10
+	subtract = {
+		value = wm_coalition_distance_value
+		multiply = 6
+	}
+	if = {
+		limit = { wm_coalition_combined_seats_value >= wm_coalition_majority_value }
+		add = 20
+	}
+	if = {
+		limit = { wm_coalition_party_seats_value < 20 }
+		add = 10
+	}
+	if = {
+		limit = { wm_coalition_party_seats_value >= 150 }
+		add = -40
+	}
+	if = {
+		limit = {
+			exists = title:e_united_kingdom.holder
+			holder ?= {
+				NOT = { this = title:e_united_kingdom.holder }
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value >= 50
+				}
+			}
+		}
+		add = 12
+	}
+	else_if = {
+		limit = {
+			exists = title:e_united_kingdom.holder
+			holder ?= {
+				NOT = { this = title:e_united_kingdom.holder }
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value >= 25
+				}
+			}
+		}
+		add = 6
+	}
+	else_if = {
+		limit = {
+			exists = title:e_united_kingdom.holder
+			holder ?= {
+				NOT = { this = title:e_united_kingdom.holder }
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value <= -50
+				}
+			}
+		}
+		add = -12
+	}
+	else_if = {
+		limit = {
+			exists = title:e_united_kingdom.holder
+			holder ?= {
+				NOT = { this = title:e_united_kingdom.holder }
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value <= -25
+				}
+			}
+		}
+		add = -6
+	}
+}
+
+# Scope: a party title (a possible partner). How the senior party ranks it: its keenness, plus a little for its
+# size (a bigger partner is more stable, and is the best available when nobody can make a majority).
+wm_coalition_fit_value = {
+	value = wm_coalition_base_value
+	add = {
+		value = wm_coalition_party_seats_value
+		divide = 5
+		max = 15
+	}
+}
+
+# Scope: a party title (the partner). Margin on the offer on the table (global_var:wm_coalition_offer_*): it
+# accepts at 0 or more.
+wm_coalition_offer_margin_value = {
+	value = wm_coalition_base_value
+	if = {
+		limit = { global_var:wm_coalition_offer_kind = 1 }
+		add = {
+			value = global_var:wm_coalition_offer_seats
+			multiply = wm_coalition_seat_worth
+		}
+		if = {
+			limit = { global_var:wm_coalition_offer_policy = 1 }
+			add = wm_coalition_policy_worth
+		}
+		subtract = wm_coalition_coalition_threshold
+	}
+	else = {
+		add = wm_coalition_supply_worth
+		subtract = wm_coalition_supply_threshold
+	}
+}
+
+# Scope: a party title (the partner). The margin on each offer the player can make (for the terms event's
+# tooltips, which can't read globals the option hasn't set yet).
+wm_coalition_margin_coalition_1_value = {
+	value = wm_coalition_base_value
+	add = wm_coalition_seat_worth
+	subtract = wm_coalition_coalition_threshold
+}
+wm_coalition_margin_coalition_1p_value = {
+	value = wm_coalition_base_value
+	add = wm_coalition_seat_worth
+	add = wm_coalition_policy_worth
+	subtract = wm_coalition_coalition_threshold
+}
+wm_coalition_margin_coalition_2p_value = {
+	value = wm_coalition_base_value
+	add = {
+		value = wm_coalition_seat_worth
+		multiply = 2
+	}
+	add = wm_coalition_policy_worth
+	subtract = wm_coalition_coalition_threshold
+}
+wm_coalition_margin_supply_value = {
+	value = wm_coalition_base_value
+	add = wm_coalition_supply_worth
+	subtract = wm_coalition_supply_threshold
+}
+
+# How far the partner's poll has fallen since the deal (tenths of a percent; negative if it has risen)
+wm_coalition_partner_poll_drop_value = {
+	value = 0
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_junior
+			has_global_variable = wm_coalition_partner_poll_start
+		}
+		add = global_var:wm_coalition_partner_poll_start
+		subtract = global_var:wm_coalition_junior.wm_coalition_party_poll_value
+	}
+}
+
+# Chance (%) each quarter that the junior partner walks out (wm_coalition_quarterly_effect). Root-free: reads the
+# Prime Minister through title:e_united_kingdom.
+wm_coalition_breakdown_chance_value = {
+	value = 2
+	# Bad polls for the junior partner: being in government is costing it
+	if = {
+		limit = { wm_coalition_partner_poll_drop_value >= 20 }
+		add = 4
+	}
+	if = {
+		limit = { wm_coalition_partner_poll_drop_value >= 40 }
+		add = 4
+	}
+	# Controversial bills and defeats in the Commons
+	if = {
+		limit = {
+			title:e_united_kingdom.holder ?= { has_character_modifier = wm_commons_reformer_modifier }
+		}
+		add = 4
+	}
+	if = {
+		limit = {
+			title:e_united_kingdom.holder ?= { has_character_modifier = wm_commons_tax_rise_modifier }
+		}
+		add = 3
+	}
+	if = {
+		limit = {
+			title:e_united_kingdom.holder ?= { has_character_modifier = wm_commons_defeated_in_commons_modifier }
+		}
+		add = 4
+	}
+	if = {
+		limit = {
+			title:e_united_kingdom.holder ?= { has_character_modifier = wm_commons_lost_confidence_modifier }
+		}
+		add = 6
+	}
+	# What the junior partner's leader thinks of the Prime Minister
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_junior
+			exists = title:e_united_kingdom.holder
+			global_var:wm_coalition_junior.holder ?= {
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value < 0
+				}
+			}
+		}
+		add = 3
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_junior
+			exists = title:e_united_kingdom.holder
+			global_var:wm_coalition_junior.holder ?= {
+				opinion = {
+					target = title:e_united_kingdom.holder
+					value < -30
+				}
+			}
+		}
+		add = 5
+	}
+	# Ministerial cars and policy wins keep a partner in
+	if = {
+		limit = { has_global_variable = wm_coalition_cabinet_seats }
+		subtract = global_var:wm_coalition_cabinet_seats
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_coalition_policy
+			global_var:wm_coalition_policy = 1
+		}
+		subtract = 1
+	}
+	min = 0
+	max = 30
+}

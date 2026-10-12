@@ -1,0 +1,299 @@
+﻿# Shortlist ballots for party leaders (common/scripted_effects/wm_election_leadership_effects.txt).
+#   wm_leadership.1   a player MP: a leadership contest has opened; stand?
+#   wm_leadership.2   a player leader is challenged: fight or stand down
+#   wm_leadership.3   a player candidate on the members' ballot chooses how to campaign
+#   wm_leadership.4   the result, front page (the party's players and those involved)
+#   wm_leadership.5   a player leader after a general election defeat: stay on or stand down
+#   wm_leadership.10  hidden: moves on contests whose round has closed
+namespace = wm_leadership
+
+wm_leadership.1 = {
+	type = character_event
+	title = wm_leadership.1.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_lead_party.var:wm_lead_kind = 2 }
+				desc = wm_leadership.1.desc_challenge
+			}
+			triggered_desc = {
+				trigger = { scope:wm_lead_party.var:wm_lead_kind = 3 }
+				desc = wm_leadership.1.desc_resign
+			}
+			desc = wm_leadership.1.desc_vacancy
+		}
+		desc = wm_leadership.1.rules
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = scope:wm_lead_party_holder
+		animation = worry
+	}
+	trigger = {
+		exists = var:wm_lead_contest
+		var:wm_lead_contest.var:wm_lead_state ?= 1
+		NOT = { var:wm_lead_cand ?= var:wm_lead_contest }
+	}
+	immediate = {
+		var:wm_lead_contest = {
+			save_scope_as = wm_lead_party
+			holder ?= { save_scope_as = wm_lead_party_holder }
+		}
+	}
+	# Throw my hat into the ring
+	option = {
+		name = wm_leadership.1.a
+		custom_tooltip = wm_leadership.1.a.tt
+		wm_election_leadership_player_stands_effect = yes
+		add_prestige = minor_prestige_loss
+	}
+	# Stay out of it
+	option = {
+		name = wm_leadership.1.b
+	}
+}
+
+# A player party leader is challenged.
+wm_leadership.2 = {
+	type = character_event
+	title = wm_leadership.2.t
+	desc = wm_leadership.2.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = anger
+	}
+	right_portrait = {
+		character = scope:wm_lead_challenger
+		animation = scheme
+	}
+	trigger = {
+		exists = var:wm_lead_contest
+		var:wm_lead_contest.var:wm_lead_state ?= 1
+	}
+	immediate = {
+		var:wm_lead_contest = {
+			save_scope_as = wm_lead_party
+			random_in_list = {
+				variable = wm_lead_candidates
+				limit = { NOT = { this = root } }
+				save_scope_as = wm_lead_challenger
+			}
+		}
+	}
+	# Fight it
+	option = {
+		name = wm_leadership.2.a
+		custom_tooltip = wm_leadership.2.a.tt
+	}
+	# Stand down: the contest goes on without me
+	option = {
+		name = wm_leadership.2.b
+		custom_tooltip = wm_leadership.2.b.tt
+		scope:wm_lead_party = {
+			set_variable = { name = wm_lead_kind value = 3 }
+			remove_list_variable = { name = wm_lead_candidates target = root }
+		}
+		remove_variable = wm_lead_cand
+		add_prestige = minor_prestige_gain
+	}
+}
+
+# A player on the members' ballot campaigns.
+wm_leadership.3 = {
+	type = character_event
+	title = wm_leadership.3.t
+	desc = wm_leadership.3.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	right_portrait = {
+		character = scope:wm_lead_rival
+		animation = personality_rational
+	}
+	trigger = {
+		exists = var:wm_lead_cand
+		var:wm_lead_cand.var:wm_lead_state ?= 2
+	}
+	immediate = {
+		var:wm_lead_cand = {
+			save_scope_as = wm_lead_party
+			random_in_list = {
+				variable = wm_lead_ballot
+				limit = { NOT = { this = root } }
+				save_scope_as = wm_lead_rival
+			}
+		}
+	}
+	# Tour the constituency parties: diplomacy
+	option = {
+		name = wm_leadership.3.a
+		custom_tooltip = wm_leadership.3.a.tt
+		set_variable = {
+			name = wm_lead_campaign
+			value = {
+				value = diplomacy
+				add = {
+					integer_range = {
+						min = -4
+						max = 8
+					}
+				}
+			}
+		}
+	}
+	# Set out a policy platform: stewardship and learning
+	option = {
+		name = wm_leadership.3.b
+		custom_tooltip = wm_leadership.3.b.tt
+		set_variable = {
+			name = wm_lead_campaign
+			value = {
+				value = stewardship
+				add = learning
+				divide = 2
+				add = {
+					integer_range = {
+						min = -2
+						max = 6
+					}
+				}
+			}
+		}
+	}
+	# A slick, expensive campaign
+	option = {
+		name = wm_leadership.3.c
+		trigger = { gold >= medium_gold_value }
+		custom_tooltip = wm_leadership.3.c.tt
+		remove_short_term_gold = medium_gold_value
+		set_variable = { name = wm_lead_campaign value = 15 }
+	}
+	# Let the record speak for itself
+	option = {
+		name = wm_leadership.3.d
+		set_variable = { name = wm_lead_campaign value = 0 }
+	}
+}
+
+# The result.
+wm_leadership.4 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_outcome = 3 }
+				desc = wm_leadership.4.t_failed
+			}
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_held ?= 1 }
+				desc = wm_leadership.4.t_survives
+			}
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_outcome = 2 }
+				desc = wm_leadership.4.t_unopposed
+			}
+			desc = wm_leadership.4.t
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_outcome = 3 }
+				desc = wm_leadership.4.desc_failed
+			}
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_outcome = 2 }
+				desc = wm_leadership.4.desc_unopposed
+			}
+			triggered_desc = {
+				trigger = { scope:wm_lead_news_party.var:wm_lead_last_held ?= 1 }
+				desc = wm_leadership.4.desc_survives
+			}
+			triggered_desc = {
+				trigger = { exists = scope:wm_lead_news_second }
+				desc = wm_leadership.4.desc_ballot
+			}
+			desc = wm_leadership.4.desc_ballot_alone
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:wm_lead_news_winner
+		animation = happiness
+	}
+	right_portrait = {
+		character = scope:wm_lead_news_second
+		animation = sadness
+		trigger = { exists = scope:wm_lead_news_second }
+	}
+	trigger = {
+		exists = var:wm_lead_news
+		exists = var:wm_lead_news.var:wm_lead_last_winner
+	}
+	immediate = {
+		var:wm_lead_news = {
+			save_scope_as = wm_lead_news_party
+			var:wm_lead_last_winner = { save_scope_as = wm_lead_news_winner }
+			var:wm_lead_last_second ?= { save_scope_as = wm_lead_news_second }
+		}
+		set_global_variable = { name = wm_lead_news_share value = scope:wm_lead_news_party.var:wm_lead_last_share }
+		set_global_variable = { name = wm_lead_news_noms value = scope:wm_lead_news_party.var:wm_lead_last_noms }
+		set_global_variable = { name = wm_lead_news_electors value = scope:wm_lead_news_party.var:wm_lead_last_electors }
+		remove_variable = wm_lead_news
+	}
+	option = {
+		name = {
+			trigger = { this = scope:wm_lead_news_winner }
+			text = wm_leadership.4.a_won
+		}
+		name = {
+			trigger = { NOT = { this = scope:wm_lead_news_winner } }
+			text = wm_leadership.4.a
+		}
+	}
+}
+
+# A player party leader after a general election that went badly.
+wm_leadership.5 = {
+	type = character_event
+	title = wm_leadership.5.t
+	desc = wm_leadership.5.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = sadness
+	}
+	trigger = {
+		wm_commons_is_party_leader_trigger = yes
+		NOT = { var:wm_party = { has_variable = wm_lead_state } }
+	}
+	immediate = {
+		var:wm_party = { save_scope_as = wm_lead_party }
+	}
+	# Fight on
+	option = {
+		name = wm_leadership.5.a
+		add_prestige = minor_prestige_loss
+	}
+	# Stand down
+	option = {
+		name = wm_leadership.5.b
+		custom_tooltip = wm_leadership.5.b.tt
+		add_prestige = minor_prestige_gain
+		wm_election_leadership_stand_down_effect = yes
+	}
+}
+
+wm_leadership.10 = {
+	hidden = yes
+	immediate = {
+		wm_election_leadership_process_due_effect = yes
+	}
+}

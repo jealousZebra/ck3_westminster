@@ -1,0 +1,123 @@
+﻿# By-elections. When an MP dies (wm_byelection_on_death, common/on_action/wm_election_on_actions.txt) or resigns
+# (call wm_byelection_call_effect on the seat), the seat waits four weeks for a by-election, decided by the
+# general-election seat model (wm_election_decide_seat_effect) with no incumbency bonus. The winner is always a new MP.
+#
+# State on the seat: var:wm_byelection_due (waiting), var:wm_byelection_wait (the campaign; expires on polling day),
+# var:wm_byelection_party (the party that held it). Waiting seats are on global list wm_byelection_queue.
+# Polling day is event wm_byelection.1 on the Prime Minister (or the monarch, if the PM is the one who died);
+# the monthly tick (wm_polls_monthly_effect) also holds any that are overdue.
+
+# Scope: a seat that has fallen vacant (its MP is dying or resigning and still holds it, or has gone).
+wm_byelection_call_effect = {
+	if = {
+		limit = { NOT = { has_variable = wm_byelection_due } }
+		set_variable = { name = wm_byelection_due value = yes }
+		set_variable = { name = wm_byelection_wait value = yes days = 27 }
+		if = {
+			limit = { holder ?= { has_variable = wm_party } }
+			set_variable = { name = wm_byelection_party value = holder.var:wm_party }
+		}
+		add_to_global_variable_list = { name = wm_byelection_queue target = this }
+		if = {
+			limit = {
+				exists = title:e_united_kingdom.holder
+				NOT = { holder ?= title:e_united_kingdom.holder }
+			}
+			title:e_united_kingdom.holder = { trigger_event = { id = wm_byelection.1 days = 28 } }
+		}
+		else = {
+			title:k_wm_crown.holder ?= { trigger_event = { id = wm_byelection.1 days = 28 } }
+		}
+	}
+}
+
+# Holds every by-election whose campaign is over.
+wm_byelection_process_due_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_byelection_queue }
+		every_in_global_list = {
+			variable = wm_byelection_queue
+			limit = { NOT = { has_variable = wm_byelection_wait } }
+			add_to_temporary_list = wm_byelections_due
+		}
+		every_in_list = {
+			list = wm_byelections_due
+			wm_byelection_hold_effect = yes
+		}
+	}
+}
+
+# Scope: a seat. Polling day in a by-election.
+wm_byelection_hold_effect = {
+	save_scope_as = wm_by_seat
+	# If the Prime Minister died, the leader of the largest party takes over before the seat changes hands
+	wm_election_form_government_effect = yes
+	if = {
+		# Whoever inherited No 10 can't lose their only seat yet (no one could take over): try again next month.
+		# Only if it IS their only seat: a dead MP's seat often passes to their party leader (the PM, for Labour)
+		# for the time being, and that by-election must go ahead.
+		limit = {
+			holder ?= {
+				has_title = title:e_united_kingdom
+				NOT = {
+					any_held_title = {
+						tier = tier_county
+						is_landless_type_title = no
+						NOT = { this = scope:wm_by_seat }
+					}
+				}
+			}
+		}
+		set_variable = { name = wm_byelection_wait value = yes days = 20 }
+	}
+	else = {
+		remove_list_global_variable = { name = wm_byelection_queue target = this }
+		remove_variable = wm_el_inc
+		remove_variable = wm_el_ind
+		clear_saved_scope = wm_el_loser
+		wm_election_decide_seat_effect = yes
+		if = {
+			limit = { exists = var:wm_el_winner }
+			wm_election_new_mp_effect = yes
+			wm_election_record_result_effect = yes
+			wm_dispute_record_effect = yes		# a close result can be challenged (wm_dispute_effects.txt)
+			scope:wm_by_seat = {
+				holder = { save_scope_as = wm_by_mp }
+				var:wm_el_winner = { save_scope_as = wm_by_party }
+			}
+			every_player = {
+				limit = { NOT = { has_global_variable = wm_test_quiet } }
+				if = {
+					limit = { scope:wm_by_seat.var:wm_byelection_party ?= scope:wm_by_party }
+					send_interface_toast = {
+						type = event_toast_effect_neutral
+						title = wm_byelection_hold_toast
+						left_icon = scope:wm_by_mp
+						custom_tooltip = wm_byelection_hold_toast_desc
+					}
+				}
+				else = {
+					send_interface_toast = {
+						type = event_toast_effect_neutral
+						title = wm_byelection_gain_toast
+						left_icon = scope:wm_by_mp
+						custom_tooltip = wm_byelection_gain_toast_desc
+					}
+				}
+			}
+		}
+		wm_election_clear_seat_effect = yes
+		wm_election_rewire_effect = yes
+		# The government's majority: a loss shrinks it (and can bring the government down), and a run of losses
+		# hurts the Prime Minister (wm_majority_effects.txt). Counts the seats.
+		wm_majority_byelection_effect = yes
+		# The runner-up may challenge a close result (an AI decides now; a player is asked)
+		if = {
+			limit = { is_target_in_global_variable_list = { name = wm_dispute_open target = this } }
+			wm_dispute_consider_effect = yes
+		}
+		remove_variable = wm_byelection_due
+		remove_variable = wm_byelection_wait
+		remove_variable = wm_byelection_party
+	}
+}

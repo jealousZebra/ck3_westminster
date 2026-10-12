@@ -1,0 +1,62 @@
+﻿# Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt).
+#   wm_speaker.1   a player MP: the chair is vacant; stand?
+#   wm_speaker.2   a player has been elected Speaker
+#   wm_speaker.10  hidden: the election, when nominations close
+#   wm_speaker.11  hidden: the Speaker has died; nominations open
+namespace = wm_speaker
+
+wm_speaker.1 = {
+	type = character_event
+	title = wm_speaker.1.t
+	desc = wm_speaker.1.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	trigger = {
+		has_global_variable = wm_speaker_state
+		wm_speaker_can_stand_trigger = yes
+	}
+	# Stand for the chair
+	option = {
+		name = wm_speaker.1.a
+		custom_tooltip = wm_speaker.1.a.tt
+		wm_speaker_add_candidate_effect = yes
+	}
+	# Not for me
+	option = {
+		name = wm_speaker.1.b
+	}
+}
+
+wm_speaker.2 = {
+	type = character_event
+	title = wm_speaker.2.t
+	desc = wm_speaker.2.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = happiness
+	}
+	option = {
+		name = wm_speaker.2.a
+	}
+}
+
+wm_speaker.10 = {
+	hidden = yes
+	immediate = {
+		wm_speaker_process_due_effect = yes
+	}
+}
+
+wm_speaker.11 = {
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { wm_majority_parliament_sitting_trigger = yes }
+			wm_speaker_open_effect = yes
+		}
+	}
+}

@@ -1,0 +1,74 @@
+﻿# General elections (common/scripted_effects/wm_election_effects.txt).
+
+# The Prime Minister asks the monarch to dissolve Parliament: a general election in five weeks.
+wm_election_call_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_polling.dds"
+	}
+	decision_group_type = major
+	sort_order = 100
+	ai_check_interval = 3
+
+	desc = wm_election_call_decision_desc
+	selection_tooltip = wm_election_call_decision_tooltip
+
+	is_shown = {
+		has_title = title:e_united_kingdom
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_election_call_decision_not_scheduled_tt
+			NOT = { has_global_variable = wm_el_scheduled }
+		}
+		custom_tooltip = {
+			text = wm_election_call_decision_min_months_tt
+			wm_election_months_sat >= wm_election_min_months
+		}
+	}
+
+	cooldown = { years = 1 }
+
+	effect = {
+		custom_tooltip = wm_election_call_decision_effect_tt
+		hidden_effect = {
+			wm_election_schedule_effect = yes
+		}
+	}
+
+	ai_potential = {
+		has_global_variable = wm_poll_lab
+		has_global_variable = wm_el_months
+		NOT = { has_global_variable = wm_el_scheduled }
+	}
+
+	# Go to the country when well ahead, more readily as the end of the Parliament nears, and when an election was
+	# promised to protesters; never when behind.
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 50
+			wm_polls_government_lead >= 100
+			wm_election_months_sat >= 24
+		}
+		modifier = {
+			add = 30
+			wm_polls_government_lead >= 50
+			wm_election_months_sat >= 36
+		}
+		modifier = {
+			add = 30
+			wm_polls_government_lead >= 0
+			wm_election_months_sat >= 50
+		}
+		modifier = {
+			add = 25
+			has_character_flag = wm_early_election_promised
+			wm_polls_government_lead >= 0
+		}
+		modifier = {
+			factor = 0
+			wm_polls_government_lead < 0
+		}
+	}
+}

@@ -1,0 +1,13 @@
+﻿# The party title's succession: a leadership election among the party's MPs.
+wm_party_succession_law = {
+	law_group_type = title_succession_laws
+	index = 0
+	can_have = { always = yes }	# (add_title_law checks this: Found a Party needs it)
+	can_pass = { always = no }
+	can_title_have = { tier = tier_kingdom is_landless_type_title = yes }
+	succession = {
+		order_of_succession = election
+		election_type = wm_party_leadership
+	}
+	flag = elective_succession_law
+}

@@ -1,0 +1,13 @@
+﻿# The Crown: a landless kingdom-tier title held by the monarch. The monarch sits outside the political
+# hierarchy (the Prime Minister holds e_united_kingdom), has no seat and no vassals, and has the
+# wm_crown_government so their rank reads "King"/"Queen" (localization/english/wm_crown_l_english.yml).
+k_wm_crown = {
+	color = { 120 30 120 }
+	capital = c_cities_of_london_and_westminster
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	definite_form = yes
+	ruler_uses_title_name = no
+	de_jure_drift_disabled = yes
+}

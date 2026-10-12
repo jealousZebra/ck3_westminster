@@ -1,0 +1,140 @@
+﻿rf_test_s1 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 1 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s2 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 2 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s3 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 3 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s4 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 4 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s5 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 5 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s6 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 6 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s7 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 7 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s8 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 8 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s9 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 9 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s10 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 10 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s11 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 11 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s12 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 12 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s13 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 13 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s14 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 14 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s15 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 15 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s16 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 16 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s17 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 17 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s18 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 18 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s19 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 19 }
+		rf_test_effect = yes
+	}
+}
+rf_test_s20 = {
+	scope = character
+	effect = {
+		set_global_variable = { name = rf_test_step value = 20 }
+		rf_test_effect = yes
+	}
+}

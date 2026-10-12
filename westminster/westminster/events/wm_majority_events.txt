@@ -1,0 +1,72 @@
+﻿# The government's working majority (common/scripted_effects/wm_majority_effects.txt).
+#   wm_majority.1    the front page: the government has lost its majority (every player)
+#   wm_majority.2    a player Leader of the Opposition decides whether to table a motion of no confidence
+#   wm_majority.100  hidden: the weekly watcher (majority, seat chart snapshots, anything overdue)
+namespace = wm_majority
+
+wm_majority.1 = {
+	type = character_event
+	title = wm_majority.1.t
+	desc = wm_majority.1.desc
+	theme = realm
+	left_portrait = {
+		character = scope:wm_majority_pm
+		animation = worry
+	}
+	immediate = {
+		title:e_united_kingdom.holder ?= { save_scope_as = wm_majority_pm }
+	}
+	option = {
+		name = {
+			trigger = { exists = scope:wm_majority_pm this = scope:wm_majority_pm }
+			text = wm_majority.1.a_pm
+		}
+		name = {
+			trigger = { NOT = { this = scope:wm_majority_pm } }
+			text = wm_majority.1.a
+		}
+	}
+}
+
+# A player Leader of the Opposition: the government has lost its majority. Move against it?
+wm_majority.2 = {
+	type = character_event
+	title = wm_majority.2.t
+	desc = wm_majority.2.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = scheme
+	}
+	right_portrait = {
+		character = scope:wm_majority_pm
+		animation = worry
+	}
+	trigger = {
+		wm_commons_house_free_trigger = yes
+		wm_majority_parliament_sitting_trigger = yes
+	}
+	immediate = {
+		title:e_united_kingdom.holder ?= { save_scope_as = wm_majority_pm }
+	}
+	option = {
+		name = wm_majority.2.a
+		custom_tooltip = wm_commons_no_confidence_decision_effect_tt
+		wm_commons_table_confidence_motion_effect = yes
+	}
+	option = {
+		name = wm_majority.2.b
+		add_prestige = minor_prestige_loss
+	}
+}
+
+# The weekly watcher. Runs on the monarch (or the Prime Minister) and reschedules itself; the quarterly pulse
+# restarts it if the chain is lost (global_var:wm_majority_watch has lapsed).
+wm_majority.100 = {
+	hidden = yes
+	immediate = {
+		set_global_variable = { name = wm_majority_watch value = yes days = 10 }
+		wm_majority_weekly_effect = yes
+		trigger_event = { id = wm_majority.100 days = 7 }
+	}
+}

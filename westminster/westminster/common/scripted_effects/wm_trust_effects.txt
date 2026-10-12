@@ -1,0 +1,299 @@
+﻿# Public trust: one national score of trust in politics, 0-100, in global_var:wm_public_trust (values and amounts:
+# common/script_values/wm_trust_values.txt; the UI reads the script value wm_ui_public_trust).
+#
+# What moves it:
+#   riots: starting (-1), conceded (+1) or negotiated (+1), policed (-2), a crackdown (-5) (wm_riot_effects.txt)
+#   the government's record, read from the Prime Minister's modifiers once each (wm_trust_watch_pm_effect): a U-turn
+#     (-3), a tax rise (-2), a popular public services bill (+3), emergency powers (-1), a defeat in the Commons (-2),
+#     a lost confidence vote (-4)
+#   promises: an early election promised to protesters and then held (+2) or quietly dropped (-6)
+#   campaigns: a general election campaign with no smear campaigns (+3), or -2 for each smear run during it;
+#     each month of a smear campaign (-0.3) and a smear that backfires (-3) (wm_spend_effects.txt)
+#   scandals: a smear-campaign secret exposed (-2); set pieces (the yearly pulse, events/wm_trust_events.txt): an
+#     expenses row (-8), a lobbying row (-5), a moment of national unity (+6), a clean standards report (+4)
+#   the Prime Minister's clean-up pledge (decision, +5); a scandal while it stands is a broken pledge (-4 more)
+# Each month it drifts 4% of the way back to the era's level (wm_trust_baseline).
+#
+# What it does:
+#   riots: the yearly riot chance is wm_trust_riot_chance (75% at trust 40; 50-95%)
+#   polls: low trust lifts parties polling under 15% and the independents; high trust lifts the government's party
+#     and very low trust drags it (wm_trust_poll_effect, called from wm_polls_drift_party_effect)
+#   turnout: wm_ui_trust_turnout (50% + 0.3 x trust), shown with the score
+#   devolution: low trust in Westminster pushes up independence support (wm_devolution_effects.txt)
+#
+# State: global_var:wm_public_trust; wm_trust_promise_pm (the PM who promised protesters an early election);
+# wm_trust_campaign_seen and wm_trust_campaign_smears (the election campaign being watched); wm_trust_amount
+# (scratch); the character flags
+# wm_trust_seen_<modifier> on the Prime Minister; wm_trust_clean_pledge on a PM who has pledged.
+#
+# Hooks for other systems: wm_trust_change_effect = { AMOUNT = <points> } for anything new (the Commons'
+# modifiers are already read, so don't add them twice), and wm_trust_byelection_lost_effect when the government
+# loses a seat at a by-election.
+
+# No scope needed. Creates the score if a save predates it.
+wm_trust_ensure_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_public_trust } }
+		set_global_variable = { name = wm_public_trust value = wm_trust_start }
+	}
+}
+
+# Moves trust by $AMOUNT$ points (a number or script value), kept within 0-100.
+wm_trust_change_effect = {
+	wm_trust_ensure_effect = yes
+	set_global_variable = {
+		name = wm_public_trust
+		value = {
+			value = global_var:wm_public_trust
+			add = $AMOUNT$
+			min = 0
+			max = 100
+		}
+	}
+}
+
+# The government lost a seat at a by-election.
+wm_trust_byelection_lost_effect = {
+	wm_trust_change_effect = { AMOUNT = -1 }
+}
+
+# One party's share of trust's pull on the polls this month. $P$: the poll key (lab, con, ... oth).
+wm_trust_poll_effect = {
+	if = {
+		limit = {
+			has_global_variable = wm_public_trust
+			has_global_variable = wm_poll_$P$
+		}
+		if = {
+			limit = { wm_polls_governs_$P$ = yes }
+			set_global_variable = {
+				name = wm_poll_$P$
+				value = {
+					value = global_var:wm_poll_$P$
+					multiply = wm_trust_government_pull
+					add = global_var:wm_poll_$P$
+					min = 1
+				}
+			}
+		}
+		else_if = {
+			limit = { global_var:wm_poll_$P$ < wm_trust_small_party_share }
+			set_global_variable = {
+				name = wm_poll_$P$
+				value = {
+					value = global_var:wm_poll_$P$
+					multiply = wm_trust_small_party_pull
+					add = global_var:wm_poll_$P$
+				}
+			}
+		}
+	}
+}
+
+# The month's trust (run by wm_polls_monthly_effect).
+wm_trust_monthly_effect = {
+	wm_trust_ensure_effect = yes
+	set_global_variable = {
+		name = wm_public_trust
+		value = {
+			value = wm_trust_baseline
+			subtract = global_var:wm_public_trust
+			multiply = wm_trust_drift
+			add = global_var:wm_public_trust
+		}
+	}
+	title:e_united_kingdom.holder ?= { wm_trust_watch_pm_effect = yes }
+	wm_trust_promise_watch_effect = yes
+	wm_trust_campaign_watch_effect = yes
+}
+
+# Scope: the Prime Minister. Counts each thing the government has done once, while its modifier lasts. KIND is the
+# wings' reaction (wm_wing_policy_effect): 0 none, 1 a left-wing economic measure, 2 a right-wing reform,
+# 3 emergency powers, 4 a coalition compromise.
+wm_trust_watch_pm_effect = {
+	wm_trust_watch_modifier_effect = { MOD = wm_u_turn_modifier TRUST = wm_trust_u_turn KIND = 0 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_tax_rise_modifier TRUST = wm_trust_tax_rise KIND = 1 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_public_services_modifier TRUST = wm_trust_popular_bill KIND = 1 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_reformer_modifier TRUST = 0 KIND = 2 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_emergency_powers_modifier TRUST = wm_trust_emergency_powers KIND = 3 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_defeated_in_commons_modifier TRUST = wm_trust_defeated_in_commons KIND = 0 }
+	wm_trust_watch_modifier_effect = { MOD = wm_commons_lost_confidence_modifier TRUST = wm_trust_lost_confidence KIND = 0 }
+	wm_trust_watch_modifier_effect = { MOD = wm_coalition_compromise_modifier TRUST = 0 KIND = 4 }
+}
+
+# Scope: the Prime Minister. $MOD$ a character modifier, $TRUST$ the trust change, $KIND$ the wings' reaction.
+wm_trust_watch_modifier_effect = {
+	if = {
+		limit = {
+			has_character_modifier = $MOD$
+			NOT = { has_character_flag = wm_trust_seen_$MOD$ }
+		}
+		add_character_flag = wm_trust_seen_$MOD$
+		wm_trust_change_effect = { AMOUNT = $TRUST$ }
+		if = {
+			limit = { exists = var:wm_party }
+			var:wm_party = { wm_wing_policy_effect = { KIND = $KIND$ } }
+		}
+	}
+	else_if = {
+		limit = {
+			NOT = { has_character_modifier = $MOD$ }
+			has_character_flag = wm_trust_seen_$MOD$
+		}
+		remove_character_flag = wm_trust_seen_$MOD$
+	}
+}
+
+# An early election promised to protesters (wm_riot_concede_effect): kept if an election follows before the promise
+# lapses (the election clears the flag and resets wm_el_months), broken if it just lapses.
+wm_trust_promise_watch_effect = {
+	if = {
+		limit = { title:e_united_kingdom.holder ?= { has_character_flag = wm_early_election_promised } }
+		set_global_variable = { name = wm_trust_promise_pm value = title:e_united_kingdom.holder }
+	}
+	else_if = {
+		limit = { exists = global_var:wm_trust_promise_pm }
+		if = {
+			limit = {
+				OR = {
+					has_global_variable = wm_el_scheduled
+					AND = {
+						has_global_variable = wm_el_months
+						global_var:wm_el_months <= 2
+					}
+				}
+			}
+			wm_trust_change_effect = { AMOUNT = wm_trust_promise_kept }
+		}
+		else = {
+			wm_trust_change_effect = { AMOUNT = wm_trust_promise_broken }
+			global_var:wm_trust_promise_pm = { save_scope_as = wm_trust_promiser }
+			wm_trust_toast_effect = { TITLE = wm_trust_promise_broken_toast ICON = scope:wm_trust_promiser }
+		}
+		remove_global_variable = wm_trust_promise_pm
+	}
+}
+
+# A general election campaign is judged once it is over: clean (no smear campaigns ran during it) or dirty.
+wm_trust_campaign_watch_effect = {
+	if = {
+		limit = { has_global_variable = wm_el_scheduled }
+		if = {
+			limit = { NOT = { has_global_variable = wm_trust_campaign_seen } }
+			set_global_variable = { name = wm_trust_campaign_seen value = yes }
+			set_global_variable = { name = wm_trust_campaign_smears value = 0 }
+		}
+	}
+	else_if = {
+		limit = { has_global_variable = wm_trust_campaign_seen }
+		if = {
+			limit = { global_var:wm_trust_campaign_smears ?= 0 }
+			wm_trust_change_effect = { AMOUNT = wm_trust_clean_campaign }
+		}
+		else = {
+			set_global_variable = {
+				name = wm_trust_amount
+				value = {
+					value = global_var:wm_trust_campaign_smears
+					max = 3
+					multiply = wm_trust_dirty_campaign
+				}
+			}
+			wm_trust_change_effect = { AMOUNT = global_var:wm_trust_amount }
+		}
+		remove_global_variable = wm_trust_campaign_seen
+		remove_global_variable = wm_trust_campaign_smears
+	}
+}
+
+# A smear campaign ran this month: trust falls, and it counts against a general election campaign under way.
+wm_trust_smear_month_effect = {
+	wm_trust_change_effect = { AMOUNT = wm_trust_smear_month }
+	if = {
+		limit = { has_global_variable = wm_trust_campaign_seen }
+		change_global_variable = { name = wm_trust_campaign_smears add = 1 }
+	}
+}
+
+# A scandal broke. A Prime Minister who pledged to clean up politics has broken the pledge.
+wm_trust_scandal_effect = {
+	wm_trust_change_effect = { AMOUNT = $AMOUNT$ }
+	title:e_united_kingdom.holder ?= {
+		if = {
+			limit = { has_character_flag = wm_trust_clean_pledge }
+			remove_character_flag = wm_trust_clean_pledge
+			wm_trust_change_effect = { AMOUNT = wm_trust_pledge_broken }
+			add_prestige = minor_prestige_loss
+		}
+	}
+}
+
+# Scope: the Prime Minister. The clean-up pledge (decision wm_trust_clean_up_decision).
+wm_trust_clean_up_pledge_effect = {
+	wm_trust_change_effect = { AMOUNT = wm_trust_clean_up_pledge }
+	add_character_flag = { flag = wm_trust_clean_pledge years = 3 }
+}
+
+# The yearly set piece (wm_trust_yearly_pulse): usually nothing; sometimes a row engulfs Westminster or the country
+# pulls together. Written generically: nobody is named. global_var:wm_trust_set_piece says which, for the event.
+#   1 an expenses row, 2 a lobbying row, 3 a moment of national unity, 4 a clean standards report
+wm_trust_set_piece_effect = {
+	remove_global_variable = wm_trust_set_piece
+	random_list = {
+		66 = {}
+		10 = {
+			set_global_variable = { name = wm_trust_set_piece value = 1 }
+			wm_trust_scandal_effect = { AMOUNT = wm_trust_expenses_row }
+		}
+		8 = {
+			set_global_variable = { name = wm_trust_set_piece value = 2 }
+			wm_trust_scandal_effect = { AMOUNT = wm_trust_lobbying_row }
+			title:e_united_kingdom.holder ?= {
+				add_prestige = minor_prestige_loss
+				if = {
+					limit = { exists = var:wm_party }
+					set_global_variable = { name = wm_campaign_amount value = -10 }
+					wm_campaign_party_poll_effect = { PARTY = var:wm_party }
+				}
+			}
+		}
+		8 = {
+			set_global_variable = { name = wm_trust_set_piece value = 3 }
+			wm_trust_change_effect = { AMOUNT = wm_trust_national_moment }
+			title:e_united_kingdom.holder ?= {
+				add_prestige = minor_prestige_gain
+				if = {
+					limit = { exists = var:wm_party }
+					set_global_variable = { name = wm_campaign_amount value = 5 }
+					wm_campaign_party_poll_effect = { PARTY = var:wm_party }
+				}
+			}
+		}
+		8 = {
+			set_global_variable = { name = wm_trust_set_piece value = 4 }
+			wm_trust_change_effect = { AMOUNT = wm_trust_standards_report }
+		}
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_trust_set_piece
+			NOT = { has_global_variable = wm_test_quiet }
+		}
+		every_player = { trigger_event = wm_trust.10 }
+	}
+}
+
+# A toast for every player. $TITLE$ the loc key (with $TITLE$_desc), $ICON$ a character.
+wm_trust_toast_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_test_quiet } }
+		every_player = {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = $TITLE$
+				left_icon = $ICON$
+				custom_tooltip = $TITLE$_desc
+			}
+		}
+	}
+}

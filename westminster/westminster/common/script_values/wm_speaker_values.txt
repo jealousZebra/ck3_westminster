@@ -1,0 +1,104 @@
+﻿# Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt).
+#
+# State (global variables):
+#   wm_speaker_state       1 while nominations are open (7 days); the election follows
+#   wm_speaker_timer       set while nominations are open
+#   wm_speaker_candidates  (list) the candidates
+#   wm_speaker_rounds      ballots it took last time
+#   wm_speaker_last_votes  the winner's votes in the final ballot, of wm_speaker_last_turnout
+# On candidates: wm_speaker_stand (how strong a candidate), wm_speaker_votes (this ballot), wm_speaker_noise.
+# On a Speaker who stood down at an election: wm_speaker_retired.
+
+# Character (an MP): how strong a candidate for the chair (experience, learning, fairness, standing)
+wm_speaker_stand_value = {
+	value = 0
+	add = {
+		value = learning
+		multiply = 2
+	}
+	add = {
+		value = diplomacy
+		multiply = 2
+	}
+	add = {
+		value = age
+		divide = 4
+	}
+	add = {
+		value = prestige_level
+		multiply = 4
+	}
+	if = {
+		limit = { has_trait = just }
+		add = 10
+	}
+	if = {
+		limit = { has_trait = honest }
+		add = 5
+	}
+	if = {
+		limit = { has_trait = ambitious }
+		add = -5
+	}
+}
+
+# Candidate, with scope:wm_speaker_voter (an MP): how much the MP backs them in a secret ballot
+wm_speaker_preference_value = {
+	value = "reverse_opinion(scope:wm_speaker_voter)"
+	add = {
+		value = learning
+		multiply = 2
+	}
+	add = {
+		value = diplomacy
+		multiply = 2
+	}
+	if = {
+		limit = {
+			exists = var:wm_party
+			exists = scope:wm_speaker_voter.var:wm_party
+			var:wm_party = scope:wm_speaker_voter.var:wm_party
+		}
+		add = 10
+	}
+	if = {
+		limit = { has_variable = wm_speaker_noise }
+		add = var:wm_speaker_noise
+	}
+}
+
+# Character (the Speaker): the chance (%) they stand down at a general election
+wm_speaker_retire_chance_value = {
+	value = 15
+	if = {
+		limit = { age >= 70 }
+		value = 60
+	}
+	if = {
+		limit = { age >= 76 }
+		value = 100
+	}
+}
+
+# For the news
+wm_speaker_rounds_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_speaker_rounds }
+		value = global_var:wm_speaker_rounds
+	}
+}
+wm_speaker_last_votes_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_speaker_last_votes }
+		value = global_var:wm_speaker_last_votes
+	}
+}
+wm_speaker_last_turnout_value = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_speaker_last_turnout }
+		value = global_var:wm_speaker_last_turnout
+	}
+}

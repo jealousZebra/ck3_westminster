@@ -1,0 +1,13 @@
+﻿# Disputed results (common/scripted_effects/wm_dispute_effects.txt).
+
+# A party leader who refused to accept a general election defeat
+wm_dispute_sore_loser_modifier = {
+	icon = prestige_negative
+	general_opinion = -10
+	monthly_prestige = -1
+}
+# A candidate who contested a result they had lost badly
+wm_dispute_bad_loser_modifier = {
+	icon = prestige_negative
+	general_opinion = -5
+}

@@ -1,0 +1,76 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt). Shares are in tenths of a percent, as in the
+# elections.
+
+# Standing with the party needed to apply for a selection without being on the approved list
+wm_career_apply_standing = 30
+# Standing at which the party offers its candidate assessment (wm_selection_contract)
+wm_career_assessment_standing = 25
+# A party selects for a by-election where it took at least this share in 2024 (15%)
+wm_career_byelection_lean = 150
+# In the run-up to a general election a party selects in seats where the swing gives it at least this (25%)
+wm_career_target_share = 250
+
+# Character: chance (out of 100) that a job or hustings speech using a skill goes well: 30% plus 4% per point,
+# at most 95%
+wm_career_job_chance_diplomacy = {
+	value = diplomacy
+	multiply = 4
+	add = 30
+	max = 95
+}
+wm_career_job_chance_stewardship = {
+	value = stewardship
+	multiply = 4
+	add = 30
+	max = 95
+}
+wm_career_job_chance_learning = {
+	value = learning
+	multiply = 4
+	add = 30
+	max = 95
+}
+wm_career_job_chance_intrigue = {
+	value = intrigue
+	multiply = 4
+	add = 30
+	max = 95
+}
+
+# Character (an applicant, also scope:wm_sel_applicant): their votes from the local members in the selection for
+# scope:wm_sel_seat: standing, the hustings (10 if they never gave their speech), half the selector's opinion of them
+# (scope:wm_sel_selector: the local MP or the party leader), 20 for local roots (the seat's culture), and luck.
+wm_career_selection_score = {
+	value = 0
+	if = {
+		limit = { has_variable = wm_standing }
+		add = var:wm_standing
+	}
+	if = {
+		limit = { has_variable = wm_hustings_score }
+		add = var:wm_hustings_score
+	}
+	else = {
+		add = 10
+	}
+	if = {
+		limit = {
+			exists = scope:wm_sel_selector
+			NOT = { this = scope:wm_sel_selector }
+		}
+		add = {
+			value = "scope:wm_sel_selector.opinion(scope:wm_sel_applicant)"
+			divide = 2
+		}
+	}
+	if = {
+		limit = { culture = scope:wm_sel_seat.culture }
+		add = 20
+	}
+	add = {
+		integer_range = {
+			min = 0
+			max = 20
+		}
+	}
+}

@@ -1,0 +1,12 @@
+﻿# Coalitions and confidence-and-supply (common/scripted_effects/wm_coalition_effects.txt)
+
+# The Prime Minister and the partner's leader, of each other, while the deal holds
+wm_coalition_partner_opinion = {
+	opinion = 20
+}
+# The Prime Minister of the partner's leader who walked out
+wm_coalition_walked_out_opinion = {
+	opinion = -30
+	years = 10
+	decaying = yes
+}

@@ -1,0 +1,12 @@
+﻿l_english:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "The Chair Is Vacant"
+ wm_speaker.1.desc: "The House of Commons must elect a new Speaker: the MP who keeps order, calls members to speak and sets aside party for good. Nominations close in a week; then every MP votes in a secret ballot, round after round, until someone has more than half.\n\nYou could stand. The Speaker leaves their party and never holds office again, but the chair carries great prestige."
+ wm_speaker.1.a: "Put my name forward."
+ wm_speaker.1.a.tt: "You stand for Speaker. If elected you leave your party and sit above it."
+ wm_speaker.1.b: "Not for me."
+ wm_speaker.2.t: "The Speaker's Chair"
+ wm_speaker.2.desc: "The House has chosen you as its Speaker, after [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] ballots. By tradition you are dragged to the chair, feigning reluctance. From today you belong to no party."
+ wm_speaker.2.a: "Order! Order!"
+ wm_speaker_elected_toast: "New Speaker Elected"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] is the new Speaker of the House of Commons, with [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] votes of [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] after [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] ballots."

@@ -1,0 +1,11 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt), appended to vanilla's on_game_start: approval starts
+# at its 2024 level and the MPs' wings from history get their badges. The monthly movement runs from the polls'
+# tick (wm_polls_monthly_effect).
+on_game_start = {
+	on_actions = { wm_wing_on_game_start }
+}
+wm_wing_on_game_start = {
+	effect = {
+		wm_wing_init_effect = yes
+	}
+}

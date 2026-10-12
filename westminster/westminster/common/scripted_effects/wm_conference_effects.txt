@@ -1,0 +1,210 @@
+﻿# Party conferences: once a year, in the autumn, each major party (Liberal Democrats, Reform, Labour,
+# Conservatives, Greens, SNP) holds its conference. The weekly campaign watcher (wm_campaign_watch_effect, event
+# wm_campaign.100) checks the date and opens each conference within a week of its date; one due during an election
+# campaign is held after polling day, if it is still October.
+#
+#   Leader:  the big speech (event wm_conference.1 for a player, wm_conference_ai_speech_effect for the AI): a
+#            triumph, a solid outing or a cough-ridden disaster, moving the party's poll, the leader's prestige and
+#            the MPs' opinion of the leader; or a set-piece policy announcement, a bigger gamble.
+#   MPs:     fringe meetings, plotting in the hotel bar, making contacts, dutiful applause (event wm_conference.10
+#            for players; AI MPs who dislike their leader sometimes plot).
+#   After:   three days later (event wm_conference.30) the plotting is counted. Enough plotters
+#            (wm_conference_rumblings_threshold) means leadership rumblings for the leader (event wm_conference.20).
+#
+# State: global_var:wm_conference_done_<party> (this year's conference has been held; lasts 300 days).
+# On the party title: var:wm_conference_rumblings (plotters this conference). On the leader: var:wm_conference_result
+# for the speech (1 triumph, 2 solid, 3 disaster, 4 policy hit, 5 policy flop; 30 days), flag wm_conference_leader.
+
+# No root. Opens each party's conference when its date comes (wm_conference_due_trigger).
+wm_conference_autumn_effect = {
+	wm_conference_due_effect = { P = ld PARTY = k_party_lib_dem M = 9 D = 14 }
+	wm_conference_due_effect = { P = ruk PARTY = k_party_reform M = 9 D = 18 }
+	wm_conference_due_effect = { P = lab PARTY = k_party_labour M = 9 D = 22 }
+	wm_conference_due_effect = { P = con PARTY = k_party_conservative M = 9 D = 29 }
+	wm_conference_due_effect = { P = grn PARTY = k_party_green M = 10 D = 3 }
+	wm_conference_due_effect = { P = snp PARTY = k_party_snp M = 10 D = 10 }
+}
+
+# No root. Every major party's conference now, whatever the date (for the tests and the console).
+wm_conference_hold_all_effect = {
+	wm_conference_hold_effect = { P = ld PARTY = k_party_lib_dem }
+	wm_conference_hold_effect = { P = ruk PARTY = k_party_reform }
+	wm_conference_hold_effect = { P = lab PARTY = k_party_labour }
+	wm_conference_hold_effect = { P = con PARTY = k_party_conservative }
+	wm_conference_hold_effect = { P = grn PARTY = k_party_green }
+	wm_conference_hold_effect = { P = snp PARTY = k_party_snp }
+}
+
+# $P$: the party's key; $PARTY$: its title; $M$/$D$: the month and day its conference opens.
+wm_conference_due_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = wm_conference_done_$P$ }
+			exists = title:$PARTY$.holder
+			wm_conference_due_trigger = { M = $M$ D = $D$ }
+		}
+		wm_conference_hold_effect = { P = $P$ PARTY = $PARTY$ }
+	}
+}
+
+# $P$: the party's key; $PARTY$: its title. The conference: the leader's speech, the MPs' fringe, and the
+# reckoning three days later.
+wm_conference_hold_effect = {
+	if = {
+		limit = { exists = title:$PARTY$.holder }
+		set_global_variable = { name = wm_conference_done_$P$ value = yes days = 300 }
+		title:$PARTY$ = {
+			set_variable = { name = wm_conference_rumblings value = 0 }
+		}
+		title:$PARTY$.holder = {
+			add_character_flag = { flag = wm_conference_leader days = 30 }
+			if = {
+				limit = { wm_campaign_auto_trigger = yes }
+				wm_conference_ai_speech_effect = yes
+			}
+			else = {
+				trigger_event = wm_conference.1
+			}
+			every_vassal = {
+				limit = {
+					var:wm_party ?= title:$PARTY$
+					wm_is_mp_trigger = yes
+				}
+				if = {
+					limit = { wm_campaign_auto_trigger = yes }
+					wm_conference_ai_mp_effect = yes
+				}
+				else = {
+					trigger_event = wm_conference.10
+				}
+			}
+			trigger_event = { id = wm_conference.30 days = 3 }
+		}
+	}
+}
+
+# Scope: an AI party leader. The speech, rolled.
+wm_conference_ai_speech_effect = {
+	random_list = {
+		35 = {
+			modifier = { add = wm_conference_speech_weight }
+			wm_conference_speech_triumph_effect = yes
+		}
+		45 = {
+			wm_conference_speech_solid_effect = yes
+		}
+		20 = {
+			modifier = { add = wm_conference_disaster_risk }
+			wm_conference_speech_disaster_effect = yes
+		}
+	}
+}
+
+# Scope: an AI MP at conference. One who dislikes their leader may plot in the bar.
+wm_conference_ai_mp_effect = {
+	if = {
+		limit = {
+			exists = var:wm_party.holder
+			NOT = { this = var:wm_party.holder }
+			opinion = {
+				target = var:wm_party.holder
+				value < -10
+			}
+		}
+		random = {
+			chance = 25
+			wm_conference_plot_effect = yes
+		}
+	}
+}
+
+# Scope: an MP. One more plotter against their leader.
+wm_conference_plot_effect = {
+	var:wm_party ?= {
+		if = {
+			limit = { has_variable = wm_conference_rumblings }
+			change_variable = { name = wm_conference_rumblings add = 1 }
+		}
+		else = {
+			set_variable = { name = wm_conference_rumblings value = 1 }
+		}
+	}
+}
+
+# --- The leader's speech (scope: the party leader) ---
+
+# A triumph: a standing ovation, the polls up, and the MPs remember why they backed you.
+wm_conference_speech_triumph_effect = {
+	set_variable = { name = wm_conference_result value = 1 days = 30 }
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_triumph_poll }
+	add_prestige = medium_prestige_gain
+	wm_conference_set_mood_effect = { MODIFIER = wm_conference_triumph_modifier }
+	wm_conference_mps_opinion_effect = { OPINION = wm_conference_triumph_opinion }
+}
+# Solid: nothing went wrong, which these days counts as a win.
+wm_conference_speech_solid_effect = {
+	set_variable = { name = wm_conference_result value = 2 days = 30 }
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_solid_poll }
+	add_prestige = minor_prestige_gain
+}
+# A cough-ridden disaster: the set falls apart, the polls fall with it, and the plotters smell blood.
+wm_conference_speech_disaster_effect = {
+	set_variable = { name = wm_conference_result value = 3 days = 30 }
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_disaster_poll }
+	add_prestige = medium_prestige_loss
+	wm_conference_set_mood_effect = { MODIFIER = wm_conference_disaster_modifier }
+	wm_conference_mps_opinion_effect = { OPINION = wm_conference_disaster_opinion }
+	wm_conference_plot_effect = yes
+	wm_conference_plot_effect = yes
+}
+# A set-piece policy that lands: tomorrow's front pages are yours.
+wm_conference_policy_hit_effect = {
+	set_variable = { name = wm_conference_result value = 4 days = 30 }
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_policy_poll }
+	add_prestige = medium_prestige_gain
+	wm_conference_set_mood_effect = { MODIFIER = wm_conference_triumph_modifier }
+	wm_conference_mps_opinion_effect = { OPINION = wm_conference_triumph_opinion }
+}
+# A set-piece policy that unravels by lunchtime.
+wm_conference_policy_flop_effect = {
+	set_variable = { name = wm_conference_result value = 5 days = 30 }
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_policy_flop_poll }
+	add_prestige = minor_prestige_loss
+	wm_conference_plot_effect = yes
+}
+
+# Scope: a party leader. This conference's lasting mood ($MODIFIER$), replacing last year's.
+wm_conference_set_mood_effect = {
+	if = {
+		limit = { has_character_modifier = wm_conference_triumph_modifier }
+		remove_character_modifier = wm_conference_triumph_modifier
+	}
+	if = {
+		limit = { has_character_modifier = wm_conference_disaster_modifier }
+		remove_character_modifier = wm_conference_disaster_modifier
+	}
+	add_character_modifier = {
+		modifier = $MODIFIER$
+		years = 1
+	}
+}
+
+# Scope: a party leader. Every MP of their party who serves them gets opinion $OPINION$ of them.
+wm_conference_mps_opinion_effect = {
+	save_temporary_scope_as = wm_conference_speaker
+	every_vassal = {
+		limit = {
+			var:wm_party ?= scope:wm_conference_speaker.var:wm_party
+		}
+		add_opinion = {
+			target = scope:wm_conference_speaker
+			modifier = $OPINION$
+		}
+	}
+}
+
+# Scope: an AI party leader facing leadership rumblings: a bad week in the papers.
+wm_conference_rumblings_ai_effect = {
+	wm_campaign_own_poll_effect = { AMOUNT = wm_conference_rumblings_poll }
+	add_prestige = medium_prestige_loss
+}

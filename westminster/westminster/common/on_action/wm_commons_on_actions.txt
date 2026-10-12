@@ -1,0 +1,64 @@
+﻿# House of Commons: set up at game start (appended to vanilla's on_game_start).
+on_game_start = {
+	on_actions = { wm_commons_on_game_start }
+}
+
+# The poll moods that wm_commons_poll_effect adjusts (common/scripted_effects/wm_commons_effects.txt). Created at 0
+# here unless something else already made them, so they always exist. (The polls themselves are wm_poll_<party>,
+# owned by the election system; wm_commons_poll_effect is the only coupling.)
+wm_commons_on_game_start = {
+	effect = {
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_labour } }
+			set_global_variable = { name = wm_poll_mood_labour value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_conservative } }
+			set_global_variable = { name = wm_poll_mood_conservative value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_lib_dem } }
+			set_global_variable = { name = wm_poll_mood_lib_dem value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_snp } }
+			set_global_variable = { name = wm_poll_mood_snp value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_sinn_fein } }
+			set_global_variable = { name = wm_poll_mood_sinn_fein value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_reform } }
+			set_global_variable = { name = wm_poll_mood_reform value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_dup } }
+			set_global_variable = { name = wm_poll_mood_dup value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_green } }
+			set_global_variable = { name = wm_poll_mood_green value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_plaid } }
+			set_global_variable = { name = wm_poll_mood_plaid value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_sdlp } }
+			set_global_variable = { name = wm_poll_mood_sdlp value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_alliance } }
+			set_global_variable = { name = wm_poll_mood_alliance value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_uup } }
+			set_global_variable = { name = wm_poll_mood_uup value = 0 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_poll_mood_tuv } }
+			set_global_variable = { name = wm_poll_mood_tuv value = 0 }
+		}
+	}
+}

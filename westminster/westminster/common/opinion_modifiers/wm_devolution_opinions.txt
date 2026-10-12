@@ -1,0 +1,22 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt): a First Minister towards the Prime Minister.
+
+wm_dev_granted_opinion = {
+	opinion = 20
+	years = 5
+	decaying = yes
+}
+wm_dev_refused_opinion = {
+	opinion = -30
+	years = 5
+	decaying = yes
+}
+wm_dev_devolved_opinion = {
+	opinion = 15
+	years = 5
+	decaying = yes
+}
+wm_dev_clawed_back_opinion = {
+	opinion = -30
+	years = 5
+	decaying = yes
+}

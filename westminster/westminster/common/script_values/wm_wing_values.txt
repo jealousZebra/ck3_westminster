@@ -1,0 +1,149 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt). Labour: 1 Labour Left, 2 Soft Left, 3 Labour
+# Centrists. Conservatives: 4 One Nation, 5 Free-marketeers, 6 Traditionalists. Approval is 0-100 in
+# global_var:wm_wing_approval_<wing>; it drifts back towards 50 each month.
+
+wm_wing_drift = 0.1
+wm_wing_disgruntled_below = 30	# members resent the leader (Commons rebellions follow from their opinion)
+wm_wing_content_above = 70		# members warm to the leader
+wm_wing_furious_below = 15		# three months like this and the wing challenges the leader
+wm_wing_furious_months = 3
+wm_wing_min_size = 5			# smaller wings don't count for cabinet places or challenges
+wm_wing_no_cabinet = -1.5		# a month with no cabinet (or shadow cabinet) place (with the drift, it settles at 35)
+wm_wing_one_cabinet = 0.5
+wm_wing_two_cabinet = 2
+wm_wing_court_cost = 150		# prestige, to court a wing (decision)
+wm_wing_court_gain = 15
+wm_wing_court_others = -4
+wm_wing_court_net = 19			# the courted wing: +15, after the -4 every wing takes
+wm_wing_conference = 5			# a conference triumph for every wing of the party
+wm_wing_conference_loss = -5		# a conference disaster
+wm_wing_concede_cost = 300		# prestige: conceding to a challenge
+wm_wing_concede_prestige = -300
+wm_wing_concede_gain = 30
+
+# Starting approval (2024: Labour fresh from a landslide, the Conservatives from a heavy defeat)
+wm_wing_start_1 = 45
+wm_wing_start_2 = 55
+wm_wing_start_3 = 65
+wm_wing_start_4 = 50
+wm_wing_start_5 = 50
+wm_wing_start_6 = 50
+
+# How each wing takes a government measure (wm_wing_policy_effect). Kinds: 0 none, 1 a left-wing economic measure
+# (a tax rise, public services spending), 2 a right-wing reform, 3 emergency powers, 4 a coalition compromise.
+wm_wing_react_0_1 = 0
+wm_wing_react_0_2 = 0
+wm_wing_react_0_3 = 0
+wm_wing_react_0_4 = 0
+wm_wing_react_0_5 = 0
+wm_wing_react_0_6 = 0
+wm_wing_react_1_1 = 10
+wm_wing_react_1_2 = 5
+wm_wing_react_1_3 = -4
+wm_wing_react_1_4 = 3
+wm_wing_react_1_5 = -10
+wm_wing_react_1_6 = -2
+wm_wing_react_2_1 = -10
+wm_wing_react_2_2 = -4
+wm_wing_react_2_3 = 6
+wm_wing_react_2_4 = -3
+wm_wing_react_2_5 = 8
+wm_wing_react_2_6 = 2
+wm_wing_react_3_1 = -6
+wm_wing_react_3_2 = -2
+wm_wing_react_3_3 = 0
+wm_wing_react_3_4 = -2
+wm_wing_react_3_5 = -2
+wm_wing_react_3_6 = 6
+wm_wing_react_4_1 = -5
+wm_wing_react_4_2 = -5
+wm_wing_react_4_3 = -5
+wm_wing_react_4_4 = -5
+wm_wing_react_4_5 = -5
+wm_wing_react_4_6 = -5
+
+# For the UI and loc: a wing's approval (its starting level before the variable exists) and its size.
+wm_ui_wing_approval_1 = {
+	value = wm_wing_start_1
+	if = {
+		limit = { has_global_variable = wm_wing_approval_1 }
+		value = global_var:wm_wing_approval_1
+	}
+}
+wm_ui_wing_size_1 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_1 }
+		value = global_var:wm_wing_size_1
+	}
+}
+wm_ui_wing_approval_2 = {
+	value = wm_wing_start_2
+	if = {
+		limit = { has_global_variable = wm_wing_approval_2 }
+		value = global_var:wm_wing_approval_2
+	}
+}
+wm_ui_wing_size_2 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_2 }
+		value = global_var:wm_wing_size_2
+	}
+}
+wm_ui_wing_approval_3 = {
+	value = wm_wing_start_3
+	if = {
+		limit = { has_global_variable = wm_wing_approval_3 }
+		value = global_var:wm_wing_approval_3
+	}
+}
+wm_ui_wing_size_3 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_3 }
+		value = global_var:wm_wing_size_3
+	}
+}
+wm_ui_wing_approval_4 = {
+	value = wm_wing_start_4
+	if = {
+		limit = { has_global_variable = wm_wing_approval_4 }
+		value = global_var:wm_wing_approval_4
+	}
+}
+wm_ui_wing_size_4 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_4 }
+		value = global_var:wm_wing_size_4
+	}
+}
+wm_ui_wing_approval_5 = {
+	value = wm_wing_start_5
+	if = {
+		limit = { has_global_variable = wm_wing_approval_5 }
+		value = global_var:wm_wing_approval_5
+	}
+}
+wm_ui_wing_size_5 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_5 }
+		value = global_var:wm_wing_size_5
+	}
+}
+wm_ui_wing_approval_6 = {
+	value = wm_wing_start_6
+	if = {
+		limit = { has_global_variable = wm_wing_approval_6 }
+		value = global_var:wm_wing_approval_6
+	}
+}
+wm_ui_wing_size_6 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_wing_size_6 }
+		value = global_var:wm_wing_size_6
+	}
+}

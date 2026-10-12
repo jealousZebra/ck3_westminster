@@ -1,0 +1,111 @@
+﻿# Elections and polls (common/scripted_effects/wm_election_effects.txt, wm_polls_effects.txt). Poll and seat
+# shares are in tenths of a percent. The per-party values are generated: wm_polls_values.txt.
+
+# A sitting MP standing again for their party gets this much (3 points) on top of the swing
+wm_election_incumbency_bonus = 30
+# Parliament's term: the election is called when it has sat this many months (polling day about five weeks later)
+wm_election_deadline_months = 58
+# The Prime Minister can't call an early election in the first months of a Parliament
+wm_election_min_months = 6
+
+# How the government is doing, added to the PM's party's poll anchor (wm_polls_anchor_<party>). Root-free: reads
+# the Prime Minister through title:e_united_kingdom.
+wm_polls_government_pressure = {
+	value = 0
+	if = {
+		limit = { exists = title:e_united_kingdom.holder }
+		add = title:e_united_kingdom.holder.wm_polls_pm_pressure
+	}
+	# Mid-term blues: governments trail between their first and fourth years
+	if = {
+		limit = {
+			has_global_variable = wm_el_months
+			global_var:wm_el_months >= 12
+			global_var:wm_el_months < 48
+		}
+		add = -30
+	}
+	# Riots on the news
+	if = {
+		limit = {
+			has_global_variable_list = wm_active_riots
+			any_in_global_list = {
+				variable = wm_active_riots
+				count >= 1
+			}
+		}
+		add = -15
+	}
+	if = {
+		limit = {
+			has_global_variable_list = wm_active_riots
+			any_in_global_list = {
+				variable = wm_active_riots
+				count >= 2
+			}
+		}
+		add = -15
+	}
+}
+
+# Scope: the Prime Minister. Their standing (prestige and legitimacy) and how they have handled riots.
+wm_polls_pm_pressure = {
+	value = prestige_level
+	subtract = 2
+	multiply = 10
+	if = {
+		limit = { has_legitimacy = yes }
+		if = {
+			limit = { legitimacy_level >= 4 }
+			add = 20
+		}
+		else_if = {
+			limit = { legitimacy_level >= 3 }
+			add = 10
+		}
+		else_if = {
+			limit = { legitimacy_level <= 1 }
+			add = -20
+		}
+	}
+	# Riots policed or conceded (common/scripted_effects/wm_riot_effects.txt)
+	if = {
+		limit = { has_character_modifier = wm_heavy_handed_modifier }
+		add = -20
+	}
+	if = {
+		limit = { has_character_modifier = wm_crackdown_modifier }
+		add = -50
+	}
+	if = {
+		limit = { has_character_modifier = wm_u_turn_modifier }
+		add = -15
+	}
+	if = {
+		limit = { has_character_modifier = wm_cost_of_living_package_modifier }
+		add = 15
+	}
+	# Promised the marchers an election and hasn't called it
+	if = {
+		limit = { has_character_flag = wm_early_election_promised }
+		add = -10
+	}
+}
+
+# For the decision's description: the government's poll and lead, in percentage points
+wm_polls_government_poll_points = {
+	value = wm_polls_government_poll
+	divide = 10
+}
+wm_polls_government_lead_points = {
+	value = wm_polls_government_lead
+	divide = 10
+}
+# Months since the last general election
+wm_election_months_sat = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_el_months }
+		value = global_var:wm_el_months
+	}
+}

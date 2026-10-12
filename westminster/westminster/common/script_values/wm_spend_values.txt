@@ -1,0 +1,61 @@
+﻿# Campaign spending (common/scripted_effects/wm_spend_effects.txt): money each month for a press campaign that lifts
+# your party, or a smear campaign against a rival party. Poll amounts are tenths of a percent in the party's own
+# nation, each month; the polls pull back 5% a month towards their anchor, so a steady push settles at about 20
+# times the monthly amount (a leader's press campaign about 3 points, a backbencher's about 0.6).
+
+wm_spend_press_leader = 1.5
+wm_spend_press_mp = 0.3
+wm_spend_smear_leader = -2
+wm_spend_smear_mp = -0.5
+wm_spend_backfire_own_poll = -10	# a backfiring smear costs the spender's party a point
+wm_spend_max_months = 12			# a campaign runs at most a year (the AI's six months)
+wm_spend_ai_max_months = 6
+wm_spend_favour_cost = 250			# party standing (piety) for a hook on a rival party leader
+
+# Scope: a character. What a month of campaigning costs: 30% of monthly income for a press campaign, 40% for a smear
+# (at least 0.5).
+wm_spend_monthly_cost = {
+	value = monthly_character_income
+	if = {
+		limit = { var:wm_spend_kind ?= 2 }
+		multiply = 0.4
+	}
+	else = {
+		multiply = 0.3
+	}
+	min = 0.5
+}
+# The same for a campaign not yet started (decision descriptions): press, then smear.
+wm_spend_press_cost = {
+	value = monthly_character_income
+	multiply = 0.3
+	min = 0.5
+}
+wm_spend_smear_cost = {
+	value = monthly_character_income
+	multiply = 0.4
+	min = 0.5
+}
+
+# Scope: the spender. The monthly chance (percent) that a smear backfires: 6%, more for a poor schemer, less for a
+# good one (2-15%).
+wm_spend_backfire_chance = {
+	value = 6
+	if = {
+		limit = { intrigue < 10 }
+		add = {
+			value = 10
+			subtract = intrigue
+			multiply = 0.5
+		}
+	}
+	else = {
+		subtract = {
+			value = intrigue
+			subtract = 10
+			multiply = 0.3
+		}
+	}
+	min = 2
+	max = 15
+}

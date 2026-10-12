@@ -1,0 +1,84 @@
+[h1]Westminster: moderne britische Politik für Crusader Kings III[/h1]
+WICHTIG: Die Mod ist vorerst nur auf Englisch verfügbar. Übersetzungen folgen später.
+
+[b]Eine Total Conversion, die CK3 in britische Politik verwandelt.[/b] Das Spiel beginnt am 5. Juli 2024, dem Tag nach der Unterhauswahl, mit allen 650 echten Abgeordneten auf einer Karte der echten Wahlkreise. Spielt einen beliebigen Abgeordneten oder beginnt als junger Parteiaktivist und arbeitet euch von der Haustür bis in die Downing Street hoch: Gewinnt die Kandidatennominierung, kämpft in Wahlen, haltet die Fraktion im Unterhaus auf Linie und übersteht eine Vertrauensabstimmung.
+
+[h2]Beta 0.3[/h2]
+Dies ist die erste öffentliche Version und eine [b]Beta[/b]. Die Karte, das Parlament von 2024, das Unterhaus, Wahlen, Wahlkämpfe, Karrieren, Parteien und die neue Benutzeroberfläche funktionieren und sind durch automatisierte Tests im Spiel abgedeckt. Noch nicht ganz rund:
+[list]
+[*]Die KI-Balance in langen Partien ist ungetestet: Nach etwa einem Jahrzehnt sind seltsame Umfragewerte oder merkwürdige Regierungen möglich.
+[*]Die Porträts tragen noch die mittelalterliche Kleidung des Spiels.
+[*]Einige Bildschirme des Grundspiels wirken noch mittelalterlich.
+[*]Nur ein Lesezeichen: 2024. Frühere Premierminister folgen später.
+[*]Vorerst nur auf Englisch. Übersetzungen folgen später.
+[/list]
+Fehlerberichte und Ideen sind in den Kommentaren sehr willkommen.
+
+[h2]Features[/h2]
+[h3]Das Parlament von 2024[/h3]
+[list]
+[*]Alle 650 am 4. Juli 2024 gewählten Abgeordneten in ihren echten Wahlkreisen, auf einer Karte der Westminster-Wahlkreise von 2024, erstellt aus offiziellen Grenzdaten.
+[*]Keir Starmer in der Downing Street Nr. 10, die 13 Parteien, die Sitze gewonnen haben, und die Regionalregierungen in Edinburgh, Cardiff und Belfast.
+[*]Wiedererkennbare Porträts für führende Persönlichkeiten: CK3-Gesichter mit ihrer Frisur, ihrem Teint und ihrer Statur.
+[/list]
+
+[h3]Vom Aktivisten zum Premierminister[/h3]
+[list]
+[*]Beginnt ohne Sitz: Klinkenputzen, Spenden sammeln und Reden schreiben, um euer Party Standing (Ansehen in der Partei) aufzubauen, die Kandidatenprüfung zu bestehen und eine Nominierung zu gewinnen.
+[*]Parteien sind Häuser: Wechselt mit Cross the Floor die Partei oder gründet mit Found a Party eure eigene.
+[*]Wahlen um den Parteivorsitz: Die Abgeordneten nominieren, dann wählen die Mitglieder zwischen den beiden Erstplatzierten. Fordert euren Vorsitzenden heraus, wenn ihr euch traut.
+[*]Der Speaker (Parlamentspräsident) wird von allen Abgeordneten geheim gewählt und verlässt seine Partei.
+[/list]
+
+[h3]Wahlen[/h3]
+[list]
+[*]Die Umfragewerte aller Parteien verschieben sich Monat für Monat, beeinflusst vom Ansehen des Premierministers, von Unruhen und vom Zwischentief zur Mitte der Legislaturperiode.
+[*]Jeder Wahlkreis schwingt ausgehend von seinem echten Ergebnis von 2024. Nach fünf Jahren endet die Legislaturperiode, es sei denn, der Premierminister ruft vorher Neuwahlen aus.
+[*]Nachwahlen, Ergebnisse auf der Titelseite („LABOUR LANDSLIDE“, „HUNG PARLIAMENT“), Neuauszählungen und Wahlgerichte für umstrittene Sitze.
+[*]Parlamente ohne Mehrheit: Koalitionen mit einem stellvertretenden Premierminister oder Tolerierungsabkommen (Confidence and Supply), die platzen können.
+[/list]
+
+[h3]Das Unterhaus (House of Commons)[/h3]
+[list]
+[*]Gesetzentwürfe der Regierung: Finanzen, öffentliche Dienste, Reformen, Notstandsbefugnisse.
+[*]Der Chief Whip prognostiziert das Abstimmungsergebnis. Übt Druck aus oder gebt nach. Nach drei Rebellionen verliert ein Abgeordneter den Whip.
+[*]Eine live berechnete Arbeitsmehrheit: Verlorene Nachwahlen und Überläufer lassen sie schrumpfen, und wer sie verliert, muss sich einem Misstrauensantrag stellen.
+[/list]
+
+[h3]Politischer Alltag[/h3]
+[list]
+[*]Wöchentliche Wahlkampfentscheidungen: Kundgebungen, TV-Debatten, Programmvorstellungen, Haustürwahlkampf und der eine oder andere Fauxpas.
+[*]Parteitage: die Rede des Vorsitzenden, Nebenveranstaltungen und Intrigen.
+[*]Öffentliches Vertrauen, das durch Unruhen, Kehrtwenden und Skandale schwindet.
+[*]Wahlkampfausgaben: Pressekampagnen und Schmutzkampagnen, die nach hinten losgehen können.
+[*]Parteiflügel: Haltet Labours Left, Soft Left und Centrists (oder One Nation, Free-marketeers und Traditionalists der Konservativen) bei Laune, sonst drohen Rebellionen.
+[*]Devolution: Unterstützung für die Unabhängigkeit, Forderungen nach Referenden, übertragene oder zurückgeholte Befugnisse, Zusammenbruch und Rückkehr von Stormont.
+[*]Ideologie statt Religion: 15 Ideologien in fünf Lagern (Links, Mitte, Rechts, Nationalisten, Unionisten).
+[*]Unruhen, die Forderungen stellen und auf Westminster marschieren: Gebt nach, verhandelt oder schickt die Polizei.
+[*]Die Krone als kleine, zeremonielle Figur, die sich nur sehr selten zu Wort meldet.
+[/list]
+
+[h3]Ein moderner Look[/h3]
+[list]
+[*]Eine Benutzeroberfläche im Zeitungsstil: Zeitungspapier, Druckerschwärze und ein einziger roter Akzent, gesetzt in Playfair Display und Source Serif.
+[*]Das Panel State of the Parties: neueste Umfrage, öffentliches Vertrauen, die Sitzverteilung im Unterhaus und ein Umfrageverlauf.
+[*]Echte Flaggen für die Nationen sowie für die Grafschaften und Städte, die eine haben, und Bilder im Stil von Pressefotos statt mittelalterlicher Kunst.
+[*]Moderne Begriffe: Charisma, Economy, Security, Spin, Policy und Stamina; Funds, Profile, Political Capital, Party Brand, Clout, Pressure und Mandate.
+[*]Keine mittelalterlichen Ereignisse, heiligen Kriege, Kreuzzüge oder Päpste. Mord-, Entführungs- und Verführungsintrigen sind deaktiviert.
+[/list]
+
+[h2]Echte Namen, fiktive Ereignisse[/h2]
+Echte Politiker und Personen des öffentlichen Lebens erscheinen unter ihrem echten Namen, aber alle Ereignisse sind generisch und fiktiv. Nichts in der Mod sagt oder unterstellt etwas über eine reale Person. Die Ehepartner und Familien der Abgeordneten sind erfunden. Westminster steht in keiner Verbindung zum Parlament, zu einer politischen Partei oder zum Königshaus, und die Parteiembleme sind vereinfachte Entwürfe, keine Parteilogos.
+
+[h2]Kompatibilität[/h2]
+[list]
+[*]Crusader Kings III 1.20. Startet ein neues Spiel über das Lesezeichen 2024: Die Mod kann keinem bestehenden Spielstand hinzugefügt werden.
+[*]Um einen Charakter ohne Sitz zu spielen (der Aktivistenstart und die Karriereleiter), braucht ihr wie im Grundspiel die Erweiterung [b]Roads to Power[/b]. Für das Spielen eines Abgeordneten ist sie nicht nötig.
+[*]Eine Total Conversion: Nicht mit anderen Mods kombinieren, die Karte, Titel, Geschichte oder Benutzeroberfläche verändern.
+[*]Errungenschaften sind deaktiviert, solange Westminster aktiv ist.
+[/list]
+
+[h2]Credits[/h2]
+CREDITS.txt im Mod-Ordner listet alle Quellen und Lizenzen auf: Wahlkreisgrenzen (ONS, Open Government Licence), Wahlergebnisse und Abgeordnete (UK Parliament, Open Parliament Licence), Orte (GeoNames), Höhendaten (Copernicus), die Schriftarten (SIL Open Font License) und jede Flagge von Wikimedia Commons. Die Bilder sind KI-generiert (FLUX.1 [dev]) und unter CC0 veröffentlicht. Nicht von Paradox Interactive erstellt oder unterstützt.
+
+[b]Quellcode:[/b] Open Source, bald auf GitHub.

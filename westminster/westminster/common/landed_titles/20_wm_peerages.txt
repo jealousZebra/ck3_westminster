@@ -1,0 +1,19 @@
+﻿# Peerages (spike d): landless county-tier titles, so a peer needn't hold a seat.
+# A life peerage is destroyed when its holder dies; a hereditary one passes to the heir.
+c_peerage_life_test = {
+	color = { 160 30 60 }
+	capital = c_cities_of_london_and_westminster
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	destroy_on_succession = yes
+	ruler_uses_title_name = no
+}
+c_peerage_hereditary_test = {
+	color = { 160 30 90 }
+	capital = c_cities_of_london_and_westminster
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	ruler_uses_title_name = no
+}

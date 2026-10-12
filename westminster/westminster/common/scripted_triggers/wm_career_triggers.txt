@@ -1,0 +1,65 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt).
+
+# Task contract: one of the career jobs
+wm_career_is_job_trigger = {
+	OR = {
+		has_task_contract_type = wm_job_canvassing
+		has_task_contract_type = wm_job_fundraising
+		has_task_contract_type = wm_job_speechwriting
+		has_task_contract_type = wm_job_research
+		has_task_contract_type = wm_selection_contract
+	}
+}
+
+# Character: a hopeful who may apply for a selection now (on the approved list, or with enough standing; not
+# already applying anywhere or selected for a seat)
+wm_career_can_apply_trigger = {
+	is_alive = yes
+	has_variable = wm_career_hopeful
+	has_variable = wm_party
+	NOT = { wm_is_mp_trigger = yes }
+	NOT = { has_variable = wm_career_applied }
+	NOT = { has_variable = wm_career_selected_seat }
+	OR = {
+		has_variable = wm_on_shortlist
+		AND = {
+			has_variable = wm_standing
+			var:wm_standing >= wm_career_apply_standing
+		}
+	}
+}
+
+# Character: a selected candidate who can take the seat for $PARTY$ (alive, still in the party, not an MP already)
+wm_career_can_take_seat_trigger = {
+	is_alive = yes
+	var:wm_party ?= title:$PARTY$
+	NOT = { wm_is_mp_trigger = yes }
+}
+
+# Seat: $P$/$PARTY$ could open a selection here (it has a leader, isn't selecting here already and has no living
+# candidate)
+wm_career_can_open_trigger = {
+	exists = title:$PARTY$.holder
+	NOT = {
+		has_variable_list = wm_sel_parties
+		is_target_in_variable_list = { name = wm_sel_parties target = title:$PARTY$ }
+	}
+	NOT = { var:wm_candidate_$P$ ?= { is_alive = yes } }
+}
+
+# Seat: a selection is open here for the party of character $CHAR$, and they may apply
+wm_career_seat_open_for_trigger = {
+	has_variable_list = wm_sel_parties
+	is_target_in_variable_list = { name = wm_sel_parties target = $CHAR$.var:wm_party }
+}
+
+# A general election is coming: Parliament has sat three years, or has been dissolved
+wm_career_election_near_trigger = {
+	OR = {
+		has_global_variable = wm_el_scheduled
+		AND = {
+			has_global_variable = wm_el_months
+			global_var:wm_el_months >= 36
+		}
+	}
+}

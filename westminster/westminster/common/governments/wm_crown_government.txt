@@ -1,0 +1,44 @@
+﻿# The monarch's government. A constitutional monarch: no council, no domain, no vassals, no wars.
+# It exists so the holder of the Crown gets their own rank names (king_wm_crown_male etc., the same
+# pattern as vanilla's celestial_government -> king_celestial_male) instead of the kingdom-tier
+# "First Minister". Only the holder of title:k_wm_crown can have it.
+wm_crown_government = {
+	government_rules = {
+		create_cadet_branches = yes
+		rulers_should_have_dynasty = yes
+		dynasty_named_realms = no
+		landless_playable = yes
+		legitimacy = yes
+		council = no
+		court_generate_spouses = no
+		sticky_government = yes
+		inherit_from_dynastic_government = no
+		allow_accolades = no
+	}
+
+	royal_court = any
+
+	can_get_government = {
+		has_title = title:k_wm_crown
+	}
+
+	ai = {
+		arrange_marriage = yes
+		use_goals = no
+		use_scripted_guis = no
+		perform_religious_reformation = no
+		use_legends = no
+	}
+
+	# Script checks flags rather than has_government; this government deliberately has none of the
+	# feudal flags (wars, domain limit, crown authority), so vanilla feudal content leaves it alone.
+	flags = {
+		wm_government_is_crown
+	}
+
+	mechanic_type = feudal
+
+	color = hsv{ 0.83 0.70 0.55 }
+	realm_mask_offset = { 0.0 0.0 }
+	realm_mask_scale = { 1 1 }
+}

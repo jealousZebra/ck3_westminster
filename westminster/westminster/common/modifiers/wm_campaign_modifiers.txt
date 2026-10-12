@@ -1,0 +1,25 @@
+﻿# Election campaigns and party conferences (common/scripted_effects/wm_campaign_effects.txt, wm_conference_effects.txt)
+
+# A seat whose MP knocked on its doors during the campaign
+wm_campaign_doorstep_county_modifier = {
+	icon = county_modifier_opinion_positive
+	county_opinion_add = 5
+}
+# A campaign gaffe that won't go away
+wm_campaign_viral_gaffe_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -0.5
+	general_opinion = -5
+}
+# A party leader after a triumphant conference
+wm_conference_triumph_modifier = {
+	icon = prestige_positive
+	monthly_prestige = 1
+	general_opinion = 5
+}
+# A party leader after a disastrous one
+wm_conference_disaster_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -1
+	general_opinion = -5
+}

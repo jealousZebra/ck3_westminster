@@ -1,0 +1,19 @@
+﻿# Elections (common/scripted_effects/wm_election_effects.txt).
+
+# Character (a seat holder): keeps their seat at a general election whatever the swing. Party leaders and the Prime
+# Minister are assumed to sit in safe seats (it keeps leaders and the government in the Commons), and the Speaker is
+# re-elected unopposed by convention.
+wm_election_safe_seat_trigger = {
+	OR = {
+		has_title = title:e_united_kingdom
+		has_character_flag = wm_speaker
+		var:wm_party.holder ?= this
+	}
+}
+
+# Character: an independent MP (a seat, no party, not the Speaker)
+wm_election_is_independent_mp_trigger = {
+	wm_is_mp_trigger = yes
+	NOT = { has_variable = wm_party }
+	NOT = { has_character_flag = wm_speaker }
+}

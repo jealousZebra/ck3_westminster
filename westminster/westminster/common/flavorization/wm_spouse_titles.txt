@@ -1,0 +1,255 @@
+﻿# Westminster: a politician's husband or wife doesn't take their rank. Vanilla gives a ruler's spouse the ruler's
+# rank ("Countess"), which here would read "MP Jane Smith" for an MP's wife. The holder entries (only_holder,
+# priority 9600) keep the rank names of localization/english/replace/wm_ranks_l_english.yml; the spouse entries
+# below them (priority 9500) give the spouse no rank. Feudal government only: the Crown's "Queen" is untouched.
+
+wm_holder_barony_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_barony_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = barony
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_barony_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_barony_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = barony
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_county_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_county_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = county
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_county_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_county_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = county
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_duchy_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_duchy_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = duchy
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_duchy_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_duchy_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = duchy
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_kingdom_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_kingdom_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = kingdom
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_kingdom_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_kingdom_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = kingdom
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_empire_male = {
+	type = character
+	gender = male
+	special = holder
+	tier = empire
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}
+wm_holder_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 9600
+	governments = { feudal_government }
+	flavourization_rules = {
+		only_holder = yes
+		spouse_takes_title = no
+		top_liege = no
+	}
+}
+wm_spouse_empire_female = {
+	type = character
+	gender = female
+	special = holder
+	tier = empire
+	priority = 9500
+	governments = { feudal_government }
+	flavourization_rules = {
+		spouse_takes_title = yes
+		top_liege = no
+	}
+}

@@ -1,0 +1,7 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt)
+
+# The First Minister of Northern Ireland while power-sharing is suspended
+wm_dev_assembly_suspended_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -1
+}

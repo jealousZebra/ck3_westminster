@@ -1,0 +1,10 @@
+widget = {
+	name = "rf_test_widget"
+	size = { 10 10 }
+	visible = "[GetPlayer.IsValid]"
+	state = {
+		name = rf_run
+		trigger_on_create = yes
+		on_start = "[GetScriptedGui('rf_test_s1').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
+	}
+}

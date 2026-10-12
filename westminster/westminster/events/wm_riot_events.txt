@@ -1,0 +1,406 @@
+﻿# Riots: rioters form in a seat, march on Westminster and make a demand of the Prime Minister.
+# Effects and state: common/scripted_effects/wm_riot_effects.txt. Started by wm_riot_yearly_pulse
+# (common/on_action/wm_gameplay_on_actions.txt). Events 1-3 are hidden and run on the march organiser.
+namespace = wm_riot
+
+# The rioters gather. Tell the local MP (unless they are the PM, who hears when the march arrives).
+wm_riot.1 = {
+	hidden = yes
+	trigger = {
+		exists = var:wm_riot_seat
+	}
+	immediate = {
+		save_scope_as = wm_riot_organiser
+		var:wm_riot_seat = { save_scope_as = wm_riot_seat }
+		if = {
+			limit = {
+				exists = scope:wm_riot_seat.holder
+				NOT = { scope:wm_riot_seat.holder = title:e_united_kingdom.holder }
+			}
+			scope:wm_riot_seat.holder = { trigger_event = wm_riot.10 }
+		}
+		title:e_united_kingdom.holder ?= {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_riot_gathering_toast
+				left_icon = scope:wm_riot_organiser
+				custom_tooltip = wm_riot_gathering_toast_desc
+			}
+		}
+		trigger_event = { id = wm_riot.2 days = { 10 20 } }
+	}
+}
+
+# The march sets off for Westminster.
+wm_riot.2 = {
+	hidden = yes
+	trigger = {
+		exists = var:wm_riot_seat
+		var:wm_riot_seat = {
+			wm_riot_is_active_trigger = yes
+			var:wm_riot_organiser ?= root
+			var:wm_riot_stage = 1
+		}
+	}
+	immediate = {
+		save_scope_as = wm_riot_organiser
+		var:wm_riot_seat = {
+			save_scope_as = wm_riot_seat
+			set_variable = { name = wm_riot_stage value = 2 }
+		}
+		title:e_united_kingdom.holder ?= {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = wm_riot_marching_toast
+				left_icon = scope:wm_riot_organiser
+				custom_tooltip = wm_riot_marching_toast_desc
+			}
+		}
+		trigger_event = { id = wm_riot.3 days = { 20 30 } }
+	}
+}
+
+# The march reaches Westminster and makes its demand of the Prime Minister.
+wm_riot.3 = {
+	hidden = yes
+	trigger = {
+		exists = var:wm_riot_seat
+		var:wm_riot_seat = {
+			wm_riot_is_active_trigger = yes
+			var:wm_riot_organiser ?= root
+			var:wm_riot_stage >= 2	# marching, or back again after failed talks
+		}
+	}
+	immediate = {
+		save_scope_as = wm_riot_organiser
+		var:wm_riot_seat = {
+			save_scope_as = wm_riot_seat
+			set_variable = { name = wm_riot_stage value = 3 }
+		}
+		if = {
+			limit = { exists = title:e_united_kingdom.holder }
+			if = {	# the in-game tests: no event window for a player PM (it would pause the game); the march waits
+				limit = { NOT = { AND = { has_global_variable = wm_test_quiet title:e_united_kingdom.holder = { is_ai = no } } } }
+				title:e_united_kingdom.holder = { trigger_event = wm_riot.20 }
+			}
+		}
+		else = {
+			scope:wm_riot_seat = { wm_riot_end_effect = yes }
+		}
+	}
+}
+
+# The local MP hears that rioters have gathered in their seat.
+wm_riot.10 = {
+	type = character_event
+	title = wm_riot.10.t
+	desc = {
+		desc = wm_riot.10.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 1 } }
+				desc = wm_riot_demand_1_desc
+			}
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 2 } }
+				desc = wm_riot_demand_2_desc
+			}
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 3 } }
+				desc = wm_riot_demand_3_desc
+			}
+			desc = wm_riot_demand_4_desc
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:wm_riot_organiser
+		animation = anger
+	}
+
+	# Go out and talk to them
+	option = {
+		name = wm_riot.10.a
+		trigger = { scope:wm_riot_seat = { wm_riot_is_active_trigger = yes } }
+		duel = {
+			skill = diplomacy
+			value = average_skill_rating
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_riot.10.a.success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_riot.10.a.success
+					left_icon = scope:wm_riot_organiser
+					add_prestige = minor_prestige_gain
+					scope:wm_riot_seat = {
+						add_county_modifier = { modifier = wm_riot_compromise_county_modifier years = 3 }
+						wm_riot_end_effect = yes
+					}
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_riot.10.a.failure
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_riot.10.a.failure
+					left_icon = scope:wm_riot_organiser
+					add_prestige = minor_prestige_loss
+				}
+			}
+		}
+		ai_chance = {
+			base = 30
+			modifier = {
+				add = 30
+				diplomacy >= 12
+			}
+			modifier = {
+				add = -20
+				has_trait = shy
+			}
+			modifier = {	# tests: riots they start must stay put
+				factor = 0
+				has_global_variable = wm_test_quiet
+			}
+		}
+	}
+
+	# Back their demands
+	option = {
+		name = wm_riot.10.b
+		trigger = { scope:wm_riot_seat = { wm_riot_is_active_trigger = yes } }
+		scope:wm_riot_seat = {
+			add_county_modifier = { modifier = wm_mp_backed_protesters_county_modifier years = 5 }
+		}
+		liege ?= {
+			if = {
+				limit = { NOT = { this = root } }
+				add_opinion = { target = root modifier = wm_backed_protesters_opinion }
+			}
+		}
+		ai_chance = {
+			base = 15
+			modifier = {
+				add = 20
+				has_trait = compassionate
+			}
+			modifier = {
+				add = 15
+				has_trait = ambitious
+			}
+		}
+	}
+
+	# Keep your head down
+	option = {
+		name = wm_riot.10.c
+		ai_chance = {
+			base = 30
+			modifier = {
+				add = 20
+				has_trait = craven
+			}
+		}
+	}
+}
+
+# The march reaches Westminster: the Prime Minister answers its demand.
+wm_riot.20 = {
+	type = character_event
+	title = wm_riot.20.t
+	desc = {
+		desc = wm_riot.20.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_size >= 2 } }
+				desc = wm_riot.20.desc_bigger
+			}
+			desc = wm_riot.20.desc_first
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 1 } }
+				desc = wm_riot_demand_1_desc
+			}
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 2 } }
+				desc = wm_riot_demand_2_desc
+			}
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 3 } }
+				desc = wm_riot_demand_3_desc
+			}
+			triggered_desc = {
+				trigger = { scope:wm_riot_seat = { var:wm_riot_demand = 4 } }
+				desc = wm_riot_demand_4_desc
+			}
+			desc = wm_riot.20.desc_gone
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:wm_riot_organiser
+		animation = anger
+	}
+
+	# Give them what they want
+	option = {
+		name = wm_riot.20.a
+		trigger = { scope:wm_riot_seat = { wm_riot_is_active_trigger = yes } }
+		wm_riot_concede_effect = yes
+		ai_chance = {
+			base = 25
+			modifier = {
+				add = 20
+				has_trait = compassionate
+			}
+			modifier = {
+				add = 15
+				has_trait = craven
+			}
+			modifier = {
+				add = -15
+				has_trait = arrogant
+			}
+			modifier = {
+				add = -15
+				has_trait = stubborn
+			}
+			modifier = {
+				add = 25
+				scope:wm_riot_seat = { var:wm_riot_size >= 3 }
+			}
+		}
+	}
+
+	# Talk to the organisers
+	option = {
+		name = wm_riot.20.b
+		trigger = {
+			scope:wm_riot_seat = {
+				wm_riot_is_active_trigger = yes
+				var:wm_riot_size < 3
+			}
+		}
+		duel = {
+			skill = diplomacy
+			value = average_skill_rating
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_riot.20.b.success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_riot.20.b.success
+					left_icon = scope:wm_riot_organiser
+					wm_riot_negotiated_effect = yes
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_riot.20.b.failure
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_riot.20.b.failure
+					left_icon = scope:wm_riot_organiser
+					wm_riot_talks_failed_effect = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 40
+			modifier = {
+				add = 20
+				diplomacy >= 12
+			}
+			modifier = {
+				add = -20
+				diplomacy < 6
+			}
+		}
+	}
+
+	# Send in the police
+	option = {
+		name = wm_riot.20.c
+		trigger = { scope:wm_riot_seat = { wm_riot_is_active_trigger = yes } }
+		random_list = {
+			65 = {
+				modifier = {
+					add = 15
+					martial >= 12
+				}
+				desc = wm_riot.20.c.dispersed
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_riot.20.c.dispersed
+					left_icon = scope:wm_riot_organiser
+					wm_riot_policed_effect = yes
+				}
+			}
+			35 = {
+				modifier = {
+					add = 15
+					has_trait = wrathful
+				}
+				desc = wm_riot.20.c.violence
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_riot.20.c.violence
+					left_icon = scope:wm_riot_organiser
+					wm_riot_crackdown_effect = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 25
+				has_trait = wrathful
+			}
+			modifier = {
+				add = 20
+				has_trait = callous
+			}
+			modifier = {
+				add = 15
+				has_trait = arrogant
+			}
+			modifier = {
+				add = -15
+				has_trait = compassionate
+			}
+		}
+	}
+
+	# The crowd has already gone home (the riot ended while the PM was deciding)
+	option = {
+		name = wm_riot.20.d
+		trigger = { scope:wm_riot_seat = { NOT = { wm_riot_is_active_trigger = yes } } }
+	}
+}

@@ -1,0 +1,44 @@
+﻿# Polls (wm_polls_effects.txt): does the party with poll key <key> hold Downing Street? Used as
+# wm_polls_governs_$P$ = yes inside effects that take a poll key (lab, con, ... oth).
+wm_polls_governs_lab = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_labour }
+}
+wm_polls_governs_con = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_conservative }
+}
+wm_polls_governs_ld = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_lib_dem }
+}
+wm_polls_governs_ruk = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_reform }
+}
+wm_polls_governs_grn = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_green }
+}
+wm_polls_governs_snp = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_snp }
+}
+wm_polls_governs_pc = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_plaid }
+}
+wm_polls_governs_sf = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_sinn_fein }
+}
+wm_polls_governs_dup = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_dup }
+}
+wm_polls_governs_sdlp = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_sdlp }
+}
+wm_polls_governs_apni = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_alliance }
+}
+wm_polls_governs_uup = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_uup }
+}
+wm_polls_governs_tuv = {
+	title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_tuv }
+}
+wm_polls_governs_oth = {
+	always = no
+}

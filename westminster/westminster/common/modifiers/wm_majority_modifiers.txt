@@ -1,0 +1,15 @@
+﻿# By-election defeats (common/scripted_effects/wm_majority_effects.txt), on the Prime Minister.
+
+# Two by-election defeats in a row
+wm_majority_byelection_blues_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -0.5
+	general_opinion = -3
+}
+# Three or more in a row: the party starts to wonder
+wm_majority_losing_streak_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -1
+	general_opinion = -8
+	vassal_opinion = -10
+}

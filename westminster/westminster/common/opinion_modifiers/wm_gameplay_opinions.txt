@@ -1,0 +1,38 @@
+﻿# Riots
+wm_forced_to_resign_opinion = {
+	opinion = -40
+	years = 10
+	decaying = yes
+}
+wm_backed_protesters_opinion = {
+	opinion = -15
+	years = 3
+	decaying = yes
+}
+wm_policed_my_constituents_opinion = {
+	opinion = -15
+	years = 5
+	decaying = yes
+}
+
+# The Crown
+wm_spoken_against_by_crown_opinion = {
+	opinion = -40
+	years = 10
+	decaying = yes
+}
+wm_embarrassed_party_opinion = {
+	opinion = -15
+	years = 3
+	decaying = yes
+}
+wm_crown_meddling_opinion = {
+	opinion = -20
+	years = 5
+	decaying = yes
+}
+wm_hit_back_at_crown_opinion = {
+	opinion = -20
+	years = 5
+	decaying = yes
+}

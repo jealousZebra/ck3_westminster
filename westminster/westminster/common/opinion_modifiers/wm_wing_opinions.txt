@@ -1,0 +1,12 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt)
+
+# An MP whose wing is unhappy with the leader (refreshed monthly while approval is under 30)
+wm_wing_disgruntled_opinion = {
+	opinion = -15
+	months = 2
+}
+# An MP whose wing is pleased with the leader (approval over 70)
+wm_wing_content_opinion = {
+	opinion = 10
+	months = 2
+}

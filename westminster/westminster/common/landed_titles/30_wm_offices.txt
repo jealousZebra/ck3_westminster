@@ -1,0 +1,36 @@
+﻿# Offices that belong to no land (spikes e, g, h): a mayoralty, a council and the devolved governments.
+# Their holders needn't hold a Westminster seat.
+d_mayor_greater_manchester = {
+	color = { 200 60 20 }
+	capital = c_manchester_central
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	ruler_uses_title_name = no
+}
+c_council_test = {
+	color = { 120 120 40 }
+	capital = c_wigan
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	ruler_uses_title_name = no
+}
+k_gov_scotland = {
+	color = { 0 94 184 }
+	capital = c_edinburgh_east_and_musselburgh
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	definite_form = yes
+	ruler_uses_title_name = no
+}
+k_gov_northern_ireland = {
+	color = { 60 140 60 }
+	capital = c_belfast_east
+	landless = yes
+	allow_domicile = no
+	no_automatic_claims = yes
+	definite_form = yes
+	ruler_uses_title_name = no
+}

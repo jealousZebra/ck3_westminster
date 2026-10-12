@@ -1,0 +1,464 @@
+﻿# Coalitions and confidence-and-supply after a hung parliament.
+# Effects and state: common/scripted_effects/wm_coalition_effects.txt, common/script_values/wm_coalition_values.txt.
+#   wm_coalition.1   a player Prime Minister in a hung parliament chooses whom to talk to (or governs alone)
+#   wm_coalition.2   the terms: a coalition (cabinet seats, a policy concession) or confidence-and-supply
+#   wm_coalition.3   a player party leader receives an offer and accepts or refuses
+#   wm_coalition.4   the Prime Minister hears the answer
+#   wm_coalition.20  a player junior partner's leader is tempted to walk out
+#   wm_coalition.21  a player Prime Minister after the partner walks out: soldier on, find a new partner, or an election
+# The headlines (COALITION AGREED, MINORITY GOVERNMENT ...) are toasts: wm_coalition_headline_effect.
+namespace = wm_coalition
+
+# Hung parliament: whom to talk to.
+wm_coalition.1 = {
+	type = character_event
+	title = wm_coalition.1.t
+	desc = {
+		desc = wm_coalition.1.desc
+		triggered_desc = {
+			trigger = { exists = scope:wm_coal_choice_1 }
+			desc = wm_coalition.1.choice_1
+		}
+		triggered_desc = {
+			trigger = { exists = scope:wm_coal_choice_2 }
+			desc = wm_coalition.1.choice_2
+		}
+		triggered_desc = {
+			trigger = { exists = scope:wm_coal_choice_3 }
+			desc = wm_coalition.1.choice_3
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+	}
+
+	option = {
+		name = wm_coalition.1.a
+		trigger = { exists = scope:wm_coal_choice_1 }
+		set_global_variable = { name = wm_coalition_talks_partner value = scope:wm_coal_choice_1 }
+		trigger_event = wm_coalition.2
+	}
+	option = {
+		name = wm_coalition.1.b
+		trigger = { exists = scope:wm_coal_choice_2 }
+		set_global_variable = { name = wm_coalition_talks_partner value = scope:wm_coal_choice_2 }
+		trigger_event = wm_coalition.2
+	}
+	option = {
+		name = wm_coalition.1.c
+		trigger = { exists = scope:wm_coal_choice_3 }
+		set_global_variable = { name = wm_coalition_talks_partner value = scope:wm_coal_choice_3 }
+		trigger_event = wm_coalition.2
+	}
+	# Go it alone
+	option = {
+		name = wm_coalition.1.d
+		custom_tooltip = wm_coalition.1.d.tt
+		wm_coalition_minority_effect = yes
+	}
+}
+
+# The terms of the offer.
+wm_coalition.2 = {
+	type = character_event
+	title = wm_coalition.2.t
+	desc = {
+		desc = wm_coalition.2.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_coal_combined_seats >= scope:wm_coal_majority }
+				desc = wm_coalition.2.majority
+			}
+			desc = wm_coalition.2.no_majority
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_coal_talks = { wm_coalition_base_value >= 15 } }
+				desc = wm_coalition.2.mood_warm
+			}
+			triggered_desc = {
+				trigger = { scope:wm_coal_talks = { wm_coalition_base_value >= 0 } }
+				desc = wm_coalition.2.mood_cool
+			}
+			desc = wm_coalition.2.mood_cold
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = scope:wm_coal_talks_leader
+		animation = personality_rational
+		trigger = { exists = scope:wm_coal_talks_leader }
+	}
+	trigger = {
+		has_title = title:e_united_kingdom
+		has_global_variable = wm_coalition_talks_partner
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+	}
+
+	# A coalition: Deputy Prime Minister and one cabinet seat
+	option = {
+		name = wm_coalition.2.a
+		custom_tooltip = wm_coalition.2.a.tt
+		if = {
+			limit = { scope:wm_coal_talks = { wm_coalition_margin_coalition_1_value >= 0 } }
+			custom_tooltip = wm_coalition_signals_yes_tt
+		}
+		else = {
+			custom_tooltip = wm_coalition_signals_no_tt
+		}
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_offer_kind value = 1 }
+			set_global_variable = { name = wm_coalition_offer_seats value = 1 }
+			set_global_variable = { name = wm_coalition_offer_policy value = 0 }
+			wm_coalition_send_offer_effect = yes
+		}
+	}
+	# A coalition: Deputy Prime Minister, one cabinet seat and one of their policies
+	option = {
+		name = wm_coalition.2.b
+		custom_tooltip = wm_coalition.2.b.tt
+		if = {
+			limit = { scope:wm_coal_talks = { wm_coalition_margin_coalition_1p_value >= 0 } }
+			custom_tooltip = wm_coalition_signals_yes_tt
+		}
+		else = {
+			custom_tooltip = wm_coalition_signals_no_tt
+		}
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_offer_kind value = 1 }
+			set_global_variable = { name = wm_coalition_offer_seats value = 1 }
+			set_global_variable = { name = wm_coalition_offer_policy value = 1 }
+			wm_coalition_send_offer_effect = yes
+		}
+	}
+	# A coalition: Deputy Prime Minister, two cabinet seats and one of their policies
+	option = {
+		name = wm_coalition.2.c
+		custom_tooltip = wm_coalition.2.c.tt
+		if = {
+			limit = { scope:wm_coal_talks = { wm_coalition_margin_coalition_2p_value >= 0 } }
+			custom_tooltip = wm_coalition_signals_yes_tt
+		}
+		else = {
+			custom_tooltip = wm_coalition_signals_no_tt
+		}
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_offer_kind value = 1 }
+			set_global_variable = { name = wm_coalition_offer_seats value = 2 }
+			set_global_variable = { name = wm_coalition_offer_policy value = 1 }
+			wm_coalition_send_offer_effect = yes
+		}
+	}
+	# Confidence-and-supply
+	option = {
+		name = wm_coalition.2.d
+		custom_tooltip = wm_coalition.2.d.tt
+		if = {
+			limit = { scope:wm_coal_talks = { wm_coalition_margin_supply_value >= 0 } }
+			custom_tooltip = wm_coalition_signals_yes_tt
+		}
+		else = {
+			custom_tooltip = wm_coalition_signals_no_tt
+		}
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_offer_kind value = 2 }
+			set_global_variable = { name = wm_coalition_offer_seats value = 0 }
+			set_global_variable = { name = wm_coalition_offer_policy value = 0 }
+			wm_coalition_send_offer_effect = yes
+		}
+	}
+	# Someone else
+	option = {
+		name = wm_coalition.2.e
+		remove_global_variable = wm_coalition_talks_partner
+		trigger_event = wm_coalition.1
+	}
+}
+
+# A player party leader receives an offer.
+wm_coalition.3 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_coalition_offer_kind = 1 }
+				desc = wm_coalition.3.t_coalition
+			}
+			desc = wm_coalition.3.t_supply
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					global_var:wm_coalition_offer_kind = 1
+					global_var:wm_coalition_offer_policy = 1
+				}
+				desc = wm_coalition.3.desc_coalition_policy
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_coalition_offer_kind = 1 }
+				desc = wm_coalition.3.desc_coalition
+			}
+			desc = wm_coalition.3.desc_supply
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_coal_combined_seats >= scope:wm_coal_majority }
+				desc = wm_coalition.2.majority
+			}
+			desc = wm_coalition.2.no_majority
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = scope:wm_coal_pm
+		animation = personality_honorable
+		trigger = { exists = scope:wm_coal_pm }
+	}
+	trigger = {
+		has_global_variable = wm_coalition_talks_partner
+		has_global_variable = wm_coalition_offer_kind
+		exists = var:wm_party
+		var:wm_party = global_var:wm_coalition_talks_partner
+		has_title = var:wm_party
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+	}
+
+	# Accept
+	option = {
+		name = wm_coalition.3.a
+		custom_tooltip = wm_coalition.3.a.tt
+		hidden_effect = {
+			wm_coalition_form_effect = yes
+			title:e_united_kingdom.holder ?= {
+				if = {
+					limit = { is_ai = no }
+					trigger_event = wm_coalition.4
+				}
+			}
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+	# Refuse
+	option = {
+		name = wm_coalition.3.b
+		custom_tooltip = wm_coalition.3.b.tt
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_offer_refused value = yes }
+			title:e_united_kingdom.holder ?= {
+				if = {
+					limit = { is_ai = no }
+					trigger_event = wm_coalition.4
+				}
+				else = {
+					wm_coalition_minority_effect = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+# The Prime Minister hears the answer.
+wm_coalition.4 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_global_variable = wm_coalition_offer_refused }
+				desc = wm_coalition.4.t_refused
+			}
+			desc = wm_coalition.4.t_accepted
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_global_variable = wm_coalition_offer_refused }
+				desc = wm_coalition.4.desc_refused
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_coalition_outcome = 3 }
+				desc = wm_coalition.4.desc_coalition
+			}
+			desc = wm_coalition.4.desc_supply
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = { has_global_variable = wm_coalition_offer_refused }
+			animation = disappointed
+		}
+		animation = happiness
+	}
+	right_portrait = {
+		character = scope:wm_coal_other
+		trigger = { exists = scope:wm_coal_other }
+	}
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+		# The other leader: the one who refused, or the new partner
+		if = {
+			limit = { exists = scope:wm_coal_talks_leader }
+			scope:wm_coal_talks_leader = { save_scope_as = wm_coal_other }
+		}
+		else_if = {
+			limit = { exists = scope:wm_coal_leader }
+			scope:wm_coal_leader = { save_scope_as = wm_coal_other }
+		}
+	}
+
+	# Deal done
+	option = {
+		name = wm_coalition.4.a
+		trigger = { NOT = { has_global_variable = wm_coalition_offer_refused } }
+	}
+	# Improve the offer
+	option = {
+		name = wm_coalition.4.b
+		trigger = {
+			has_global_variable = wm_coalition_offer_refused
+			has_global_variable = wm_coalition_talks_partner
+		}
+		trigger_event = wm_coalition.2
+	}
+	# Talk to another party
+	option = {
+		name = wm_coalition.4.c
+		trigger = { has_global_variable = wm_coalition_offer_refused }
+		remove_global_variable = wm_coalition_talks_partner
+		trigger_event = wm_coalition.1
+	}
+	# Govern alone
+	option = {
+		name = wm_coalition.4.d
+		trigger = { has_global_variable = wm_coalition_offer_refused }
+		custom_tooltip = wm_coalition.1.d.tt
+		wm_coalition_minority_effect = yes
+	}
+}
+
+# A player junior partner's leader: is it time to walk out?
+wm_coalition.20 = {
+	type = character_event
+	title = wm_coalition.20.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_global_variable = wm_coalition_partner }
+				desc = wm_coalition.20.desc_coalition
+			}
+			desc = wm_coalition.20.desc_supply
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { wm_coalition_partner_poll_drop_value >= 20 }
+				desc = wm_coalition.20.polls_bad
+			}
+			desc = wm_coalition.20.polls_ok
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:wm_coal_pm
+		trigger = { exists = scope:wm_coal_pm }
+	}
+	trigger = {
+		wm_coalition_is_junior_leader_trigger = yes
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+	}
+
+	# Walk out
+	option = {
+		name = wm_coalition.20.a
+		custom_tooltip = wm_coalition.20.a.tt
+		hidden_effect = { wm_coalition_breakdown_effect = yes }
+	}
+	# Stay
+	option = {
+		name = wm_coalition.20.b
+		add_prestige = minor_prestige_loss
+	}
+}
+
+# A player Prime Minister after the partner walks out.
+wm_coalition.21 = {
+	type = character_event
+	title = wm_coalition.21.t
+	desc = wm_coalition.21.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = stress
+	}
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	immediate = {
+		wm_coalition_event_scopes_effect = yes
+	}
+
+	# Soldier on as a minority
+	option = {
+		name = wm_coalition.21.a
+		custom_tooltip = wm_coalition.21.a.tt
+	}
+	# Find a new partner
+	option = {
+		name = wm_coalition.21.b
+		trigger = { exists = var:wm_party }
+		hidden_effect = {
+			set_global_variable = { name = wm_coalition_senior value = var:wm_party }
+			wm_coalition_rank_partners_effect = yes
+			if = {
+				limit = { has_global_variable = wm_coalition_choice_1 }
+				set_global_variable = { name = wm_coalition_outcome value = 5 }
+				set_global_variable = { name = wm_coalition_talks value = yes days = 90 }
+				trigger_event = wm_coalition.1
+			}
+		}
+	}
+	# Go to the country
+	option = {
+		name = wm_coalition.21.c
+		trigger = { NOT = { has_global_variable = wm_el_scheduled } }
+		custom_tooltip = wm_coalition.21.c.tt
+		hidden_effect = { wm_election_schedule_effect = yes }
+	}
+}

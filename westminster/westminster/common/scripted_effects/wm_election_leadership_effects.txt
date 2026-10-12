@@ -1,0 +1,816 @@
+﻿# Shortlist ballots: party leadership contests in two rounds. State: common/script_values/wm_election_leadership_values.txt.
+#
+#   1. Nominations (10 days). Hopefuls stand (the AI by profile, skill and ambition; a player is asked, event
+#      wm_leadership.1), then each of the party's MPs nominates one candidate: the colleague they like and rate most
+#      (wm_election_leadership_nomination_value). A candidate needs 15% of the MPs (a challenger 20%) to reach the
+#      ballot. At most two go through (a challenge: the leader and the best-backed challenger). One alone is elected
+#      unopposed; a challenger who falls short has failed.
+#   2. The members' ballot (21 days). The party's members decide by skill, profile, party standing, the MPs'
+#      backing and the campaign (a player candidate campaigns, event wm_leadership.3), with some luck. Shares are
+#      in tenths of a percent.
+#
+# Contests start when a leader dies (the engine's own election, wm_party_leadership, hands the title to an acting
+# leader first; the contest then decides), when a colleague challenges the leader (decision
+# wm_leadership_challenge_decision, or an AI challenge from the quarterly pulse), or when a leader stands down after
+# a general election defeat. The winner takes the party title (and, for the governing party, Downing Street:
+# wm_election_form_government_effect).
+
+# Character: a member of the party $PARTY$ who can nominate and stand: a living MP, not the Speaker.
+# (In common/scripted_triggers/wm_election_leadership_triggers.txt.)
+
+# Scope: a party title. Opens a contest. $KIND$: 1 a vacancy, 2 a challenge, 3 the leader is standing down.
+# Optional saved scopes: scope:wm_lead_incumbent_in (the leader who died, is challenged or stands down) and
+# scope:wm_lead_challenger_in (a challenge).
+wm_election_leadership_open_effect = {
+	save_scope_as = wm_lead_party
+	if = {
+		limit = { NOT = { has_variable = wm_lead_state } }
+		wm_election_leadership_reset_effect = yes
+		set_variable = { name = wm_lead_state value = 1 }
+		set_variable = { name = wm_lead_kind value = $KIND$ }
+		set_variable = { name = wm_lead_timer value = yes days = 10 }
+		if = {
+			limit = { exists = scope:wm_lead_incumbent_in }
+			set_variable = { name = wm_lead_incumbent value = scope:wm_lead_incumbent_in }
+		}
+		add_to_global_variable_list = { name = wm_lead_contests target = this }
+
+		# The electorate: the party's MPs
+		title:e_united_kingdom = {
+			every_in_de_jure_hierarchy = {
+				continue = { tier > tier_county }
+				limit = {
+					tier = tier_county
+					exists = holder
+					holder = { wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party } }
+				}
+				holder = { save_temporary_scope_as = wm_lead_member }
+				scope:wm_lead_party = {
+					add_to_variable_list = { name = wm_lead_members target = scope:wm_lead_member }
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { has_variable_list = wm_lead_members } }
+			wm_election_leadership_end_effect = yes		# no MPs: no contest
+		}
+		else = {
+			wm_election_leadership_count_electors_effect = yes
+			every_in_list = {
+				variable = wm_lead_members
+				set_variable = {
+					name = wm_lead_stand
+					value = {
+						value = wm_election_leadership_stand_value
+						add = {
+							integer_range = {
+								min = 0
+								max = 20
+							}
+						}
+					}
+				}
+			}
+
+			# The candidates
+			if = {
+				limit = { var:wm_lead_kind = 2 }
+				scope:wm_lead_incumbent_in ?= { wm_election_leadership_add_candidate_effect = yes }
+				scope:wm_lead_challenger_in ?= { wm_election_leadership_add_candidate_effect = yes }
+				random = {
+					chance = 30
+					wm_election_leadership_add_hopefuls_effect = { MAX = 1 }
+				}
+			}
+			else = {
+				wm_election_leadership_add_hopefuls_effect = { MAX = 4 }
+				if = {
+					limit = { NOT = { wm_election_leadership_has_list_trigger = { LIST = wm_lead_candidates } } }
+					wm_election_leadership_add_hopefuls_effect = { MAX = 1 }
+				}
+			}
+
+			# Players: stand? (A challenged player leader is asked how to meet it.)
+			every_in_list = {
+				variable = wm_lead_members
+				limit = { wm_majority_ask_player_trigger = yes }
+				set_variable = { name = wm_lead_contest value = scope:wm_lead_party days = 60 }
+				if = {
+					limit = { scope:wm_lead_party.var:wm_lead_incumbent ?= this }
+					if = {
+						limit = { scope:wm_lead_party.var:wm_lead_kind = 2 }
+						trigger_event = wm_leadership.2
+					}
+				}
+				else_if = {
+					limit = { NOT = { var:wm_lead_cand ?= scope:wm_lead_party } }
+					trigger_event = wm_leadership.1
+				}
+			}
+			if = {
+				limit = { NOT = { wm_majority_quiet_trigger = yes } }
+				every_player = {
+					limit = { NOT = { var:wm_party ?= scope:wm_lead_party } }
+					send_interface_toast = {
+						type = event_toast_effect_neutral
+						title = wm_leadership_contest_toast
+						custom_tooltip = wm_leadership_contest_toast_desc
+					}
+				}
+			}
+			wm_majority_host_event_effect = { ID = wm_leadership.10 DAYS = 11 }
+		}
+	}
+}
+
+# Scope: a party title. Counts its living MPs and sets the nomination threshold.
+wm_election_leadership_count_electors_effect = {
+	set_variable = { name = wm_lead_electors value = 0 }
+	if = {
+		limit = { has_variable_list = wm_lead_members }
+		every_in_list = {
+			variable = wm_lead_members
+			limit = { wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party } }
+			scope:wm_lead_party = { change_variable = { name = wm_lead_electors add = 1 } }
+		}
+	}
+	set_variable = {
+		name = wm_lead_threshold
+		value = {
+			value = var:wm_lead_electors
+			multiply = wm_election_leadership_threshold_pct
+			divide = 100
+			ceiling = yes
+		}
+	}
+	if = {
+		limit = { var:wm_lead_kind = 2 }
+		set_variable = {
+			name = wm_lead_threshold
+			value = {
+				value = var:wm_lead_electors
+				multiply = wm_election_leadership_challenge_pct
+				divide = 100
+				ceiling = yes
+			}
+		}
+	}
+	if = {
+		limit = { var:wm_lead_threshold < 1 }
+		set_variable = { name = wm_lead_threshold value = 1 }
+	}
+}
+
+# Scope: a party title (scope:wm_lead_party). The best-placed AI hopefuls stand, up to $MAX$. A leader standing
+# down, or who has died, doesn't.
+wm_election_leadership_add_hopefuls_effect = {
+	ordered_in_list = {
+		variable = wm_lead_members
+		limit = {
+			wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party }
+			NOT = { var:wm_lead_cand ?= scope:wm_lead_party }
+			NOT = { scope:wm_lead_party.var:wm_lead_incumbent ?= this }
+			NOT = { wm_majority_ask_player_trigger = yes }
+			is_adult = yes
+		}
+		order_by = var:wm_lead_stand
+		max = $MAX$
+		check_range_bounds = no
+		wm_election_leadership_add_candidate_effect = yes
+	}
+}
+
+# Character: stands in scope:wm_lead_party's contest.
+wm_election_leadership_add_candidate_effect = {
+	if = {
+		limit = { NOT = { var:wm_lead_cand ?= scope:wm_lead_party } }
+		save_temporary_scope_as = wm_lead_new_cand
+		set_variable = { name = wm_lead_cand value = scope:wm_lead_party }
+		set_variable = { name = wm_lead_noms value = 0 }
+		set_variable = {
+			name = wm_lead_noise
+			value = {
+				integer_range = {
+					min = 0
+					max = 15
+				}
+			}
+		}
+		remove_variable = wm_lead_campaign
+		remove_variable = wm_lead_score
+		remove_variable = wm_lead_share
+		scope:wm_lead_party = {
+			add_to_variable_list = { name = wm_lead_candidates target = scope:wm_lead_new_cand }
+		}
+	}
+}
+
+# Scope: a party title. Forgets the last contest (candidates' variables too).
+wm_election_leadership_reset_effect = {
+	if = {
+		limit = { has_variable_list = wm_lead_candidates }
+		every_in_list = {
+			variable = wm_lead_candidates
+			remove_variable = wm_lead_cand
+			remove_variable = wm_lead_noms
+			remove_variable = wm_lead_noise
+			remove_variable = wm_lead_campaign
+			remove_variable = wm_lead_on_ballot
+			remove_variable = wm_lead_pref
+		}
+	}
+	if = {
+		limit = { has_variable_list = wm_lead_members }
+		every_in_list = {
+			variable = wm_lead_members
+			remove_variable = wm_lead_stand
+		}
+		clear_variable_list = wm_lead_members
+	}
+	if = {
+		limit = { has_variable_list = wm_lead_candidates }
+		clear_variable_list = wm_lead_candidates
+	}
+	if = {
+		limit = { has_variable_list = wm_lead_ballot }
+		clear_variable_list = wm_lead_ballot
+	}
+	remove_variable = wm_lead_state
+	remove_variable = wm_lead_kind
+	remove_variable = wm_lead_incumbent
+	remove_variable = wm_lead_timer
+	remove_variable = wm_lead_electors
+	remove_variable = wm_lead_threshold
+	remove_variable = wm_lead_total
+}
+
+# Any scope. Moves on every contest whose round has closed.
+wm_election_leadership_process_due_effect = {
+	# Leaders who died: their contests open once the title has passed to an acting leader
+	if = {
+		limit = { has_global_variable_list = wm_lead_pending_open }
+		every_in_global_list = {
+			variable = wm_lead_pending_open
+			add_to_temporary_list = wm_lead_to_open
+		}
+		clear_global_variable_list = wm_lead_pending_open
+		every_in_list = {
+			list = wm_lead_to_open
+			clear_saved_scope = wm_lead_challenger_in
+			clear_saved_scope = wm_lead_incumbent_in
+			wm_election_leadership_open_effect = { KIND = 1 }
+		}
+		wm_election_form_government_effect = yes		# an acting leader of the largest party takes over Number 10
+		wm_election_rewire_effect = yes
+	}
+	if = {
+		limit = { has_global_variable_list = wm_lead_contests }
+		every_in_global_list = {
+			variable = wm_lead_contests
+			limit = { NOT = { has_variable = wm_lead_timer } }
+			add_to_temporary_list = wm_lead_due
+		}
+		every_in_list = {
+			list = wm_lead_due
+			limit = {
+				has_variable = wm_lead_state
+				NOT = { has_variable = wm_lead_timer }
+			}
+			if = {
+				limit = { var:wm_lead_state = 1 }
+				wm_election_leadership_close_nominations_effect = yes
+			}
+			else = {
+				wm_election_leadership_ballot_effect = yes
+			}
+		}
+	}
+}
+
+# Scope: a party title. Candidates who have died, lost their seat or left the party drop out.
+wm_election_leadership_drop_gone_effect = {
+	if = {
+		limit = { has_variable_list = wm_lead_candidates }
+		every_in_list = {
+			variable = wm_lead_candidates
+			limit = { NOT = { wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party } } }
+			add_to_temporary_list = wm_lead_gone
+		}
+		every_in_list = {
+			list = wm_lead_gone
+			save_temporary_scope_as = wm_lead_gone_cand
+			scope:wm_lead_party = {
+				remove_list_variable = { name = wm_lead_candidates target = scope:wm_lead_gone_cand }
+				if = {
+					limit = { has_variable_list = wm_lead_ballot }
+					remove_list_variable = { name = wm_lead_ballot target = scope:wm_lead_gone_cand }
+				}
+			}
+		}
+	}
+}
+
+# Scope: a party title. Nominations close: every MP nominates, and the shortlist goes to the members.
+wm_election_leadership_close_nominations_effect = {
+	save_scope_as = wm_lead_party
+	wm_election_leadership_drop_gone_effect = yes
+	if = {
+		limit = { NOT = { wm_election_leadership_has_list_trigger = { LIST = wm_lead_candidates } } }
+		wm_election_leadership_end_effect = yes		# nobody stood: the acting leader stays
+	}
+	else = {
+		wm_election_leadership_nominate_effect = yes
+	}
+}
+
+# Scope: a party title with candidates (scope:wm_lead_party). The MPs nominate; the shortlist.
+wm_election_leadership_nominate_effect = {
+	wm_election_leadership_count_electors_effect = yes
+	every_in_list = {
+		variable = wm_lead_candidates
+		set_variable = { name = wm_lead_noms value = 0 }
+	}
+	set_variable = { name = wm_lead_noms_cast value = 0 }
+	every_in_list = {
+		variable = wm_lead_members
+		limit = { wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party } }
+		save_scope_as = wm_lead_voter
+		if = {
+			limit = { var:wm_lead_cand ?= scope:wm_lead_party }
+			change_variable = { name = wm_lead_noms add = 1 }		# candidates nominate themselves
+		}
+		else = {
+			# Each MP weighs the candidates their own way: the nomination value plus their own reasons (up to 40)
+			scope:wm_lead_party = {
+				every_in_list = {
+					variable = wm_lead_candidates
+					set_variable = {
+						name = wm_lead_pref
+						value = {
+							value = wm_election_leadership_nomination_value
+							add = {
+								integer_range = {
+									min = 0
+									max = 40
+								}
+							}
+						}
+					}
+				}
+				ordered_in_list = {
+					variable = wm_lead_candidates
+					order_by = var:wm_lead_pref
+					change_variable = { name = wm_lead_noms add = 1 }
+				}
+			}
+		}
+		scope:wm_lead_party = { change_variable = { name = wm_lead_noms_cast add = 1 } }
+	}
+
+	# The shortlist
+	if = {
+		limit = { has_variable_list = wm_lead_ballot }
+		clear_variable_list = wm_lead_ballot
+	}
+	if = {
+		limit = { var:wm_lead_kind = 2 }
+		# The leader is on the ballot as of right, against the best-backed challenger who reaches the threshold
+		var:wm_lead_incumbent ?= {
+			if = {
+				limit = {
+					var:wm_lead_cand ?= scope:wm_lead_party
+					wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party }
+				}
+				wm_election_leadership_put_on_ballot_effect = yes
+			}
+		}
+		ordered_in_list = {
+			variable = wm_lead_candidates
+			limit = {
+				var:wm_lead_noms >= scope:wm_lead_party.var:wm_lead_threshold
+				NOT = { var:wm_lead_on_ballot ?= scope:wm_lead_party }
+			}
+			order_by = var:wm_lead_noms
+			max = 1
+			check_range_bounds = no
+			wm_election_leadership_put_on_ballot_effect = yes
+		}
+	}
+	else = {
+		ordered_in_list = {
+			variable = wm_lead_candidates
+			limit = { var:wm_lead_noms >= scope:wm_lead_party.var:wm_lead_threshold }
+			order_by = var:wm_lead_noms
+			max = 2
+			check_range_bounds = no
+			wm_election_leadership_put_on_ballot_effect = yes
+		}
+		# Nobody reached the threshold (a small party): the best-backed candidate goes through
+		if = {
+			limit = { NOT = { wm_election_leadership_has_list_trigger = { LIST = wm_lead_ballot } } }
+			ordered_in_list = {
+				variable = wm_lead_candidates
+				order_by = var:wm_lead_noms
+				wm_election_leadership_put_on_ballot_effect = yes
+			}
+		}
+	}
+
+	clear_saved_scope = wm_lead_winner
+	if = {
+		limit = {
+			has_variable_list = wm_lead_ballot
+			any_in_list = {
+				variable = wm_lead_ballot
+				count >= 2
+			}
+		}
+		# A contest: the members decide
+		set_variable = { name = wm_lead_state value = 2 }
+		set_variable = { name = wm_lead_timer value = yes days = 21 }
+		every_in_list = {
+			variable = wm_lead_ballot
+			limit = { wm_majority_ask_player_trigger = yes }
+			trigger_event = wm_leadership.3
+		}
+		wm_majority_host_event_effect = { ID = wm_leadership.10 DAYS = 22 }
+	}
+	else_if = {
+		limit = { wm_election_leadership_has_list_trigger = { LIST = wm_lead_ballot } }
+		random_in_list = {
+			variable = wm_lead_ballot
+			save_scope_as = wm_lead_winner
+		}
+		if = {
+			limit = {
+				var:wm_lead_kind = 2
+				var:wm_lead_incumbent ?= scope:wm_lead_winner
+			}
+			set_variable = { name = wm_lead_last_outcome value = 3 }	# the challenge failed to reach the ballot
+		}
+		else = {
+			set_variable = { name = wm_lead_last_outcome value = 2 }	# elected unopposed
+		}
+		scope:wm_lead_winner = { set_variable = { name = wm_lead_share value = 1000 } }
+		wm_election_leadership_finish_effect = yes
+	}
+	else = {
+		# Nobody at all (no MPs): the acting leader stays
+		wm_election_leadership_end_effect = yes
+	}
+}
+
+# Character: on scope:wm_lead_party's shortlist.
+wm_election_leadership_put_on_ballot_effect = {
+	save_temporary_scope_as = wm_lead_shortlisted
+	set_variable = { name = wm_lead_on_ballot value = scope:wm_lead_party }
+	scope:wm_lead_party = {
+		add_to_variable_list = { name = wm_lead_ballot target = scope:wm_lead_shortlisted }
+	}
+}
+
+# Scope: a party title. The members' ballot is counted.
+wm_election_leadership_ballot_effect = {
+	save_scope_as = wm_lead_party
+	wm_election_leadership_drop_gone_effect = yes
+	if = {
+		limit = { NOT = { wm_election_leadership_has_list_trigger = { LIST = wm_lead_ballot } } }
+		wm_election_leadership_end_effect = yes
+	}
+	else = {
+		wm_election_leadership_count_ballot_effect = yes
+	}
+}
+
+# Scope: a party title with a shortlist (scope:wm_lead_party).
+wm_election_leadership_count_ballot_effect = {
+	set_variable = { name = wm_lead_total value = 0 }
+	every_in_list = {
+		variable = wm_lead_ballot
+		save_temporary_scope_as = wm_lead_counted
+		set_variable = {
+			name = wm_lead_score
+			value = {
+				value = wm_election_leadership_members_value
+				add = {
+					integer_range = {
+						min = 0
+						max = 25
+					}
+				}
+			}
+		}
+		scope:wm_lead_party = { change_variable = { name = wm_lead_total add = scope:wm_lead_counted.var:wm_lead_score } }
+	}
+	clear_saved_scope = wm_lead_winner
+	if = {
+		limit = { var:wm_lead_total > 0 }
+		every_in_list = {
+			variable = wm_lead_ballot
+			set_variable = {
+				name = wm_lead_share
+				value = {
+					value = var:wm_lead_score
+					multiply = 1000
+					divide = scope:wm_lead_party.var:wm_lead_total
+				}
+			}
+		}
+		ordered_in_list = {
+			variable = wm_lead_ballot
+			order_by = var:wm_lead_score
+			save_scope_as = wm_lead_winner
+		}
+		set_variable = { name = wm_lead_last_outcome value = 1 }
+		wm_election_leadership_finish_effect = yes
+	}
+	else = {
+		wm_election_leadership_end_effect = yes
+	}
+}
+
+# Scope: a party title; scope:wm_lead_winner has won. They take the party (if they don't already lead it), and
+# the news goes out.
+wm_election_leadership_finish_effect = {
+	save_scope_as = wm_lead_party
+	clear_saved_scope = wm_lead_old
+	clear_saved_scope = wm_lead_second
+	holder ?= { save_scope_as = wm_lead_old }
+	set_variable = { name = wm_lead_last_winner value = scope:wm_lead_winner }
+	set_variable = { name = wm_lead_last_share value = scope:wm_lead_winner.var:wm_lead_share }
+	set_variable = { name = wm_lead_last_noms value = 0 }
+	if = {
+		limit = { exists = scope:wm_lead_winner.var:wm_lead_noms }
+		set_variable = { name = wm_lead_last_noms value = scope:wm_lead_winner.var:wm_lead_noms }
+	}
+	set_variable = { name = wm_lead_last_electors value = var:wm_lead_electors }
+	set_variable = { name = wm_lead_last_held value = 0 }
+	if = {
+		limit = {
+			var:wm_lead_kind = 2
+			var:wm_lead_incumbent ?= scope:wm_lead_winner
+		}
+		set_variable = { name = wm_lead_last_held value = 1 }
+	}
+	remove_variable = wm_lead_last_second
+	ordered_in_list = {
+		variable = wm_lead_ballot
+		limit = { NOT = { this = scope:wm_lead_winner } }
+		order_by = var:wm_lead_score
+		save_scope_as = wm_lead_second
+	}
+	if = {
+		limit = { exists = scope:wm_lead_second }
+		set_variable = { name = wm_lead_last_second value = scope:wm_lead_second }
+	}
+	else_if = {
+		limit = {
+			var:wm_lead_kind = 2
+			exists = var:wm_lead_incumbent
+			NOT = { var:wm_lead_incumbent = scope:wm_lead_winner }
+		}
+		set_variable = { name = wm_lead_last_second value = var:wm_lead_incumbent }
+	}
+
+	if = {
+		limit = { NOT = { holder ?= scope:wm_lead_winner } }
+		wm_election_leadership_install_effect = yes
+	}
+
+	# Consequences
+	scope:wm_lead_winner = {
+		add_prestige = minor_prestige_gain
+		set_variable = { name = wm_lead_honeymoon value = yes years = 2 }
+	}
+	if = {
+		limit = { var:wm_lead_kind = 2 }
+		if = {
+			limit = { var:wm_lead_incumbent ?= scope:wm_lead_winner }
+			# The leader sees off the challenge
+			every_in_list = {
+				variable = wm_lead_candidates
+				limit = { NOT = { this = scope:wm_lead_winner } }
+				save_temporary_scope_as = wm_lead_beaten
+				add_prestige = medium_prestige_loss
+				scope:wm_lead_winner = {
+					add_opinion = { target = scope:wm_lead_beaten modifier = wm_leadership_challenged_opinion }
+				}
+			}
+		}
+		else = {
+			var:wm_lead_incumbent ?= {
+				if = {
+					limit = { is_alive = yes }
+					add_prestige = medium_prestige_loss
+					add_opinion = { target = scope:wm_lead_winner modifier = wm_leadership_deposed_opinion }
+				}
+			}
+		}
+	}
+	else = {
+		every_in_list = {
+			variable = wm_lead_candidates
+			limit = { NOT = { this = scope:wm_lead_winner } }
+			add_opinion = { target = scope:wm_lead_winner modifier = wm_leadership_gracious_opinion }
+		}
+	}
+
+	# The news: a front page for the party's players and those involved, a toast for everyone else
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = {
+			if = {
+				limit = {
+					OR = {
+						var:wm_party ?= scope:wm_lead_party
+						this = scope:wm_lead_winner
+						scope:wm_lead_old ?= this
+					}
+				}
+				set_variable = { name = wm_lead_news value = scope:wm_lead_party days = 30 }
+				trigger_event = wm_leadership.4
+			}
+			else = {
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_leadership_result_toast
+					left_icon = scope:wm_lead_winner
+					custom_tooltip = wm_leadership_result_toast_desc
+				}
+			}
+		}
+	}
+	wm_election_leadership_end_effect = yes
+}
+
+# Scope: a party title; scope:wm_lead_winner (a living MP of the party) becomes its leader. They serve the Prime
+# Minister first (a party leader is a kingdom-tier ruler under the PM), then take the title; the party's MPs then
+# serve them, and if the party is the largest, its new leader takes Number 10.
+wm_election_leadership_install_effect = {
+	if = {
+		limit = {
+			scope:wm_lead_winner = {
+				is_alive = yes
+				wm_is_mp_trigger = yes
+			}
+		}
+		scope:wm_lead_winner = {
+			if = {
+				limit = {
+					exists = title:e_united_kingdom.holder
+					NOT = { this = title:e_united_kingdom.holder }
+					NOT = { liege ?= title:e_united_kingdom.holder }
+				}
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = wm_lead_change1
+					add_claim_on_loss = no
+				}
+				change_liege = {
+					liege = title:e_united_kingdom.holder
+					change = scope:wm_lead_change1
+				}
+				resolve_title_and_vassal_change = scope:wm_lead_change1
+			}
+		}
+		create_title_and_vassal_change = {
+			type = granted
+			save_scope_as = wm_lead_change2
+			add_claim_on_loss = no
+		}
+		change_title_holder = {
+			holder = scope:wm_lead_winner
+			change = scope:wm_lead_change2
+		}
+		resolve_title_and_vassal_change = scope:wm_lead_change2
+		scope:wm_lead_winner = {
+			house ?= {
+				if = {
+					limit = { NOT = { house_head ?= scope:wm_lead_winner } }
+					set_house_head = scope:wm_lead_winner
+				}
+			}
+		}
+		wm_election_form_government_effect = yes
+		wm_election_rewire_effect = yes
+	}
+}
+
+# Scope: a party title. The contest is over: its working state goes (the last result stays for the front page).
+wm_election_leadership_end_effect = {
+	if = {
+		limit = { is_target_in_global_variable_list = { name = wm_lead_contests target = this } }
+		remove_list_global_variable = { name = wm_lead_contests target = this }
+	}
+	wm_election_leadership_reset_effect = yes
+}
+
+# Character (a player MP): stands in the contest they were told about (var:wm_lead_contest).
+wm_election_leadership_player_stands_effect = {
+	if = {
+		limit = {
+			exists = var:wm_lead_contest
+			var:wm_lead_contest.var:wm_lead_state ?= 1
+		}
+		var:wm_lead_contest = { save_scope_as = wm_lead_party }
+		wm_election_leadership_add_candidate_effect = yes
+	}
+}
+
+# Character (an MP): challenges their party's leader.
+wm_election_leadership_challenge_effect = {
+	save_scope_as = wm_lead_challenger_in
+	var:wm_party.holder = { save_scope_as = wm_lead_incumbent_in }
+	var:wm_party = { wm_election_leadership_open_effect = { KIND = 2 } }
+}
+
+# Scope: a party leader. They stand down: a contest to succeed them, in which they don't stand.
+wm_election_leadership_stand_down_effect = {
+	save_scope_as = wm_lead_incumbent_in
+	clear_saved_scope = wm_lead_challenger_in
+	var:wm_party = { wm_election_leadership_open_effect = { KIND = 3 } }
+}
+
+# Any scope. The quarterly pulse: an AI colleague may challenge a struggling party leader.
+wm_election_leadership_quarterly_effect = {
+	title:e_united_kingdom = {
+		every_in_de_jure_hierarchy = {
+			continue = { tier > tier_county }
+			limit = {
+				tier = tier_county
+				exists = holder
+			}
+			holder = { add_to_temporary_list = wm_lead_all_mps }
+		}
+	}
+	title:e_united_kingdom.holder ?= {
+		add_to_temporary_list = wm_lead_leaders
+		every_vassal = {
+			limit = { wm_commons_is_party_leader_trigger = yes }
+			add_to_temporary_list = wm_lead_leaders
+		}
+	}
+	every_in_list = {
+		list = wm_lead_leaders
+		limit = {
+			wm_commons_is_party_leader_trigger = yes
+			NOT = { var:wm_party = { has_variable = wm_lead_state } }
+			wm_majority_parliament_sitting_trigger = yes
+		}
+		save_scope_as = wm_lead_target
+		random = {
+			chance = wm_election_leadership_challenge_chance_value
+			var:wm_party = { save_scope_as = wm_lead_party }
+			clear_saved_scope = wm_lead_challenger_in
+			ordered_in_list = {
+				list = wm_lead_all_mps
+				limit = {
+					is_ai = yes
+					is_adult = yes
+					wm_election_leadership_member_trigger = { PARTY = scope:wm_lead_party }
+					NOT = { this = scope:wm_lead_target }
+				}
+				order_by = wm_election_leadership_stand_value
+				save_scope_as = wm_lead_challenger_in
+			}
+			if = {
+				limit = { exists = scope:wm_lead_challenger_in }
+				scope:wm_lead_challenger_in = { wm_election_leadership_challenge_effect = yes }
+			}
+		}
+	}
+}
+
+# Any scope. After a general election: leaders whose parties lost badly may stand down (a player is asked,
+# event wm_leadership.5). A Prime Minister turned out usually goes; so does a leader who lost 15% of their seats.
+wm_election_leadership_after_election_effect = {
+	title:e_united_kingdom.holder ?= {
+		every_vassal = {
+			limit = {
+				wm_commons_is_party_leader_trigger = yes
+				wm_is_mp_trigger = yes
+				NOT = { var:wm_party = { has_variable = wm_lead_state } }
+				OR = {
+					global_var:wm_el_old_pm ?= this
+					var:wm_party = { wm_election_leadership_lost_ground_trigger = yes }
+				}
+			}
+			if = {
+				limit = { wm_majority_ask_player_trigger = yes }
+				trigger_event = { id = wm_leadership.5 days = 2 }
+			}
+			else = {
+				random = {
+					chance = 70
+					wm_election_leadership_stand_down_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# Any scope. A party leader has died (on_death): their party's contest opens a day later.
+wm_election_leadership_leader_died_effect = {
+	add_to_global_variable_list = { name = wm_lead_pending_open target = $PARTY$ }
+	wm_majority_host_event_effect = { ID = wm_leadership.10 DAYS = 1 }
+}

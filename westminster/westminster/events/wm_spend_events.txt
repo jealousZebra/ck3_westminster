@@ -1,0 +1,67 @@
+﻿# Campaign spending (common/scripted_effects/wm_spend_effects.txt).
+#   wm_spend.10   choose the rival party a smear campaign targets (decision wm_spend_smear_decision)
+#   wm_spend.20   choose the rival party leader to call in a favour from (decision wm_spend_favour_decision)
+namespace = wm_spend
+
+wm_spend.10 = {
+	type = character_event
+	title = wm_spend.10.t
+	desc = wm_spend.10.desc
+	theme = intrigue
+	left_portrait = {
+		character = root
+		animation = scheme
+	}
+	immediate = {
+		wm_spend_find_rivals_effect = yes
+	}
+
+	option = {
+		name = wm_spend.10.a
+		trigger = { exists = scope:wm_spend_party_1 }
+		wm_spend_start_effect = { KIND = 2 TARGET = scope:wm_spend_party_1 }
+	}
+	option = {
+		name = wm_spend.10.b
+		trigger = { exists = scope:wm_spend_party_2 }
+		wm_spend_start_effect = { KIND = 2 TARGET = scope:wm_spend_party_2 }
+	}
+	option = {
+		name = wm_spend.10.c
+		trigger = { exists = scope:wm_spend_party_3 }
+		wm_spend_start_effect = { KIND = 2 TARGET = scope:wm_spend_party_3 }
+	}
+	option = {
+		name = wm_spend.10.d
+	}
+}
+
+wm_spend.20 = {
+	type = character_event
+	title = wm_spend.20.t
+	desc = wm_spend.20.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	immediate = {
+		wm_spend_find_rivals_effect = yes
+	}
+
+	option = {
+		name = wm_spend.20.a
+		trigger = { exists = scope:wm_spend_rival_1 }
+		wm_spend_favour_effect = { RIVAL = scope:wm_spend_rival_1 }
+	}
+	option = {
+		name = wm_spend.20.b
+		trigger = { exists = scope:wm_spend_rival_2 }
+		wm_spend_favour_effect = { RIVAL = scope:wm_spend_rival_2 }
+	}
+	option = {
+		name = wm_spend.20.c
+		trigger = { exists = scope:wm_spend_rival_3 }
+		wm_spend_favour_effect = { RIVAL = scope:wm_spend_rival_3 }
+	}
+}

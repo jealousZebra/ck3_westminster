@@ -1,0 +1,42 @@
+﻿# Coalitions and confidence-and-supply (common/scripted_effects/wm_coalition_effects.txt).
+
+# The junior partner's leader pulls out of the coalition or the confidence-and-supply deal. (The AI walks out
+# through the quarterly roll in wm_coalition_quarterly_effect instead.)
+wm_coalition_leave_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_downing.dds"
+	}
+	decision_group_type = major
+	sort_order = 90
+	ai_check_interval = 0
+
+	desc = wm_coalition_leave_decision_desc
+	selection_tooltip = wm_coalition_leave_decision_tooltip
+
+	is_shown = {
+		is_ai = no
+		wm_coalition_is_junior_leader_trigger = yes
+	}
+
+	is_valid = {
+		custom_description = {
+			text = wm_coalition_leave_no_election_desc
+			NOT = { has_global_variable = wm_el_scheduled }
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_coalition_leave_decision_effect_tt
+		hidden_effect = {
+			wm_coalition_breakdown_effect = yes
+		}
+	}
+
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

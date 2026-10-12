@@ -1,0 +1,10 @@
+﻿# By-elections (common/scripted_effects/wm_byelection_effects.txt).
+namespace = wm_byelection
+
+# Polling day in by-elections: four weeks after a seat fell vacant. Holds every by-election that is due.
+wm_byelection.1 = {
+	hidden = yes
+	immediate = {
+		wm_byelection_process_due_effect = yes
+	}
+}

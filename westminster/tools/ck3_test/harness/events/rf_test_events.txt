@@ -1,0 +1,5 @@
+﻿namespace = rf_test
+rf_test.2 = {
+	hidden = yes
+	immediate = { rf_test_effect_later = yes }
+}

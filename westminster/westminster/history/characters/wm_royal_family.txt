@@ -1,0 +1,128 @@
+﻿# The royal family in the 2024 bookmark: present, but not important. Kept minimal on purpose.
+# The monarch holds title:k_wm_crown (history/titles/wm_royal_crown.txt); the rest are courtiers.
+# Harry's family is kept in the Crown's court (they live abroad; that isn't modelled).
+# Like everyone else, they are never the subject of scripted events: anything that happens to them
+# comes from the game's own randomness (see PLAN.md).
+
+wm_royal_charles = {	# King Charles III
+	name = "Charles"
+	dna = wm_dna_royal_charles	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	culture = english
+	religion = wm_faith_not_stated
+	diplomacy = 12
+	learning = 10
+	1948.11.14 = { birth = yes }
+	2005.4.9 = { add_spouse = wm_royal_camilla }
+	2024.7.5 = {
+		effect = {
+			add_prestige = 2500	# enough to speak out against an MP once, at a heavy price
+		}
+	}
+}
+wm_royal_camilla = {	# Queen Camilla
+	name = "Camilla"
+	dna = wm_dna_royal_camilla	# likeness: tools/data/build_likenesses.py
+	female = yes
+	culture = english
+	religion = wm_faith_not_stated
+	1947.7.17 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_william = {	# William, Prince of Wales
+	name = "William"
+	dna = wm_dna_royal_william	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_charles
+	culture = english
+	religion = wm_faith_not_stated
+	1982.6.21 = { birth = yes }
+	2011.4.29 = { add_spouse = wm_royal_catherine }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_catherine = {	# Catherine, Princess of Wales
+	name = "Catherine"
+	dna = wm_dna_royal_catherine	# likeness: tools/data/build_likenesses.py
+	female = yes
+	culture = english
+	religion = wm_faith_not_stated
+	1982.1.9 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_george = {	# Prince George of Wales
+	name = "George"
+	dna = wm_dna_royal_george	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_william
+	mother = wm_royal_catherine
+	culture = english
+	religion = wm_faith_not_stated
+	2013.7.22 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_charlotte = {	# Princess Charlotte of Wales
+	name = "Charlotte"
+	dna = wm_dna_royal_charlotte	# likeness: tools/data/build_likenesses.py
+	female = yes
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_william
+	mother = wm_royal_catherine
+	culture = english
+	religion = wm_faith_not_stated
+	2015.5.2 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_louis = {	# Prince Louis of Wales
+	name = "Louis"
+	dna = wm_dna_royal_louis	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_william
+	mother = wm_royal_catherine
+	culture = english
+	religion = wm_faith_not_stated
+	2018.4.23 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_harry = {	# Prince Harry, Duke of Sussex
+	name = "Harry"
+	dna = wm_dna_royal_harry	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_charles
+	culture = english
+	religion = wm_faith_not_stated
+	1984.9.15 = { birth = yes }
+	2018.5.19 = { add_spouse = wm_royal_meghan }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_meghan = {	# Meghan, Duchess of Sussex
+	name = "Meghan"
+	dna = wm_dna_royal_meghan	# likeness: tools/data/build_likenesses.py
+	female = yes
+	culture = english
+	religion = wm_faith_not_stated
+	1981.8.4 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_archie = {	# Prince Archie of Sussex
+	name = "Archie"
+	dna = wm_dna_royal_archie	# likeness: tools/data/build_likenesses.py
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_harry
+	mother = wm_royal_meghan
+	culture = english
+	religion = wm_faith_not_stated
+	2019.5.6 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}
+wm_royal_lilibet = {	# Princess Lilibet of Sussex
+	name = "Lilibet"
+	dna = wm_dna_royal_lilibet	# likeness: tools/data/build_likenesses.py
+	female = yes
+	dynasty = wm_dyn_royal_windsor
+	father = wm_royal_harry
+	mother = wm_royal_meghan
+	culture = english
+	religion = wm_faith_not_stated
+	2021.6.4 = { birth = yes }
+	2024.7.5 = { employer = wm_royal_charles }
+}

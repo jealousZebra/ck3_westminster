@@ -1,0 +1,135 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt).
+#   wm_devolution.1    a player Prime Minister hears a devolved government's request for a referendum
+#   wm_devolution.20   choose the nation to devolve a power to (decision)
+#   wm_devolution.21   choose the nation to claw a power back from (decision)
+#   wm_devolution.30   the devolution briefing: every nation's numbers and public trust (decision)
+namespace = wm_devolution
+
+wm_devolution.1 = {
+	type = character_event
+	title = wm_devolution.1.t
+	desc = wm_devolution.1.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	trigger = {
+		exists = global_var:wm_dev_request_gov
+	}
+	immediate = {
+		global_var:wm_dev_request_gov = { save_scope_as = wm_dev_gov }
+	}
+
+	option = {
+		name = wm_devolution.1.a
+		custom_tooltip = wm_devolution.1.a.tt
+		wm_devolution_grant_effect = yes
+	}
+	option = {
+		name = wm_devolution.1.b
+		custom_tooltip = wm_devolution.1.b.tt
+		wm_devolution_refuse_effect = yes
+	}
+	option = {
+		name = wm_devolution.1.c
+		custom_tooltip = wm_devolution.1.c.tt
+		wm_devolution_offer_powers_effect = yes
+	}
+}
+
+wm_devolution.20 = {
+	type = character_event
+	title = wm_devolution.20.t
+	desc = wm_devolution.20.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	option = {
+		name = wm_devolution.20.scotland
+		trigger = { exists = title:k_gov_scotland.var:wm_dev_powers title:k_gov_scotland.var:wm_dev_powers < 10 }
+		title:k_gov_scotland = { save_scope_as = wm_dev_gov }
+		wm_devolution_devolve_effect = yes
+	}
+	option = {
+		name = wm_devolution.20.wales
+		trigger = { exists = title:k_gov_wales.var:wm_dev_powers title:k_gov_wales.var:wm_dev_powers < 10 }
+		title:k_gov_wales = { save_scope_as = wm_dev_gov }
+		wm_devolution_devolve_effect = yes
+	}
+	option = {
+		name = wm_devolution.20.northern_ireland
+		trigger = { exists = title:k_gov_northern_ireland.var:wm_dev_powers title:k_gov_northern_ireland.var:wm_dev_powers < 10 }
+		title:k_gov_northern_ireland = { save_scope_as = wm_dev_gov }
+		wm_devolution_devolve_effect = yes
+	}
+	# Changed your mind: the profile is refunded
+	option = {
+		name = wm_devolution.20.none
+		add_prestige = wm_dev_powers_cost
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+wm_devolution.21 = {
+	type = character_event
+	title = wm_devolution.21.t
+	desc = wm_devolution.21.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	option = {
+		name = wm_devolution.21.scotland
+		trigger = { exists = title:k_gov_scotland.var:wm_dev_powers title:k_gov_scotland.var:wm_dev_powers > 1 }
+		title:k_gov_scotland = { save_scope_as = wm_dev_gov }
+		wm_devolution_claw_back_effect = yes
+	}
+	option = {
+		name = wm_devolution.21.wales
+		trigger = { exists = title:k_gov_wales.var:wm_dev_powers title:k_gov_wales.var:wm_dev_powers > 1 }
+		title:k_gov_wales = { save_scope_as = wm_dev_gov }
+		wm_devolution_claw_back_effect = yes
+	}
+	option = {
+		name = wm_devolution.21.northern_ireland
+		trigger = { exists = title:k_gov_northern_ireland.var:wm_dev_powers title:k_gov_northern_ireland.var:wm_dev_powers > 1 }
+		title:k_gov_northern_ireland = { save_scope_as = wm_dev_gov }
+		wm_devolution_claw_back_effect = yes
+	}
+	option = {
+		name = wm_devolution.21.none
+	}
+}
+
+wm_devolution.30 = {
+	type = character_event
+	title = wm_devolution.30.t
+	desc = {
+		desc = wm_devolution.30.desc
+		triggered_desc = {
+			trigger = { exists = title:k_gov_northern_ireland.var:wm_dev_suspended }
+			desc = wm_devolution.30.suspended
+		}
+		triggered_desc = {
+			trigger = { NOT = { exists = title:k_gov_northern_ireland.var:wm_dev_suspended } }
+			desc = wm_devolution.30.sitting
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	option = {
+		name = wm_devolution.30.a
+	}
+}

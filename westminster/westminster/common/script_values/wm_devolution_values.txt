@@ -1,0 +1,125 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt). Per nation, on its devolved government's title
+# (k_gov_scotland, k_gov_wales, k_gov_northern_ireland):
+#   var:wm_dev_support   support for leaving the UK (Scotland and Wales: independence; Northern Ireland: a united
+#                        Ireland), percent
+#   var:wm_dev_powers    how much is devolved, 1-10
+# and for Northern Ireland var:wm_dev_stability (power-sharing's health, 0-100) and var:wm_dev_suspended.
+
+# 2024 starting points (also the levels support and powers are measured against)
+wm_dev_start_support_scotland = 48
+wm_dev_start_support_wales = 28
+wm_dev_start_support_northern_ireland = 38
+wm_dev_start_powers_scotland = 7
+wm_dev_start_powers_wales = 5
+wm_dev_start_powers_northern_ireland = 6
+wm_dev_start_stability = 55
+
+wm_dev_drift = 0.05				# share of the gap to the anchor closed each month
+wm_dev_support_per_power = 3	# each power clawed back below the start adds this to the anchor (and devolving
+								# one more takes it off)
+wm_dev_nationalist_bonus = 2	# the nationalist party runs the devolved government
+wm_dev_suspended_bonus = 4		# Stormont is suspended
+wm_dev_referendum_threshold = 50
+wm_dev_referendum_demand_chance = 10	# monthly, once support is over the threshold
+wm_dev_referendum_months = 6	# from agreeing a referendum to polling day
+wm_dev_referendum_cooldown_days = 5475	# 15 years after a referendum ("once in a generation")
+wm_dev_refusal_cooldown_days = 1095		# 3 years after a request is refused or bought off
+wm_dev_powers_cost = 100		# prestige, to devolve a power
+wm_dev_talks_cost = 100			# prestige, for Stormont talks (plus money)
+wm_dev_collapse_below = 25		# power-sharing can collapse below this stability
+wm_dev_collapse_chance = 15		# monthly
+wm_dev_restore_above = 50		# a suspended Assembly can come back on its own above this
+wm_dev_restore_chance = 5		# monthly
+
+# Scope: a devolved government's title. Where support settles: the starting level, plus low trust in Westminster
+# (0.2 per point under 35), plus 3 per power below the start (minus 3 per power above), plus the nationalist bonus
+# and Stormont's suspension. $NAT$ in the effect picks the nation's numbers; these take them from variables.
+wm_dev_support_anchor = {
+	value = var:wm_dev_base_support
+	add = {
+		value = 35
+		subtract = wm_ui_public_trust
+		multiply = 0.2
+	}
+	add = {
+		value = var:wm_dev_base_powers
+		subtract = var:wm_dev_powers
+		multiply = wm_dev_support_per_power
+	}
+	if = {
+		limit = { has_variable = wm_dev_nationalist_led }
+		add = wm_dev_nationalist_bonus
+	}
+	if = {
+		limit = { has_variable = wm_dev_suspended }
+		add = wm_dev_suspended_bonus
+	}
+	min = 5
+	max = 90
+}
+
+# Scope: the Prime Minister. Chance (weight) that Stormont talks succeed: 40, plus 2 per point of diplomacy, plus
+# stability over 30.
+wm_dev_talks_success_weight = {
+	value = 40
+	add = {
+		value = diplomacy
+		multiply = 2
+	}
+	add = {
+		value = title:k_gov_northern_ireland.var:wm_dev_stability
+		subtract = 30
+	}
+	min = 10
+}
+
+# For the UI and loc: each nation's numbers (0 before they exist).
+wm_ui_dev_support_scotland = {
+	value = wm_dev_start_support_scotland
+	if = {
+		limit = { exists = title:k_gov_scotland.var:wm_dev_support }
+		value = title:k_gov_scotland.var:wm_dev_support
+	}
+}
+wm_ui_dev_support_wales = {
+	value = wm_dev_start_support_wales
+	if = {
+		limit = { exists = title:k_gov_wales.var:wm_dev_support }
+		value = title:k_gov_wales.var:wm_dev_support
+	}
+}
+wm_ui_dev_support_northern_ireland = {
+	value = wm_dev_start_support_northern_ireland
+	if = {
+		limit = { exists = title:k_gov_northern_ireland.var:wm_dev_support }
+		value = title:k_gov_northern_ireland.var:wm_dev_support
+	}
+}
+wm_ui_dev_powers_scotland = {
+	value = wm_dev_start_powers_scotland
+	if = {
+		limit = { exists = title:k_gov_scotland.var:wm_dev_powers }
+		value = title:k_gov_scotland.var:wm_dev_powers
+	}
+}
+wm_ui_dev_powers_wales = {
+	value = wm_dev_start_powers_wales
+	if = {
+		limit = { exists = title:k_gov_wales.var:wm_dev_powers }
+		value = title:k_gov_wales.var:wm_dev_powers
+	}
+}
+wm_ui_dev_powers_northern_ireland = {
+	value = wm_dev_start_powers_northern_ireland
+	if = {
+		limit = { exists = title:k_gov_northern_ireland.var:wm_dev_powers }
+		value = title:k_gov_northern_ireland.var:wm_dev_powers
+	}
+}
+wm_ui_dev_stability = {
+	value = wm_dev_start_stability
+	if = {
+		limit = { exists = title:k_gov_northern_ireland.var:wm_dev_stability }
+		value = title:k_gov_northern_ireland.var:wm_dev_stability
+	}
+}

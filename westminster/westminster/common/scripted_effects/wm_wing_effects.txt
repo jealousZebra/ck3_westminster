@@ -1,0 +1,546 @@
+﻿# Party wings: factions inside Labour and the Conservatives (amounts: common/script_values/wm_wing_values.txt).
+#   Labour:        1 Labour Left, 2 Soft Left, 3 Labour Centrists
+#   Conservatives: 4 One Nation, 5 Free-marketeers, 6 Traditionalists
+# Every Labour or Conservative MP except the party leader belongs to one (var:wm_wing, with a badge modifier
+# wm_wing_badge_<wing>). Wings follow ideology (common/religion/, wm_ideo_effects.txt): Socialist - Labour Left,
+# Social Democrat - Soft Left, Centrist - Labour Centrists, One Nation - One Nation, Free-market - Free-marketeers,
+# National Conservative - Traditionalists; any other ideology joins the nearest wing of the MP's party. The 2024 MPs'
+# wings are set in history from their ideology (tools/data/build_2024.py); new MPs join at the next monthly tick, and
+# an MP who changes ideology changes wing. Only an MP with no political ideology gets a random wing (traits tilt
+# it). A wing also sets the MP's lean in Commons votes (var:wm_commons_wing: -1 left, 0 centre, 1 right;
+# wm_commons_effects.txt reads it).
+#
+# Each wing's approval of its leader, 0-100, is global_var:wm_wing_approval_<wing>. Each month it drifts 10% back
+# towards 50, and:
+#   cabinet places: a wing of 5 or more MPs with no seat in the leader's council (the Cabinet, or a shadow cabinet
+#     for an opposition leader) loses 1.5 (settling at 35); one seat gains 0.5, two or more gain 2
+#   the government's measures (read from the Prime Minister's modifiers by wm_trust_watch_pm_effect): a tax rise or
+#     public services spending pleases the left and angers the free-marketeers; a reform the reverse; emergency
+#     powers please the traditionalists; a coalition compromise annoys everyone (wm_wing_policy_effect)
+#   a conference triumph (+5) or disaster (-5) for every wing of the party
+#   the leader courting a wing (decision wm_wing_court_decision): +15 to it, -4 to the others
+# Under 30, the wing's MPs resent their leader (wm_wing_disgruntled_opinion), which makes them likelier to rebel in
+# the Commons; over 70 they warm to the leader. Under 15 for three months running, a wing of 5 or more challenges
+# the leader (at most once in two years per party): event wm_wing.10. The leader concedes, or faces the challenger
+# down (a diplomacy duel); if the challenge is carried, it goes to a leadership contest with the challenger on the
+# ballot: wm_wing_challenge_carried_effect.
+#
+# State: var:wm_wing on MPs; global vars wm_wing_approval_<wing>, wm_wing_size_<wing> (members, counted monthly),
+# wm_wing_furious_<wing> (months under 15), wm_wing_challenge_cd_<labour|conservative> (a challenge in the last two
+# years), wm_wing_challenge_wing (the wing behind a challenge in progress); character flags wm_wing_seen_<modifier>
+# on party leaders (each conference result counted once).
+
+# No scope. Game start (and old saves): approval at its starting level; the 2024 MPs' wings from history get their
+# badges.
+wm_wing_init_effect = {
+	wm_wing_init_approval_effect = { WING = 1 }
+	wm_wing_init_approval_effect = { WING = 2 }
+	wm_wing_init_approval_effect = { WING = 3 }
+	wm_wing_init_approval_effect = { WING = 4 }
+	wm_wing_init_approval_effect = { WING = 5 }
+	wm_wing_init_approval_effect = { WING = 6 }
+	every_living_character = {
+		limit = { has_variable = wm_wing }
+		set_variable = { name = wm_wing value = var:wm_wing }
+		wm_wing_badge_effect = yes
+	}
+}
+wm_wing_init_approval_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_wing_approval_$WING$ } }
+		set_global_variable = { name = wm_wing_approval_$WING$ value = wm_wing_start_$WING$ }
+		set_global_variable = { name = wm_wing_furious_$WING$ value = 0 }
+		set_global_variable = { name = wm_wing_size_$WING$ value = 0 }
+	}
+}
+
+# Scope: an MP. Their badge modifier matches var:wm_wing (or they have none).
+wm_wing_badge_effect = {
+	remove_character_modifier = wm_wing_badge_1
+	remove_character_modifier = wm_wing_badge_2
+	remove_character_modifier = wm_wing_badge_3
+	remove_character_modifier = wm_wing_badge_4
+	remove_character_modifier = wm_wing_badge_5
+	remove_character_modifier = wm_wing_badge_6
+	if = {
+		limit = { var:wm_wing ?= 1 }
+		add_character_modifier = wm_wing_badge_1
+	}
+	else_if = {
+		limit = { var:wm_wing ?= 2 }
+		add_character_modifier = wm_wing_badge_2
+	}
+	else_if = {
+		limit = { var:wm_wing ?= 3 }
+		add_character_modifier = wm_wing_badge_3
+	}
+	else_if = {
+		limit = { var:wm_wing ?= 4 }
+		add_character_modifier = wm_wing_badge_4
+	}
+	else_if = {
+		limit = { var:wm_wing ?= 5 }
+		add_character_modifier = wm_wing_badge_5
+	}
+	else_if = {
+		limit = { var:wm_wing ?= 6 }
+		add_character_modifier = wm_wing_badge_6
+	}
+}
+
+# Scope: a Labour or Conservative MP without a wing. Joins their ideology's wing (wm_ideo_wing_effect); without a
+# political ideology, a random one.
+wm_wing_assign_effect = {
+	wm_ideo_wing_effect = yes
+	if = {
+		limit = { NOT = { has_variable = wm_wing } }
+		wm_wing_assign_random_effect = yes
+	}
+}
+
+# Scope: a Labour or Conservative MP without a wing. Picks one at random, tilted by traits, and sets their Commons
+# lean to match.
+wm_wing_assign_random_effect = {
+	if = {
+		limit = { var:wm_party ?= title:k_party_labour }
+		random_list = {
+			25 = {
+				modifier = {
+					add = 15
+					has_trait = compassionate
+				}
+				modifier = {
+					add = 10
+					has_trait = zealous
+				}
+				wm_wing_join_effect = { WING = 1 LEAN = -1 }
+			}
+			40 = {
+				modifier = {
+					add = 10
+					has_trait = content
+				}
+				wm_wing_join_effect = { WING = 2 LEAN = 0 }
+			}
+			35 = {
+				modifier = {
+					add = 15
+					has_trait = ambitious
+				}
+				modifier = {
+					add = 10
+					has_trait = cynical
+				}
+				wm_wing_join_effect = { WING = 3 LEAN = 1 }
+			}
+		}
+	}
+	else_if = {
+		limit = { var:wm_party ?= title:k_party_conservative }
+		random_list = {
+			35 = {
+				modifier = {
+					add = 15
+					has_trait = compassionate
+				}
+				wm_wing_join_effect = { WING = 4 LEAN = -1 }
+			}
+			35 = {
+				modifier = {
+					add = 15
+					has_trait = greedy
+				}
+				modifier = {
+					add = 10
+					has_trait = ambitious
+				}
+				wm_wing_join_effect = { WING = 5 LEAN = 1 }
+			}
+			30 = {
+				modifier = {
+					add = 15
+					has_trait = zealous
+				}
+				modifier = {
+					add = 10
+					has_trait = stubborn
+				}
+				wm_wing_join_effect = { WING = 6 LEAN = 0 }
+			}
+		}
+	}
+}
+
+# Scope: an MP. Joins wing $WING$ with Commons lean $LEAN$.
+wm_wing_join_effect = {
+	set_variable = { name = wm_wing value = $WING$ }
+	set_variable = { name = wm_commons_wing value = $LEAN$ }
+	wm_wing_badge_effect = yes
+}
+
+# Scope: a character. Leaves their wing (they left the party, lost their seat, or lead the party now).
+wm_wing_leave_effect = {
+	remove_variable = wm_wing
+	wm_wing_badge_effect = yes
+}
+
+# Scope: a party title. The wings' reaction to a government measure of kind $KIND$ (see wm_wing_values.txt).
+wm_wing_policy_effect = {
+	if = {
+		limit = { this = title:k_party_labour }
+		wm_wing_change_effect = { WING = 1 AMOUNT = wm_wing_react_$KIND$_1 }
+		wm_wing_change_effect = { WING = 2 AMOUNT = wm_wing_react_$KIND$_2 }
+		wm_wing_change_effect = { WING = 3 AMOUNT = wm_wing_react_$KIND$_3 }
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		wm_wing_change_effect = { WING = 4 AMOUNT = wm_wing_react_$KIND$_4 }
+		wm_wing_change_effect = { WING = 5 AMOUNT = wm_wing_react_$KIND$_5 }
+		wm_wing_change_effect = { WING = 6 AMOUNT = wm_wing_react_$KIND$_6 }
+	}
+}
+
+# Wing $WING$'s approval moves by $AMOUNT$, kept within 0-100.
+wm_wing_change_effect = {
+	wm_wing_init_approval_effect = { WING = $WING$ }
+	set_global_variable = {
+		name = wm_wing_approval_$WING$
+		value = {
+			value = global_var:wm_wing_approval_$WING$
+			add = $AMOUNT$
+			min = 0
+			max = 100
+		}
+	}
+}
+
+# The wing behind the challenge in progress (global_var:wm_wing_challenge_wing) moves by $AMOUNT$.
+wm_wing_challenge_wing_change_effect = {
+	if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 1 }
+		wm_wing_change_effect = { WING = 1 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 2 }
+		wm_wing_change_effect = { WING = 2 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 3 }
+		wm_wing_change_effect = { WING = 3 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 4 }
+		wm_wing_change_effect = { WING = 4 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 5 }
+		wm_wing_change_effect = { WING = 5 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { global_var:wm_wing_challenge_wing ?= 6 }
+		wm_wing_change_effect = { WING = 6 AMOUNT = $AMOUNT$ }
+	}
+}
+
+# Scope: a party title. Every wing of the party moves by $AMOUNT$.
+wm_wing_party_change_effect = {
+	if = {
+		limit = { this = title:k_party_labour }
+		wm_wing_change_effect = { WING = 1 AMOUNT = $AMOUNT$ }
+		wm_wing_change_effect = { WING = 2 AMOUNT = $AMOUNT$ }
+		wm_wing_change_effect = { WING = 3 AMOUNT = $AMOUNT$ }
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		wm_wing_change_effect = { WING = 4 AMOUNT = $AMOUNT$ }
+		wm_wing_change_effect = { WING = 5 AMOUNT = $AMOUNT$ }
+		wm_wing_change_effect = { WING = 6 AMOUNT = $AMOUNT$ }
+	}
+}
+
+# The month for the wings (run by wm_polls_monthly_effect).
+wm_wing_monthly_effect = {
+	wm_wing_init_effect = yes
+	# Membership: new MPs join a wing; leaders and those who left the party or lost their seat leave theirs
+	every_living_character = {
+		limit = {
+			has_variable = wm_wing
+			OR = {
+				NOT = { exists = var:wm_party }
+				has_title = var:wm_party
+				wm_is_mp_trigger = no
+				AND = {
+					var:wm_wing <= 3
+					NOT = { var:wm_party = title:k_party_labour }
+				}
+				AND = {
+					var:wm_wing >= 4
+					NOT = { var:wm_party = title:k_party_conservative }
+				}
+			}
+		}
+		wm_wing_leave_effect = yes
+	}
+	every_living_character = {
+		limit = {
+			NOT = { has_variable = wm_wing }
+			OR = {
+				var:wm_party ?= title:k_party_labour
+				var:wm_party ?= title:k_party_conservative
+			}
+			NOT = { has_title = var:wm_party }
+			wm_is_mp_trigger = yes
+		}
+		wm_wing_assign_effect = yes
+	}
+	wm_wing_party_month_effect = { PARTY = k_party_labour }
+	wm_wing_party_month_effect = { PARTY = k_party_conservative }
+	wm_wing_month_effect = { WING = 1 PARTY = k_party_labour KEY = labour }
+	wm_wing_month_effect = { WING = 2 PARTY = k_party_labour KEY = labour }
+	wm_wing_month_effect = { WING = 3 PARTY = k_party_labour KEY = labour }
+	wm_wing_month_effect = { WING = 4 PARTY = k_party_conservative KEY = conservative }
+	wm_wing_month_effect = { WING = 5 PARTY = k_party_conservative KEY = conservative }
+	wm_wing_month_effect = { WING = 6 PARTY = k_party_conservative KEY = conservative }
+}
+
+# The party leader's conference: a triumph or disaster counts once for every wing.
+wm_wing_party_month_effect = {
+	title:$PARTY$.holder ?= {
+		if = {
+			limit = {
+				has_character_modifier = wm_conference_triumph_modifier
+				NOT = { has_character_flag = wm_wing_seen_conference_triumph }
+			}
+			add_character_flag = { flag = wm_wing_seen_conference_triumph years = 1 }
+			title:$PARTY$ = { wm_wing_party_change_effect = { AMOUNT = wm_wing_conference } }
+		}
+		if = {
+			limit = {
+				has_character_modifier = wm_conference_disaster_modifier
+				NOT = { has_character_flag = wm_wing_seen_conference_disaster }
+			}
+			add_character_flag = { flag = wm_wing_seen_conference_disaster years = 1 }
+			title:$PARTY$ = { wm_wing_party_change_effect = { AMOUNT = wm_wing_conference_loss } }
+		}
+	}
+}
+
+# One wing's month. $WING$ the wing, $PARTY$ its party's title key, $KEY$ labour or conservative.
+wm_wing_month_effect = {
+	set_global_variable = { name = wm_wing_size_$WING$ value = 0 }
+	every_living_character = {
+		limit = { var:wm_wing ?= $WING$ }
+		change_global_variable = { name = wm_wing_size_$WING$ add = 1 }
+	}
+	# Drift back towards 50
+	set_global_variable = {
+		name = wm_wing_approval_$WING$
+		value = {
+			value = 50
+			subtract = global_var:wm_wing_approval_$WING$
+			multiply = wm_wing_drift
+			add = global_var:wm_wing_approval_$WING$
+		}
+	}
+	if = {
+		limit = {
+			exists = title:$PARTY$.holder
+			global_var:wm_wing_size_$WING$ >= wm_wing_min_size
+		}
+		# Cabinet places (the Cabinet, or the leader's shadow cabinet)
+		if = {
+			limit = {
+				title:$PARTY$.holder = {
+					any_councillor = {
+						count >= 2
+						var:wm_wing ?= $WING$
+					}
+				}
+			}
+			wm_wing_change_effect = { WING = $WING$ AMOUNT = wm_wing_two_cabinet }
+		}
+		else_if = {
+			limit = {
+				title:$PARTY$.holder = {
+					any_councillor = { var:wm_wing ?= $WING$ }
+				}
+			}
+			wm_wing_change_effect = { WING = $WING$ AMOUNT = wm_wing_one_cabinet }
+		}
+		else = {
+			wm_wing_change_effect = { WING = $WING$ AMOUNT = wm_wing_no_cabinet }
+		}
+		# The members' mood towards their leader
+		title:$PARTY$.holder = { save_scope_as = wm_wing_leader }
+		if = {
+			limit = { global_var:wm_wing_approval_$WING$ < wm_wing_disgruntled_below }
+			every_living_character = {
+				limit = { var:wm_wing ?= $WING$ }
+				add_opinion = { target = scope:wm_wing_leader modifier = wm_wing_disgruntled_opinion }
+			}
+		}
+		else_if = {
+			limit = { global_var:wm_wing_approval_$WING$ > wm_wing_content_above }
+			every_living_character = {
+				limit = { var:wm_wing ?= $WING$ }
+				add_opinion = { target = scope:wm_wing_leader modifier = wm_wing_content_opinion }
+			}
+		}
+		# Fury: three months under 15 and the wing moves against the leader
+		if = {
+			limit = { global_var:wm_wing_approval_$WING$ < wm_wing_furious_below }
+			change_global_variable = { name = wm_wing_furious_$WING$ add = 1 }
+		}
+		else = {
+			set_global_variable = { name = wm_wing_furious_$WING$ value = 0 }
+		}
+		if = {
+			limit = {
+				global_var:wm_wing_furious_$WING$ >= wm_wing_furious_months
+				NOT = { has_global_variable = wm_wing_challenge_cd_$KEY$ }
+			}
+			wm_wing_challenge_effect = { WING = $WING$ PARTY = $PARTY$ KEY = $KEY$ }
+		}
+	}
+}
+
+# Wing $WING$ challenges the leader of $PARTY$ ($KEY$ labour or conservative). Its most prominent MP stands as
+# the challenger. A player leader decides in event wm_wing.10; the AI concedes or faces them down.
+wm_wing_challenge_effect = {
+	set_global_variable = { name = wm_wing_furious_$WING$ value = 0 }
+	set_global_variable = { name = wm_wing_challenge_cd_$KEY$ value = yes days = 730 }
+	title:$PARTY$.holder ?= {
+		ordered_vassal = {
+			limit = {
+				var:wm_wing ?= $WING$
+				wm_is_mp_trigger = yes
+			}
+			order_by = prestige
+			save_scope_as = wm_wing_challenger
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:wm_wing_challenger
+			exists = title:$PARTY$.holder
+		}
+		set_global_variable = { name = wm_wing_challenge_wing value = $WING$ }
+		set_global_variable = { name = wm_wing_challenger value = scope:wm_wing_challenger }
+		title:$PARTY$ = { save_scope_as = wm_wing_party }
+		title:$PARTY$.holder = { save_scope_as = wm_wing_leader }
+		if = {
+			limit = { NOT = { has_global_variable = wm_test_quiet } }
+			every_player = {
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_wing_challenge_toast
+					left_icon = scope:wm_wing_challenger
+					right_icon = scope:wm_wing_leader
+					custom_tooltip = wm_wing_challenge_toast_desc_$WING$
+				}
+			}
+		}
+		scope:wm_wing_leader = {
+			if = {
+				limit = {
+					is_ai = no
+					NOT = { has_global_variable = wm_test_quiet }
+				}
+				trigger_event = wm_wing.10
+			}
+			else = {
+				random_list = {
+					40 = {
+						modifier = {
+							add = 30
+							prestige >= wm_wing_concede_cost
+						}
+						wm_wing_concede_effect = yes
+					}
+					60 = {
+						wm_wing_face_down_effect = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+# Scope: the challenged leader (global_var:wm_wing_challenge_wing and wm_wing_challenger set). Concede ground: the
+# wing gets its way, the leader loses face, the other wings grumble.
+wm_wing_concede_effect = {
+	add_prestige = wm_wing_concede_prestige
+	if = {
+		limit = { exists = var:wm_party }
+		var:wm_party = { wm_wing_party_change_effect = { AMOUNT = wm_wing_court_others } }
+	}
+	wm_wing_challenge_wing_change_effect = { AMOUNT = wm_wing_concede_gain }
+	remove_global_variable = wm_wing_challenger
+}
+
+# Scope: the challenged leader. A diplomacy duel against the challenger: win and the rebellion fizzles; lose and
+# the challenge is carried.
+wm_wing_face_down_effect = {
+	save_scope_as = wm_wing_leader
+	global_var:wm_wing_challenger = { save_scope_as = wm_wing_challenger }
+	duel = {
+		skill = diplomacy
+		target = scope:wm_wing_challenger
+		55 = {
+			compare_modifier = {
+				value = scope:duel_value
+				multiplier = 3.5
+				min = -49
+			}
+			add_prestige = medium_prestige_gain
+			scope:wm_wing_challenger = { add_prestige = medium_prestige_loss }
+			wm_wing_challenge_wing_change_effect = { AMOUNT = 10 }
+			remove_global_variable = wm_wing_challenger
+		}
+		45 = {
+			compare_modifier = {
+				value = scope:duel_value
+				multiplier = -3.5
+				min = -44
+			}
+			wm_wing_challenge_carried_effect = yes
+		}
+	}
+}
+
+# Scope: the challenged leader; global_var:wm_wing_challenger the challenger. The challenge is carried: the
+# challenger takes the party, and Downing Street if the leader was Prime Minister. Everyone is then put back in
+# their place (wm_election_rewire_effect). The wings start afresh.
+# Hook for the party leadership system: a leadership contest (members' ballot) could replace the direct handover
+# below; global_var:wm_wing_challenger is the wing's candidate.
+wm_wing_challenge_carried_effect = {
+	# The challenge is carried to a contest: the party's MPs nominate and its members vote (shortlist ballot,
+	# common/scripted_effects/wm_election_leadership_effects.txt), which also hands over Downing Street if the
+	# leader was Prime Minister and loses.
+	add_prestige = major_prestige_loss
+	save_scope_as = wm_lead_incumbent_in
+	global_var:wm_wing_challenger = { save_scope_as = wm_lead_challenger_in }
+	var:wm_party = { wm_election_leadership_open_effect = { KIND = 2 } }
+}
+
+# Scope: a party title. Its wings' approval back to 45.
+wm_wing_party_reset_effect = {
+	if = {
+		limit = { this = title:k_party_labour }
+		set_global_variable = { name = wm_wing_approval_1 value = 45 }
+		set_global_variable = { name = wm_wing_approval_2 value = 45 }
+		set_global_variable = { name = wm_wing_approval_3 value = 45 }
+	}
+	else_if = {
+		limit = { this = title:k_party_conservative }
+		set_global_variable = { name = wm_wing_approval_4 value = 45 }
+		set_global_variable = { name = wm_wing_approval_5 value = 45 }
+		set_global_variable = { name = wm_wing_approval_6 value = 45 }
+	}
+}
+
+# Scope: a party leader. Courts wing $WING$ (decision wm_wing_court_decision, event wm_wing.1).
+wm_wing_court_effect = {
+	var:wm_party = { wm_wing_party_change_effect = { AMOUNT = wm_wing_court_others } }
+	wm_wing_change_effect = { WING = $WING$ AMOUNT = wm_wing_court_net }
+}

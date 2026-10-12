@@ -1,0 +1,140 @@
+﻿# Devolution (common/scripted_effects/wm_devolution_effects.txt).
+
+# Anyone: the state of the Union and of public trust.
+wm_devolution_briefing_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_holyrood.dds"
+	}
+	sort_order = 20
+	ai_check_interval = 0
+
+	desc = wm_devolution_briefing_decision_desc
+	selection_tooltip = wm_devolution_briefing_decision_tooltip
+
+	is_shown = {
+		is_playable_character = yes
+	}
+
+	effect = {
+		hidden_effect = {
+			trigger_event = wm_devolution.30
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# The Prime Minister devolves a power to Scotland, Wales or Northern Ireland.
+wm_devolution_devolve_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_senedd.dds"
+	}
+	decision_group_type = major
+	sort_order = 50
+	ai_check_interval = 24
+
+	desc = wm_devolution_devolve_decision_desc
+	selection_tooltip = wm_devolution_devolve_decision_tooltip
+
+	is_shown = {
+		has_title = title:e_united_kingdom
+	}
+
+	cooldown = { years = 1 }
+
+	cost = {
+		prestige = wm_dev_powers_cost
+	}
+
+	effect = {
+		custom_tooltip = wm_devolution_devolve_decision_effect_tt
+		hidden_effect = {
+			trigger_event = wm_devolution.20
+		}
+	}
+
+	ai_potential = {
+		prestige >= 500
+	}
+
+	# Buy off rising independence sentiment
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 30
+			OR = {
+				wm_ui_dev_support_scotland >= 50
+				wm_ui_dev_support_wales >= 50
+				wm_ui_dev_support_northern_ireland >= 50
+			}
+		}
+	}
+}
+
+# The Prime Minister claws a power back.
+wm_devolution_claw_back_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_commons.dds"
+	}
+	decision_group_type = major
+	sort_order = 49
+	ai_check_interval = 0
+
+	desc = wm_devolution_claw_back_decision_desc
+	selection_tooltip = wm_devolution_claw_back_decision_tooltip
+
+	is_shown = {
+		has_title = title:e_united_kingdom
+	}
+
+	cooldown = { years = 1 }
+
+	effect = {
+		custom_tooltip = wm_devolution_claw_back_decision_effect_tt
+		hidden_effect = {
+			trigger_event = wm_devolution.21
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# The Prime Minister convenes talks to restore power-sharing at Stormont.
+wm_devolution_stormont_talks_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_stormont.dds"
+	}
+	decision_group_type = major
+	sort_order = 51
+	ai_check_interval = 6
+
+	desc = wm_devolution_stormont_talks_decision_desc
+	selection_tooltip = wm_devolution_stormont_talks_decision_tooltip
+
+	is_shown = {
+		has_title = title:e_united_kingdom
+		exists = title:k_gov_northern_ireland.var:wm_dev_suspended
+	}
+
+	cooldown = { days = 180 }
+
+	cost = {
+		gold = medium_gold_value
+		prestige = wm_dev_talks_cost
+	}
+
+	effect = {
+		custom_tooltip = wm_devolution_stormont_talks_decision_effect_tt
+		hidden_effect = {
+			wm_devolution_stormont_talks_effect = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 50
+	}
+}

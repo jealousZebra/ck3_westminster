@@ -1,0 +1,853 @@
+﻿# Unlanded careers: activist -> approved candidate -> selected candidate for a seat -> MP at the next election or
+# by-election (PLAN.md, "Unlanded careers").
+#
+# Hopefuls are party members with no seat. A player hopeful is a landless adventurer whose camp is their campaign
+# team; AI hopefuls (local activists found by a selection, defeated MPs) are ordinary characters. They take jobs
+# (task contracts, common/task_contracts/wm_career_contracts.txt) from their party's MPs: canvassing, fundraising,
+# speechwriting, opposition research, and the party's candidate assessment. Jobs pay profile (prestige), money,
+# campaign funds (provisions), contacts and standing with the party.
+#
+# A local party opens a selection in a seat it is defending at a by-election, or (in the run-up to a general election)
+# in a seat it could win. Hopefuls with enough standing, or on the approved list, apply; each gives a hustings speech
+# (a skill check, event wm_career.21 for players); when the selection closes the local members vote (standing,
+# hustings, the selector's opinion, local roots, luck). The winner is stored on the seat, and when the party wins the
+# seat at an election or by-election the candidate becomes its MP (wm_election_new_mp_effect calls
+# wm_career_find_candidate_effect and wm_career_took_seat_effect).
+#
+# On a character:
+#   var:wm_party               their party (title), as for MPs
+#   var:wm_career_hopeful      on the ladder (and on global list wm_career_hopefuls)
+#   var:wm_standing            standing with the party, 0-100
+#   var:wm_on_shortlist        on the party's approved candidates list (candidate assessment passed, or a former MP)
+#   var:wm_career_camp         their campaign team (adventurer title), if they have one
+#   var:wm_career_applied      the seat they have applied to; var:wm_hustings_score their hustings result
+#   var:wm_career_selected_seat the seat they are the candidate for
+#   var:wm_career_former_mp    lost their seat and came back as a hopeful
+#   var:wm_career_invite_seat  (players) the selection they have been invited to apply to
+# On a seat (county title), per party key P (lab, con, ...):
+#   var:wm_candidate_<P>       the party's selected candidate
+#   var:wm_sel_wait_<P>        a selection is open and still taking applications (expires when it closes)
+#   variable list wm_sel_parties the parties with a selection open; wm_sel_applicants every applicant
+# Globals: list wm_career_hopefuls, list wm_career_selection_seats (seats with selections open), wm_career_ticked.
+# Per-party calls: wm_career_parties.txt. Party key and title pairs are the election's (wm_election_parties.txt).
+
+# ------------------------------------------------------------------------------------------------ hopefuls
+
+# Character: puts them on the ladder (no campaign team).
+wm_career_make_hopeful_effect = {
+	set_variable = { name = wm_career_hopeful value = yes }
+	if = {
+		limit = { NOT = { has_variable = wm_standing } }
+		set_variable = { name = wm_standing value = 10 }
+	}
+	if = {
+		limit = { NOT = { is_target_in_global_variable_list = { name = wm_career_hopefuls target = this } } }
+		add_to_global_variable_list = { name = wm_career_hopefuls target = this }
+	}
+}
+
+# Character: a hopeful with a campaign team (a landless adventurer), for players. Keeps a team they already have.
+wm_career_start_campaign_effect = {
+	if = {
+		limit = {
+			is_landless_adventurer = no
+			NOT = { wm_is_mp_trigger = yes }
+		}
+		create_adventurer_title = {
+			name = wm_campaign_title_name
+			holder = this
+			save_scope_as = wm_career_new_camp
+		}
+		set_variable = { name = wm_career_camp value = scope:wm_career_new_camp }
+	}
+	else_if = {
+		limit = {
+			is_landless_adventurer = yes
+			NOT = { exists = var:wm_career_camp }
+		}
+		set_variable = { name = wm_career_camp value = primary_title }
+	}
+	wm_career_make_hopeful_effect = yes
+}
+
+# Character: a defeated MP comes back as a hopeful. The party knows them: they are on the approved list, with at
+# least middling standing.
+wm_career_former_mp_effect = {
+	set_variable = { name = wm_career_former_mp value = yes }
+	set_variable = { name = wm_on_shortlist value = yes }
+	if = {
+		limit = {
+			OR = {
+				NOT = { has_variable = wm_standing }
+				var:wm_standing < 50
+			}
+		}
+		set_variable = { name = wm_standing value = 50 }
+	}
+	wm_career_make_hopeful_effect = yes
+}
+
+# Character: standing with the party changes by $AMOUNT$ (kept within 0-100).
+wm_career_change_standing_effect = {
+	if = {
+		limit = { NOT = { has_variable = wm_standing } }
+		set_variable = { name = wm_standing value = 0 }
+	}
+	set_variable = {
+		name = wm_standing
+		value = {
+			value = var:wm_standing
+			add = $AMOUNT$
+			min = 0
+			max = 100
+		}
+	}
+}
+
+# Character: a hopeful who has just won a seat (wm_election_new_mp_effect) leaves the ladder. Their campaign team is
+# wound up and they govern like any MP.
+wm_career_took_seat_effect = {
+	if = {
+		limit = { has_variable = wm_career_hopeful }
+		if = {
+			limit = {
+				exists = var:wm_career_camp
+				var:wm_career_camp.holder ?= this
+			}
+			destroy_title = var:wm_career_camp
+		}
+		else_if = {
+			limit = {
+				is_landless_adventurer = yes
+				primary_title = {
+					tier = tier_duchy
+					is_landless_type_title = yes
+				}
+			}
+			destroy_title = primary_title
+		}
+		if = {
+			limit = { has_government = landless_adventurer_government }
+			change_government = feudal_government
+		}
+		remove_variable = wm_career_camp
+		remove_variable = wm_career_hopeful
+		remove_variable = wm_career_selected_seat
+		remove_variable = wm_career_applied
+		remove_variable = wm_hustings_score
+		remove_variable = wm_career_invite_seat
+		remove_list_global_variable = { name = wm_career_hopefuls target = this }
+		wm_career_change_standing_effect = { AMOUNT = 10 }
+		if = {
+			limit = {
+				is_ai = no
+				NOT = { has_global_variable = wm_test_quiet }
+			}
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = wm_career_elected_toast
+				custom_tooltip = wm_career_elected_toast_desc
+			}
+		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ jobs
+
+# Character (a player hopeful): their party's MPs offer a job, up to three on offer at once. The employer is an MP of
+# the party, one from the same nation if possible, otherwise the party leader. The candidate assessment is offered
+# once standing is high enough.
+wm_career_offer_jobs_effect = {
+	if = {
+		limit = {
+			exists = var:wm_party.holder
+			NOT = {
+				any_character_task_contract = {
+					wm_career_is_job_trigger = yes
+					count >= 3
+				}
+			}
+		}
+		save_scope_as = wm_career_worker
+		clear_saved_scope = wm_career_employer
+		title:e_united_kingdom = {
+			random_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_county
+					holder ?= {
+						var:wm_party ?= scope:wm_career_worker.var:wm_party
+						NOT = { this = scope:wm_career_worker }
+					}
+				}
+				weight = {
+					base = 1
+					modifier = {
+						add = 4
+						holder = { culture = scope:wm_career_worker.culture }
+					}
+				}
+				holder = { save_scope_as = wm_career_employer }
+			}
+		}
+		if = {
+			limit = { NOT = { exists = scope:wm_career_employer } }
+			var:wm_party.holder = { save_scope_as = wm_career_employer }
+		}
+		random_list = {
+			30 = {
+				create_task_contract = {
+					task_contract_employer = scope:wm_career_employer
+					task_contract_type = wm_job_canvassing
+					task_contract_tier = 1
+					location = scope:wm_career_employer.location
+				}
+			}
+			20 = {
+				create_task_contract = {
+					task_contract_employer = scope:wm_career_employer
+					task_contract_type = wm_job_fundraising
+					task_contract_tier = 1
+					location = scope:wm_career_employer.location
+				}
+			}
+			20 = {
+				create_task_contract = {
+					task_contract_employer = scope:wm_career_employer
+					task_contract_type = wm_job_speechwriting
+					task_contract_tier = 1
+					location = scope:wm_career_employer.location
+				}
+			}
+			20 = {
+				create_task_contract = {
+					task_contract_employer = scope:wm_career_employer
+					task_contract_type = wm_job_research
+					task_contract_tier = 1
+					location = scope:wm_career_employer.location
+				}
+			}
+			40 = {
+				trigger = {
+					var:wm_standing >= wm_career_assessment_standing
+					NOT = { has_variable = wm_on_shortlist }
+					NOT = {
+						any_character_task_contract = { has_task_contract_type = wm_selection_contract }
+					}
+				}
+				var:wm_party.holder = { save_scope_as = wm_career_employer }
+				create_task_contract = {
+					task_contract_employer = scope:wm_career_employer
+					task_contract_type = wm_selection_contract
+					task_contract_tier = 1
+					location = scope:wm_career_employer.location
+				}
+			}
+		}
+	}
+}
+
+# Character (a job's taker): settles every job of theirs whose time is up (event wm_career.10, 21 days after taking
+# one). Each is a skill check: success pays, failure costs a little.
+wm_career_resolve_jobs_effect = {
+	wm_career_resolve_job_effect = { TYPE = wm_job_canvassing SKILL = diplomacy }
+	wm_career_resolve_job_effect = { TYPE = wm_job_fundraising SKILL = stewardship }
+	wm_career_resolve_job_effect = { TYPE = wm_job_speechwriting SKILL = learning }
+	wm_career_resolve_job_effect = { TYPE = wm_job_research SKILL = intrigue }
+	wm_career_resolve_job_effect = { TYPE = wm_selection_contract SKILL = diplomacy }
+}
+
+# $TYPE$: contract type; $SKILL$: diplomacy, stewardship, learning or intrigue (wm_career_job_chance_<skill>).
+wm_career_resolve_job_effect = {
+	if = {
+		limit = {
+			any_character_active_contract = {
+				has_task_contract_type = $TYPE$
+				NOT = { has_variable = wm_job_wait }
+			}
+		}
+		set_variable = {
+			name = wm_career_roll
+			value = {
+				value = 0
+				add = {
+					integer_range = {
+						min = 1
+						max = 100
+					}
+				}
+			}
+		}
+		if = {
+			limit = { var:wm_career_roll <= wm_career_job_chance_$SKILL$ }
+			random_character_active_contract = {
+				limit = {
+					has_task_contract_type = $TYPE$
+					NOT = { has_variable = wm_job_wait }
+				}
+				complete_task_contract = success_standard
+			}
+		}
+		else = {
+			random_character_active_contract = {
+				limit = {
+					has_task_contract_type = $TYPE$
+					NOT = { has_variable = wm_job_wait }
+				}
+				complete_task_contract = failure_standard
+			}
+		}
+		remove_variable = wm_career_roll
+	}
+}
+
+# Scope: a job just taken (on_accepted). It is settled in three weeks: event wm_career.10 on the taker finds the jobs
+# whose var:wm_job_wait has gone.
+wm_career_job_accepted_effect = {
+	set_variable = { name = wm_job_wait value = yes days = 20 }
+	task_contract_taker ?= { trigger_event = { id = wm_career.10 days = 21 } }
+}
+
+# Scope: a job (task contract) done well. Pays its taker; the employer thinks better of them and becomes a contact.
+# $STANDING$, $PRESTIGE$, $GOLD$, $FUNDS$ (campaign funds: provisions).
+wm_career_job_success_effect = {
+	clear_saved_scope = wm_career_worker
+	clear_saved_scope = wm_career_employer
+	task_contract_taker ?= {
+		save_scope_as = wm_career_worker
+		wm_career_change_standing_effect = { AMOUNT = $STANDING$ }
+		add_prestige = $PRESTIGE$
+		add_gold = $GOLD$
+		if = {
+			limit = { exists = domicile }
+			domicile = { change_provisions = $FUNDS$ }
+		}
+	}
+	task_contract_employer ?= {
+		if = {
+			limit = {
+				exists = scope:wm_career_worker
+				NOT = { this = scope:wm_career_worker }
+			}
+			save_scope_as = wm_career_employer
+			add_opinion = {
+				target = scope:wm_career_worker
+				modifier = wm_career_good_work_opinion
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:wm_career_employer
+			scope:wm_career_worker = {
+				is_landless_adventurer = yes
+				NOT = { has_contact = scope:wm_career_employer }
+			}
+		}
+		scope:wm_career_worker = { add_contact = scope:wm_career_employer }
+	}
+}
+
+# Scope: a job done badly. The taker loses a little standing and profile; the employer is unimpressed.
+wm_career_job_failure_effect = {
+	clear_saved_scope = wm_career_worker
+	task_contract_taker ?= {
+		save_scope_as = wm_career_worker
+		wm_career_change_standing_effect = { AMOUNT = -3 }
+		add_prestige = -10
+	}
+	task_contract_employer ?= {
+		if = {
+			limit = {
+				exists = scope:wm_career_worker
+				NOT = { this = scope:wm_career_worker }
+			}
+			add_opinion = {
+				target = scope:wm_career_worker
+				modifier = wm_career_poor_work_opinion
+			}
+		}
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ selections
+
+# Scope: a seat. The party ($P$, $PARTY$) opens a selection: invite applications, close in 30 days (14 when an
+# election or by-election is coming, or var:wm_sel_fast is set by wm_career_on_death).
+wm_career_open_selection_effect = {
+	save_scope_as = wm_sel_seat
+	title:$PARTY$ = { save_scope_as = wm_sel_party }
+	add_to_variable_list = { name = wm_sel_parties target = title:$PARTY$ }
+	if = {
+		limit = {
+			OR = {
+				has_variable = wm_sel_fast
+				has_variable = wm_byelection_due
+				has_global_variable = wm_el_campaign
+			}
+		}
+		set_variable = { name = wm_sel_wait_$P$ value = yes days = 14 }
+		title:e_united_kingdom.holder ?= { trigger_event = { id = wm_career.2 days = 15 } }
+	}
+	else = {
+		set_variable = { name = wm_sel_wait_$P$ value = yes days = 30 }
+	}
+	if = {
+		limit = { NOT = { is_target_in_global_variable_list = { name = wm_career_selection_seats target = this } } }
+		add_to_global_variable_list = { name = wm_career_selection_seats target = this }
+	}
+	wm_career_invite_applicants_effect = yes
+}
+
+# Scope: a seat (scope:wm_sel_seat) with a selection just opened for scope:wm_sel_party. Player hopefuls of the party
+# are invited (event wm_career.20); up to three AI hopefuls apply, local ones more likely.
+wm_career_invite_applicants_effect = {
+	clear_variable_list = wm_sel_pool
+	if = {
+		limit = { has_global_variable_list = wm_career_hopefuls }
+		every_in_global_list = {
+			variable = wm_career_hopefuls
+			limit = {
+				var:wm_party ?= scope:wm_sel_party
+				wm_career_can_apply_trigger = yes
+			}
+			if = {
+				limit = { is_ai = no }
+				if = {
+					limit = { NOT = { has_global_variable = wm_test_quiet } }
+					set_variable = { name = wm_career_invite_seat value = scope:wm_sel_seat days = 30 }
+					trigger_event = wm_career.20
+				}
+			}
+			else = {
+				save_scope_as = wm_sel_applicant
+				scope:wm_sel_seat = { add_to_variable_list = { name = wm_sel_pool target = scope:wm_sel_applicant } }
+			}
+		}
+		while = {
+			count = 3
+			random_in_list = {
+				variable = wm_sel_pool
+				limit = { NOT = { has_variable = wm_career_applied } }
+				weight = {
+					base = 1
+					modifier = {
+						add = 4
+						culture = scope:wm_sel_seat.culture
+					}
+				}
+				wm_career_apply_effect = yes
+			}
+		}
+	}
+	clear_variable_list = wm_sel_pool
+}
+
+# Character: applies to the selection in scope:wm_sel_seat and gives their hustings speech (players choose how, in
+# event wm_career.21; the AI's is a diplomacy check).
+wm_career_apply_effect = {
+	save_scope_as = wm_sel_applicant
+	set_variable = { name = wm_career_applied value = scope:wm_sel_seat }
+	remove_variable = wm_hustings_score
+	remove_variable = wm_career_invite_seat
+	scope:wm_sel_seat = { add_to_variable_list = { name = wm_sel_applicants target = scope:wm_sel_applicant } }
+	if = {
+		limit = {
+			is_ai = no
+			NOT = { has_global_variable = wm_test_quiet }
+		}
+		trigger_event = wm_career.21
+	}
+	else = {
+		wm_career_hustings_auto_effect = yes
+	}
+}
+
+# Character: an AI hustings speech, a diplomacy check.
+wm_career_hustings_auto_effect = {
+	set_variable = {
+		name = wm_career_roll
+		value = {
+			value = 0
+			add = {
+				integer_range = {
+					min = 1
+					max = 100
+				}
+			}
+		}
+	}
+	if = {
+		limit = { var:wm_career_roll <= wm_career_job_chance_diplomacy }
+		wm_career_hustings_result_effect = { SKILL = diplomacy BASE = 60 }
+	}
+	else = {
+		wm_career_hustings_result_effect = { SKILL = diplomacy BASE = 20 }
+	}
+	remove_variable = wm_career_roll
+}
+
+# Character: the hustings score, $BASE$ (60 for a speech that lands, 20 for one that doesn't) plus the $SKILL$ used.
+wm_career_hustings_result_effect = {
+	set_variable = {
+		name = wm_hustings_score
+		value = {
+			value = $SKILL$
+			add = $BASE$
+		}
+	}
+}
+
+# Scope: a seat. The party ($P$, $PARTY$) closes its selection: the local members vote among the applicants
+# (wm_career_selection_score). With fewer than two in the running the local party finds a local activist. The winner
+# becomes var:wm_candidate_$P$; everyone else stays a hopeful for next time.
+wm_career_close_selection_effect = {
+	save_scope_as = wm_sel_seat
+	title:$PARTY$ = { save_scope_as = wm_sel_party }
+	remove_list_variable = { name = wm_sel_parties target = title:$PARTY$ }
+	remove_variable = wm_sel_wait_$P$
+	clear_saved_scope = wm_sel_winner
+	clear_saved_scope = wm_sel_selector
+	# Who chooses: the local MP if they belong to the party, otherwise the party leader
+	if = {
+		limit = {
+			holder ?= {
+				is_alive = yes
+				var:wm_party ?= scope:wm_sel_party
+			}
+		}
+		holder = { save_scope_as = wm_sel_selector }
+	}
+	else_if = {
+		limit = { exists = scope:wm_sel_party.holder }
+		scope:wm_sel_party.holder = { save_scope_as = wm_sel_selector }
+	}
+	# This party's applicants: all of them leave the applicants list; those still eligible are in the running
+	clear_variable_list = wm_sel_mine
+	clear_variable_list = wm_sel_valid
+	if = {
+		limit = { has_variable_list = wm_sel_applicants }
+		every_in_list = {
+			variable = wm_sel_applicants
+			limit = { var:wm_party ?= scope:wm_sel_party }
+			save_scope_as = wm_sel_applicant
+			scope:wm_sel_seat = { add_to_variable_list = { name = wm_sel_mine target = scope:wm_sel_applicant } }
+			if = {
+				limit = {
+					is_alive = yes
+					NOT = { wm_is_mp_trigger = yes }
+					NOT = { has_variable = wm_career_selected_seat }
+				}
+				scope:wm_sel_seat = { add_to_variable_list = { name = wm_sel_valid target = scope:wm_sel_applicant } }
+			}
+		}
+		every_in_list = {
+			variable = wm_sel_mine
+			save_scope_as = wm_sel_applicant
+			remove_variable = wm_career_applied
+			scope:wm_sel_seat = { remove_list_variable = { name = wm_sel_applicants target = scope:wm_sel_applicant } }
+		}
+	}
+	# Too few in the running: the local party puts up a local activist
+	if = {
+		limit = { exists = scope:wm_sel_party.holder }
+		while = {
+			count = 2
+			if = {
+				limit = {
+					NOT = {
+						any_in_list = {
+							variable = wm_sel_valid
+							count >= 2
+						}
+					}
+				}
+				wm_career_new_activist_effect = yes
+			}
+		}
+	}
+	# The local members' vote
+	if = {
+		limit = { has_variable_list = wm_sel_valid }
+		every_in_list = {
+			variable = wm_sel_valid
+			save_scope_as = wm_sel_applicant
+			set_variable = { name = wm_sel_score value = wm_career_selection_score }
+		}
+		ordered_in_list = {
+			variable = wm_sel_valid
+			order_by = var:wm_sel_score
+			save_scope_as = wm_sel_winner
+		}
+	}
+	if = {
+		limit = { exists = scope:wm_sel_winner }
+		set_variable = { name = wm_candidate_$P$ value = scope:wm_sel_winner }
+		scope:wm_sel_winner = {
+			set_variable = { name = wm_career_selected_seat value = scope:wm_sel_seat }
+			wm_career_change_standing_effect = { AMOUNT = 10 }
+			add_prestige = 100
+		}
+		every_in_list = {
+			variable = wm_sel_valid
+			limit = { NOT = { this = scope:wm_sel_winner } }
+			wm_career_change_standing_effect = { AMOUNT = 2 }
+		}
+		if = {
+			limit = { NOT = { has_global_variable = wm_test_quiet } }
+			every_in_list = {
+				variable = wm_sel_valid
+				limit = { is_ai = no }
+				if = {
+					limit = { this = scope:wm_sel_winner }
+					send_interface_toast = {
+						type = event_toast_effect_good
+						title = wm_career_selected_toast
+						left_icon = scope:wm_sel_party
+						custom_tooltip = wm_career_selected_toast_desc
+					}
+				}
+				else = {
+					send_interface_toast = {
+						type = event_toast_effect_bad
+						title = wm_career_not_selected_toast
+						left_icon = scope:wm_sel_winner
+						custom_tooltip = wm_career_not_selected_toast_desc
+					}
+				}
+			}
+		}
+	}
+	if = {
+		limit = { has_variable_list = wm_sel_valid }
+		every_in_list = {
+			variable = wm_sel_valid
+			remove_variable = wm_sel_score
+			remove_variable = wm_hustings_score
+		}
+	}
+	clear_variable_list = wm_sel_valid
+	clear_variable_list = wm_sel_mine
+	# No other party selecting here
+	if = {
+		limit = {
+			NOT = {
+				any_in_list = {
+					variable = wm_sel_parties
+					count >= 1
+				}
+			}
+		}
+		remove_list_global_variable = { name = wm_career_selection_seats target = this }
+	}
+}
+
+# Scope: a seat (scope:wm_sel_seat, scope:wm_sel_party). A local activist joins the party's hopefuls and the
+# selection (list wm_sel_valid), as a courtier of the party leader.
+wm_career_new_activist_effect = {
+	clear_saved_scope = wm_career_new_activist
+	scope:wm_sel_party.holder = {
+		create_character = {
+			age = { 23 48 }
+			gender_female_chance = 50
+			culture = scope:wm_sel_seat.culture
+			faith = scope:wm_sel_seat.faith
+			dynasty = generate
+			employer = scope:wm_sel_party.holder
+			save_scope_as = wm_career_new_activist
+		}
+	}
+	if = {
+		limit = { exists = scope:wm_career_new_activist }
+		scope:wm_career_new_activist = {
+			set_variable = { name = wm_party value = scope:wm_sel_party }
+			wm_party_sync_house_effect = yes	# parties are houses (wm_party_effects.txt)
+			set_variable = {
+				name = wm_standing
+				value = {
+					value = 0
+					add = {
+						integer_range = {
+							min = 15
+							max = 45
+						}
+					}
+				}
+			}
+			wm_career_make_hopeful_effect = yes
+			wm_career_hustings_auto_effect = yes
+			save_scope_as = wm_sel_applicant
+		}
+		add_to_variable_list = { name = wm_sel_valid target = scope:wm_sel_applicant }
+	}
+}
+
+# Scope: a seat. $P$/$PARTY$ selects for the by-election here if it polled 15% here in 2024.
+wm_career_open_byelection_party_effect = {
+	if = {
+		limit = {
+			has_variable = wm_lean_$P$
+			var:wm_lean_$P$ >= wm_career_byelection_lean
+			wm_career_can_open_trigger = { P = $P$ PARTY = $PARTY$ }
+		}
+		wm_career_open_selection_effect = { P = $P$ PARTY = $PARTY$ }
+	}
+}
+
+# $P$/$PARTY$ opens a selection in one seat it doesn't hold where the swing gives it a fighting chance
+# (wm_career_target_share), and where it has no candidate yet.
+wm_career_open_target_party_effect = {
+	if = {
+		limit = { exists = title:$PARTY$.holder }
+		title:e_united_kingdom = {
+			random_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_county
+					has_variable = wm_lean_$P$
+					NOT = { holder ?= { var:wm_party ?= title:$PARTY$ } }
+					wm_career_can_open_trigger = { P = $P$ PARTY = $PARTY$ }
+					wm_election_seat_share_$P$ >= wm_career_target_share
+				}
+				wm_career_open_selection_effect = { P = $P$ PARTY = $PARTY$ }
+			}
+		}
+	}
+}
+
+# Scope: a seat. Closes $P$'s selection here if it is open and its time is up.
+wm_career_close_due_party_effect = {
+	if = {
+		limit = {
+			has_variable_list = wm_sel_parties
+			is_target_in_variable_list = { name = wm_sel_parties target = title:$PARTY$ }
+			NOT = { has_variable = wm_sel_wait_$P$ }
+		}
+		wm_career_close_selection_effect = { P = $P$ PARTY = $PARTY$ }
+	}
+}
+
+# Scope: a seat won by scope:wm_el_party. Saves its candidate as scope:wm_el_new_mp if they can take it.
+wm_career_find_candidate_party_effect = {
+	if = {
+		limit = {
+			NOT = { exists = scope:wm_el_new_mp }
+			scope:wm_el_party = title:$PARTY$
+			var:wm_candidate_$P$ ?= { wm_career_can_take_seat_trigger = { PARTY = $PARTY$ } }
+		}
+		var:wm_candidate_$P$ = { save_scope_as = wm_el_new_mp }
+		remove_variable = wm_candidate_$P$
+	}
+}
+
+# Closes every selection whose time is up.
+wm_career_process_selections_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_career_selection_seats }
+		clear_global_variable_list = wm_career_scratch
+		every_in_global_list = {
+			variable = wm_career_selection_seats
+			add_to_global_variable_list = { name = wm_career_scratch target = this }
+		}
+		every_in_global_list = {
+			variable = wm_career_scratch
+			wm_career_close_due_selections_effect = yes
+		}
+		clear_global_variable_list = wm_career_scratch
+	}
+}
+
+# ------------------------------------------------------------------------------------------------ the monthly tick
+
+# Once a month (event wm_career.1, three times a quarter from the Prime Minister's pulse): selections that are due
+# close; in the run-up to a general election each party opens a selection in a seat it could win; defeated MPs come
+# back as hopefuls; the hopefuls' list is tidied, player hopefuls are offered jobs and AI hopefuls do party work.
+wm_career_monthly_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_career_ticked } }
+		set_global_variable = { name = wm_career_ticked value = yes days = 20 }
+		wm_career_process_selections_effect = yes
+		if = {
+			limit = { wm_career_election_near_trigger = yes }
+			wm_career_open_target_selections_effect = yes
+		}
+		wm_career_recruit_defeated_effect = yes
+		wm_career_hopefuls_upkeep_effect = yes
+	}
+}
+
+# AI MPs who lost their seat (var:wm_lost_seat, set for 90 days by the elections) and aren't too old become hopefuls.
+# Players take the "Back on the Campaign Trail" decision.
+wm_career_recruit_defeated_effect = {
+	every_living_character = {
+		limit = {
+			has_variable = wm_lost_seat
+			has_variable = wm_party
+			is_ai = yes
+			age < 70
+			NOT = { has_variable = wm_career_hopeful }
+			NOT = { wm_is_mp_trigger = yes }
+		}
+		wm_career_former_mp_effect = yes
+	}
+}
+
+wm_career_hopefuls_upkeep_effect = {
+	if = {
+		limit = { has_global_variable_list = wm_career_hopefuls }
+		# Off the list: the dead, those who found a seat another way, the retired and those who left their party
+		clear_global_variable_list = wm_career_scratch
+		every_in_global_list = {
+			variable = wm_career_hopefuls
+			limit = {
+				OR = {
+					is_alive = no
+					wm_is_mp_trigger = yes
+					age >= 75
+					NOT = { has_variable = wm_party }
+				}
+			}
+			add_to_global_variable_list = { name = wm_career_scratch target = this }
+		}
+		every_in_global_list = {
+			variable = wm_career_scratch
+			remove_list_global_variable = { name = wm_career_hopefuls target = this }
+			remove_variable = wm_career_hopeful
+		}
+		clear_global_variable_list = wm_career_scratch
+		every_in_global_list = {
+			variable = wm_career_hopefuls
+			if = {
+				limit = { is_ai = no }
+				wm_career_offer_jobs_effect = yes
+			}
+			else = {
+				random = {
+					chance = 30
+					wm_career_change_standing_effect = { AMOUNT = 2 }
+				}
+			}
+		}
+	}
+}
+
+# Game start: the bookmark's activists (party members with no seat and a starting var:wm_standing, set in
+# history/characters by build_2024.py) and any player who starts as a party member's campaign team join the ladder.
+wm_career_game_start_effect = {
+	every_living_character = {
+		limit = {
+			has_variable = wm_party
+			has_variable = wm_standing
+			NOT = { has_variable = wm_career_hopeful }
+			NOT = { wm_is_mp_trigger = yes }
+		}
+		wm_career_start_campaign_effect = yes
+	}
+	every_player = {
+		limit = {
+			has_variable = wm_party
+			is_landless_adventurer = yes
+			NOT = { has_variable = wm_career_hopeful }
+			NOT = { wm_is_mp_trigger = yes }
+		}
+		wm_career_start_campaign_effect = yes
+	}
+}

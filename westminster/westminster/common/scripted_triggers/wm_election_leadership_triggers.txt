@@ -1,0 +1,95 @@
+﻿# Shortlist ballots for party leaders (common/scripted_effects/wm_election_leadership_effects.txt).
+
+# Character: a member of the party $PARTY$ who can nominate and stand: a living MP, not the Speaker
+wm_election_leadership_member_trigger = {
+	is_alive = yes
+	wm_is_mp_trigger = yes
+	exists = var:wm_party
+	var:wm_party = $PARTY$
+	NOT = { has_character_flag = wm_speaker }
+}
+
+# Title: its variable list $LIST$ exists and isn't empty
+wm_election_leadership_has_list_trigger = {
+	has_variable_list = $LIST$
+	any_in_list = {
+		variable = $LIST$
+		count >= 1
+	}
+}
+
+# Party title: a leadership contest is under way
+wm_election_leadership_in_contest_trigger = {
+	has_variable = wm_lead_state
+}
+
+# Party title: lost at least 15% of its seats at the last general election (from at least four)
+wm_election_leadership_lost_ground_trigger = {
+	OR = {
+		AND = {
+			this = title:k_party_labour
+			wm_election_leadership_lost_ground_party_trigger = { P = lab }
+		}
+		AND = {
+			this = title:k_party_conservative
+			wm_election_leadership_lost_ground_party_trigger = { P = con }
+		}
+		AND = {
+			this = title:k_party_lib_dem
+			wm_election_leadership_lost_ground_party_trigger = { P = ld }
+		}
+		AND = {
+			this = title:k_party_reform
+			wm_election_leadership_lost_ground_party_trigger = { P = ruk }
+		}
+		AND = {
+			this = title:k_party_green
+			wm_election_leadership_lost_ground_party_trigger = { P = grn }
+		}
+		AND = {
+			this = title:k_party_snp
+			wm_election_leadership_lost_ground_party_trigger = { P = snp }
+		}
+		AND = {
+			this = title:k_party_plaid
+			wm_election_leadership_lost_ground_party_trigger = { P = pc }
+		}
+		AND = {
+			this = title:k_party_dup
+			wm_election_leadership_lost_ground_party_trigger = { P = dup }
+		}
+		AND = {
+			this = title:k_party_sdlp
+			wm_election_leadership_lost_ground_party_trigger = { P = sdlp }
+		}
+		AND = {
+			this = title:k_party_alliance
+			wm_election_leadership_lost_ground_party_trigger = { P = apni }
+		}
+		AND = {
+			this = title:k_party_uup
+			wm_election_leadership_lost_ground_party_trigger = { P = uup }
+		}
+		AND = {
+			this = title:k_party_tuv
+			wm_election_leadership_lost_ground_party_trigger = { P = tuv }
+		}
+	}
+}
+wm_election_leadership_lost_ground_party_trigger = {
+	has_global_variable = wm_seats_prev_$P$
+	global_var:wm_seats_prev_$P$ >= 4
+	global_var:wm_seats_$P$ < {
+		value = global_var:wm_seats_prev_$P$
+		multiply = 0.85
+	}
+}
+
+# Character: can challenge their party's leader (decision wm_leadership_challenge_decision)
+wm_election_leadership_can_challenge_trigger = {
+	wm_is_mp_trigger = yes
+	exists = var:wm_party
+	exists = var:wm_party.holder
+	NOT = { var:wm_party.holder = this }
+	NOT = { has_character_flag = wm_speaker }
+}

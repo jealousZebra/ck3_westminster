@@ -1,0 +1,17 @@
+﻿# Westminster: the groups of Crusader Kings III's own gfx/portraits/portrait_modifiers/01_headgear_base.txt (Paradox Interactive), each giving no headgear, by westminster/tools/ui/build_portraits.py - edit there.
+headgear_base = {
+	usage = game
+	selection_behavior = weighted_random
+	priority = 1
+	wm_no_headgear = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = headgear
+				template = no_headgear
+				range = { 0 1 }
+			}
+		}
+		weight = { base = 100 }
+	}
+}

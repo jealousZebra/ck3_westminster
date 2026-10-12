@@ -1,0 +1,15 @@
+﻿# General elections (common/scripted_effects/wm_election_effects.txt). The results are wm_election_results.1
+# (events/wm_election_results_events.txt, generated).
+namespace = wm_election
+
+# Polling day, five weeks after Parliament is dissolved (wm_election_schedule_effect). Fires on the Prime Minister
+# who dissolved it, but the election is national: root doesn't matter.
+wm_election.1 = {
+	hidden = yes
+	trigger = {
+		has_global_variable = wm_el_scheduled
+	}
+	immediate = {
+		wm_election_general_effect = yes
+	}
+}

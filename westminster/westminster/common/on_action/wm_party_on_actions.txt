@@ -1,0 +1,10 @@
+﻿# Parties are houses (common/scripted_effects/wm_party_effects.txt): set up at game start (appended to vanilla's
+# on_game_start). Each party's house learns its party and the party leader becomes the head of the house.
+on_game_start = {
+	on_actions = { wm_party_on_game_start }
+}
+wm_party_on_game_start = {
+	effect = {
+		wm_party_houses_init_effect = yes
+	}
+}

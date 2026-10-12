@@ -1,0 +1,490 @@
+﻿# House of Commons: bills, whips, divisions and confidence motions.
+# Effects and state: common/scripted_effects/wm_commons_effects.txt, common/script_values/wm_commons_values.txt.
+#   wm_commons.1  the Prime Minister picks a bill (decision wm_commons_introduce_bill_decision)
+#   wm_commons.2  the Chief Whip's report: how hard to whip (also for a motion of no confidence)
+#   wm_commons.3  hidden: the division, a week later
+#   wm_commons.4  the result, for every player
+#   wm_commons.5  the division bell: a player MP chooses how to vote
+namespace = wm_commons
+
+# The Prime Minister chooses a bill to put before the House.
+wm_commons.1 = {
+	type = character_event
+	title = wm_commons.1.t
+	desc = wm_commons.1.desc
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	# Finance Bill: put up taxes
+	option = {
+		name = wm_commons.1.a
+		custom_tooltip = wm_commons.1.a.tt
+		wm_commons_introduce_bill_effect = { TYPE = 1 }
+		trigger_event = wm_commons.2
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 30
+				gold < 0
+			}
+			modifier = {
+				add = 15
+				has_trait = greedy
+			}
+		}
+	}
+
+	# Public Services Bill: spend more on schools and hospitals
+	option = {
+		name = wm_commons.1.b
+		custom_tooltip = wm_commons.1.b.tt
+		wm_commons_introduce_bill_effect = { TYPE = 2 }
+		trigger_event = wm_commons.2
+		ai_chance = {
+			base = 30
+			modifier = {
+				add = -20
+				gold < 0
+			}
+			modifier = {
+				add = 15
+				has_trait = generous
+			}
+		}
+	}
+
+	# Public Service Reform Bill: controversial
+	option = {
+		name = wm_commons.1.c
+		custom_tooltip = wm_commons.1.c.tt
+		wm_commons_introduce_bill_effect = { TYPE = 3 }
+		trigger_event = wm_commons.2
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 20
+				has_trait = ambitious
+			}
+			modifier = {
+				add = 10
+				has_trait = arrogant
+			}
+		}
+	}
+
+	# Emergency Powers Bill
+	option = {
+		name = wm_commons.1.d
+		custom_tooltip = wm_commons.1.d.tt
+		wm_commons_introduce_bill_effect = { TYPE = 4 }
+		trigger_event = wm_commons.2
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	# Not now
+	option = {
+		name = wm_commons.1.e
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+# The Chief Whip reports on the numbers. The Prime Minister decides how hard to whip.
+wm_commons.2 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 5 }
+				desc = wm_commons.2.t_confidence
+			}
+			desc = wm_commons.2.t
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 5 }
+				desc = wm_commons.2.desc_confidence
+			}
+			desc = wm_commons.2.desc_bill
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 1 }
+				desc = wm_commons_bill_1_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 2 }
+				desc = wm_commons_bill_2_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 3 }
+				desc = wm_commons_bill_3_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 4 }
+				desc = wm_commons_bill_4_desc
+			}
+			desc = wm_commons_bill_5_desc
+		}
+		desc = wm_commons.2.numbers
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					global_var:wm_commons_bill_type = 4
+					global_var:wm_commons_opp_whip = 1
+				}
+				desc = wm_commons.2.opposition_backs
+			}
+			desc = wm_commons.2.no_opposition_help
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	right_portrait = {
+		character = scope:wm_commons_mover
+		animation = scheme
+		trigger = {
+			exists = scope:wm_commons_mover
+			global_var:wm_commons_bill_type = 5
+		}
+	}
+	trigger = {
+		has_global_variable = wm_commons_pending
+		wm_commons_is_pm_trigger = yes
+	}
+	immediate = {
+		global_var:wm_commons_mover ?= { save_scope_as = wm_commons_mover }
+		wm_commons_forecast_effect = yes
+	}
+
+	# Leave it to the whips
+	option = {
+		name = wm_commons.2.a
+		wm_commons_call_division_effect = yes
+		ai_chance = {
+			base = 40
+			modifier = {
+				add = 40
+				global_var:wm_commons_forecast_rebels < 10
+			}
+		}
+	}
+
+	# A three-line whip: the Prime Minister's own authority on the line
+	option = {
+		name = wm_commons.2.b
+		trigger = { prestige >= wm_commons_three_line_whip_prestige }
+		add_prestige = {
+			value = wm_commons_three_line_whip_prestige
+			multiply = -1
+		}
+		set_global_variable = { name = wm_commons_whip_bonus value = wm_commons_whip_bonus_three_line }
+		wm_commons_call_division_effect = yes
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 30
+				global_var:wm_commons_forecast_rebels >= 30
+			}
+		}
+	}
+
+	# Call the waverers in one by one: promises for their constituencies
+	option = {
+		name = wm_commons.2.c
+		trigger = { gold >= wm_commons_constituency_deals_gold }
+		remove_short_term_gold = wm_commons_constituency_deals_gold
+		set_global_variable = { name = wm_commons_whip_bonus value = wm_commons_whip_bonus_deals }
+		wm_commons_call_division_effect = yes
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 40
+				global_var:wm_commons_forecast_rebels >= 60
+			}
+		}
+	}
+
+	# Concessions: water the bill down (or, on a confidence motion, promise to listen)
+	option = {
+		name = wm_commons.2.d
+		custom_tooltip = wm_commons.2.d.tt
+		set_global_variable = { name = wm_commons_whip_bonus value = wm_commons_whip_bonus_concessions }
+		set_global_variable = { name = wm_commons_bill_strength value = 50 }
+		if = {
+			limit = { global_var:wm_commons_bill_type = 5 }
+			add_prestige = minor_prestige_loss
+		}
+		wm_commons_call_division_effect = yes
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = 30
+				global_var:wm_commons_forecast_rebels >= 40
+			}
+		}
+	}
+
+	# Withdraw the bill (not a confidence motion)
+	option = {
+		name = wm_commons.2.e
+		trigger = { NOT = { global_var:wm_commons_bill_type = 5 } }
+		add_prestige = minor_prestige_loss
+		remove_global_variable = wm_commons_pending
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 30
+				global_var:wm_commons_forecast_rebels >= 100
+			}
+		}
+	}
+}
+
+# The division. Runs on the Prime Minister who called it.
+wm_commons.3 = {
+	hidden = yes
+	trigger = {
+		has_global_variable = wm_commons_pending
+		wm_commons_is_pm_trigger = yes
+	}
+	on_trigger_fail = {
+		remove_global_variable = wm_commons_pending
+	}
+	immediate = {
+		wm_commons_division_effect = yes
+		wm_commons_apply_result_effect = yes
+		every_player = {
+			trigger_event = wm_commons.4
+		}
+	}
+}
+
+# The result, newspaper style.
+wm_commons.4 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					global_var:wm_commons_bill_type = 5
+					global_var:wm_commons_result = 2
+				}
+				desc = wm_commons_headline_government_falls
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 5 }
+				desc = wm_commons_headline_pm_survives
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_commons_result = 2
+					global_var:wm_commons_margin <= -50
+				}
+				desc = wm_commons_headline_humiliation
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_result = 2 }
+				desc = wm_commons_headline_defeated
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_margin < 10 }
+				desc = wm_commons_headline_knife_edge
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_gov_rebels >= 30 }
+				desc = wm_commons_headline_revolt
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_margin >= 100 }
+				desc = wm_commons_headline_comfortable
+			}
+			desc = wm_commons_headline_passed
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 1 }
+				desc = wm_commons_bill_1_name
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 2 }
+				desc = wm_commons_bill_2_name
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 3 }
+				desc = wm_commons_bill_3_name
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 4 }
+				desc = wm_commons_bill_4_name
+			}
+			desc = wm_commons_bill_5_name
+		}
+		desc = wm_commons.4.lobbies
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_gov_rebels >= 1 }
+				desc = wm_commons.4.rebels
+			}
+			desc = wm_commons.4.no_rebels
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					global_var:wm_commons_bill_type = 5
+					global_var:wm_commons_result = 2
+				}
+				desc = wm_commons.4.outcome_government_falls
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 5 }
+				desc = wm_commons.4.outcome_pm_survives
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_result = 2 }
+				desc = wm_commons.4.outcome_defeated
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_strength < 100 }
+				desc = wm_commons.4.outcome_passed_watered_down
+			}
+			desc = wm_commons.4.outcome_passed
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = scope:wm_commons_pm
+		triggered_animation = {
+			trigger = { global_var:wm_commons_result = 2 }
+			animation = shock
+		}
+		animation = happiness
+	}
+	right_portrait = {
+		character = scope:wm_commons_ringleader
+		animation = schadenfreude
+		trigger = { exists = scope:wm_commons_ringleader }
+	}
+	immediate = {
+		title:e_united_kingdom.holder ?= { save_scope_as = wm_commons_pm }
+		if = {
+			limit = {
+				has_global_variable_list = wm_commons_rebel_list
+				global_var:wm_commons_gov_rebels >= 1
+			}
+			ordered_in_global_list = {
+				variable = wm_commons_rebel_list
+				limit = { wm_commons_is_government_mp_trigger = yes }	# Coalitions hook: includes a coalition partner
+				order_by = prestige
+				save_scope_as = wm_commons_ringleader
+			}
+		}
+	}
+
+	option = {
+		name = {
+			trigger = { wm_commons_is_pm_trigger = yes }
+			text = wm_commons.4.a_pm
+		}
+		name = {
+			trigger = { NOT = { wm_commons_is_pm_trigger = yes } }
+			text = wm_commons.4.a
+		}
+	}
+}
+
+# The division bell: a player MP decides how to vote.
+wm_commons.5 = {
+	type = character_event
+	title = wm_commons.5.t
+	desc = {
+		desc = wm_commons.5.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 1 }
+				desc = wm_commons_bill_1_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 2 }
+				desc = wm_commons_bill_2_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 3 }
+				desc = wm_commons_bill_3_desc
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_bill_type = 4 }
+				desc = wm_commons_bill_4_desc
+			}
+			desc = wm_commons_bill_5_desc
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { NOT = { exists = var:wm_party } }
+				desc = wm_commons.5.whip_none
+			}
+			triggered_desc = {
+				trigger = { var:wm_party = title:k_party_sinn_fein }
+				desc = wm_commons.5.whip_abstain
+			}
+			triggered_desc = {
+				trigger = { wm_commons_whipped_with_government_trigger = yes }	# Coalitions hook: partners too
+				desc = wm_commons.5.whip_government
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_commons_opp_whip = 1 }
+				desc = wm_commons.5.whip_opposition_backs
+			}
+			desc = wm_commons.5.whip_opposition
+		}
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:wm_commons_wing = -1 }
+				desc = wm_commons.5.wing_left
+			}
+			triggered_desc = {
+				trigger = { var:wm_commons_wing = 1 }
+				desc = wm_commons.5.wing_right
+			}
+			desc = wm_commons.5.wing_centre
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	trigger = {
+		has_global_variable = wm_commons_pending
+	}
+	immediate = {
+		wm_commons_ensure_wing_effect = yes
+		global_var:wm_commons_mover ?= { save_scope_as = wm_commons_mover }
+	}
+
+	option = {
+		name = wm_commons.5.a
+		set_variable = { name = wm_commons_player_vote value = 1 days = 30 }
+	}
+	option = {
+		name = wm_commons.5.b
+		set_variable = { name = wm_commons_player_vote value = 2 days = 30 }
+	}
+	option = {
+		name = wm_commons.5.c
+		set_variable = { name = wm_commons_player_vote value = 3 days = 30 }
+	}
+}

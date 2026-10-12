@@ -1,0 +1,2 @@
+[b]0.3 (beta)[/b]
+First public release. The 2024 bookmark with all 650 MPs on the 2024 constituency map; careers from activist to Prime Minister; parties, leadership contests and the Speaker; elections, by-elections, disputed results and coalitions; the Commons with bills, whips, rebellions and confidence votes; campaigns, conferences, public trust, party wings, devolution, ideologies and riots; a newspaper-style interface. English only. Long-game AI balance is untested: please report anything odd.

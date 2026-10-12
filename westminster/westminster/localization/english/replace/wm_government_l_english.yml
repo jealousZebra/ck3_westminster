@@ -1,0 +1,8 @@
+﻿l_english:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Parliamentary"
+ feudal_government_adjective: "Parliamentary"
+ feudal_government_realm: "Parliamentary Seat"
+ feudal_government_vassals_label: "Parliamentary [obligations|E] are set by each Backbencher's [vassal_contract|E]"
+ feudal_government_desc: "\n#F MPs are elected for their constituencies and sit in the House of Commons. They owe their party leader loyalty, their votes in the division lobbies and a share of their campaign funds; in return the leader gives them the whip, a seat in the shadow of power and, for a lucky few, office.#!"
+ GAME_DATE_STRING_ERA_CE: ""

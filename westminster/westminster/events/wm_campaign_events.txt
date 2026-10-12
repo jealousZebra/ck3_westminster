@@ -1,0 +1,358 @@
+﻿# Election campaigns (common/scripted_effects/wm_campaign_effects.txt). Event 100 is the hidden weekly watcher;
+# 1 is a player's campaign week; 2 is a gaffe.
+namespace = wm_campaign
+
+# The weekly watcher: runs on the Prime Minister and reschedules itself on whoever is Prime Minister then. A stray
+# second chain (one already ran this week) stops itself.
+wm_campaign.100 = {
+	hidden = yes
+	immediate = {
+		if = {
+			limit = { NOT = { has_global_variable = wm_campaign_ticked } }
+			wm_campaign_watch_effect = yes
+			set_global_variable = { name = wm_campaign_watch_alive value = yes days = 10 }
+			title:e_united_kingdom.holder ?= {
+				trigger_event = { id = wm_campaign.100 days = 7 }
+			}
+		}
+	}
+}
+
+# A week on the campaign trail.
+wm_campaign.1 = {
+	type = character_event
+	title = wm_campaign.1.t
+	desc = {
+		desc = wm_campaign.1.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { exists = scope:wm_campaign_rival }
+				desc = wm_campaign.1.desc_leader
+			}
+			triggered_desc = {
+				trigger = { has_title = var:wm_party }
+				desc = wm_campaign.1.desc_leader_no_rival
+			}
+			desc = wm_campaign.1.desc_mp
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	right_portrait = {
+		character = scope:wm_campaign_other
+		animation = schadenfreude
+	}
+	trigger = {
+		has_global_variable = wm_campaign_active
+		has_global_variable = wm_el_campaign
+		wm_campaign_is_campaigner_trigger = yes
+		has_character_flag = wm_campaign_on_trail
+	}
+	immediate = {
+		var:wm_party = { save_scope_as = wm_campaign_party }
+		random_held_title = {
+			limit = {
+				tier = tier_county
+				is_landless_type_title = no
+			}
+			save_scope_as = wm_campaign_seat
+		}
+		if = {
+			limit = { has_title = var:wm_party }
+			wm_campaign_find_rival_effect = yes
+		}
+		# The other portrait: the rival leader, or an MP's own leader
+		if = {
+			limit = { exists = scope:wm_campaign_rival }
+			scope:wm_campaign_rival = { save_scope_as = wm_campaign_other }
+		}
+		else = {
+			var:wm_party.holder ?= { save_scope_as = wm_campaign_other }
+		}
+	}
+
+	# A rally
+	option = {
+		name = wm_campaign.1.a
+		random_list = {
+			50 = {
+				modifier = { add = wm_campaign_diplomacy_weight }
+				desc = wm_campaign_rally_success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_rally_success
+					left_icon = root
+					wm_campaign_rally_success_effect = yes
+				}
+			}
+			35 = {
+				desc = wm_campaign_rally_flat
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_campaign_rally_flat
+					left_icon = root
+					wm_campaign_rally_flat_effect = yes
+				}
+			}
+			15 = {
+				modifier = { add = wm_campaign_gaffe_risk }
+				desc = wm_campaign_rally_flop
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_rally_flop
+					left_icon = root
+					wm_campaign_rally_flop_effect = yes
+				}
+				trigger_event = { id = wm_campaign.2 days = 1 }
+			}
+		}
+		ai_chance = { base = 40 }
+	}
+
+	# The TV debate (party leaders, once a campaign)
+	option = {
+		name = wm_campaign.1.b
+		trigger = {
+			exists = scope:wm_campaign_rival
+			NOT = { has_character_flag = wm_campaign_debated }
+		}
+		add_character_flag = { flag = wm_campaign_debated days = 40 }
+		duel = {
+			skill = diplomacy
+			target = scope:wm_campaign_rival
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_campaign_debate_won
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_debate_won
+					left_icon = root
+					right_icon = scope:wm_campaign_rival
+					wm_campaign_debate_win_effect = { RIVAL = scope:wm_campaign_rival }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_campaign_debate_lost
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_debate_lost
+					left_icon = root
+					right_icon = scope:wm_campaign_rival
+					wm_campaign_debate_loss_effect = { RIVAL = scope:wm_campaign_rival }
+				}
+			}
+		}
+		ai_chance = { base = 30 }
+	}
+
+	# The TV debate, policy-wonk style: bury them in figures (a learning duel)
+	option = {
+		name = wm_campaign.1.c
+		trigger = {
+			exists = scope:wm_campaign_rival
+			NOT = { has_character_flag = wm_campaign_debated }
+		}
+		add_character_flag = { flag = wm_campaign_debated days = 40 }
+		duel = {
+			skill = learning
+			target = scope:wm_campaign_rival
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = wm_campaign_debate_wonk_won
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_debate_wonk_won
+					left_icon = root
+					right_icon = scope:wm_campaign_rival
+					wm_campaign_debate_win_effect = { RIVAL = scope:wm_campaign_rival }
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -49
+				}
+				desc = wm_campaign_debate_wonk_lost
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_debate_wonk_lost
+					left_icon = root
+					right_icon = scope:wm_campaign_rival
+					wm_campaign_debate_loss_effect = { RIVAL = scope:wm_campaign_rival }
+				}
+			}
+		}
+		ai_chance = { base = 10 }
+	}
+
+	# A policy launch (party leaders)
+	option = {
+		name = wm_campaign.1.d
+		trigger = { has_title = var:wm_party }
+		random_list = {
+			55 = {
+				modifier = { add = wm_campaign_stewardship_weight }
+				desc = wm_campaign_policy_success
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_policy_success
+					left_icon = root
+					wm_campaign_policy_success_effect = yes
+				}
+			}
+			45 = {
+				desc = wm_campaign_policy_flop
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_policy_flop
+					left_icon = root
+					wm_campaign_policy_flop_effect = yes
+				}
+			}
+		}
+		ai_chance = { base = 20 }
+	}
+
+	# Door-knocking in my own seat
+	option = {
+		name = wm_campaign.1.e
+		trigger = { exists = scope:wm_campaign_seat }
+		send_interface_toast = {
+			type = event_toast_effect_good
+			title = wm_campaign_door_knock
+			left_icon = root
+			wm_campaign_door_knock_effect = yes
+		}
+		ai_chance = { base = 20 }
+	}
+
+	# A quiet week at campaign HQ
+	option = {
+		name = wm_campaign.1.f
+		ai_chance = { base = 5 }
+	}
+}
+
+# A gaffe. The details are generic: nobody real was harmed in the making of this headline.
+wm_campaign.2 = {
+	type = character_event
+	title = wm_campaign.2.t
+	desc = {
+		desc = wm_campaign.2.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:wm_campaign_gaffe ?= 1 }
+				desc = wm_campaign_gaffe_1
+			}
+			triggered_desc = {
+				trigger = { var:wm_campaign_gaffe ?= 2 }
+				desc = wm_campaign_gaffe_2
+			}
+			triggered_desc = {
+				trigger = { var:wm_campaign_gaffe ?= 3 }
+				desc = wm_campaign_gaffe_3
+			}
+			triggered_desc = {
+				trigger = { var:wm_campaign_gaffe ?= 4 }
+				desc = wm_campaign_gaffe_4
+			}
+			desc = wm_campaign_gaffe_5
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	trigger = {
+		has_global_variable = wm_campaign_active
+		wm_campaign_is_campaigner_trigger = yes
+	}
+	immediate = {
+		random_list = {
+			20 = { set_variable = { name = wm_campaign_gaffe value = 1 days = 30 } }
+			20 = { set_variable = { name = wm_campaign_gaffe value = 2 days = 30 } }
+			20 = { set_variable = { name = wm_campaign_gaffe value = 3 days = 30 } }
+			20 = { set_variable = { name = wm_campaign_gaffe value = 4 days = 30 } }
+			20 = { set_variable = { name = wm_campaign_gaffe value = 5 days = 30 } }
+		}
+	}
+
+	# Laugh it off
+	option = {
+		name = wm_campaign.2.a
+		random_list = {
+			50 = {
+				modifier = { add = wm_campaign_diplomacy_weight }
+				desc = wm_campaign_gaffe_shrugged
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_gaffe_shrugged
+					left_icon = root
+					wm_campaign_gaffe_shrugged_effect = yes
+				}
+			}
+			50 = {
+				modifier = { add = wm_campaign_gaffe_risk }
+				desc = wm_campaign_gaffe_stuck
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_gaffe_stuck
+					left_icon = root
+					wm_campaign_gaffe_effect = yes
+				}
+			}
+		}
+		ai_chance = { base = 40 }
+	}
+
+	# Blame a junior staffer
+	option = {
+		name = wm_campaign.2.b
+		wm_campaign_gaffe_staffer_effect = yes
+		ai_chance = { base = 30 }
+	}
+
+	# Lean into it: do it again, on purpose, for the cameras
+	option = {
+		name = wm_campaign.2.c
+		random_list = {
+			35 = {
+				desc = wm_campaign_gaffe_viral
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_campaign_gaffe_viral
+					left_icon = root
+					wm_campaign_gaffe_viral_effect = yes
+				}
+			}
+			65 = {
+				desc = wm_campaign_gaffe_doubled
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_campaign_gaffe_doubled
+					left_icon = root
+					wm_campaign_gaffe_doubled_effect = yes
+				}
+			}
+		}
+		ai_chance = { base = 10 }
+	}
+}

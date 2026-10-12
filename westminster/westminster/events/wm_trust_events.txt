@@ -1,0 +1,74 @@
+﻿# Public trust (common/scripted_effects/wm_trust_effects.txt).
+#   wm_trust.10   the year's set piece, for every player: an expenses row, a lobbying row, a moment of national
+#                 unity or a clean standards report (global_var:wm_trust_set_piece). Generic: nobody is named.
+namespace = wm_trust
+
+wm_trust.10 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 1 }
+				desc = wm_trust.10.t_expenses
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 2 }
+				desc = wm_trust.10.t_lobbying
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 3 }
+				desc = wm_trust.10.t_unity
+			}
+			desc = wm_trust.10.t_standards
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 1 }
+				desc = wm_trust.10.desc_expenses
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 2 }
+				desc = wm_trust.10.desc_lobbying
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_trust_set_piece = 3 }
+				desc = wm_trust.10.desc_unity
+			}
+			desc = wm_trust.10.desc_standards
+		}
+		desc = wm_trust.10.desc_trust
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	trigger = {
+		has_global_variable = wm_trust_set_piece
+	}
+
+	# A row: an MP can open their books
+	option = {
+		name = wm_trust.10.a
+		trigger = {
+			global_var:wm_trust_set_piece <= 2
+			wm_is_mp_trigger = yes
+		}
+		remove_short_term_gold = minor_gold_value
+		add_prestige = minor_prestige_gain
+	}
+	option = {
+		name = wm_trust.10.b
+		trigger = {
+			global_var:wm_trust_set_piece <= 2
+		}
+	}
+	option = {
+		name = wm_trust.10.c
+		trigger = {
+			global_var:wm_trust_set_piece >= 3
+		}
+	}
+}

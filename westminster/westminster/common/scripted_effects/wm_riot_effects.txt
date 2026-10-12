@@ -1,0 +1,182 @@
+﻿# Riots: rioters form in a seat, march on Westminster and make a demand of the Prime Minister.
+# They replace vanilla's peasant and popular revolts (common/factions overrides). Each step moves public trust
+# (wm_trust_effects.txt), and low trust makes riots likelier (wm_trust_riot_chance).
+#
+# State lives on the seat (a county title):
+#   var:wm_riot_demand     what they want: 1 = cost of living, 2 = a minister's resignation,
+#                          3 = a general election, 4 = a policy U-turn
+#   var:wm_riot_stage      1 = gathering, 2 = marching, 3 = at Westminster
+#   var:wm_riot_size       grows each time talks fail; at 3 the PM can no longer negotiate
+#   var:wm_riot_organiser  the march organiser, a new character whose hidden events drive the march
+# and the seat is on global_var list wm_active_riots. The organiser carries var:wm_riot_seat.
+
+# Scope: a seat. Starts a riot there with demand $DEMAND$ (1-4, or a value such as scope:x.var:wm_riot_demand).
+wm_riot_start_effect = {
+	set_variable = { name = wm_riot_demand value = $DEMAND$ }
+	save_scope_as = wm_riot_new_seat
+	set_variable = { name = wm_riot_stage value = 1 }
+	set_variable = { name = wm_riot_size value = 1 }
+	add_county_modifier = { modifier = wm_riot_county_modifier years = 1 }
+	add_to_global_variable_list = { name = wm_active_riots target = this }
+	wm_trust_change_effect = { AMOUNT = wm_trust_riot_started }	# public trust (wm_trust_effects.txt)
+	holder = {
+		create_character = {
+			age = { 19 45 }
+			gender_female_chance = 50
+			culture = scope:wm_riot_new_seat.culture
+			faith = scope:wm_riot_new_seat.faith
+			location = scope:wm_riot_new_seat.title_province
+			save_scope_as = wm_riot_new_organiser
+		}
+	}
+	set_variable = { name = wm_riot_organiser value = scope:wm_riot_new_organiser }
+	scope:wm_riot_new_organiser = {
+		set_variable = { name = wm_riot_seat value = scope:wm_riot_new_seat }
+		trigger_event = wm_riot.1
+	}
+}
+
+# Scope: a seat. Starts a riot with a random demand (no election demand if the PM has already promised one).
+wm_riot_start_random_effect = {
+	random_list = {
+		30 = { wm_riot_start_effect = { DEMAND = 1 } }
+		20 = { wm_riot_start_effect = { DEMAND = 2 } }
+		15 = {
+			trigger = {
+				NOT = { title:e_united_kingdom.holder ?= { has_character_flag = wm_early_election_promised } }
+			}
+			wm_riot_start_effect = { DEMAND = 3 }
+		}
+		25 = { wm_riot_start_effect = { DEMAND = 4 } }
+	}
+}
+
+# Scope: a seat. Ends its riot; the crowd goes home.
+wm_riot_end_effect = {
+	remove_county_modifier = wm_riot_county_modifier
+	if = {
+		limit = { has_global_variable_list = wm_active_riots }
+		remove_list_global_variable = { name = wm_active_riots target = this }
+	}
+	if = {
+		limit = { exists = var:wm_riot_organiser }
+		var:wm_riot_organiser = { remove_variable = wm_riot_seat }
+	}
+	remove_variable = wm_riot_demand
+	remove_variable = wm_riot_stage
+	remove_variable = wm_riot_size
+	remove_variable = wm_riot_organiser
+}
+
+# Scope: the Prime Minister (or whoever the march is aimed at); scope:wm_riot_seat the seat.
+# Give the marchers what they want: costs profile and mandate, and the demand itself.
+wm_riot_concede_effect = {
+	add_prestige = wm_riot_concede_prestige_loss
+	if = {
+		limit = { has_legitimacy = yes }
+		add_legitimacy = minor_legitimacy_loss
+	}
+	if = {
+		limit = { scope:wm_riot_seat = { var:wm_riot_demand = 1 } }
+		remove_short_term_gold = medium_gold_value
+		add_character_modifier = { modifier = wm_cost_of_living_package_modifier years = 3 }
+	}
+	else_if = {
+		limit = { scope:wm_riot_seat = { var:wm_riot_demand = 2 } }
+		if = {
+			limit = { any_councillor = { NOT = { this = root } } }
+			random_councillor = {
+				limit = { NOT = { this = root } }
+				save_scope_as = wm_resigning_minister
+			}
+			fire_councillor = scope:wm_resigning_minister
+			scope:wm_resigning_minister = {
+				add_opinion = { target = root modifier = wm_forced_to_resign_opinion }
+			}
+		}
+		else = {
+			# No minister to sacrifice, so the PM takes the blame
+			add_prestige = wm_riot_concede_prestige_loss
+		}
+	}
+	else_if = {
+		limit = { scope:wm_riot_seat = { var:wm_riot_demand = 3 } }
+		add_character_flag = { flag = wm_early_election_promised years = 2 }
+		if = {
+			limit = { has_legitimacy = yes }
+			add_legitimacy = minor_legitimacy_loss
+		}
+	}
+	else = {
+		add_character_modifier = { modifier = wm_u_turn_modifier years = 2 }
+	}
+	# Public trust: a demand met helps, except a U-turn (its modifier is counted by wm_trust_watch_pm_effect)
+	if = {
+		limit = { scope:wm_riot_seat = { NOT = { var:wm_riot_demand = 4 } } }
+		wm_trust_change_effect = { AMOUNT = wm_trust_riot_conceded }
+	}
+	scope:wm_riot_seat = {
+		add_county_modifier = { modifier = wm_riot_demands_met_county_modifier years = 5 }
+		wm_riot_end_effect = yes
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_riot_seat the seat. Talks succeeded: a compromise.
+wm_riot_negotiated_effect = {
+	add_prestige = wm_riot_negotiate_prestige_loss
+	wm_trust_change_effect = { AMOUNT = wm_trust_riot_negotiated }
+	scope:wm_riot_seat = {
+		add_county_modifier = { modifier = wm_riot_compromise_county_modifier years = 3 }
+		wm_riot_end_effect = yes
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_riot_seat the seat. Talks failed: the crowd grows and comes back.
+wm_riot_talks_failed_effect = {
+	add_prestige = miniscule_prestige_loss
+	scope:wm_riot_seat = {
+		change_variable = { name = wm_riot_size add = 1 }
+		var:wm_riot_organiser ?= { trigger_event = { id = wm_riot.3 days = 30 } }
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_riot_seat the seat. The police break up the march peacefully.
+wm_riot_policed_effect = {
+	add_character_modifier = { modifier = wm_heavy_handed_modifier years = 3 }
+	wm_trust_change_effect = { AMOUNT = wm_trust_riot_policed }
+	scope:wm_riot_seat = {
+		add_county_modifier = { modifier = wm_riot_policed_county_modifier years = 5 }
+		holder ?= {
+			if = {
+				limit = { NOT = { this = root } }
+				add_opinion = { target = root modifier = wm_policed_my_constituents_opinion }
+			}
+		}
+		wm_riot_end_effect = yes
+	}
+}
+
+# Scope: the Prime Minister; scope:wm_riot_seat the seat. Policing turns violent: a big hit, and the
+# rioting spreads to a neighbouring seat.
+wm_riot_crackdown_effect = {
+	add_prestige = wm_riot_crackdown_prestige_loss
+	add_character_modifier = { modifier = wm_crackdown_modifier years = 5 }
+	wm_trust_change_effect = { AMOUNT = wm_trust_riot_crackdown }
+	scope:wm_riot_seat = {
+		add_county_modifier = { modifier = wm_riot_crackdown_county_modifier years = 10 }
+		holder ?= {
+			if = {
+				limit = { NOT = { this = root } }
+				add_opinion = { target = root modifier = wm_policed_my_constituents_opinion }
+			}
+		}
+		random_neighboring_county = {
+			limit = {
+				exists = holder
+				NOT = { wm_riot_is_active_trigger = yes }
+			}
+			wm_riot_start_effect = { DEMAND = scope:wm_riot_seat.var:wm_riot_demand }
+		}
+		wm_riot_end_effect = yes
+	}
+}

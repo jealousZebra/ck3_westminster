@@ -1,0 +1,37 @@
+﻿# House of Commons: what a bill does once it passes, and what a defeat costs (wm_commons_apply_result_effect).
+# All on the Prime Minister.
+
+# Finance Bill: taxes up
+wm_commons_tax_rise_modifier = {
+	icon = economy_positive
+	monthly_income_mult = 0.1
+	general_opinion = -5
+}
+# Public Services Bill: more money for schools and hospitals
+wm_commons_public_services_modifier = {
+	icon = economy_negative
+	monthly_income_mult = -0.05
+	general_opinion = 5
+}
+# Public Service Reform Bill: a reformer's reputation
+wm_commons_reformer_modifier = {
+	icon = prestige_positive
+	monthly_prestige = 1
+}
+# Emergency Powers Bill: the country rallies round
+wm_commons_emergency_powers_modifier = {
+	icon = prestige_positive
+	monthly_legitimacy_add = 0.2
+}
+# A bill defeated in the Commons
+wm_commons_defeated_in_commons_modifier = {
+	icon = prestige_negative
+	general_opinion = -5
+	monthly_prestige = -0.5
+}
+# A motion of no confidence carried against the government
+wm_commons_lost_confidence_modifier = {
+	icon = prestige_negative
+	general_opinion = -10
+	monthly_prestige = -1
+}

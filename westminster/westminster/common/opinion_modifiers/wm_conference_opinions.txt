@@ -1,0 +1,56 @@
+﻿# Election campaigns and party conferences (common/scripted_effects/wm_campaign_effects.txt, wm_conference_effects.txt)
+
+# A party leader of the rival who beat them in the TV debate
+wm_campaign_debate_humiliated_opinion = {
+	opinion = -15
+	years = 2
+	decaying = yes
+}
+# An MP of their leader after a triumphant conference speech
+wm_conference_triumph_opinion = {
+	opinion = 10
+	years = 1
+	decaying = yes
+}
+# An MP of their leader after a disastrous one
+wm_conference_disaster_opinion = {
+	opinion = -10
+	years = 1
+	decaying = yes
+}
+# An MP of the leader who promised to listen to the parliamentary party
+wm_conference_listened_opinion = {
+	opinion = 10
+	years = 1
+	decaying = yes
+}
+# An MP of the colleague who worked the conference receptions
+wm_conference_contacts_opinion = {
+	opinion = 15
+	years = 2
+	decaying = yes
+}
+# An MP of the colleague they plotted with in the hotel bar
+wm_conference_fellow_plotter_opinion = {
+	opinion = 10
+	years = 2
+	decaying = yes
+}
+# A party leader of the MP caught plotting against them
+wm_conference_caught_plotting_opinion = {
+	opinion = -25
+	years = 3
+	decaying = yes
+}
+# A party leader of the MP who applauded loudest
+wm_conference_loyal_applause_opinion = {
+	opinion = 10
+	years = 1
+	decaying = yes
+}
+# A party leader of the MP whose fringe remarks went off-message
+wm_conference_off_message_opinion = {
+	opinion = -10
+	years = 1
+	decaying = yes
+}

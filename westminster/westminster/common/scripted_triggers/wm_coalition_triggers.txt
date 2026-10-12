@@ -1,0 +1,20 @@
+﻿# Coalitions and confidence-and-supply (common/scripted_effects/wm_coalition_effects.txt). The Commons' own hooks
+# (who takes the government whip) are in wm_commons_triggers.txt.
+
+# A coalition or a confidence-and-supply deal is in force
+wm_coalition_deal_trigger = {
+	has_global_variable = wm_coalition_junior
+}
+
+# Character: leads the junior partner in a coalition or confidence-and-supply deal
+wm_coalition_is_junior_leader_trigger = {
+	has_global_variable = wm_coalition_junior
+	exists = var:wm_party
+	var:wm_party = global_var:wm_coalition_junior
+	has_title = var:wm_party
+}
+
+# Silences in-game tests: no events or toasts for players
+wm_coalition_loud_trigger = {
+	NOT = { has_global_variable = wm_test_quiet }
+}

@@ -1,0 +1,10 @@
+﻿# Costs for riots (events/wm_riot_events.txt) and the Crown (common/character_interactions/wm_monarch_interactions.txt).
+
+# The monarch speaking out against an MP: a huge price, so it is rare
+wm_crown_speak_out_prestige_cost = 1500
+wm_crown_speak_out_mp_prestige_loss = -350
+
+# Answering a protest march
+wm_riot_concede_prestige_loss = -350
+wm_riot_negotiate_prestige_loss = -150
+wm_riot_crackdown_prestige_loss = -350

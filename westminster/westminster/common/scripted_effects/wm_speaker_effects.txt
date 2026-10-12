@@ -1,0 +1,311 @@
+﻿# Electing the Speaker by all MPs, in a secret exhaustive ballot. State: common/script_values/wm_speaker_values.txt.
+#
+# When: after a general election at which the Speaker stood down (wm_speaker_before_election_effect: by age, or a
+# chance; a re-elected Speaker returns unopposed, by convention), or when the chair falls vacant (the Speaker dies:
+# event wm_speaker.11; the weekly watcher also notices an empty chair).
+# How: nominations stay open for a week. The strongest backbenchers stand (four at most; a player MP is asked,
+# event wm_speaker.1). Then every MP votes for the candidate they back most (wm_speaker_preference_value: their
+# opinion, the candidate's learning and diplomacy, a colleague from their own party); a candidate with over half the
+# votes is elected, otherwise the last is eliminated and the House votes again.
+# The new Speaker leaves their party (they sit above party, in the Independent house), which costs that party a vote.
+
+# Any scope. Opens nominations if the chair is empty.
+wm_speaker_open_effect = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = wm_speaker_state }
+			NOT = { wm_speaker_chair_filled_trigger = yes }
+		}
+		set_global_variable = { name = wm_speaker_state value = 1 }
+		set_global_variable = { name = wm_speaker_timer value = yes days = 7 }
+		if = {
+			limit = { has_global_variable_list = wm_speaker_candidates }
+			every_in_global_list = {
+				variable = wm_speaker_candidates
+				remove_variable = wm_speaker_votes
+				remove_variable = wm_speaker_stand
+				remove_variable = wm_speaker_noise
+			}
+			clear_global_variable_list = wm_speaker_candidates
+		}
+		title:e_united_kingdom = {
+			every_in_de_jure_hierarchy = {
+				continue = { tier > tier_county }
+				limit = {
+					tier = tier_county
+					holder ?= { wm_speaker_can_stand_trigger = yes }
+				}
+				holder = { add_to_temporary_list = wm_speaker_pool }
+			}
+		}
+		every_in_list = {
+			list = wm_speaker_pool
+			set_variable = {
+				name = wm_speaker_stand
+				value = {
+					value = wm_speaker_stand_value
+					add = {
+						integer_range = {
+							min = 0
+							max = 20
+						}
+					}
+				}
+			}
+		}
+		ordered_in_list = {
+			list = wm_speaker_pool
+			limit = { NOT = { wm_majority_ask_player_trigger = yes } }
+			order_by = var:wm_speaker_stand
+			max = 4
+			check_range_bounds = no
+			wm_speaker_add_candidate_effect = yes
+		}
+		every_in_list = {
+			list = wm_speaker_pool
+			limit = { wm_majority_ask_player_trigger = yes }
+			trigger_event = wm_speaker.1
+		}
+		wm_majority_host_event_effect = { ID = wm_speaker.10 DAYS = 8 }
+	}
+}
+
+# Character: stands for Speaker.
+wm_speaker_add_candidate_effect = {
+	if = {
+		limit = {
+			NOT = { is_target_in_global_variable_list = { name = wm_speaker_candidates target = this } }
+		}
+		add_to_global_variable_list = { name = wm_speaker_candidates target = this }
+		set_variable = { name = wm_speaker_votes value = 0 }
+		set_variable = {
+			name = wm_speaker_noise
+			value = {
+				integer_range = {
+					min = 0
+					max = 10
+				}
+			}
+		}
+	}
+}
+
+# Any scope. Polling day for the Speaker: ballots until someone has over half the votes.
+wm_speaker_hold_effect = {
+	if = {
+		limit = { has_global_variable = wm_speaker_state }
+		remove_global_variable = wm_speaker_state
+		remove_global_variable = wm_speaker_timer
+		# Candidates who have gone drop out; if nobody is left, the strongest backbencher is drafted
+		if = {
+			limit = { has_global_variable_list = wm_speaker_candidates }
+			every_in_global_list = {
+				variable = wm_speaker_candidates
+				limit = { NOT = { wm_speaker_can_stand_trigger = yes } }
+				add_to_temporary_list = wm_speaker_gone
+			}
+			every_in_list = {
+				list = wm_speaker_gone
+				remove_list_global_variable = { name = wm_speaker_candidates target = this }
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_global_variable_list = wm_speaker_candidates }
+					NOT = {
+						any_in_global_list = {
+							variable = wm_speaker_candidates
+							count >= 1
+						}
+					}
+				}
+			}
+			title:e_united_kingdom = {
+				every_in_de_jure_hierarchy = {
+					continue = { tier > tier_county }
+					limit = {
+						tier = tier_county
+						holder ?= { wm_speaker_can_stand_trigger = yes }
+					}
+					holder = { add_to_temporary_list = wm_speaker_draft }
+				}
+			}
+			ordered_in_list = {
+				list = wm_speaker_draft
+				order_by = wm_speaker_stand_value
+				wm_speaker_add_candidate_effect = yes
+			}
+		}
+		# The electorate: every MP, once
+		title:e_united_kingdom = {
+			every_in_de_jure_hierarchy = {
+				continue = { tier > tier_county }
+				limit = {
+					tier = tier_county
+					holder ?= { is_alive = yes }
+				}
+				holder = { add_to_temporary_list = wm_speaker_electorate }
+			}
+		}
+		set_global_variable = { name = wm_speaker_rounds value = 0 }
+		clear_saved_scope = wm_speaker_elected
+		while = {
+			limit = {
+				NOT = { exists = scope:wm_speaker_elected }
+				global_var:wm_speaker_rounds < 8
+			}
+			wm_speaker_round_effect = yes
+		}
+		scope:wm_speaker_elected ?= { wm_speaker_install_effect = yes }
+	}
+}
+
+# Any scope. One ballot of the whole House.
+wm_speaker_round_effect = {
+	change_global_variable = { name = wm_speaker_rounds add = 1 }
+	set_global_variable = { name = wm_speaker_turnout value = 0 }
+	every_in_global_list = {
+		variable = wm_speaker_candidates
+		set_variable = { name = wm_speaker_votes value = 0 }
+	}
+	every_in_list = {
+		list = wm_speaker_electorate
+		limit = {
+			is_alive = yes
+			NOT = { has_character_flag = wm_speaker }
+		}
+		save_scope_as = wm_speaker_voter
+		change_global_variable = { name = wm_speaker_turnout add = 1 }
+		if = {
+			limit = { is_target_in_global_variable_list = { name = wm_speaker_candidates target = this } }
+			change_variable = { name = wm_speaker_votes add = 1 }
+		}
+		else = {
+			ordered_in_global_list = {
+				variable = wm_speaker_candidates
+				order_by = wm_speaker_preference_value
+				change_variable = { name = wm_speaker_votes add = 1 }
+			}
+		}
+	}
+	ordered_in_global_list = {
+		variable = wm_speaker_candidates
+		order_by = var:wm_speaker_votes
+		save_scope_as = wm_speaker_top
+	}
+	if = {
+		limit = {
+			OR = {
+				scope:wm_speaker_top.var:wm_speaker_votes > {
+					value = global_var:wm_speaker_turnout
+					divide = 2
+				}
+				NOT = {
+					any_in_global_list = {
+						variable = wm_speaker_candidates
+						count >= 2
+					}
+				}
+			}
+		}
+		scope:wm_speaker_top = { save_scope_as = wm_speaker_elected }
+		set_global_variable = { name = wm_speaker_last_votes value = scope:wm_speaker_top.var:wm_speaker_votes }
+		set_global_variable = { name = wm_speaker_last_turnout value = global_var:wm_speaker_turnout }
+	}
+	else = {
+		ordered_in_global_list = {
+			variable = wm_speaker_candidates
+			order_by = {
+				value = 0
+				subtract = var:wm_speaker_votes
+			}
+			save_scope_as = wm_speaker_bottom
+		}
+		remove_list_global_variable = { name = wm_speaker_candidates target = scope:wm_speaker_bottom }
+	}
+}
+
+# Character: takes the chair. They leave their party and sit above it.
+wm_speaker_install_effect = {
+	save_scope_as = wm_speaker_new
+	add_character_flag = wm_speaker
+	remove_variable = wm_speaker_retired
+	if = {
+		limit = { exists = var:wm_party }
+		remove_variable = wm_party
+		wm_party_sync_house_effect = yes	# parties are houses: to the Independent house (wm_party_effects.txt)
+	}
+	remove_variable = wm_commons_rebellions
+	add_prestige = medium_prestige_gain
+	wm_election_rewire_effect = yes
+	wm_majority_update_effect = yes
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = {
+			if = {
+				limit = { this = scope:wm_speaker_new }
+				trigger_event = wm_speaker.2
+			}
+			else = {
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = wm_speaker_elected_toast
+					left_icon = scope:wm_speaker_new
+					custom_tooltip = wm_speaker_elected_toast_desc
+				}
+			}
+		}
+	}
+}
+
+# Any scope. Before a general election: the Speaker seeks re-election (unopposed, by convention), or stands down
+# and their seat is fought like any open seat (var:wm_el_open_seat). A player Speaker always stands again.
+wm_speaker_before_election_effect = {
+	title:e_united_kingdom = {
+		every_in_de_jure_hierarchy = {
+			continue = { tier > tier_county }
+			limit = {
+				tier = tier_county
+				holder ?= {
+					is_alive = yes
+					is_ai = yes
+					has_character_flag = wm_speaker
+				}
+			}
+			save_scope_as = wm_speaker_old_seat
+			holder = {
+				random = {
+					chance = wm_speaker_retire_chance_value
+					remove_character_flag = wm_speaker
+					set_variable = { name = wm_speaker_retired value = yes years = 5 }
+					scope:wm_speaker_old_seat = { set_variable = { name = wm_el_open_seat value = yes } }
+				}
+			}
+		}
+	}
+}
+
+# Any scope. After a general election: an empty chair is filled.
+wm_speaker_after_election_effect = {
+	wm_speaker_open_effect = yes
+}
+
+# Any scope. The weekly watcher: hold an election whose nominations have closed; notice an empty chair.
+wm_speaker_process_due_effect = {
+	if = {
+		limit = {
+			has_global_variable = wm_speaker_state
+			NOT = { has_global_variable = wm_speaker_timer }
+		}
+		wm_speaker_hold_effect = yes
+	}
+	else_if = {
+		limit = {
+			NOT = { has_global_variable = wm_speaker_state }
+			wm_majority_parliament_sitting_trigger = yes
+			NOT = { wm_speaker_chair_filled_trigger = yes }
+		}
+		wm_speaker_open_effect = yes
+	}
+}

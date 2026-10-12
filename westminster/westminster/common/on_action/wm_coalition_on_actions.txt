@@ -1,0 +1,17 @@
+﻿# Coalitions and confidence-and-supply (common/scripted_effects/wm_coalition_effects.txt), appended to vanilla's
+# on_actions.
+
+quarterly_playable_pulse = {
+	on_actions = { wm_coalition_quarterly_pulse }
+}
+
+# Root: the Prime Minister. Keeps a deal in step with the government; the junior partner may walk out.
+wm_coalition_quarterly_pulse = {
+	trigger = {
+		has_title = title:e_united_kingdom
+		wm_coalition_deal_trigger = yes
+	}
+	effect = {
+		wm_coalition_quarterly_effect = yes
+	}
+}

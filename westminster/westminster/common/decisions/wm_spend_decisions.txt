@@ -1,0 +1,170 @@
+﻿# Campaign spending (common/scripted_effects/wm_spend_effects.txt): press and smear campaigns, and calling in a
+# favour from a rival party leader.
+
+# Pay for a press campaign that lifts your party in the polls each month.
+wm_spend_press_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_press.dds"
+	}
+	sort_order = 60
+	ai_check_interval = 0
+
+	desc = wm_spend_press_decision_desc
+	selection_tooltip = wm_spend_press_decision_tooltip
+
+	is_shown = {
+		exists = var:wm_party
+		OR = {
+			wm_is_mp_trigger = yes
+			has_title = var:wm_party
+		}
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_spend_not_campaigning_tt
+			NOT = { exists = var:wm_spend_kind }
+		}
+		custom_tooltip = {
+			text = wm_spend_press_afford_tt
+			gold >= wm_spend_press_cost
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_spend_press_decision_effect_tt
+		hidden_effect = {
+			wm_spend_start_effect = { KIND = 1 TARGET = var:wm_party }
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# Pay for a smear campaign against a rival party (the target is chosen in event wm_spend.10).
+wm_spend_smear_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_press.dds"
+	}
+	sort_order = 59
+	ai_check_interval = 0
+
+	desc = wm_spend_smear_decision_desc
+	selection_tooltip = wm_spend_smear_decision_tooltip
+
+	is_shown = {
+		exists = var:wm_party
+		OR = {
+			wm_is_mp_trigger = yes
+			has_title = var:wm_party
+		}
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_spend_not_campaigning_tt
+			NOT = { exists = var:wm_spend_kind }
+		}
+		custom_tooltip = {
+			text = wm_spend_smear_afford_tt
+			gold >= wm_spend_smear_cost
+		}
+	}
+
+	effect = {
+		custom_tooltip = wm_spend_smear_decision_effect_tt
+		hidden_effect = {
+			trigger_event = wm_spend.10
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# Stop paying.
+wm_spend_stop_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_press.dds"
+	}
+	sort_order = 58
+	ai_check_interval = 0
+
+	desc = wm_spend_stop_decision_desc
+	selection_tooltip = wm_spend_stop_decision_tooltip
+
+	is_shown = {
+		exists = var:wm_spend_kind
+	}
+
+	effect = {
+		custom_tooltip = wm_spend_stop_decision_effect_tt
+		hidden_effect = {
+			wm_spend_stop_effect = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# A party leader spends party standing for a hook on a rival party's leader (chosen in event wm_spend.20).
+wm_spend_favour_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_commons.dds"
+	}
+	sort_order = 57
+	ai_check_interval = 24
+
+	desc = wm_spend_favour_decision_desc
+	selection_tooltip = wm_spend_favour_decision_tooltip
+
+	is_shown = {
+		exists = var:wm_party
+		has_title = var:wm_party
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_spend_favour_rival_tt
+			title:e_united_kingdom.holder ?= {
+				OR = {
+					AND = {
+						exists = var:wm_party
+						NOT = { var:wm_party = root.var:wm_party }
+					}
+					any_vassal = {
+						exists = var:wm_party
+						has_title = var:wm_party
+						NOT = { var:wm_party = root.var:wm_party }
+					}
+				}
+			}
+		}
+	}
+
+	cooldown = { years = 3 }
+
+	cost = {
+		piety = wm_spend_favour_cost
+	}
+
+	effect = {
+		custom_tooltip = wm_spend_favour_decision_effect_tt
+		hidden_effect = {
+			trigger_event = wm_spend.20
+		}
+	}
+
+	ai_potential = {
+		piety >= 500
+	}
+
+	ai_will_do = {
+		base = 5
+	}
+}

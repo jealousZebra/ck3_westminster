@@ -1,0 +1,17 @@
+﻿# Coalitions and confidence-and-supply (common/scripted_effects/wm_coalition_effects.txt)
+
+# On the coalition partner's leader: Deputy Prime Minister
+wm_coalition_deputy_pm_modifier = {
+	icon = prestige_positive
+	monthly_prestige = 1
+}
+# On the Prime Minister: a policy conceded to the coalition partner
+wm_coalition_compromise_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -0.5
+}
+# On a confidence-and-supply partner's leader: money for their priorities, and a say in the budget
+wm_coalition_supply_deal_modifier = {
+	icon = economy_positive
+	monthly_prestige = 0.5
+}

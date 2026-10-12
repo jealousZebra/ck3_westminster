@@ -1,0 +1,370 @@
+﻿# Party conferences (common/scripted_effects/wm_conference_effects.txt). 1: the leader's speech; 2: the papers'
+# verdict on it; 10: an MP's conference; 20: leadership rumblings; 30: the reckoning (hidden, three days on).
+namespace = wm_conference
+
+# The leader's speech (players).
+wm_conference.1 = {
+	type = character_event
+	title = wm_conference.1.t
+	desc = wm_conference.1.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = personality_bold
+	}
+	trigger = {
+		exists = var:wm_party
+		has_title = var:wm_party
+		has_character_flag = wm_conference_leader
+	}
+	immediate = {
+		var:wm_party = { save_scope_as = wm_conference_party }
+	}
+
+	# Deliver the speech as written
+	option = {
+		name = wm_conference.1.a
+		random_list = {
+			35 = {
+				modifier = { add = wm_conference_speech_weight }
+				wm_conference_speech_triumph_effect = yes
+			}
+			45 = {
+				wm_conference_speech_solid_effect = yes
+			}
+			20 = {
+				modifier = { add = wm_conference_disaster_risk }
+				wm_conference_speech_disaster_effect = yes
+			}
+		}
+		trigger_event = wm_conference.2
+		ai_chance = { base = 50 }
+	}
+
+	# Tear up the script and speak from the heart: a bigger swing either way
+	option = {
+		name = wm_conference.1.b
+		random_list = {
+			45 = {
+				modifier = { add = wm_conference_speech_weight }
+				wm_conference_speech_triumph_effect = yes
+			}
+			10 = {
+				wm_conference_speech_solid_effect = yes
+			}
+			45 = {
+				modifier = { add = wm_conference_disaster_risk }
+				wm_conference_speech_disaster_effect = yes
+			}
+		}
+		trigger_event = wm_conference.2
+		ai_chance = { base = 20 }
+	}
+
+	# Unveil a set-piece policy
+	option = {
+		name = wm_conference.1.c
+		random_list = {
+			50 = {
+				modifier = { add = wm_campaign_stewardship_weight }
+				wm_conference_policy_hit_effect = yes
+			}
+			50 = {
+				wm_conference_policy_flop_effect = yes
+			}
+		}
+		trigger_event = wm_conference.2
+		ai_chance = { base = 30 }
+	}
+}
+
+# The papers' verdict on the speech.
+wm_conference.2 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 1 }
+				desc = wm_conference_headline_triumph
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 3 }
+				desc = wm_conference_headline_disaster
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 4 }
+				desc = wm_conference_headline_policy_hit
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 5 }
+				desc = wm_conference_headline_policy_flop
+			}
+			desc = wm_conference_headline_solid
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 1 }
+				desc = wm_conference.2.desc_triumph
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 3 }
+				desc = wm_conference.2.desc_disaster
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 4 }
+				desc = wm_conference.2.desc_policy_hit
+			}
+			triggered_desc = {
+				trigger = { var:wm_conference_result ?= 5 }
+				desc = wm_conference.2.desc_policy_flop
+			}
+			desc = wm_conference.2.desc_solid
+		}
+	}
+	theme = party
+	left_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = {
+				OR = {
+					var:wm_conference_result ?= 3
+					var:wm_conference_result ?= 5
+				}
+			}
+			animation = shame
+		}
+		animation = happiness
+	}
+	option = {
+		name = wm_conference.2.a
+	}
+}
+
+# An MP's conference (players).
+wm_conference.10 = {
+	type = character_event
+	title = wm_conference.10.t
+	desc = wm_conference.10.desc
+	theme = party
+	left_portrait = {
+		character = root
+		animation = interested
+	}
+	right_portrait = {
+		character = scope:wm_conference_leader
+		animation = personality_bold
+	}
+	trigger = {
+		exists = var:wm_party
+		exists = var:wm_party.holder
+		NOT = { has_title = var:wm_party }
+	}
+	immediate = {
+		var:wm_party = { save_scope_as = wm_conference_party }
+		var:wm_party.holder = { save_scope_as = wm_conference_leader }
+	}
+
+	# Speak at a fringe meeting
+	option = {
+		name = wm_conference.10.a
+		random_list = {
+			70 = {
+				modifier = { add = wm_campaign_diplomacy_weight }
+				desc = wm_conference_fringe_good
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_conference_fringe_good
+					left_icon = root
+					add_prestige = minor_prestige_gain
+					wm_campaign_own_poll_effect = { AMOUNT = wm_conference_fringe_poll }
+				}
+			}
+			30 = {
+				desc = wm_conference_fringe_off_message
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_conference_fringe_off_message
+					left_icon = root
+					right_icon = scope:wm_conference_leader
+					add_prestige = miniscule_prestige_gain
+					scope:wm_conference_leader = {
+						add_opinion = {
+							target = root
+							modifier = wm_conference_off_message_opinion
+						}
+					}
+				}
+			}
+		}
+		ai_chance = { base = 30 }
+	}
+
+	# Plot in the hotel bar
+	option = {
+		name = wm_conference.10.b
+		wm_conference_plot_effect = yes
+		scope:wm_conference_leader = {
+			ordered_vassal = {
+				limit = {
+					var:wm_party ?= scope:wm_conference_party
+					NOT = { this = root }
+					opinion = {
+						target = scope:wm_conference_leader
+						value < 20
+					}
+				}
+				order_by = intrigue
+				max = 2
+				check_range_bounds = no
+				add_opinion = {
+					target = root
+					modifier = wm_conference_fellow_plotter_opinion
+				}
+			}
+		}
+		random = {
+			chance = 30
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = wm_conference_plot_found_out
+				left_icon = root
+				right_icon = scope:wm_conference_leader
+				scope:wm_conference_leader = {
+					add_opinion = {
+						target = root
+						modifier = wm_conference_caught_plotting_opinion
+					}
+				}
+			}
+		}
+		ai_chance = { base = 20 }
+	}
+
+	# Work the receptions: make contacts
+	option = {
+		name = wm_conference.10.c
+		scope:wm_conference_leader = {
+			ordered_vassal = {
+				limit = {
+					var:wm_party ?= scope:wm_conference_party
+					NOT = { this = root }
+				}
+				order_by = diplomacy
+				max = 3
+				check_range_bounds = no
+				add_opinion = {
+					target = root
+					modifier = wm_conference_contacts_opinion
+				}
+			}
+		}
+		ai_chance = { base = 30 }
+	}
+
+	# Sit in the hall and applaud the leader, loudly
+	option = {
+		name = wm_conference.10.d
+		scope:wm_conference_leader = {
+			add_opinion = {
+				target = root
+				modifier = wm_conference_loyal_applause_opinion
+			}
+		}
+		ai_chance = { base = 20 }
+	}
+}
+
+# Leadership rumblings (players).
+wm_conference.20 = {
+	type = character_event
+	title = wm_conference.20.t
+	desc = wm_conference.20.desc
+	theme = intrigue
+	left_portrait = {
+		character = root
+		animation = worry
+	}
+	trigger = {
+		exists = var:wm_party
+		has_title = var:wm_party
+	}
+	immediate = {
+		var:wm_party = { save_scope_as = wm_conference_party }
+	}
+
+	# Face down the plotters
+	option = {
+		name = wm_conference.20.a
+		random_list = {
+			50 = {
+				modifier = { add = wm_campaign_diplomacy_weight }
+				desc = wm_conference_faced_down
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_conference_faced_down
+					left_icon = root
+					add_prestige = minor_prestige_gain
+				}
+			}
+			50 = {
+				desc = wm_conference_not_faced_down
+				send_interface_toast = {
+					type = event_toast_effect_bad
+					title = wm_conference_not_faced_down
+					left_icon = root
+					wm_conference_rumblings_ai_effect = yes
+				}
+			}
+		}
+		ai_chance = { base = 40 }
+	}
+
+	# Promise to listen to the parliamentary party
+	option = {
+		name = wm_conference.20.b
+		add_prestige = minor_prestige_loss
+		wm_conference_mps_opinion_effect = { OPINION = wm_conference_listened_opinion }
+		ai_chance = { base = 40 }
+	}
+
+	# Dismiss it as Westminster bubble chatter
+	option = {
+		name = wm_conference.20.c
+		wm_campaign_own_poll_effect = { AMOUNT = wm_conference_shrug_poll }
+		ai_chance = { base = 20 }
+	}
+}
+
+# Three days after the conference opened: are enough MPs plotting for the papers to talk of rumblings?
+wm_conference.30 = {
+	hidden = yes
+	trigger = {
+		exists = var:wm_party
+		has_title = var:wm_party
+	}
+	immediate = {
+		var:wm_party = {
+			if = {
+				limit = {
+					has_variable = wm_conference_rumblings
+					var:wm_conference_rumblings >= wm_conference_rumblings_threshold
+				}
+				set_variable = { name = wm_conference_rumbling value = yes }
+			}
+			set_variable = { name = wm_conference_rumblings value = 0 }
+		}
+		if = {
+			limit = { var:wm_party = { has_variable = wm_conference_rumbling } }
+			if = {
+				limit = { wm_campaign_auto_trigger = yes }
+				wm_conference_rumblings_ai_effect = yes
+			}
+			else = {
+				trigger_event = wm_conference.20
+			}
+			var:wm_party = { remove_variable = wm_conference_rumbling }
+		}
+	}
+}

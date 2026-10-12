@@ -1,0 +1,11 @@
+﻿# Opinion polls (common/scripted_effects/wm_polls_effects.txt).
+namespace = wm_polls
+
+# The monthly tick: polls move, Parliament's clock runs, due elections and by-elections happen. Fired three times a
+# quarter for the Prime Minister (wm_polls_quarterly_pulse); wm_polls_monthly_effect runs at most once in 20 days.
+wm_polls.1 = {
+	hidden = yes
+	immediate = {
+		wm_polls_monthly_effect = yes
+	}
+}

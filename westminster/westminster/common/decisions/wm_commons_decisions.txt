@@ -1,0 +1,110 @@
+﻿# House of Commons (events/wm_commons_events.txt, common/scripted_effects/wm_commons_effects.txt).
+
+# The Prime Minister puts a government bill before the House.
+wm_commons_introduce_bill_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_commons.dds"
+	}
+	desc = wm_commons_introduce_bill_decision_desc
+	selection_tooltip = wm_commons_introduce_bill_decision_tooltip
+
+	ai_check_interval = 12
+	cooldown = { days = 180 }
+
+	is_shown = {
+		wm_commons_is_pm_trigger = yes
+	}
+
+	is_valid = {
+		custom_description = {
+			text = wm_commons_house_free_desc
+			wm_commons_house_free_trigger = yes
+		}
+		custom_description = {
+			text = wm_commons_no_election_pending_desc
+			NOT = { has_global_variable = wm_election_required }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_available = yes
+	}
+
+	effect = {
+		custom_tooltip = wm_commons_introduce_bill_decision_effect_tt
+		trigger_event = wm_commons.1
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 15
+	}
+}
+
+# The Leader of the Opposition tables a motion of no confidence in the government.
+wm_commons_no_confidence_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/council.dds"
+	}
+	desc = wm_commons_no_confidence_decision_desc
+	selection_tooltip = wm_commons_no_confidence_decision_tooltip
+
+	ai_check_interval = 24
+	cooldown = { days = 365 }
+
+	is_shown = {
+		wm_commons_is_opposition_party_leader_trigger = yes
+	}
+
+	is_valid = {
+		custom_description = {
+			text = wm_commons_leader_of_opposition_desc
+			wm_commons_is_leader_of_opposition_trigger = { WHO = root }
+		}
+		custom_description = {
+			text = wm_commons_house_free_desc
+			wm_commons_house_free_trigger = yes
+		}
+		custom_description = {
+			text = wm_commons_no_election_pending_desc
+			NOT = { has_global_variable = wm_election_required }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_available = yes
+	}
+
+	effect = {
+		custom_tooltip = wm_commons_no_confidence_decision_effect_tt
+		wm_commons_table_confidence_motion_effect = yes
+	}
+
+	ai_potential = {
+		always = yes
+	}
+
+	# Rare: only worth it against a government with a thin majority or a weak Prime Minister
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 10
+			title:e_united_kingdom.holder = { wm_commons_party_seats_value < 326 }
+		}
+		modifier = {
+			add = 5
+			title:e_united_kingdom.holder = {
+				has_legitimacy = yes
+				legitimacy_level <= 1
+			}
+		}
+		modifier = {
+			add = 5
+			has_global_variable = wm_commons_result
+			global_var:wm_commons_result = 2
+		}
+	}
+}

@@ -1,0 +1,17 @@
+﻿# Westminster: the groups of Crusader Kings III's own gfx/portraits/portrait_modifiers/00_custom_cloaks.txt (Paradox Interactive), each giving no cloak, by westminster/tools/ui/build_portraits.py - edit there.
+custom_cloaks = {
+	usage = customization
+	selection_behavior = weighted_random
+	priority = 1
+	wm_no_cloak = {
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = cloaks
+				template = no_cloak
+				range = { 0 1 }
+			}
+		}
+		weight = { base = 100 }
+	}
+}

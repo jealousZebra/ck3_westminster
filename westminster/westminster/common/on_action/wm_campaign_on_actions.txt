@@ -1,0 +1,27 @@
+﻿# Election campaigns and party conferences, appended to vanilla's on_actions. The weekly watcher (event
+# wm_campaign.100) starts at game start and is restarted by the quarterly pulse if its chain was lost (its Prime
+# Minister died before it fired, or the save predates campaigns).
+
+on_game_start = {
+	on_actions = { wm_campaign_on_game_start }
+}
+
+wm_campaign_on_game_start = {
+	effect = {
+		title:e_united_kingdom.holder ?= { wm_campaign_ensure_watch_effect = yes }
+	}
+}
+
+quarterly_playable_pulse = {
+	on_actions = { wm_campaign_quarterly_pulse }
+}
+
+# Root: the Prime Minister.
+wm_campaign_quarterly_pulse = {
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	effect = {
+		wm_campaign_ensure_watch_effect = yes
+	}
+}

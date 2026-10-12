@@ -1,0 +1,184 @@
+﻿# Jobs for unlanded politicians (common/scripted_effects/wm_career_effects.txt). A party's MPs offer them to its
+# hopefuls (wm_career_offer_jobs_effect, monthly); the hopeful takes one in the contracts window. Three weeks later
+# (event wm_career.10) it is settled with a skill check: success pays profile, money, campaign funds, standing with
+# the party and a contact; failure costs a little standing and profile.
+# Contracts are created in the taker's scope (create_task_contract), with the employer given.
+#
+#   wm_job_canvassing      knocking on doors for an MP          diplomacy     standing +6
+#   wm_job_fundraising     a fundraising dinner for an MP       stewardship   money
+#   wm_job_speechwriting   writing an MP's speeches             learning      profile
+#   wm_job_research        opposition research for an MP        intrigue      standing, money
+#   wm_selection_contract  the party's candidate assessment     diplomacy     the approved list (var:wm_on_shortlist)
+
+wm_job_canvassing = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 6 PRESTIGE = 30 GOLD = 0 FUNDS = 50 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_fundraising = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 4 PRESTIGE = 10 GOLD = 75 FUNDS = 100 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_speechwriting = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 5 PRESTIGE = 40 GOLD = 25 FUNDS = 25 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_research = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 5 PRESTIGE = 15 GOLD = 40 FUNDS = 25 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+# The party's candidate assessment (spike f's "seek selection"): passing it puts a hopeful on the approved
+# candidates list, so they can apply for selections whatever their standing.
+wm_selection_contract = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { always = yes }
+	valid_to_accept = { NOT = { has_variable = wm_on_shortlist } }	# already on the approved list
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		task_contract_taker = { set_variable = { name = wm_seeking_selection value = yes } }
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				task_contract_taker = {
+					remove_variable = wm_seeking_selection
+					set_variable = { name = wm_on_shortlist value = yes }
+				}
+				wm_career_job_success_effect = { STANDING = 10 PRESTIGE = 50 GOLD = 0 FUNDS = 0 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				task_contract_taker = { remove_variable = wm_seeking_selection }
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt)
+
+# An MP of a hopeful who did a job for them well
+wm_career_good_work_opinion = {
+	opinion = 10
+	years = 5
+	decaying = yes
+	stacking = yes
+}
+# An MP of a hopeful who made a mess of a job for them
+wm_career_poor_work_opinion = {
+	opinion = -10
+	years = 3
+	decaying = yes
+}

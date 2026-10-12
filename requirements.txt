@@ -1,0 +1,13 @@
+# Python 3.9+. Tools for building and testing the mods (python3 -m venv .venv && .venv/bin/pip install -r requirements.txt).
+# Versions are the ones the tools were last run with; newer ones should work.
+fonttools==4.60.2      # Westminster fonts (tools/ui/build_theme.py)
+imagecodecs==2024.12.30  # elevation tiles (tools/map/terrain.py)
+numpy==2.0.2
+pillow==11.3.0         # DDS textures
+pyproj==3.6.1          # map projection (tools/map/)
+pyshp==3.1.6           # Natural Earth shapefiles
+resvg_py==0.3.2        # flag SVGs (tools/ui/build_flags.py)
+scipy==1.13.1
+shapely==2.0.7         # constituency geometry
+tifffile==2024.8.30    # elevation tiles
+pyflakes==3.4.0        # lint (development only)

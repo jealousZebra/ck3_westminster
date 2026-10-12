@@ -1,0 +1,55 @@
+﻿# Riots (events/wm_riot_events.txt)
+wm_riot_county_modifier = {
+	icon = county_modifier_control_negative
+	county_opinion_add = -10
+	tax_mult = -0.25
+}
+wm_riot_demands_met_county_modifier = {
+	icon = county_modifier_opinion_positive
+	county_opinion_add = 10
+}
+wm_riot_compromise_county_modifier = {
+	icon = county_modifier_opinion_positive
+	county_opinion_add = 5
+}
+wm_riot_policed_county_modifier = {
+	icon = county_modifier_opinion_negative
+	county_opinion_add = -15
+}
+wm_riot_crackdown_county_modifier = {
+	icon = county_modifier_opinion_negative
+	county_opinion_add = -30
+}
+wm_mp_backed_protesters_county_modifier = {
+	icon = county_modifier_opinion_positive
+	county_opinion_add = 10
+}
+wm_cost_of_living_package_modifier = {
+	icon = economy_negative
+	monthly_income_mult = -0.1
+}
+wm_u_turn_modifier = {
+	icon = prestige_negative
+	monthly_prestige = -1
+	general_opinion = -5
+}
+wm_heavy_handed_modifier = {
+	icon = diplomacy_negative
+	general_opinion = -10
+}
+wm_crackdown_modifier = {
+	icon = diplomacy_negative
+	general_opinion = -20
+	monthly_prestige = -1
+}
+
+# The Crown (common/character_interactions/wm_monarch_interactions.txt)
+wm_rebuked_by_the_crown_modifier = {
+	icon = prestige_negative
+	general_opinion = -15
+	monthly_prestige = -0.5
+}
+wm_crown_criticism_county_modifier = {
+	icon = county_modifier_opinion_negative
+	county_opinion_add = -15
+}

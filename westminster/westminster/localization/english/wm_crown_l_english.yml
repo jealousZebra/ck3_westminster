@@ -1,0 +1,33 @@
+﻿l_english:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Crown"
+ k_wm_crown_adj: "Royal"
+ wm_dyn_royal_windsor: "Windsor"
+
+ wm_crown_government: "Constitutional Monarchy"
+ wm_crown_government_adjective: "Royal"
+ wm_crown_government_realm: "Royal Household"
+ wm_crown_government_desc: "The monarch reigns but does not rule. They hold no seat, have no vassals and stay out of politics, almost always."
+ king_wm_crown_male: "King"
+ king_wm_crown_female: "Queen"
+ kingdom_wm_crown: "Crown"
+
+ wm_speak_out_against_mp_interaction: "Speak Out Against MP"
+ wm_speak_out_against_mp_interaction_desc: "Break the habit of a reign and criticise [recipient.GetTitledFirstName] in public. The Palace hasn't done this in living memory: it costs an enormous amount of [prestige|E], and Number 10 will be furious."
+ wm_speak_out_against_mp_interaction_toast: "The Palace Speaks Out"
+ wm_crown_speak_out_toast: "The Palace Criticises [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] has spoken out against [recipient.GetTitledFirstName]. The constitution has a headache."
+
+ wm_crown.1.t: "A Rebuke from the Palace"
+ wm_crown.1.desc: "It is on every front page. [actor.GetTitledFirstName], who has spent a lifetime keeping their opinions to themselves, has let it be known exactly what they think of me, and it isn't flattering. My phone is full of messages from colleagues who suddenly can't be seen with me."
+ wm_crown.1.a: "Bite my tongue. You don't pick a fight with the Palace."
+ wm_crown.1.b: "Hit back: the monarch should stay out of politics."
+
+ wm_rebuked_by_the_crown_modifier: "Rebuked by the Crown"
+ wm_rebuked_by_the_crown_modifier_desc: "The monarch spoke out against this MP in public."
+ wm_crown_criticism_county_modifier: "MP Criticised by the Crown"
+ wm_crown_criticism_county_modifier_desc: "The monarch spoke out against this seat's MP."
+ wm_spoken_against_by_crown_opinion: "Spoke out against me"
+ wm_embarrassed_party_opinion: "Embarrassed the party"
+ wm_crown_meddling_opinion: "Meddled in politics"
+ wm_hit_back_at_crown_opinion: "Attacked the Crown"

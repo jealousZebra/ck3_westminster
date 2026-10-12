@@ -1,0 +1,84 @@
+[h1]Westminster : la politique britannique moderne dans Crusader Kings III[/h1]
+IMPORTANT : le mod est pour l'instant en anglais uniquement. Les traductions viendront plus tard.
+
+[b]Une conversion totale qui transforme CK3 en simulation de politique britannique.[/b] La partie commence le 5 juillet 2024, au lendemain des élections générales, avec les 650 vrais députés sur une carte des vraies circonscriptions. Incarnez n'importe quel député, ou débutez comme jeune militant de parti et grimpez du porte-à-porte jusqu'à Downing Street : décrochez l'investiture, menez les élections, tenez vos troupes aux Communes et survivez à un vote de confiance.
+
+[h2]Bêta 0.3[/h2]
+Il s'agit de la première version publique, et c'est une [b]bêta[/b]. La carte, le Parlement de 2024, la Chambre des communes, les élections, les campagnes, les carrières, les partis et la nouvelle interface fonctionnent tous et sont couverts par des tests automatisés en jeu. Encore à peaufiner :
+[list]
+[*]L'équilibrage de l'IA sur les longues parties n'a pas été testé : attendez-vous à des sondages étranges ou à des gouvernements surprenants au bout d'une dizaine d'années.
+[*]Les portraits portent encore les vêtements médiévaux du jeu.
+[*]Certains écrans du jeu de base ont encore un air médiéval.
+[*]Une seule date de départ : 2024. Les Premiers ministres précédents viendront plus tard.
+[*]En anglais uniquement pour l'instant. Les traductions viendront plus tard.
+[/list]
+Les rapports de bugs et les idées sont les bienvenus dans les commentaires.
+
+[h2]Fonctionnalités[/h2]
+[h3]Le Parlement de 2024[/h3]
+[list]
+[*]Les 650 députés élus le 4 juillet 2024, dans leurs vraies circonscriptions, sur une carte des circonscriptions de Westminster de 2024 construite à partir des données officielles de découpage.
+[*]Keir Starmer au 10 Downing Street, les 13 partis ayant remporté des sièges et les gouvernements décentralisés d'Édimbourg, de Cardiff et de Belfast.
+[*]Des portraits reconnaissables pour les principales figures : des visages CK3 avec leur coiffure, leur teint et leur silhouette.
+[/list]
+
+[h3]De militant à Premier ministre[/h3]
+[list]
+[*]Commencez sans siège : faites du porte-à-porte, collectez des fonds et rédigez des discours pour gagner en Party Standing (réputation au sein du parti), réussissez l'évaluation des candidats et remportez une investiture.
+[*]Les partis sont des maisons : changez de camp avec Cross the Floor, ou fondez votre propre parti avec Found a Party.
+[*]Élections à la direction : les députés parrainent les candidats, puis les adhérents départagent les deux premiers. Défiez votre chef si vous l'osez.
+[*]Le Speaker (président de la Chambre) est élu par tous les députés à bulletin secret et quitte son parti.
+[/list]
+
+[h3]Élections[/h3]
+[list]
+[*]Les sondages de chaque parti évoluent mois après mois, tirés par la popularité du Premier ministre, les émeutes et l'usure de mi-mandat.
+[*]Chaque circonscription bascule à partir de son vrai résultat de 2024. La législature expire au bout de cinq ans, à moins que le Premier ministre ne convoque des élections anticipées.
+[*]Élections partielles, résultats en une des journaux (« LABOUR LANDSLIDE », « HUNG PARLIAMENT »), recomptages et tribunaux électoraux pour les sièges contestés.
+[*]Parlements sans majorité : coalitions avec un vice-Premier ministre, ou accords de soutien sans participation (confidence and supply) qui peuvent voler en éclats.
+[/list]
+
+[h3]La Chambre des communes (House of Commons)[/h3]
+[list]
+[*]Projets de loi du gouvernement : finances, services publics, réformes, pouvoirs d'urgence.
+[*]Le Chief Whip prévoit l'issue du vote. Serrez la vis ou lâchez du lest. Au bout de trois rébellions, un député se voit retirer le whip.
+[*]Une majorité effective suivie en direct : les défaites aux partielles et les défections la réduisent, et la perdre entraîne une motion de censure.
+[/list]
+
+[h3]La politique au quotidien[/h3]
+[list]
+[*]Des choix de campagne chaque semaine : meetings, débats télévisés, annonces de programme, porte-à-porte et l'inévitable gaffe.
+[*]Congrès de parti : le discours du chef, les réunions en marge et les complots.
+[*]La confiance du public, que les émeutes, les volte-face et les scandales érodent.
+[*]Dépenses de campagne : campagnes de presse, et campagnes de dénigrement qui peuvent se retourner contre vous.
+[*]Courants des partis : satisfaites la Left, la Soft Left et les Centrists du Labour (ou les One Nation, Free-marketeers et Traditionalists des conservateurs), sous peine de rébellions.
+[*]Dévolution : soutien à l'indépendance, demandes de référendum, compétences transférées ou reprises, effondrement et retour de Stormont.
+[*]L'idéologie à la place de la religion : 15 idéologies réparties en cinq camps (gauche, centre, droite, nationalistes, unionistes).
+[*]Des émeutes qui posent leurs exigences et marchent sur Westminster : cédez, négociez ou envoyez la police.
+[*]La Couronne, figure secondaire et cérémonielle qui ne prend que très rarement la parole.
+[/list]
+
+[h3]Un style moderne[/h3]
+[list]
+[*]Une interface façon journal : papier journal, encre et une seule touche de rouge, en Playfair Display et Source Serif.
+[*]Le panneau State of the Parties : dernier sondage, confiance du public, répartition des sièges aux Communes et suivi des sondages.
+[*]Les vrais drapeaux des nations, ainsi que des comtés et des villes qui en ont un, et des images façon photo de presse au lieu de l'art médiéval.
+[*]Des termes modernes : Charisma, Economy, Security, Spin, Policy et Stamina ; Funds, Profile, Political Capital, Party Brand, Clout, Pressure et Mandate.
+[*]Pas d'événements médiévaux, de guerres saintes, de croisades ni de papes. Les complots de meurtre, d'enlèvement et de séduction sont désactivés.
+[/list]
+
+[h2]Vrais noms, événements fictifs[/h2]
+Les vrais responsables politiques et personnalités publiques apparaissent sous leur vrai nom, mais tous les événements sont génériques et fictifs. Rien dans le mod ne dit ni ne sous-entend quoi que ce soit sur une personne réelle. Les conjoints et les familles des députés sont inventés. Westminster n'est affilié ni au Parlement, ni à aucun parti politique, ni à la Maison royale, et les emblèmes des partis sont des dessins simplifiés, pas leurs logos.
+
+[h2]Compatibilité[/h2]
+[list]
+[*]Crusader Kings III 1.20. Lancez une nouvelle partie depuis la date de départ 2024 : le mod ne peut pas être ajouté à une sauvegarde existante.
+[*]Jouer un personnage sans siège (le départ en militant et l'échelle des carrières) nécessite l'extension [b]Roads to Power[/b], comme dans le jeu de base. Ce n'est pas nécessaire pour jouer un député.
+[*]C'est une conversion totale : ne la combinez pas avec d'autres mods qui modifient la carte, les titres, l'historique ou l'interface.
+[*]Les succès sont désactivés tant que Westminster est actif.
+[/list]
+
+[h2]Crédits[/h2]
+Le fichier CREDITS.txt dans le dossier du mod liste toutes les sources et licences : limites des circonscriptions (ONS, Open Government Licence), résultats électoraux et députés (UK Parliament, Open Parliament Licence), villes (GeoNames), relief (Copernicus), les polices (SIL Open Font License) et chaque drapeau issu de Wikimedia Commons. Les images sont générées par IA (FLUX.1 [dev]) et publiées sous CC0. Ni créé ni approuvé par Paradox Interactive.
+
+[b]Code source :[/b] open source, bientôt sur GitHub.

@@ -1,0 +1,34 @@
+﻿# Election campaigns and party conferences (common/scripted_effects/wm_campaign_effects.txt, wm_conference_effects.txt).
+
+# Character: fights the campaign (a party's MP, or its leader)
+wm_campaign_is_campaigner_trigger = {
+	exists = var:wm_party
+	OR = {
+		wm_is_mp_trigger = yes
+		has_title = var:wm_party
+	}
+}
+
+# Character: gets the automatic (AI) version of campaign and conference moves instead of events. Players too while
+# the in-game tests run (global_var:wm_test_quiet), so no event window stops the clock.
+wm_campaign_auto_trigger = {
+	OR = {
+		is_ai = yes
+		has_global_variable = wm_test_quiet
+	}
+}
+
+# Party conference season. $M$/$D$: the month and day the party's conference opens; it can still be held (late,
+# after an election campaign, say) until the end of October.
+wm_conference_due_trigger = {
+	OR = {
+		AND = {
+			current_month = $M$
+			current_day >= $D$
+		}
+		AND = {
+			current_month > $M$
+			current_month <= 10
+		}
+	}
+}

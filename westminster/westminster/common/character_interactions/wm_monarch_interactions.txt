@@ -1,0 +1,47 @@
+﻿# The monarch speaks out against an MP. Costs the monarch a fortune in prestige, so it is rare.
+# The AI only does it through wm_crown_yearly_pulse (common/on_action/wm_gameplay_on_actions.txt).
+wm_speak_out_against_mp_interaction = {
+	category = interaction_category_hostile
+	common_interaction = no
+	icon = antagonistic
+	interface_priority = 30
+	desc = wm_speak_out_against_mp_interaction_desc
+
+	is_shown = {
+		scope:actor = { has_title = title:k_wm_crown }
+		scope:recipient = {
+			NOT = { this = scope:actor }
+			wm_is_mp_trigger = yes
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { is_alive = yes }
+	}
+
+	cooldown = { years = 10 }
+
+	cost = {
+		prestige = wm_crown_speak_out_prestige_cost
+	}
+
+	auto_accept = yes
+
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_speak_out_against_mp_interaction_toast
+				left_icon = scope:actor
+				right_icon = scope:recipient
+				custom_tooltip = wm_crown_speak_out_toast_desc
+			}
+		}
+		wm_crown_speak_out_effect = yes
+	}
+
+	ai_frequency = 0
+	ai_will_do = {
+		base = 0
+	}
+}

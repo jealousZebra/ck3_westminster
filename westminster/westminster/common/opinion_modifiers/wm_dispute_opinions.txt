@@ -1,0 +1,8 @@
+﻿# Disputed results (common/scripted_effects/wm_dispute_effects.txt).
+
+# The Prime Minister of the party leader who refused to accept the general election result
+wm_dispute_sore_loser_opinion = {
+	opinion = -30
+	years = 5
+	decaying = yes
+}

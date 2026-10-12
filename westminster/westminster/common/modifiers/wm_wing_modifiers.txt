@@ -1,0 +1,19 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt): a badge showing which wing an MP belongs to.
+wm_wing_badge_1 = {
+	icon = council_mixed
+}
+wm_wing_badge_2 = {
+	icon = council_mixed
+}
+wm_wing_badge_3 = {
+	icon = council_mixed
+}
+wm_wing_badge_4 = {
+	icon = council_mixed
+}
+wm_wing_badge_5 = {
+	icon = council_mixed
+}
+wm_wing_badge_6 = {
+	icon = council_mixed
+}

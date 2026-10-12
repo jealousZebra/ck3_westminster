@@ -1,0 +1,39 @@
+﻿# Shortlist ballots for party leaders (common/scripted_effects/wm_election_leadership_effects.txt). Players only:
+# the AI challenges through the quarterly pulse.
+
+# Challenge for the leadership of your party. You need a fifth of the party's MPs to nominate you.
+wm_leadership_challenge_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_conference.dds"
+	}
+	desc = wm_leadership_challenge_decision_desc
+	selection_tooltip = wm_leadership_challenge_decision_tooltip
+	cooldown = { years = 2 }
+
+	is_shown = {
+		wm_election_leadership_can_challenge_trigger = yes
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_leadership_no_contest_tt
+			NOT = { var:wm_party = { has_variable = wm_lead_state } }
+		}
+		custom_tooltip = {
+			text = wm_leadership_parliament_sitting_tt
+			wm_majority_parliament_sitting_trigger = yes
+		}
+		prestige >= medium_prestige_value
+	}
+
+	effect = {
+		custom_tooltip = wm_leadership_challenge_decision_effect_tt
+		add_prestige = medium_prestige_loss
+		hidden_effect = {
+			wm_election_leadership_challenge_effect = yes
+		}
+	}
+
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}

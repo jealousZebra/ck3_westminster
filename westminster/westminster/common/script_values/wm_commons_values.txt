@@ -1,0 +1,191 @@
+﻿# House of Commons: bills, divisions, whips and confidence motions
+# (common/scripted_effects/wm_commons_effects.txt, events/wm_commons_events.txt).
+#
+# The business before the House is in global variables (they survive into later events; saved scopes don't):
+#   wm_commons_bill_type          1 Finance Bill (tax rise), 2 Public Services Bill (spending),
+#                                 3 Public Service Reform Bill (controversial), 4 Emergency Powers Bill,
+#                                 5 a motion of no confidence
+#   wm_commons_bill_lean          -1 pleases the party's left wing, 0 neither, 1 pleases the right wing
+#   wm_commons_bill_controversy   added to every government MP's dissent (negative = loyalty)
+#   wm_commons_opp_whip           how the opposition parties whip: 1 with the government, 2 against
+#   wm_commons_opp_base           base chance (%) that an opposition MP defies their whip
+#   wm_commons_whip_strength      the Prime Minister's authority (wm_commons_whip_strength_value)
+#   wm_commons_whip_bonus         what the whips' operation adds (a three-line whip, deals, concessions)
+#   wm_commons_bill_strength      100, or 50 after concessions (the bill is watered down)
+#   wm_commons_government         the governing party's title
+#   (Coalitions hook: a coalition partner's MPs, global_var:wm_coalition_partner, also take the government whip,
+#   and a confidence-and-supply partner's, wm_coalition_supply_partner, on confidence and the Finance Bill; see
+#   wm_commons_is_government_mp_trigger and wm_commons_whipped_with_government_trigger.)
+#   wm_commons_mover              who moved it (the Prime Minister, or the Leader of the Opposition)
+#   wm_commons_pending            set while business waits for its division (expires after 60 days)
+
+# Costs of the whips' operation (event wm_commons.2)
+wm_commons_three_line_whip_prestige = { value = medium_prestige_value }
+wm_commons_constituency_deals_gold = { value = medium_gold_value }
+
+# What the whips' operation is worth (subtracted from each MP's dissent)
+wm_commons_whip_bonus_three_line = 15
+wm_commons_whip_bonus_deals = 30
+wm_commons_whip_bonus_concessions = 20
+
+# Scope: the Prime Minister. The authority behind the whips: profile (prestige) and mandate (legitimacy).
+wm_commons_whip_strength_value = {
+	value = 0
+	add = {
+		value = prestige_level
+		multiply = 2
+	}
+	if = {
+		limit = { has_legitimacy = yes }
+		add = {
+			value = legitimacy_level
+			multiply = 2
+		}
+	}
+}
+
+# Scope: a government MP. How inclined they are to defy the whip on the business before the House.
+# Calibrated so that most government MPs are loyal: an uncontroversial bill sees a handful of rebels, a
+# controversial one (30) a few dozen, mostly from the wing it offends.
+wm_commons_dissent_value = {
+	value = global_var:wm_commons_bill_controversy
+	add = -15	# the loyalty of a government backbencher
+	# Their wing against the bill: +15 if it offends their wing, -10 if it pleases it
+	if = {
+		limit = { wm_commons_bill_suits_wing_trigger = yes }
+		add = -10
+	}
+	else_if = {
+		limit = { wm_commons_bill_offends_wing_trigger = yes }
+		add = 15
+	}
+	# A bill that clashes with their ideology's policy positions (wm_ideo_values.txt)
+	add = { value = wm_ideo_bill_clash_value }
+	# What they think of their party leader (their liege): -20 opinion adds 4
+	if = {
+		limit = { exists = liege }
+		subtract = {
+			value = "opinion(liege)"
+			divide = 5
+		}
+	}
+	subtract = global_var:wm_commons_whip_strength
+	subtract = global_var:wm_commons_whip_bonus
+	# Serial rebels get into the habit
+	if = {
+		limit = { has_variable = wm_commons_rebellions }
+		add = {
+			value = var:wm_commons_rebellions
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { has_trait = stubborn }
+		add = 10
+	}
+	if = {
+		limit = { has_trait = arrogant }
+		add = 5
+	}
+	if = {
+		limit = { has_trait = content }
+		add = -10
+	}
+	if = {
+		limit = { has_trait = humble }
+		add = -5
+	}
+}
+
+# Scope: a government MP. Chance (%) that they rebel.
+wm_commons_rebel_chance_value = {
+	value = wm_commons_dissent_value
+	min = 0
+	max = 90
+}
+
+# Scope: an opposition MP. Chance (%) that they defy their own whip.
+wm_commons_opposition_rebel_chance_value = {
+	value = global_var:wm_commons_opp_base
+	if = {
+		# Whipped against: a bill their wing likes tempts them. Whipped for: one it dislikes does.
+		limit = {
+			OR = {
+				AND = {
+					global_var:wm_commons_opp_whip = 2
+					wm_commons_bill_suits_wing_trigger = yes
+				}
+				AND = {
+					global_var:wm_commons_opp_whip = 1
+					wm_commons_bill_offends_wing_trigger = yes
+				}
+			}
+		}
+		add = 5
+	}
+	if = {
+		limit = { exists = liege }
+		subtract = {
+			value = "opinion(liege)"
+			divide = 10
+		}
+	}
+	min = 0
+	max = 30
+}
+
+# Scope: an MP with no party whip. Above 10 they back the government, below -10 they vote against it.
+wm_commons_independent_lean_value = {
+	value = 0
+	if = {
+		limit = { has_variable = wm_commons_wing }
+		add = {
+			value = var:wm_commons_wing
+			multiply = global_var:wm_commons_bill_lean
+			multiply = 20
+		}
+	}
+	if = {
+		limit = { exists = liege }	# independents serve the Prime Minister directly
+		add = {
+			value = "opinion(liege)"
+			divide = 2
+		}
+	}
+}
+
+# Scope: a party leader. Their party's MPs: the leader (if an MP) and the MPs who serve them.
+wm_commons_party_seats_value = {
+	value = 0
+	if = {
+		limit = { wm_is_mp_trigger = yes }
+		add = 1
+	}
+	if = {
+		limit = { exists = var:wm_party }
+		every_vassal = {
+			limit = {
+				wm_is_mp_trigger = yes
+				exists = var:wm_party
+				var:wm_party = liege.var:wm_party
+			}
+			add = 1
+		}
+	}
+}
+
+# The division's numbers, for localization ([EmptyScope.ScriptValue('wm_commons_ayes_value')|0])
+wm_commons_ayes_value = { value = global_var:wm_commons_ayes }
+wm_commons_noes_value = { value = global_var:wm_commons_noes }
+wm_commons_abstentions_value = { value = global_var:wm_commons_abstentions }
+wm_commons_gov_rebels_value = { value = global_var:wm_commons_gov_rebels }
+wm_commons_majority_value = {
+	value = global_var:wm_commons_margin
+	if = {
+		limit = { global_var:wm_commons_margin < 0 }
+		multiply = -1
+	}
+}
+wm_commons_forecast_rebels_value = { value = global_var:wm_commons_forecast_rebels }
+wm_commons_gov_mps_value = { value = global_var:wm_commons_gov_mps }
+wm_commons_opp_mps_value = { value = global_var:wm_commons_opp_mps }

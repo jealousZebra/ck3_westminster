@@ -1,0 +1,83 @@
+﻿# Disputed results (common/scripted_effects/wm_dispute_effects.txt).
+#   wm_dispute.1   a player decides whether to accept a result, demand a recount or petition the election court
+#   wm_dispute.10  hidden: settles recounts and petitions whose time is up
+namespace = wm_dispute
+
+wm_dispute.1 = {
+	type = character_event
+	title = wm_dispute.1.t
+	desc = {
+		desc = wm_dispute.1.desc
+		first_valid = {
+			triggered_desc = {
+				trigger = { global_var:wm_dispute_show_margin < wm_dispute_close_margin }
+				desc = wm_dispute.1.close
+			}
+			triggered_desc = {
+				trigger = { global_var:wm_dispute_show_margin >= wm_dispute_bad_margin }
+				desc = wm_dispute.1.bad
+			}
+			desc = wm_dispute.1.clear
+		}
+	}
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = thinking
+	}
+	right_portrait = {
+		character = scope:wm_dispute_mp
+		animation = happiness
+	}
+	trigger = {
+		exists = var:wm_dispute_offer
+		var:wm_dispute_offer = {
+			exists = holder
+			NOT = { has_variable = wm_dispute_state }
+			NOT = { has_variable = wm_dispute_done }
+			NOT = { has_variable = wm_byelection_due }
+		}
+	}
+	immediate = {
+		var:wm_dispute_offer = {
+			save_scope_as = wm_dispute_seat
+			holder = { save_scope_as = wm_dispute_mp }
+		}
+		set_global_variable = { name = wm_dispute_show_margin value = scope:wm_dispute_seat.wm_dispute_margin_value }
+		set_global_variable = { name = wm_dispute_show_recount value = scope:wm_dispute_seat.wm_dispute_recount_chance_value }
+		set_global_variable = { name = wm_dispute_show_court value = scope:wm_dispute_seat.wm_dispute_court_chance_value }
+	}
+
+	# Accept the result
+	option = {
+		name = wm_dispute.1.a
+		remove_variable = wm_dispute_offer
+		add_prestige = minor_prestige_gain
+	}
+	# Demand a recount
+	option = {
+		name = wm_dispute.1.b
+		trigger = { gold >= wm_dispute_recount_cost }
+		custom_tooltip = wm_dispute.1.b.tt
+		remove_variable = wm_dispute_offer
+		save_scope_as = wm_dispute_by
+		scope:wm_dispute_seat = { wm_dispute_start_effect = { KIND = 1 } }
+	}
+	# Petition the election court
+	option = {
+		name = wm_dispute.1.c
+		trigger = { gold >= wm_dispute_court_cost }
+		custom_tooltip = wm_dispute.1.c.tt
+		remove_variable = wm_dispute_offer
+		save_scope_as = wm_dispute_by
+		scope:wm_dispute_seat = { wm_dispute_start_effect = { KIND = 2 } }
+	}
+}
+
+# Recounts and petitions whose time is up (the weekly watcher also does this)
+wm_dispute.10 = {
+	hidden = yes
+	immediate = {
+		wm_dispute_process_due_effect = yes
+	}
+}

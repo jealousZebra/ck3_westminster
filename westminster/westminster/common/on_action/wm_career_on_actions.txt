@@ -1,0 +1,50 @@
+﻿# Unlanded careers (common/scripted_effects/wm_career_effects.txt), appended to vanilla's on_actions.
+
+on_game_start_after_lobby = {
+	on_actions = { wm_career_on_game_start }
+}
+
+# The bookmark's activists and any player starting as a party's campaign team join the ladder.
+wm_career_on_game_start = {
+	effect = {
+		wm_career_game_start_effect = yes
+	}
+}
+
+quarterly_playable_pulse = {
+	on_actions = { wm_career_quarterly_pulse }
+}
+
+# Root: the Prime Minister. Three monthly career ticks a quarter (event wm_career.1).
+wm_career_quarterly_pulse = {
+	trigger = {
+		has_title = title:e_united_kingdom
+	}
+	effect = {
+		trigger_event = { id = wm_career.1 days = 2 }
+		trigger_event = { id = wm_career.1 days = 32 }
+		trigger_event = { id = wm_career.1 days = 63 }
+	}
+}
+
+on_death = {
+	on_actions = { wm_career_on_death }
+}
+
+# Root: a character about to die. If they are an MP, the parties with a chance in their seat select candidates for
+# the by-election (a fortnight's selection, before the four-week campaign is over).
+wm_career_on_death = {
+	trigger = {
+		wm_is_mp_trigger = yes
+	}
+	effect = {
+		every_held_title = {
+			limit = {
+				tier = tier_county
+				is_landless_type_title = no
+			}
+			set_variable = { name = wm_sel_fast value = yes days = 1 }
+			wm_career_open_byelection_selections_effect = yes
+		}
+	}
+}

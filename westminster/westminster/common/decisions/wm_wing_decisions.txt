@@ -1,0 +1,71 @@
+﻿# Party wings (common/scripted_effects/wm_wing_effects.txt).
+
+# A Labour or Conservative leader courts one of the party's wings: a policy nod, a speech, a promise of
+# promotion. The description shows how each wing feels.
+wm_wing_court_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_conference.dds"
+	}
+	sort_order = 70
+	ai_check_interval = 6
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { var:wm_party ?= title:k_party_labour }
+				desc = wm_wing_court_decision_desc_labour
+			}
+			desc = wm_wing_court_decision_desc_conservative
+		}
+	}
+	selection_tooltip = wm_wing_court_decision_tooltip
+
+	is_shown = {
+		exists = var:wm_party
+		has_title = var:wm_party
+		OR = {
+			var:wm_party = title:k_party_labour
+			var:wm_party = title:k_party_conservative
+		}
+	}
+
+	cooldown = { years = 1 }
+
+	cost = {
+		prestige = wm_wing_court_cost
+	}
+
+	effect = {
+		custom_tooltip = wm_wing_court_decision_effect_tt
+		hidden_effect = {
+			trigger_event = wm_wing.1
+		}
+	}
+
+	ai_potential = {
+		prestige >= 500
+	}
+
+	# Court a wing that is turning against you
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 60
+			var:wm_party = title:k_party_labour
+			OR = {
+				wm_ui_wing_approval_1 < 30
+				wm_ui_wing_approval_2 < 30
+				wm_ui_wing_approval_3 < 30
+			}
+		}
+		modifier = {
+			add = 60
+			var:wm_party = title:k_party_conservative
+			OR = {
+				wm_ui_wing_approval_4 < 30
+				wm_ui_wing_approval_5 < 30
+				wm_ui_wing_approval_6 < 30
+			}
+		}
+	}
+}

@@ -1,0 +1,229 @@
+﻿# By-elections that can bring a government down. The government's working majority is tracked live (state in
+# common/script_values/wm_majority_values.txt): by-election losses, MPs losing the whip and defections shrink it,
+# and when it has gone the Leader of the Opposition tables a motion of no confidence (the Commons' own machinery,
+# wm_commons_table_confidence_motion_effect). A run of by-election defeats hurts the Prime Minister's standing.
+#
+# Updated: after every by-election (wm_byelection_hold_effect), whenever the whip is withdrawn
+# (wm_commons_withdraw_whip_effect), after a disputed result is overturned or a new Speaker is chosen, and every week
+# by the watcher (event wm_majority.100), which also catches Cross the Floor. After a general election it is reset
+# without a confidence motion (wm_majority_reset_effect).
+#
+# The weekly watcher also takes the seat chart's snapshots (wm_seatchart_weekly_effect) and holds anything overdue:
+# recounts and election courts, leadership contests and the Speaker's election.
+
+# Any scope. A hidden event for a national process, on the monarch (or the Prime Minister if there is none).
+# $ID$: the event; $DAYS$: when (at least 1).
+wm_majority_host_event_effect = {
+	if = {
+		limit = { exists = title:k_wm_crown.holder }
+		title:k_wm_crown.holder = { trigger_event = { id = $ID$ days = $DAYS$ } }
+	}
+	else = {
+		title:e_united_kingdom.holder ?= { trigger_event = { id = $ID$ days = $DAYS$ } }
+	}
+}
+
+# Any scope. Counts the seats and the working majority.
+wm_majority_count_effect = {
+	wm_election_count_seats_effect = yes
+	set_global_variable = { name = wm_majority_gov_seats value = wm_majority_gov_seats_value }
+	set_global_variable = { name = wm_majority_voting value = wm_majority_voting_value }
+	set_global_variable = {
+		name = wm_majority
+		value = {
+			value = global_var:wm_majority_gov_seats
+			multiply = 2
+			subtract = global_var:wm_majority_voting
+		}
+	}
+}
+
+# Any scope. A fresh count with no consequences: after a general election, or the first time.
+wm_majority_reset_effect = {
+	wm_majority_count_effect = yes
+	remove_global_variable = wm_majority_motion_due
+	if = {
+		limit = { global_var:wm_majority > 0 }
+		set_global_variable = { name = wm_majority_held value = yes }
+	}
+	else = {
+		remove_global_variable = wm_majority_held
+	}
+	set_global_variable = { name = wm_majority_loss_run value = 0 }
+	remove_global_variable = wm_majority_loss_recent
+}
+
+# Any scope. A fresh count: if the government has just lost its majority while Parliament sits, the Opposition
+# moves against it.
+wm_majority_update_effect = {
+	wm_majority_count_effect = yes
+	if = {
+		limit = { global_var:wm_majority > 0 }
+		set_global_variable = { name = wm_majority_held value = yes }
+		remove_global_variable = wm_majority_motion_due
+	}
+	else_if = {
+		limit = { has_global_variable = wm_majority_held }
+		remove_global_variable = wm_majority_held
+		if = {
+			limit = {
+				wm_majority_parliament_sitting_trigger = yes
+				NOT = { global_var:wm_coalition_outcome ?= 5 }	# coalition talks under way
+			}
+			wm_majority_lost_effect = yes
+		}
+	}
+}
+
+# Any scope. The government has lost its majority: the front page, and a confidence motion as soon as the House
+# is free.
+wm_majority_lost_effect = {
+	set_global_variable = { name = wm_majority_motion_due value = yes }
+	title:e_united_kingdom.holder ?= {
+		add_prestige = minor_prestige_loss
+	}
+	if = {
+		limit = { NOT = { wm_majority_quiet_trigger = yes } }
+		every_player = { trigger_event = wm_majority.1 }
+	}
+	wm_majority_try_motion_effect = yes
+}
+
+# Any scope. If a confidence motion is due and the House is free, the Leader of the Opposition tables it (a player
+# is asked first, event wm_majority.2).
+wm_majority_try_motion_effect = {
+	if = {
+		limit = {
+			has_global_variable = wm_majority_motion_due
+			wm_commons_house_free_trigger = yes
+			wm_majority_parliament_sitting_trigger = yes
+			has_global_variable = wm_majority
+			global_var:wm_majority <= 0
+		}
+		clear_saved_scope = wm_majority_loto
+		title:e_united_kingdom.holder ?= {
+			ordered_vassal = {
+				limit = { wm_commons_is_opposition_party_leader_trigger = yes }
+				order_by = wm_commons_party_seats_value
+				save_scope_as = wm_majority_loto
+			}
+		}
+		if = {
+			limit = { exists = scope:wm_majority_loto }
+			remove_global_variable = wm_majority_motion_due
+			scope:wm_majority_loto = {
+				if = {
+					limit = { wm_majority_ask_player_trigger = yes }
+					trigger_event = wm_majority.2
+				}
+				else = {
+					wm_commons_table_confidence_motion_effect = yes
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_global_variable = wm_majority
+			global_var:wm_majority > 0
+		}
+		remove_global_variable = wm_majority_motion_due
+	}
+}
+
+# Scope: a seat, just decided in a by-election (its old party in var:wm_byelection_party, its new MP holding it).
+# A loss for the government shrinks the majority and hurts the Prime Minister; a hold or a gain breaks the run.
+wm_majority_byelection_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_majority_loss_run } }
+		set_global_variable = { name = wm_majority_loss_run value = 0 }
+	}
+	if = {
+		limit = {
+			exists = var:wm_byelection_party
+			var:wm_byelection_party = { wm_majority_is_government_party_trigger = yes }
+			NOT = { holder.var:wm_party ?= var:wm_byelection_party }
+		}
+		wm_majority_byelection_loss_effect = yes
+	}
+	else_if = {
+		limit = {
+			exists = holder.var:wm_party
+			holder.var:wm_party = { wm_majority_is_government_party_trigger = yes }
+		}
+		set_global_variable = { name = wm_majority_loss_run value = 0 }
+	}
+	wm_majority_update_effect = yes
+}
+
+# Scope: a seat the government has just lost in a by-election.
+wm_majority_byelection_loss_effect = {
+	save_scope_as = wm_majority_lost_seat
+	change_global_variable = { name = wm_majority_loss_run add = 1 }
+	set_global_variable = { name = wm_majority_loss_recent value = yes days = 730 }
+	wm_commons_government_poll_effect = { AMOUNT = -1 }
+	title:e_united_kingdom.holder ?= {
+		save_scope_as = wm_majority_pm
+		add_prestige = minor_prestige_loss
+		if = {
+			limit = { global_var:wm_majority_loss_run >= wm_majority_streak_run }
+			remove_character_modifier = wm_majority_byelection_blues_modifier
+			remove_character_modifier = wm_majority_losing_streak_modifier
+			add_character_modifier = { modifier = wm_majority_losing_streak_modifier years = 2 }
+			add_prestige = medium_prestige_loss
+			if = {
+				limit = { has_legitimacy = yes }
+				add_legitimacy = minor_legitimacy_loss
+			}
+		}
+		else_if = {
+			limit = { global_var:wm_majority_loss_run >= wm_majority_blues_run }
+			remove_character_modifier = wm_majority_byelection_blues_modifier
+			add_character_modifier = { modifier = wm_majority_byelection_blues_modifier years = 1 }
+		}
+	}
+	wm_trust_byelection_lost_effect = yes		# public trust (wm_trust_effects.txt)
+	if = {
+		limit = {
+			global_var:wm_majority_loss_run >= wm_majority_blues_run
+			NOT = { wm_majority_quiet_trigger = yes }
+		}
+		every_player = {
+			send_interface_toast = {
+				type = event_toast_effect_bad
+				title = wm_majority_losing_run_toast
+				left_icon = scope:wm_majority_pm
+				custom_tooltip = wm_majority_losing_run_toast_desc
+			}
+		}
+	}
+}
+
+# Any scope. Each week (event wm_majority.100).
+wm_majority_weekly_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_majority } }
+		wm_majority_reset_effect = yes
+	}
+	else = {
+		wm_majority_update_effect = yes		# catches defections that don't call it themselves (Cross the Floor)
+	}
+	wm_majority_try_motion_effect = yes
+	if = {
+		limit = { NOT = { has_global_variable = wm_majority_loss_recent } }
+		set_global_variable = { name = wm_majority_loss_run value = 0 }
+	}
+	wm_seatchart_weekly_effect = yes
+	wm_dispute_process_due_effect = yes
+	wm_election_leadership_process_due_effect = yes
+	wm_speaker_process_due_effect = yes
+}
+
+# Any scope. Starts the weekly watcher if it isn't running.
+wm_majority_start_watch_effect = {
+	if = {
+		limit = { NOT = { has_global_variable = wm_majority_watch } }
+		set_global_variable = { name = wm_majority_watch value = yes days = 10 }
+		wm_majority_host_event_effect = { ID = wm_majority.100 DAYS = 1 }
+	}
+}

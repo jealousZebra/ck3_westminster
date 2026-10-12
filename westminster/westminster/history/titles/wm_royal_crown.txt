@@ -1,0 +1,19 @@
+﻿# The Crown (common/landed_titles/40_wm_crown.txt): held by the monarch, never by the Prime Minister.
+k_wm_crown = {
+	2024.7.5 = {
+		holder = wm_royal_charles
+		government = wm_crown_government
+		effect = {
+			holder = {
+				if = {
+					limit = { NOT = { has_realm_law = single_heir_succession_law } }
+					add_realm_law_skip_effects = single_heir_succession_law
+				}
+				if = {
+					limit = { NOT = { has_realm_law = equal_law } }
+					add_realm_law_skip_effects = equal_law	# absolute primogeniture since 2013
+				}
+			}
+		}
+	}
+}

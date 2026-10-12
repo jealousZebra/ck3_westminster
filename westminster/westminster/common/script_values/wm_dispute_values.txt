@@ -1,0 +1,116 @@
+﻿# Disputed results (common/scripted_effects/wm_dispute_effects.txt). Margins are in tenths of a percentage point,
+# like var:wm_seat_majority.
+#
+# State on a seat:
+#   wm_dispute_runner    the runner-up's party (recorded for a close result)
+#   wm_dispute_loser     the defeated MP, if they were the runner-up (a recount can give them the seat back)
+#   wm_dispute_margin    the winning margin being disputed
+#   wm_dispute_window    set for 60 days after a close result (it can be challenged)
+#   wm_dispute_state     1 a recount, 2 an election petition before the election court
+#   wm_dispute_timer     set while the recount (7 days) or the court (120 days) is under way
+#   wm_dispute_by        who disputed it (pays and takes the blame)
+#   wm_dispute_done      set for a year once a dispute has been settled (no second go)
+# Global lists: wm_dispute_open (close seats from the last election), wm_dispute_pending (recounts and petitions).
+# On a player: var:wm_dispute_offer, the seat they are deciding about (event wm_dispute.1).
+# Tests: global_var:wm_test_dispute_force (1: overturn / void, 2: upheld) fixes the outcome.
+
+# A margin under this is close enough to challenge (one point)
+wm_dispute_close_margin = 10
+# A margin of this or more is losing badly (ten points): contesting it costs standing and can start riots
+wm_dispute_bad_margin = 100
+
+# What it costs
+wm_dispute_recount_cost = { value = minor_gold_value }
+wm_dispute_court_cost = { value = medium_gold_value }
+wm_dispute_costs_awarded = { value = minor_gold_value }
+
+# Scope: a seat. Its disputed margin (var:wm_dispute_margin, else the result's).
+wm_dispute_margin_value = {
+	value = 0
+	if = {
+		limit = { has_variable = wm_dispute_margin }
+		value = var:wm_dispute_margin
+	}
+	else_if = {
+		limit = { has_variable = wm_seat_majority }
+		value = var:wm_seat_majority
+	}
+}
+
+# Scope: a seat. Chance (%) that a recount overturns the result.
+wm_dispute_recount_chance_value = {
+	value = 3
+	if = {
+		limit = { wm_dispute_margin_value <= 2 }
+		value = 45
+	}
+	else_if = {
+		limit = { wm_dispute_margin_value <= 5 }
+		value = 25
+	}
+	else_if = {
+		limit = { wm_dispute_margin_value < wm_dispute_close_margin }
+		value = 12
+	}
+}
+
+# Scope: a seat. Chance (%) that the election court declares the election void and orders a re-run.
+wm_dispute_court_chance_value = {
+	value = 5
+	if = {
+		limit = { wm_dispute_margin_value <= 5 }
+		value = 40
+	}
+	else_if = {
+		limit = { wm_dispute_margin_value < wm_dispute_close_margin }
+		value = 25
+	}
+}
+
+# Scope: a seat. How likely an AI runner-up is to ask for a recount, or petition the court (weights out of 100).
+wm_dispute_ai_recount_weight = {
+	value = 0
+	if = {
+		limit = { wm_dispute_margin_value <= 3 }
+		value = 50
+	}
+	else_if = {
+		limit = { wm_dispute_margin_value <= 6 }
+		value = 30
+	}
+	else_if = {
+		limit = { wm_dispute_margin_value < wm_dispute_close_margin }
+		value = 15
+	}
+}
+wm_dispute_ai_court_weight = {
+	value = 0
+	if = {
+		limit = { wm_dispute_margin_value <= 5 }
+		value = 6
+	}
+}
+
+# For the event text (wm_dispute.1): the seat being decided, read from global variables set in its immediate
+wm_dispute_show_margin_points = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_dispute_show_margin }
+		value = global_var:wm_dispute_show_margin
+		divide = 10
+	}
+}
+wm_dispute_show_recount_chance = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_dispute_show_recount }
+		value = global_var:wm_dispute_show_recount
+	}
+}
+wm_dispute_show_court_chance = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_dispute_show_court }
+		value = global_var:wm_dispute_show_court
+	}
+}

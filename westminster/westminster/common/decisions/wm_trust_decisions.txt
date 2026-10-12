@@ -1,0 +1,55 @@
+﻿# Public trust (common/scripted_effects/wm_trust_effects.txt).
+
+# The Prime Minister pledges to clean up politics: trust rises, but a scandal in the next three years breaks the
+# pledge. The description shows the current score and what it does.
+wm_trust_clean_up_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/loading_screens/wm_downing.dds"
+	}
+	decision_group_type = major
+	sort_order = 80
+	ai_check_interval = 12
+
+	desc = wm_trust_clean_up_decision_desc
+	selection_tooltip = wm_trust_clean_up_decision_tooltip
+
+	is_shown = {
+		has_title = title:e_united_kingdom
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = wm_trust_clean_up_decision_not_pledged_tt
+			NOT = { has_character_flag = wm_trust_clean_pledge }
+		}
+	}
+
+	cooldown = { years = 5 }
+
+	cost = {
+		prestige = wm_trust_clean_up_pledge_cost
+	}
+
+	effect = {
+		custom_tooltip = wm_trust_clean_up_decision_effect_tt
+		hidden_effect = {
+			wm_trust_clean_up_pledge_effect = yes
+		}
+	}
+
+	ai_potential = {
+		has_global_variable = wm_public_trust
+	}
+
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 25
+			wm_ui_public_trust < 30
+		}
+		modifier = {
+			add = 25
+			wm_ui_public_trust < 20
+		}
+	}
+}
