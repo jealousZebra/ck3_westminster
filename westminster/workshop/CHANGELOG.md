@@ -1,5 +1,13 @@
 # Westminster changelog
 
+## 0.4 (beta)
+- Added French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish localization.
+- Added playable campaigners from Just Stop Oil, Extinction Rebellion and Amnesty International, with paths to
+  form a party, stand for election and enter Parliament.
+- Redesigned the dark interface with clearer alerts and new modern political artwork for the HUD, lifestyles,
+  perks and personality traits.
+- Improved landless campaign contracts and corrected titles for the spouses of party leaders and the Prime Minister.
+
 ## 0.3.1 (beta)
 - Achievements are switched off while Westminster is active (every vanilla achievement is made impossible;
   tools/data/build_safeguards.py).

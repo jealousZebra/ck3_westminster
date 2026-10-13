@@ -1,0 +1,2 @@
+[b]0.4 (beta)[/b]
+Added French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish localization; playable Just Stop Oil, Extinction Rebellion and Amnesty International campaigners who can form parties and seek election; a redesigned dark interface with clearer alerts and new modern political artwork; improved landless campaign contracts; and corrected spouse titles.
