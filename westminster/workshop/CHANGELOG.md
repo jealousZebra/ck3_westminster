@@ -1,5 +1,11 @@
 # Westminster changelog
 
+## 0.5.1 — Polish & Improvements
+
+- Refined presentation throughout Westminster.
+- Added quality-of-life and usability improvements.
+- Made small fixes and adjustments across the mod.
+
 ## 0.5 — Thatcher, 1979
 
 - Added a new 4 May 1979 start, the 1979 Commons, Thatcher's first Cabinet and key political figures.

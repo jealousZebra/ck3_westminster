@@ -1,5 +1,8 @@
-[h1]Beta 0.5.1 — Improvements[/h1]
+[h1]Beta 0.5.1 — Polish & Improvements[/h1]
 [list]
-[*]General polish and quality-of-life improvements.
-[*]Small presentation and usability refinements.
+[*][b]Sharper presentation[/b] — Refined visual details across Westminster.
+[*][b]Smoother play[/b] — Quality-of-life and usability improvements make the political experience clearer.
+[*][b]Ongoing refinement[/b] — Small fixes and adjustments throughout the mod.
 [/list]
+
+Thank you for playing, rating and sharing your feedback as Westminster continues to grow.
