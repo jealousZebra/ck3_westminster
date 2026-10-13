@@ -1,0 +1,20 @@
+# The first Thatcher ministry and its opening political choice.
+on_game_start_after_lobby = {
+	on_actions = { wm_1979_bookmark_start }
+}
+
+wm_1979_bookmark_start = {
+	trigger = {
+		date >= 1979.5.4
+		date < 1980.1.1
+		has_title = title:e_united_kingdom
+	}
+	effect = {
+		assign_councillor_type = { type = councillor_steward target = character:wm_1979_geoffrey_howe }
+		assign_councillor_type = { type = councillor_spymaster target = character:wm_1979_william_whitelaw }
+		assign_councillor_type = { type = councillor_marshal target = character:wm_1979_john_nott }
+		assign_councillor_type = { type = councillor_chancellor target = character:wm_1979_ian_gilmour }
+		assign_councillor_type = { type = councillor_court_chaplain target = character:wm_1979_keith_joseph }
+		trigger_event = wm_1979.1
+	}
+}

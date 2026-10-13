@@ -285,7 +285,24 @@ PEOPLE = {
         hair="light_blonde", style="tousled", build="stocky", height="average", face=["round_face", "full_cheeks"]),
     "wm_char_liz_truss": dict(who="Liz Truss", heritage="white", skin="fair", eyes="blue", hair="dark_blonde",
         style="bob", build="slim", height="average", face=["wide_smile", "large_eyes"]),
+    # ---- The 1979 Parliament (history/characters/wm_1979_mps.txt)
+    "wm_1979_margaret_thatcher": dict(who="Margaret Thatcher, Prime Minister", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="light_brown", style="tied_back", build="slim", height="average", face=["long_face", "high_cheekbones", "thin_lips", "strong_brow"]),
+    "wm_1979_james_callaghan": dict(who="James Callaghan, Labour leader", portrait_year=1979.34, heritage="white", skin="fair_ruddy", eyes="blue", hair="white", style="short_combed", bald="receding", build="stocky", height="average", face=["round_face", "lined", "strong_chin"]),
+    "wm_1979_david_steel": dict(who="David Steel, Liberal leader", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_brown", style="tidy_side_parting", build="slim", height="average", face=["narrow_face", "long_nose"]),
+    "wm_1979_michael_foot": dict(who="Michael Foot", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="white", style="short_swept_back", build="slim", height="tall", face=["long_face", "big_nose", "lined"]),
+    "wm_1979_geoffrey_howe": dict(who="Geoffrey Howe, Chancellor", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_grey", style="short_side_parting", bald="receding", glasses=True, build="average", height="average", face=["round_face", "heavy_eyebrows"]),
+    "wm_1979_william_whitelaw": dict(who="William Whitelaw, Home Secretary", portrait_year=1979.34, heritage="white", skin="fair_ruddy", eyes="blue", hair="grey", style="short_crop", bald="receding", build="stocky", height="tall", face=["wide_face", "lined"]),
+    "wm_1979_michael_heseltine": dict(who="Michael Heseltine", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="light_brown", style="tousled", build="slim", height="tall", face=["long_face", "strong_chin"]),
+    "wm_1979_keith_joseph": dict(who="Keith Joseph", portrait_year=1979.34, heritage="white", skin="fair", eyes="brown", hair="dark_grey", style="short_side_parting", bald="receding", glasses=True, build="slim", height="average", face=["narrow_face", "long_nose"]),
+    "wm_1979_nigel_lawson": dict(who="Nigel Lawson", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_brown", style="short_side_parting", build="stocky", height="average", face=["round_face", "heavy_eyebrows"]),
+    "wm_1979_norman_tebbit": dict(who="Norman Tebbit", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_brown", style="short_crop", build="slim", height="average", face=["square_jaw", "thin_lips"]),
+    "wm_1979_ian_gilmour": dict(who="Ian Gilmour", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="grey", style="tidy_side_parting", build="slim", height="tall", face=["long_face", "aquiline_nose"]),
+    "wm_1979_john_nott": dict(who="John Nott", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="light_brown", style="short_side_parting", build="slim", height="tall", face=["narrow_face", "strong_chin"]),
+    "wm_1979_peter_walker": dict(who="Peter Walker", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_brown", style="short_crop", build="average", height="average", face=["round_face", "wide_smile"]),
+    "wm_1979_denis_healey": dict(who="Denis Healey", portrait_year=1979.34, heritage="white", skin="fair_ruddy", eyes="brown", hair="dark_grey", style="short_crop", bald="receding", build="stocky", height="average", face=["heavy_eyebrows", "wide_face", "lined"]),
+    "wm_1979_tony_benn": dict(who="Tony Benn", portrait_year=1979.34, heritage="white", skin="fair", eyes="brown", hair="dark_brown", style="short_side_parting", build="slim", height="tall", face=["long_face", "prominent_ears"]),
     # ---- The royal family (history/characters/wm_royal_family.txt)
+    "wm_royal_elizabeth_ii": dict(who="Queen Elizabeth II", portrait_year=1979.34, heritage="white", skin="fair", eyes="blue", hair="dark_brown", style="short_curly", build="average", height="short", face=["round_face", "wide_smile"]),
     "wm_royal_charles": dict(who="King Charles III", heritage="white", skin="fair_ruddy", eyes="blue", hair="white",
         style="short_combed", bald="thinning", build="slim", height="average",
         face=["long_nose", "prominent_ears", "lined", "long_face"]),
@@ -312,7 +329,7 @@ PEOPLE = {
 }
 
 # Birth dates and sex of people not in wm_2024_mps.txt (the royal family file is read for the rest)
-DNA_KEYS = {cid: "wm_dna_" + re.sub(r"^wm_(mp_|char_|royal_)", lambda m: "royal_" if m.group(1) == "royal_" else "", cid)
+DNA_KEYS = {cid: "wm_dna_" + re.sub(r"^wm_(mp_|char_|royal_|)", lambda m: "royal_" if m.group(1) == "royal_" else "", cid)
             for cid in PEOPLE}
 
 
@@ -426,7 +443,7 @@ def set_morph(dna, genes, gene, offset):
 
 
 def build_dna(cid, p, genes, eth, birth, female):
-    age = START_YEAR - birth
+    age = p.get("portrait_year", START_YEAR) - birth
     rnd = random.Random("wm_likeness_" + cid)
     dna = sample(resolve(eth, ETHNICITY[p["heritage"]]), rnd)
     # Colours
@@ -520,7 +537,7 @@ def portrait_modifiers(people, genes, hist, override=None):
            "wm_likeness_hair = {\n\tusage = game\n\tselection_behavior = max\n\tpriority = 4\n"]
     for cid, p in people.items():
         birth, female = hist[cid]
-        age = START_YEAR - birth
+        age = p.get("portrait_year", START_YEAR) - birth
         if override and cid in override:
             hair, beard = override[cid]
         else:

@@ -1,0 +1,25 @@
+namespace = wm_1979
+
+wm_1979.1 = {
+	type = character_event
+	title = wm_1979.1.t
+	desc = wm_1979.1.desc
+	theme = realm
+	left_portrait = root
+
+	option = {
+		name = wm_1979.1.a
+		add_prestige = 150
+		set_global_variable = { name = wm_1979_direction value = 1 }
+	}
+	option = {
+		name = wm_1979.1.b
+		add_diplomacy_lifestyle_xp = 250
+		set_global_variable = { name = wm_1979_direction value = 2 }
+	}
+	option = {
+		name = wm_1979.1.c
+		add_stewardship_lifestyle_xp = 250
+		set_global_variable = { name = wm_1979_direction value = 3 }
+	}
+}

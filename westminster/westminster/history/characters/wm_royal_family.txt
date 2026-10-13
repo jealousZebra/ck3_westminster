@@ -4,6 +4,17 @@
 # Like everyone else, they are never the subject of scripted events: anything that happens to them
 # comes from the game's own randomness (see PLAN.md).
 
+wm_royal_elizabeth_ii = {	# Queen Elizabeth II in the 1979 bookmark
+	name = "Elizabeth"
+	dna = wm_dna_royal_elizabeth_ii
+	female = yes
+	dynasty = wm_dyn_royal_windsor
+	culture = english
+	religion = wm_faith_not_stated
+	1926.4.21 = { birth = yes }
+	2022.9.8 = { death = yes }
+}
+
 wm_royal_charles = {	# King Charles III
 	name = "Charles"
 	dna = wm_dna_royal_charles	# likeness: tools/data/build_likenesses.py

@@ -1900,6 +1900,492 @@ wm_likeness_hair = {
 			}
 		}
 	}
+	wm_lk_1979_margaret_thatcher = {	# Margaret Thatcher, Prime Minister
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = all_hairstyles
+				accessory = f_hair_sp4_western_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_margaret_thatcher
+				this = character:wm_1979_margaret_thatcher
+			}
+		}
+	}
+	wm_lk_1979_james_callaghan = {	# James Callaghan, Labour leader
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_james_callaghan
+				this = character:wm_1979_james_callaghan
+			}
+		}
+	}
+	wm_lk_1979_david_steel = {	# David Steel, Liberal leader
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_david_steel
+				this = character:wm_1979_david_steel
+			}
+		}
+	}
+	wm_lk_1979_michael_foot = {	# Michael Foot
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_indian_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_michael_foot
+				this = character:wm_1979_michael_foot
+			}
+		}
+	}
+	wm_lk_1979_geoffrey_howe = {	# Geoffrey Howe, Chancellor
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_geoffrey_howe
+				this = character:wm_1979_geoffrey_howe
+			}
+		}
+	}
+	wm_lk_1979_william_whitelaw = {	# William Whitelaw, Home Secretary
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_william_whitelaw
+				this = character:wm_1979_william_whitelaw
+			}
+		}
+	}
+	wm_lk_1979_michael_heseltine = {	# Michael Heseltine
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_02
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_michael_heseltine
+				this = character:wm_1979_michael_heseltine
+			}
+		}
+	}
+	wm_lk_1979_keith_joseph = {	# Keith Joseph
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_keith_joseph
+				this = character:wm_1979_keith_joseph
+			}
+		}
+	}
+	wm_lk_1979_nigel_lawson = {	# Nigel Lawson
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_nigel_lawson
+				this = character:wm_1979_nigel_lawson
+			}
+		}
+	}
+	wm_lk_1979_norman_tebbit = {	# Norman Tebbit
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_norman_tebbit
+				this = character:wm_1979_norman_tebbit
+			}
+		}
+	}
+	wm_lk_1979_ian_gilmour = {	# Ian Gilmour
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_ian_gilmour
+				this = character:wm_1979_ian_gilmour
+			}
+		}
+	}
+	wm_lk_1979_john_nott = {	# John Nott
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_john_nott
+				this = character:wm_1979_john_nott
+			}
+		}
+	}
+	wm_lk_1979_peter_walker = {	# Peter Walker
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_peter_walker
+				this = character:wm_1979_peter_walker
+			}
+		}
+	}
+	wm_lk_1979_denis_healey = {	# Denis Healey
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_denis_healey
+				this = character:wm_1979_denis_healey
+			}
+		}
+	}
+	wm_lk_1979_tony_benn = {	# Tony Benn
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1979_tony_benn
+				this = character:wm_1979_tony_benn
+			}
+		}
+	}
+	wm_lk_royal_elizabeth_ii = {	# Queen Elizabeth II
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_sub_saharan_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_royal_elizabeth_ii
+				this = character:wm_royal_elizabeth_ii
+			}
+		}
+	}
 	wm_lk_royal_charles = {	# King Charles III
 		dna_modifiers = {
 			accessory = {

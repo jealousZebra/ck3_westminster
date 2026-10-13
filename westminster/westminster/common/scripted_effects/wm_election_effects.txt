@@ -20,7 +20,11 @@
 # Game start (and old saves): polls, seat leans and seat counts.
 wm_election_init_effect = {
 	wm_polls_init_effect = yes
-	wm_init_seat_leans_effect = yes
+	if = {
+		limit = { date < 1980.1.1 }
+		wm_init_1979_seat_leans_effect = yes
+	}
+	else = { wm_init_seat_leans_effect = yes }
 	if = {
 		limit = { NOT = { has_global_variable = wm_el_months } }
 		set_global_variable = { name = wm_el_months value = 0 }

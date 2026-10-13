@@ -1,5 +1,9 @@
 ﻿# The Crown (common/landed_titles/40_wm_crown.txt): held by the monarch, never by the Prime Minister.
 k_wm_crown = {
+	1979.5.4 = {
+		holder = wm_royal_elizabeth_ii
+		government = wm_crown_government
+	}
 	2024.7.5 = {
 		holder = wm_royal_charles
 		government = wm_crown_government
