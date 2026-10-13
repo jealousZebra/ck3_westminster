@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent.parent          # westminster/
 MOD = ROOT / "westminster"
@@ -144,29 +144,47 @@ def generate(prompt, size, key):
 
 
 def install_icon(target, raw):
-    """Black-on-white line art -> ink on transparency: cropped to the drawing and scaled to fill about 84% of the
-    vanilla icon's size, so every tab icon has the same weight. Also written into each culture skin that has it."""
+    """Install a modern high-contrast HUD tile from the cached pictogram.
+
+    The old version made the artwork nearly black on transparency. That disappeared into the night theme and looked
+    like the original CK3 toolbar after the full UI build overwrote build_theme.py's brighter pass. The pictogram now
+    sits in an accent-bordered navy card, with a warm-white glyph and a coloured keyline.
+    """
     tw, th = Image.open(GAME / target).size
     g = np.array(Image.open(raw).convert("L")).astype(np.float32) / 255
     a = np.clip((0.85 - g) / 0.6, 0, 1)
     ys, xs = np.nonzero(a > 0.2)
     if len(ys):
         a = a[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
-    side = int(min(tw, th) * 0.84)
+    side = int(min(tw, th) * 0.66)
     im = Image.fromarray((a * 255).astype(np.uint8), "L")
     im.thumbnail((side, side), Image.LANCZOS)
     alpha = Image.new("L", (tw, th), 0)
     alpha.paste(im, ((tw - im.width) // 2, (th - im.height) // 2))
-    out = np.zeros((th, tw, 4), dtype=np.uint8)
-    out[..., :3] = 24
-    out[..., 3] = np.array(alpha)
+    from build_theme import modern_accent
+    accent = tuple(int(v) for v in modern_accent(Path(target).stem))
+    canvas = Image.new("RGBA", (tw, th), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    margin = max(4, round(min(tw, th) * 0.07))
+    radius = max(8, round(min(tw, th) * 0.20))
+    line = max(2, round(min(tw, th) * 0.035))
+    draw.rounded_rectangle((margin, margin, tw - margin - 1, th - margin - 1), radius=radius,
+                           fill=(24, 31, 40, 246), outline=accent + (255,), width=line)
+    outline = alpha.filter(ImageFilter.MaxFilter(7))
+    edge = np.maximum(np.array(outline, dtype=np.int16) - np.array(alpha, dtype=np.int16), 0).astype(np.uint8)
+    accent_layer = Image.new("RGBA", (tw, th), accent + (0,))
+    accent_layer.putalpha(Image.fromarray(edge, "L"))
+    canvas.alpha_composite(accent_layer)
+    glyph = Image.new("RGBA", (tw, th), (247, 241, 228, 0))
+    glyph.putalpha(alpha)
+    canvas.alpha_composite(glyph)
     rel = Path(target)
     targets = [rel] + [Path("gfx/interface/skins") / d.name / rel.relative_to("gfx/interface/skinned")
                        for d in sorted((GAME / "gfx/interface/skins").iterdir())
                        if (d / rel.relative_to("gfx/interface/skinned")).exists()]
     for t in targets:
         (MOD / t).parent.mkdir(parents=True, exist_ok=True)
-        Image.fromarray(out, "RGBA").save(MOD / t)
+        canvas.save(MOD / t)
     return tw, th
 
 
