@@ -90,8 +90,11 @@ def patch_gui():
     s = src.replace('texture = "[FrontEndMainView.GetBackground]"', 'texture = "gfx/interface/frontend/wm_backdrop.dds"')
     assert s != src, "backdrop line not found"
     # Hide the 3D portraits and their shadows (medieval characters in a hall)
-    s, n = re.subn(r'(portrait_button = \{\n(\t+)name = "menu_portrait[^"]*")', r'\1\n\2visible = no', s)
-    s, n2 = re.subn(r'(name = "shadow_[a-z_]+")', r'\1\n\t\t\t\tvisible = no', s)
+    # Replace the existing property: adding another visible property makes
+    # CK3 reject the widget, leaving its portrait bindings in an invalid layout.
+    s, n = re.subn(r'(portrait_button = \{\n\t+name = "menu_portrait[^"]*"\n\t+)visible = [^\n]+', r'\1visible = no', s)
+    s, n2 = re.subn(r'(name = "shadow_[a-z_]+"\n\t+)visible = [^\n]+', r'\1visible = no', s)
+    assert n and n2, "main-menu portrait or shadow visibility properties not found"
     out = MOD / "gui" / "frontend_main.gui"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("# Westminster: Crusader Kings III's own gui/frontend_main.gui (Paradox Interactive), with a photo backdrop "

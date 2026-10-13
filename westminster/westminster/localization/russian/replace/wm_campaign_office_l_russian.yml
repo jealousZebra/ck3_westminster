@@ -100,11 +100,7 @@
  camp_fire_wandering_poets_domicile_building_desc: "#weak (Требуется [GetDomicileBuilding('camp_fire_01').GetName])#!\nЛюди, которые могут заставить листовку «петь» и слоган «прилипнуть»."
  camp_main_01_domicile_building: "Штаб кампании"
  camp_main_01_domicile_building_desc: "Сам офис: сначала арендованная комната, затем витрина на главной улице, затем полноценная штаб-квартира с телефоном для каждого стола."
- camp_move_desc: "Moving your [camp|E] to another town brings new [task_contracts|E] and new doors to knock on.
-
-#weak Moving far puts you out of reach of your [contact_list_contacts|E], so call in any favours first.#!
-
-#P Click to move your Campaign Office#!"
+ camp_move_desc: "Moving your [camp|E] to another town brings new [task_contracts|E] and new doors to knock on.\n\n#weak Moving far puts you out of reach of your [contact_list_contacts|E], so call in any favours first.#!\n\n#P Click to move your Campaign Office#!"
  camp_perimeter_01_domicile_building: "Ресепшн"
  camp_perimeter_01_domicile_building_desc: "Кто-то, кто откроет дверь, телефон и разгневанного избирателя, в таком порядке."
  camp_perimeter_camp_hygiene_domicile_building: "График уборки"
@@ -150,33 +146,18 @@
  game_concept_adventurer: "Активист"
  game_concept_adventurer_camp: "Избирательный офис"
  game_concept_adventurer_camps: "Избирательные штабы"
- game_concept_adventurer_desc: "A $game_concept_adventurer$ is a politician without a seat: an activist, a candidate or a former MP, leading a [camp|E].
-
-They have no constituency and no income of their own: they take [task_contracts|E] from their party's MPs to earn money, profile and Party Standing, and call in favours from their [contact_list|E].
-
-A $game_concept_adventurer$ can move their office anywhere. The goal is a seat: get on the approved list, win a selection, then win the election."
+ game_concept_adventurer_desc: "A $game_concept_adventurer$ is a politician without a seat: an activist, a candidate or a former MP, leading a [camp|E].\n\nThey have no constituency and no income of their own: they take [task_contracts|E] from their party's MPs to earn money, profile and Party Standing, and call in favours from their [contact_list|E].\n\nA $game_concept_adventurer$ can move their office anywhere. The goal is a seat: get on the approved list, win a selection, then win the election."
  game_concept_adventurer_possessive: "Кампания"
  game_concept_adventurer_siege_replenishment_desc: "Когда [adventurer|E] успешно [sieges|E] [holding|E], часть их [men_at_arms|E] будет восполнена.\n\nВсе Активисты [regiments|E] в [army|E] будут восполнены #V x2#! раз по значению [loot|E] Владения.\n\n#weak Увеличение состоит из новых рекрутов, насильственного вовлечения местных жителей и просто выплаты тем, кто ушел во время осады.#!"
  game_concept_adventurers: "Активисты"
  game_concept_adventurers_possessive: "Активисты"
  game_concept_camp: "Избирательный офис"
  game_concept_camp_building: "офисное помещение"
- game_concept_camp_building_desc: "$game_concept_camp_buildings$ are improvements to a [camp|E]: rooms, equipment, people and habits.
-
-Mechanically, they are [domicile_buildings|E]. They can:
-$EFFECT_LIST_BULLET$ Unlock new [officers|E]
-$EFFECT_LIST_BULLET$ Give bonuses to the campaigner and the team
-$EFFECT_LIST_BULLET$ Improve [task_contract|E] rewards"
+ game_concept_camp_building_desc: "$game_concept_camp_buildings$ are improvements to a [camp|E]: rooms, equipment, people and habits.\n\nMechanically, they are [domicile_buildings|E]. They can:\n$EFFECT_LIST_BULLET$ Unlock new [officers|E]\n$EFFECT_LIST_BULLET$ Give bonuses to the campaigner and the team\n$EFFECT_LIST_BULLET$ Improve [task_contract|E] rewards"
  game_concept_camp_buildings: "офисные помещения"
- game_concept_camp_desc: "A $game_concept_camp$ is a campaigner's base: a rented room, a shopfront or a regional headquarters, its staff and volunteers, and the battle bus that takes it from town to town.
-
-Every [GetGovernment( 'landless_adventurer_government' ).GetName] has a $game_concept_camp$ [domicile|E] that moves across the map with them.
-
-[camp_buildings|E] can be added, which give the $game_concept_camp$ and its campaigner lasting bonuses."
+ game_concept_camp_desc: "A $game_concept_camp$ is a campaigner's base: a rented room, a shopfront or a regional headquarters, its staff and volunteers, and the battle bus that takes it from town to town.\n\nEvery [GetGovernment( 'landless_adventurer_government' ).GetName] has a $game_concept_camp$ [domicile|E] that moves across the map with them.\n\n[camp_buildings|E] can be added, which give the $game_concept_camp$ and its campaigner lasting bonuses."
  game_concept_camp_purpose: "Политический Фокус"
- game_concept_camp_purpose_desc: "A $game_concept_camp_purpose$ is what a campaigner is known for: the kind of politician they are becoming.
-
-It decides which [task_contracts|E] their party offers them most, gives a bonus of its own, and unlocks some [camp_buildings|E]. A $game_concept_camp_purpose_purpose$ can be changed, but changing from one to another costs [prestige|E]; a Party Activist may pick any for free."
+ game_concept_camp_purpose_desc: "A $game_concept_camp_purpose$ is what a campaigner is known for: the kind of politician they are becoming.\n\nIt decides which [task_contracts|E] their party offers them most, gives a bonus of its own, and unlocks some [camp_buildings|E]. A $game_concept_camp_purpose_purpose$ can be changed, but changing from one to another costs [prestige|E]; a Party Activist may pick any for free."
  game_concept_camp_purpose_purpose: "Фокус"
  game_concept_camp_purpose_purposes: "Фокусы"
  game_concept_camp_purposes: "Политические Фокусы"
@@ -197,30 +178,16 @@ It decides which [task_contracts|E] their party offers them most, gives a bonus 
  game_concept_domicile_buildings: "Здания базы"
  game_concept_domiciles: "Базы"
  game_concept_follower: "Член команды"
- game_concept_follower_desc: "A $game_concept_follower$ is a volunteer or staffer who works for a [adventurer|E] without a seat.
-
-Mechanically, they are like [courtiers|E], but they owe less and leave sooner if they dislike their boss.
-
-The collective [opinion|E] of the $game_concept_followers$ sets the [camp_temperament|E]."
+ game_concept_follower_desc: "A $game_concept_follower$ is a volunteer or staffer who works for a [adventurer|E] without a seat.\n\nMechanically, they are like [courtiers|E], but they owe less and leave sooner if they dislike their boss.\n\nThe collective [opinion|E] of the $game_concept_followers$ sets the [camp_temperament|E]."
  game_concept_followers: "Члены команды"
  game_concept_officer: "Старший сотрудник"
- game_concept_officer_desc: "$game_concept_officers$ are the jobs [followers|E] can be given to run the [camp|E]: office manager, field director, treasurer and so on.
-
-They work like [court_positions|E]: what they bring depends on the holder's [aptitude|E] for the job."
+ game_concept_officer_desc: "$game_concept_officers$ are the jobs [followers|E] can be given to run the [camp|E]: office manager, field director, treasurer and so on.\n\nThey work like [court_positions|E]: what they bring depends on the holder's [aptitude|E] for the job."
  game_concept_officers: "Старший персонал"
  game_concept_provision: "Фонд кампании"
  game_concept_provisions: "Средства кампании"
- game_concept_provisions_desc: "$game_concept_provisions$ are the office's running budget: rent, fuel, print and food for the volunteers.
-
-A [camp|E] spends $game_concept_provisions$ while it moves to a new [location|E]; how much depends on the size of the team, the distance and the [officers|E] it has.
-
-Running out means unpaid bills and an unhappy team. Jobs done well, and some [camp_buildings|E], bring more in."
+ game_concept_provisions_desc: "$game_concept_provisions$ are the office's running budget: rent, fuel, print and food for the volunteers.\n\nA [camp|E] spends $game_concept_provisions$ while it moves to a new [location|E]; how much depends on the size of the team, the distance and the [officers|E] it has.\n\nRunning out means unpaid bills and an unhappy team. Jobs done well, and some [camp_buildings|E], bring more in."
  game_concept_task_contract: "Работа"
- game_concept_task_contract_desc: "$game_concept_task_contracts$ are work a [adventurer|E] does for the party's MPs: canvassing, fundraising, speechwriting, research, phone banks, policy papers and media rounds.
-
-Each takes three weeks and is settled by a skill check. Doing it well earns [gold|E], [prestige|E], [provisions|E], Party Standing and the MP as a contact; doing it badly costs a little standing.
-
-The party's candidate assessment is a $game_concept_task_contract$ too: pass it to join the approved candidates list."
+ game_concept_task_contract_desc: "$game_concept_task_contracts$ are work a [adventurer|E] does for the party's MPs: canvassing, fundraising, speechwriting, research, phone banks, policy papers and media rounds.\n\nEach takes three weeks and is settled by a skill check. Doing it well earns [gold|E], [prestige|E], [provisions|E], Party Standing and the MP as a contact; doing it badly costs a little standing.\n\nThe party's candidate assessment is a $game_concept_task_contract$ too: pass it to join the approved candidates list."
  game_concept_task_contract_possessive: "Работа (притяж.)"
  game_concept_task_contract_tier: "Уровень работы"
  game_concept_task_contracts: "Работы"

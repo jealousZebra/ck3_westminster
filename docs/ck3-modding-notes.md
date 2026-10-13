@@ -140,6 +140,14 @@ What it took to get a brand-new map loading (Westminster, 2026-10-08). Each item
   `westminster/tools/map/heightmap_pack.py`, which decodes vanilla's own files to within 0.15%.
 - The game generates missing map object locators (buildings, units) itself and logs "Copy that file ... to
   game/gfx/map/map_object_data".
+- Import the generated locators into the mod's `gfx/map/map_object_data`: generating them on every first launch
+  also logs missing transforms. Westminster's importer is `tools/map/build_map_support.py --import-locators`.
+- `gfx/map/terrain/snow_diffuse_for_combined_winter.dds` must be map width/64 by map height/64, in uncompressed
+  **BGRA8** (`B8G8R8A8_UNORM`). The winter code rejects DXT5 even though other map textures accept it.
+- Replace `history/struggles` and `history/situations` too: otherwise vanilla starts the Dynastic Cycle, Silk Road
+  and other situations against missing provinces and titles, including when optional DLCs are enabled.
+- Startup filtering must remove named historical characters as well as numeric ones, and all literal vanilla
+  province scopes: a reused province id still refers to a different place on the new map.
 - The rivers map is 8-bit indexed with vanilla's palette: 255 = land, 254 = water, lower values = rivers.
 - Terrain masks (`gfx/map/terrain/masks/*_mask.png`) are map-sized 8-bit greyscale PNGs. `colormap.dds`,
   `flatmap.dds` and `detail_index.tga` are map-sized too. Vanilla's are stretched over a map of another size.

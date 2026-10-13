@@ -1,0 +1,15 @@
+[h1]Beta 0.5.3 — Uruchamianie i stabilność[/h1]
+
+[list]
+[*]Naprawiono błędy menu głównego i skryptów uruchamiania.
+[*]Średniowieczne i azjatyckie sytuacje nie są już uruchamiane na mapie Westminster.
+[*]Dodano brakujące punkty rozmieszczenia obiektów na mapie i poprawiono teksturę używaną zimą.
+[*]Naprawiono błędy generowania postaci i początkowej konfiguracji rzeczywistych osób dla obu dat rozpoczęcia.
+[*]Posłowie z 1979 roku o takich samych imionach i nazwiskach otrzymali odrębne identyfikatory; poprawiono początkowy skład gabinetu i wyjściowe dane wyborcze.
+[*]Naprawiono formatowanie tekstów biur kampanii we wszystkich dziewięciu językach i przywrócono przetłumaczone nazwy cech.
+[*]Usunięto cele podróży do historycznych pól bitew powiązane z mapą podstawowej gry.
+[/list]
+
+[b]Rozpocznij nową kampanię[/b], aby zastosować poprawki danych historycznych i uruchamiania.
+
+Przetestowano na macOS z CK3 1.20.1. Zmiany naprawiają potwierdzone błędy; zgłoszone awarie na Windows i Linux nadal wymagają sprawdzenia na dotkniętych nimi komputerach.

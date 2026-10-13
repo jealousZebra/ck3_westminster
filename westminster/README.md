@@ -6,7 +6,7 @@ deepen the House of Lords, mayors, councils and devolved politics.
 
 | | |
 |---|---|
-| Status | 0.5.1 public beta. The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Status | 0.5.3 public beta on Steam Workshop. The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
 | Release | [workshop/PUBLISHING.md](workshop/PUBLISHING.md): Workshop page text, thumbnail, screenshots; `tools/release.sh <version>` checks and zips |
 | Game | CK3 1.20 (any platform; the in-game test tools are macOS-only) |
 | Prefix | `wm_` (files, variables, effects, localization keys) |
@@ -234,11 +234,19 @@ westminster/tools/ui/build_ui.sh                             # the whole interfa
 .venv/bin/python westminster/tools/data/build_likenesses.py  # portraits (rerun build_2024.py after adding people)
 .venv/bin/python westminster/tools/data/build_game_start.py  # after a CK3 patch
 .venv/bin/python westminster/tools/data/build_safeguards.py  # after a CK3 patch
+.venv/bin/python westminster/tools/data/build_stability.py  # map-compatible character pools and legacy tracks
 # 4. Install into the launcher (writes the .mod file with your clone's path) and enable it there
 python3 common/tools/install_mod.py westminster
 # 5. Check
 python3 common/tools/ck3_checks.py static westminster/westminster
 ```
+
+After rebuilding the map, boot Westminster once and run
+`.venv/bin/python westminster/tools/map/build_map_support.py --import-locators` to save CK3's generated building,
+army and activity anchors into the mod. The map builder writes the map-sized BGRA winter lookup; release checks
+require both it and the locators. `tools/data/test_stability.py` checks regressions in startup filtering and
+localization validation. The mod replaces `history/struggles` and `history/situations` so vanilla's medieval and
+Asian situations cannot start against Westminster's provinces.
 
 Copies of the game's own files (GUI layouts, council positions, event backgrounds, portrait modifiers, the start-up
 script, schemes) are made from your installed game by the scripts above, so rerun them after a CK3 patch. Their

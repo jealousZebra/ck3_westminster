@@ -2016,7 +2016,7 @@
       "female": false,
       "mnis": 770,
       "seat": "filton_and_bradley_stoke",
-      "id": "wm_1979_james_callaghan",
+      "id": "wm_1979_james_callaghan_middleton_and_prestwich",
       "birth": "1912.3.27",
       "culture": "english"
     },
@@ -7248,7 +7248,7 @@
       "female": false,
       "mnis": null,
       "seat": "edinburgh_north_and_leith",
-      "id": "wm_1979_ronald_brown",
+      "id": "wm_1979_ronald_brown_edinburgh_leith",
       "birth": "1942.12.28",
       "culture": "scottish"
     },

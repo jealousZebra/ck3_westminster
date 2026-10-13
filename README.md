@@ -6,7 +6,7 @@ after the 2024 election, play another MP, or begin as a campaigner and climb fro
 
 | | |
 |---|---|
-| Status | **0.5.1 public beta** on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981). In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Status | **0.5.3 public beta** on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981). In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
 | Game | Crusader Kings III 1.20 |
 | Plans | [ROADMAP.md](ROADMAP.md): the next updates. Design decisions: [westminster/PLAN.md](westminster/PLAN.md) |
 | The mod in detail | [westminster/README.md](westminster/README.md): gameplay, the look, layout, build and test |

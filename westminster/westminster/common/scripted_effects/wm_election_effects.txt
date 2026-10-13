@@ -21,7 +21,7 @@
 wm_election_init_effect = {
 	wm_polls_init_effect = yes
 	if = {
-		limit = { date < 1980.1.1 }
+		limit = { game_start_date < 1980.1.1 }
 		wm_init_1979_seat_leans_effect = yes
 	}
 	else = { wm_init_seat_leans_effect = yes }

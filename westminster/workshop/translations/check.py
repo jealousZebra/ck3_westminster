@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EN = HERE.parent
 LANGS = ["french", "german", "spanish", "russian", "polish", "simp_chinese", "korean", "japanese"]
-FILES = ["title.txt", "description.bbcode.txt", "short_description.txt", "change_notes_0.3.txt", "change_notes_0.3.1.txt"]
+FILES = ["title.txt", "description.bbcode.txt", "short_description.txt", "change_notes_0.3.txt", "change_notes_0.3.1.txt", "change_notes_0.5.3.txt"]
 
 
 def tags(s):
@@ -45,5 +45,9 @@ for lang in sys.argv[1:] or LANGS:
             problems.append("%s/%s: %d characters (limit 250)" % (lang, f, len(text.strip())))
         if "1.5.0" in en and "1.5.0" not in text:
             problems.append("%s/%s: version number missing" % (lang, f))
+        if f.startswith("change_notes_"):
+            version = f.removeprefix("change_notes_").removesuffix(".txt")
+            if version not in text:
+                problems.append("%s/%s: release version missing" % (lang, f))
 print("\n".join(problems) or "ok: all Workshop translations")
 sys.exit(1 if problems else 0)

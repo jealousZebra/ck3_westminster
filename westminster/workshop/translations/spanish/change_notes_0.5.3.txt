@@ -1,0 +1,15 @@
+[h1]Beta 0.5.3 — Inicio y estabilidad[/h1]
+
+[list]
+[*]Corregidos errores del menú principal y de los scripts de inicio.
+[*]Las situaciones medievales y asiáticas ya no se inician en el mapa de Westminster.
+[*]Añadidos los puntos de ubicación que faltaban en el mapa y corregida la textura utilizada para el invierno.
+[*]Corregidos fallos de generación de personajes y de inicialización de personas reales en ambas fechas de inicio.
+[*]Los diputados de 1979 con el mismo nombre ahora tienen identificadores distintos; corregidos el gabinete inicial y los datos electorales de partida.
+[*]Reparado el formato de los textos de las oficinas de campaña en los nueve idiomas y restaurados los nombres de rasgos traducidos.
+[*]Eliminados los destinos de viaje a campos de batalla históricos vinculados al mapa del juego base.
+[/list]
+
+[b]Empieza una campaña nueva[/b] para aplicar las correcciones del historial y del inicio.
+
+Probado en macOS con CK3 1.20.1. Estos cambios corrigen errores confirmados; los cierres inesperados notificados en Windows y Linux aún deben verificarse en los equipos afectados.

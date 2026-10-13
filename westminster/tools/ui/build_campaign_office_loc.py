@@ -336,7 +336,9 @@ def main():
         if key in taken:
             skipped.append(key)
             continue
-        val = out[key]
+        # CK3 localization values must occupy one physical line. Hand-written
+        # descriptions contain real newlines; the engine needs literal \n.
+        val = out[key].replace("\n", "\\n")
         if key in vanilla and key not in hand and bt.markup(val) != bt.markup(vanilla[key][1]):
             problems.append(key)
             continue
@@ -349,6 +351,25 @@ def main():
           (len(lines), len(skipped), len(problems)))
     for k in problems:
         print("  markup changed:", k)
+    # Existing translations were made from the old multiline English values.
+    # Preserve their wording while repairing their physical-line format too.
+    for path in (MOD / "localization").glob("*/replace/wm_campaign_office_l_*.yml"):
+        text = path.read_text(encoding="utf-8-sig")
+        lines, pending = [], []
+        for line in text.splitlines():
+            if pending:
+                pending.append(line)
+                if line.rstrip().endswith('"'):
+                    lines.append("\\n".join(pending))
+                    pending = []
+            elif re.match(r'^ \S+?:\d*\s+"', line) and not line.rstrip().endswith('"'):
+                pending = [line]
+            else:
+                lines.append(line)
+        assert not pending, "Unterminated description: " + str(path)
+        normalized = "\n".join(lines) + "\n"
+        if normalized != text:
+            path.write_text(normalized, encoding="utf-8-sig")
     if "--report" in sys.argv:
         for k in skipped:
             print("  defined in %s: %s" % (taken[k], k))

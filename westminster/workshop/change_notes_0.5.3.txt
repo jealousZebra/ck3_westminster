@@ -1,0 +1,15 @@
+[h1]Beta 0.5.3 — Startup & Stability[/h1]
+
+[list]
+[*]Fixed main-menu and startup script errors.
+[*]Prevented medieval and Asian situation history from starting against Westminster's map.
+[*]Added missing map locators and corrected the winter lookup texture.
+[*]Fixed character-generation failures and real-person setup across both bookmarks.
+[*]Separated same-name 1979 MPs and corrected the opening Cabinet and election baselines.
+[*]Repaired campaign-office text formatting in all nine languages and restored translated trait labels.
+[*]Removed historical battlefield travel destinations tied to vanilla's map.
+[/list]
+
+[b]Please start a new campaign[/b] for the corrected history and startup changes.
+
+Tested on macOS with CK3 1.20.1. These changes address confirmed errors; the reported Windows/Linux crashes still need verification on affected machines.

@@ -1,5 +1,19 @@
 # Westminster changelog
 
+## 0.5.3 — Startup & Stability
+
+- Corrected duplicate main-menu visibility settings and invalid startup/event script syntax.
+- Excluded vanilla struggle and situation history that referenced provinces and titles outside Westminster's map.
+- Added map locators and a correctly sized BGRA winter lookup texture.
+- Fixed local-flavour character generation and guarded real-person setup for unborn or deceased characters, including the 1979 cast.
+- Gave distinct IDs to the two pairs of same-name 1979 MPs and corrected historical cabinet initialization and election baselines.
+- Repaired campaign-office localization formatting in all nine languages and restored translated trait labels.
+- Removed vanilla historical battlefield travel destinations that referenced the wrong map.
+- Added release checks for localization regressions and required map assets.
+
+Start a new campaign for the corrected 1979 history and startup changes. Tested on macOS with CK3 1.20.1;
+Windows/Linux crash reports still need verification on affected machines.
+
 ## 0.5.1 — Polish & Improvements
 
 - Refined presentation throughout Westminster.

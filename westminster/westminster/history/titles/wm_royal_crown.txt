@@ -3,6 +3,12 @@ k_wm_crown = {
 	1979.5.4 = {
 		holder = wm_royal_elizabeth_ii
 		government = wm_crown_government
+		effect = {
+			holder = {
+				add_realm_law_skip_effects = single_heir_succession_law
+				add_realm_law_skip_effects = male_preference_law
+			}
+		}
 	}
 	2024.7.5 = {
 		holder = wm_royal_charles

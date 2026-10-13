@@ -16,6 +16,7 @@ import glob
 import os
 import re
 import sys
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from ck3paths import DOCS, GAME  # noqa: E402  (CK3_GAME_DIR / CK3_DOCS_DIR override the Steam defaults)
@@ -36,7 +37,7 @@ def static(mod):
     files = [f for ext in ("txt", "gui", "yml") for f in glob.glob(os.path.join(mod, "**", "*." + ext), recursive=True)
              if os.sep + "fonts" + os.sep not in f]                     # font licences aren't game script
     for f in files:
-        raw = open(f, "rb").read()
+        raw = Path(f).read_bytes()
         if not raw.startswith(b"\xef\xbb\xbf"):
             bad.append("no UTF-8 BOM: " + f)
         if f.endswith((".txt", ".gui")):
@@ -48,8 +49,13 @@ def static(mod):
     loc = os.path.join(mod, "localization")
     for f in sorted(glob.glob(os.path.join(loc, "*", "**", "*.yml"), recursive=True)):
         lang = os.path.relpath(f, loc).split(os.sep)[0]
-        for k in re.findall(r"^ (\S+?):", open(f, encoding="utf-8-sig").read(), re.M):
-            if (lang, k) in where and where[(lang, k)] != f:
+        text = Path(f).read_text(encoding="utf-8-sig")
+        for number, line in enumerate(text.splitlines(), 1):
+            if (re.match(r'^ \S+?:\d*\s+"', line) and not line.rstrip().endswith('"')
+                    and len(re.findall(r'(?<!\\)"', line)) % 2):
+                bad.append("unterminated localization value at %s:%d (use literal \\n for newlines)" % (f, number))
+        for k in re.findall(r"^ (\S+?):", text, re.M):
+            if (lang, k) in where:
                 bad.append("%s defined twice: %s and %s" % (k, where[(lang, k)], f))
             where[(lang, k)] = f
             keys.setdefault(lang, set()).add(k)

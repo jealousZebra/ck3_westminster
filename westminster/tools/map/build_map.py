@@ -354,6 +354,8 @@ NGame = {
     sizes = np.bincount(prov[(prov > 0) & (prov <= n_bar)].ravel(), minlength=n_bar + 1)[1:]
     step("done. %d provinces: %d baronies (smallest %d px: %s), %d scenery, %d sea"
          % (n_prov, n_bar, sizes.min(), baronies[int(sizes.argmin())]["name"], len(scen_ids), SEA_ZONES))
+    from build_map_support import main as build_support
+    build_support()
 
 
 if __name__ == "__main__":

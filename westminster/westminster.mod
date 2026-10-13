@@ -1,4 +1,4 @@
-version="0.5.1"
+version="0.5.3"
 tags={
 	"Total Conversion"
 	"Gameplay"
@@ -128,9 +128,12 @@ replace_path="history/province_mapping"
 replace_path="history/titles"
 replace_path="history/titles/ce3"
 replace_path="history/wars"
+replace_path="history/struggles"
+replace_path="history/situations"
 replace_path="history/artifacts"
 replace_path="map_data"
 replace_path="map_data/geographical_regions"
 replace_path="gfx/map/map_object_data"
+remote_file_id="3816349981"
 # Placeholder path: common/tools/install_mod.py westminster installs this file with your clone's real path.
 path="mod/westminster"

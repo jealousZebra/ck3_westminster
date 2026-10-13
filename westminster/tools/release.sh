@@ -31,8 +31,12 @@ step() { printf '\n== %s\n' "$*"; }
 step "Generated files"
 missing=0
 for p in gfx/interface/skinned gfx/interface/frontend gfx/map/terrain/flat_maps gfx/map/water \
-		gfx/coat_of_arms/textured_emblems map_data/provinces.png map_data/heightmap.png; do
+		gfx/coat_of_arms/textured_emblems map_data/provinces.png map_data/heightmap.png \
+		gfx/map/terrain/snow_diffuse_for_combined_winter.dds; do
 	[ -e "westminster/$p" ] || { echo "missing: westminster/$p"; missing=1; }
+done
+for kind in buildings activities combat siege special_building unit_stack_player_owned; do
+	[ -f "westminster/gfx/map/map_object_data/wm_${kind}_locators.txt" ] || { echo "missing: $kind locators; boot Westminster, then run tools/map/build_map_support.py --import-locators"; missing=1; }
 done
 ls westminster/gfx/coat_of_arms/textured_emblems/wm_flag_*.dds >/dev/null 2>&1 || { echo "missing: flags (wm_flag_*.dds)"; missing=1; }
 [ "$missing" = 0 ] || { echo "Build the mod first (westminster/README.md, \"Setup, install and test\")."; exit 1; }
@@ -40,6 +44,7 @@ ls westminster/gfx/coat_of_arms/textured_emblems/wm_flag_*.dds >/dev/null 2>&1 |
 
 step "Static checks"
 python3 "$COMMON/tools/ck3_checks.py" static westminster
+"$PY" tools/data/test_stability.py
 
 if [ "$GAME" = yes ]; then
 	step "In-game tests"

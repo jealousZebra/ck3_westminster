@@ -100,11 +100,7 @@
  camp_fire_wandering_poets_domicile_building_desc: "#weak（需要 [GetDomicileBuilding('camp_fire_01').GetName]）#!\n能让传单生动和口号深入人心的人。"
  camp_main_01_domicile_building: "战役总部"
  camp_main_01_domicile_building_desc: "办公室本身：一个租来的房间，然后是高街上的店铺，再到设有每个办公桌电话的正式总部。"
- camp_move_desc: "Moving your [camp|E] to another town brings new [task_contracts|E] and new doors to knock on.
-
-#weak Moving far puts you out of reach of your [contact_list_contacts|E], so call in any favours first.#!
-
-#P Click to move your Campaign Office#!"
+ camp_move_desc: "Moving your [camp|E] to another town brings new [task_contracts|E] and new doors to knock on.\n\n#weak Moving far puts you out of reach of your [contact_list_contacts|E], so call in any favours first.#!\n\n#P Click to move your Campaign Office#!"
  camp_perimeter_01_domicile_building: "前台"
  camp_perimeter_01_domicile_building_desc: "有人负责开门、接电话以及应对愤怒的选民，按此顺序。"
  camp_perimeter_camp_hygiene_domicile_building: "清洁轮班表"
@@ -150,33 +146,18 @@
  game_concept_adventurer: "运动者"
  game_concept_adventurer_camp: "竞选办公室"
  game_concept_adventurer_camps: "竞选办公室"
- game_concept_adventurer_desc: "A $game_concept_adventurer$ is a politician without a seat: an activist, a candidate or a former MP, leading a [camp|E].
-
-They have no constituency and no income of their own: they take [task_contracts|E] from their party's MPs to earn money, profile and Party Standing, and call in favours from their [contact_list|E].
-
-A $game_concept_adventurer$ can move their office anywhere. The goal is a seat: get on the approved list, win a selection, then win the election."
+ game_concept_adventurer_desc: "A $game_concept_adventurer$ is a politician without a seat: an activist, a candidate or a former MP, leading a [camp|E].\n\nThey have no constituency and no income of their own: they take [task_contracts|E] from their party's MPs to earn money, profile and Party Standing, and call in favours from their [contact_list|E].\n\nA $game_concept_adventurer$ can move their office anywhere. The goal is a seat: get on the approved list, win a selection, then win the election."
  game_concept_adventurer_possessive: "活动家的"
  game_concept_adventurer_siege_replenishment_desc: "当[adventurer|E]成功[sieges|E] [holding|E]时，其部分[men_at_arms|E]将获得补充。\n\n [army|E]中所有[regiments|E]活动家将获得#V x2#!乘以该地块[loot|E]值的补充。\n\n#weak 增加包括新招募、强制征召当地人，以及支付围困期间离开的人。#!"
  game_concept_adventurers: "运动者"
  game_concept_adventurers_possessive: "活动家"
  game_concept_camp: "竞选办公室"
  game_concept_camp_building: "办公设施"
- game_concept_camp_building_desc: "$game_concept_camp_buildings$ are improvements to a [camp|E]: rooms, equipment, people and habits.
-
-Mechanically, they are [domicile_buildings|E]. They can:
-$EFFECT_LIST_BULLET$ Unlock new [officers|E]
-$EFFECT_LIST_BULLET$ Give bonuses to the campaigner and the team
-$EFFECT_LIST_BULLET$ Improve [task_contract|E] rewards"
+ game_concept_camp_building_desc: "$game_concept_camp_buildings$ are improvements to a [camp|E]: rooms, equipment, people and habits.\n\nMechanically, they are [domicile_buildings|E]. They can:\n$EFFECT_LIST_BULLET$ Unlock new [officers|E]\n$EFFECT_LIST_BULLET$ Give bonuses to the campaigner and the team\n$EFFECT_LIST_BULLET$ Improve [task_contract|E] rewards"
  game_concept_camp_buildings: "办公设施"
- game_concept_camp_desc: "A $game_concept_camp$ is a campaigner's base: a rented room, a shopfront or a regional headquarters, its staff and volunteers, and the battle bus that takes it from town to town.
-
-Every [GetGovernment( 'landless_adventurer_government' ).GetName] has a $game_concept_camp$ [domicile|E] that moves across the map with them.
-
-[camp_buildings|E] can be added, which give the $game_concept_camp$ and its campaigner lasting bonuses."
+ game_concept_camp_desc: "A $game_concept_camp$ is a campaigner's base: a rented room, a shopfront or a regional headquarters, its staff and volunteers, and the battle bus that takes it from town to town.\n\nEvery [GetGovernment( 'landless_adventurer_government' ).GetName] has a $game_concept_camp$ [domicile|E] that moves across the map with them.\n\n[camp_buildings|E] can be added, which give the $game_concept_camp$ and its campaigner lasting bonuses."
  game_concept_camp_purpose: "政治关注点"
- game_concept_camp_purpose_desc: "A $game_concept_camp_purpose$ is what a campaigner is known for: the kind of politician they are becoming.
-
-It decides which [task_contracts|E] their party offers them most, gives a bonus of its own, and unlocks some [camp_buildings|E]. A $game_concept_camp_purpose_purpose$ can be changed, but changing from one to another costs [prestige|E]; a Party Activist may pick any for free."
+ game_concept_camp_purpose_desc: "A $game_concept_camp_purpose$ is what a campaigner is known for: the kind of politician they are becoming.\n\nIt decides which [task_contracts|E] their party offers them most, gives a bonus of its own, and unlocks some [camp_buildings|E]. A $game_concept_camp_purpose_purpose$ can be changed, but changing from one to another costs [prestige|E]; a Party Activist may pick any for free."
  game_concept_camp_purpose_purpose: "关注"
  game_concept_camp_purpose_purposes: "关注点"
  game_concept_camp_purposes: "政治关注点"
@@ -197,30 +178,16 @@ It decides which [task_contracts|E] their party offers them most, gives a bonus 
  game_concept_domicile_buildings: "基地建筑物"
  game_concept_domiciles: "基地"
  game_concept_follower: "团队成员"
- game_concept_follower_desc: "A $game_concept_follower$ is a volunteer or staffer who works for a [adventurer|E] without a seat.
-
-Mechanically, they are like [courtiers|E], but they owe less and leave sooner if they dislike their boss.
-
-The collective [opinion|E] of the $game_concept_followers$ sets the [camp_temperament|E]."
+ game_concept_follower_desc: "A $game_concept_follower$ is a volunteer or staffer who works for a [adventurer|E] without a seat.\n\nMechanically, they are like [courtiers|E], but they owe less and leave sooner if they dislike their boss.\n\nThe collective [opinion|E] of the $game_concept_followers$ sets the [camp_temperament|E]."
  game_concept_followers: "团队成员们"
  game_concept_officer: "高级职员"
- game_concept_officer_desc: "$game_concept_officers$ are the jobs [followers|E] can be given to run the [camp|E]: office manager, field director, treasurer and so on.
-
-They work like [court_positions|E]: what they bring depends on the holder's [aptitude|E] for the job."
+ game_concept_officer_desc: "$game_concept_officers$ are the jobs [followers|E] can be given to run the [camp|E]: office manager, field director, treasurer and so on.\n\nThey work like [court_positions|E]: what they bring depends on the holder's [aptitude|E] for the job."
  game_concept_officers: "高级员工"
  game_concept_provision: "活动基金"
  game_concept_provisions: "活动资金"
- game_concept_provisions_desc: "$game_concept_provisions$ are the office's running budget: rent, fuel, print and food for the volunteers.
-
-A [camp|E] spends $game_concept_provisions$ while it moves to a new [location|E]; how much depends on the size of the team, the distance and the [officers|E] it has.
-
-Running out means unpaid bills and an unhappy team. Jobs done well, and some [camp_buildings|E], bring more in."
+ game_concept_provisions_desc: "$game_concept_provisions$ are the office's running budget: rent, fuel, print and food for the volunteers.\n\nA [camp|E] spends $game_concept_provisions$ while it moves to a new [location|E]; how much depends on the size of the team, the distance and the [officers|E] it has.\n\nRunning out means unpaid bills and an unhappy team. Jobs done well, and some [camp_buildings|E], bring more in."
  game_concept_task_contract: "工作"
- game_concept_task_contract_desc: "$game_concept_task_contracts$ are work a [adventurer|E] does for the party's MPs: canvassing, fundraising, speechwriting, research, phone banks, policy papers and media rounds.
-
-Each takes three weeks and is settled by a skill check. Doing it well earns [gold|E], [prestige|E], [provisions|E], Party Standing and the MP as a contact; doing it badly costs a little standing.
-
-The party's candidate assessment is a $game_concept_task_contract$ too: pass it to join the approved candidates list."
+ game_concept_task_contract_desc: "$game_concept_task_contracts$ are work a [adventurer|E] does for the party's MPs: canvassing, fundraising, speechwriting, research, phone banks, policy papers and media rounds.\n\nEach takes three weeks and is settled by a skill check. Doing it well earns [gold|E], [prestige|E], [provisions|E], Party Standing and the MP as a contact; doing it badly costs a little standing.\n\nThe party's candidate assessment is a $game_concept_task_contract$ too: pass it to join the approved candidates list."
  game_concept_task_contract_possessive: "工作的"
  game_concept_task_contract_tier: "工作等级"
  game_concept_task_contracts: "工作"

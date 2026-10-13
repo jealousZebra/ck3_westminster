@@ -139,15 +139,12 @@ wm_intrigue.2 = {
 	}
 
 	option = {
-		name = {
-			first_valid = {
-				triggered_desc = {
-					trigger = { exists = scope:wm_intrigue_success }
-					desc = wm_intrigue.2.a
-				}
-				desc = wm_intrigue.2.b
-			}
-		}
+		name = wm_intrigue.2.a
+		trigger = { exists = scope:wm_intrigue_success }
+	}
+	option = {
+		name = wm_intrigue.2.b
+		trigger = { NOT = { exists = scope:wm_intrigue_success } }
 	}
 }
 

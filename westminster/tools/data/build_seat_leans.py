@@ -137,7 +137,7 @@ def main():
     historic = {"lab": 369, "con": 439, "ld": 138, "ruk": 1, "grn": 1, "snp": 16, "pc": 4,
                 "sf": 1, "dup": 5, "sdlp": 4, "apni": 1, "uup": 8, "tuv": 1, "oth": 12}
     ef.append("# Polls start from the active bookmark's election result.\nwm_polls_init_effect = {\n"
-              "\tif = {\n\t\tlimit = { date < 1980.1.1 }\n%s\n\t}\n\telse = {\n%s\n\t}\n}" % (
+              "\tif = {\n\t\tlimit = { game_start_date < 1980.1.1 }\n%s\n\t}\n\telse = {\n%s\n\t}\n}" % (
         "\n".join("\t\tset_global_variable = { name = wm_poll_%s value = %s }" % (k, historic[k]) for k in allkeys),
         "\n".join("\t\tset_global_variable = { name = wm_poll_%s value = wm_polls_2024_%s }" % (k, k) for k in allkeys)))
     ef.append("# A month of poll movement for every party (wm_polls_drift_party_effect), then back to a total of 1000.\n"

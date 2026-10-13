@@ -216,6 +216,15 @@ def main():
     by_name = {m["name"]: m for m in members}
     for m in members:
         m["id"] = "wm_1979_" + norm(m["name"])
+        # These are distinct MPs with the same name, not duplicate records.
+        # Keep the established ids for the former PM and the Hackney MP.
+        if (m["name"], m["old_seat"]) in {
+            ("James Callaghan", "Middleton and Prestwich"),
+            ("Ronald Brown", "Edinburgh Leith"),
+        }:
+            m["id"] += "_" + norm(m["old_seat"])
+        if m["name"] == "James Callaghan" and m["old_seat"] == "Cardiff South East":
+            by_name[m["name"]] = m
         m["birth"] = SIGNIFICANT_BIRTHS.get(m["name"], stable_birth(m["name"]))
         m["culture"] = culture_for(m["old_seat"])
 

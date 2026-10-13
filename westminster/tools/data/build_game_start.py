@@ -36,6 +36,8 @@ def defined_keys():
     for sub in ("dynasty_houses", "dynasties"):
         for f in (MOD / "common" / sub).glob("*.txt"):
             keys |= set(re.findall(r"^([a-z0-9_]+)\s*=\s*\{", f.read_text(encoding="utf-8-sig"), re.M))
+    for f in (MOD / "history/characters").glob("*.txt"):
+        keys |= set(re.findall(r"^([a-z0-9_]+)\s*=\s*\{", f.read_text(encoding="utf-8-sig"), re.M))
     for sub in ("religion/religions", "culture/cultures"):
         for base in (GAME, MOD):
             for f in (base / "common" / sub).glob("*.txt"):
@@ -109,15 +111,19 @@ HISTORICAL_EFFECT = re.compile(r"\b[a-z0-9_]*historical[a-z0-9_]*_effect\s*=|\bt
 
 def refs_missing(code, keys):
     code = re.sub(r"#[^\n]*", "", code)
-    if re.search(r"\bcharacter:\d+", code) or HISTORICAL_EFFECT.search(code):
+    # Province ids belong to vanilla's map even when a number happens to exist
+    # on ours. Never run historical temple/region setup against Westminster.
+    if re.search(r"\b(?:character|province):\d+", code) or HISTORICAL_EFFECT.search(code):
         return True
     if any(r not in REGIONS for r in re.findall(r"\bgeographical_region:([a-z0-9_]+)", code)):
+        return True
+    if any(r not in REGIONS for r in re.findall(r"\b(?:geographical_region|region)\s*=\s*([a-z0-9_]+)", code)):
         return True
     for ev in re.findall(r"trigger_event\s*=\s*(?:\{[^{}]*?\bid\s*=\s*)?([a-z_0-9]+\.\d+)", code):
         if ev not in EVENTS:
             return True
     return any(key not in keys for _, key in
-               re.findall(r"\b(title|house|dynasty|faith|culture|religion):([a-z0-9_]+)", code))
+               re.findall(r"\b(title|house|dynasty|faith|culture|religion|character):([a-z0-9_]+)", code))
 
 
 HEAD = re.compile(r"\s*(?:#[^\n]*\n\s*)*([^\s=#{}?<>!]+)\s*[?<>!]?=\s*(\{)?")
@@ -150,6 +156,9 @@ def clean(body, keys, counts):
         open_at = st.index("{", m.start(1))
         close_at = st.rindex("}")
         inner = st[open_at + 1:close_at]
+        if head.endswith("_county_in_region") and refs_missing(inner, keys):
+            counts[0] += 1
+            continue
         if head in ("if", "else_if", "trigger_if", "trigger_else_if"):
             lim = re.search(r"limit\s*=\s*\{", inner)
             if lim:

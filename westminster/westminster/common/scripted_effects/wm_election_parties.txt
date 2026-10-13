@@ -4,7 +4,7 @@
 # Polls start from the active bookmark's election result.
 wm_polls_init_effect = {
 	if = {
-		limit = { date < 1980.1.1 }
+		limit = { game_start_date < 1980.1.1 }
 		set_global_variable = { name = wm_poll_lab value = 369 }
 		set_global_variable = { name = wm_poll_con value = 439 }
 		set_global_variable = { name = wm_poll_ld value = 138 }

@@ -1344,10 +1344,9 @@ wm_1979_james_callaghan = {	# James Callaghan; 1979 seat: Cardiff South East
 	1912.3.27 = { birth = yes }
 	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_labour } } }
 }
-wm_1979_james_callaghan = {	# James Callaghan; 1979 seat: Middleton and Prestwich
-	name = wm_name_1979_james_callaghan
+wm_1979_james_callaghan_middleton_and_prestwich = {	# James Callaghan; 1979 seat: Middleton and Prestwich
+	name = wm_name_1979_james_callaghan_middleton_and_prestwich
 	dynasty_house = wm_house_party_labour
-	dna = wm_dna_1979_james_callaghan
 	culture = english
 	religion = wm_ideo_social_democrat
 	1912.3.27 = { birth = yes }
@@ -4857,8 +4856,8 @@ wm_1979_michael_brown = {	# Michael Brown; 1979 seat: Brigg and Scunthorpe
 	1934.4.18 = { birth = yes }
 	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_conservative } } }
 }
-wm_1979_ronald_brown = {	# Ronald Brown; 1979 seat: Edinburgh Leith
-	name = wm_name_1979_ronald_brown
+wm_1979_ronald_brown_edinburgh_leith = {	# Ronald Brown; 1979 seat: Edinburgh Leith
+	name = wm_name_1979_ronald_brown_edinburgh_leith
 	dynasty_house = wm_house_party_labour
 	culture = scottish
 	religion = wm_ideo_social_democrat
