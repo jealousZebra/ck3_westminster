@@ -1,3 +1,3 @@
-bm_group_1979 = {
+﻿bm_group_1979 = {
 	default_start_date = 1979.5.4
 }

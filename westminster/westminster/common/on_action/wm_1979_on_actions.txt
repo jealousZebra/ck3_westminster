@@ -1,4 +1,4 @@
-# The first Thatcher ministry and its opening political choice.
+﻿# The first Thatcher ministry and its opening political choice.
 on_game_start_after_lobby = {
 	on_actions = { wm_1979_bookmark_start }
 }

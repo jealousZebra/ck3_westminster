@@ -1,4 +1,4 @@
-namespace = wm_1979
+﻿namespace = wm_1979
 
 wm_1979.1 = {
 	type = character_event

@@ -15,7 +15,7 @@ bm_1979_thatcher = {
 		religion = wm_ideo_one_nation
 		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_EASY"
 		history_id = wm_1979_margaret_thatcher
-		position = { 330 300 }
+		position = { 335 315 }
 		animation = personality_bold
 	}
 	character = {
@@ -29,7 +29,7 @@ bm_1979_thatcher = {
 		religion = wm_ideo_social_democrat
 		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
 		history_id = wm_1979_james_callaghan
-		position = { 950 390 }
+		position = { 510 780 }
 		animation = disapproval
 	}
 	character = {
@@ -43,7 +43,7 @@ bm_1979_thatcher = {
 		religion = wm_ideo_liberal
 		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_HARD"
 		history_id = wm_1979_david_steel
-		position = { 330 760 }
+		position = { 880 295 }
 		animation = personality_rational
 	}
 	character = {
@@ -57,7 +57,7 @@ bm_1979_thatcher = {
 		religion = wm_ideo_social_democrat
 		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_HARD"
 		history_id = wm_1979_michael_foot
-		position = { 1080 690 }
+		position = { 1055 835 }
 		animation = personality_compassionate
 	}
 	character = {
@@ -71,7 +71,7 @@ bm_1979_thatcher = {
 		religion = wm_ideo_one_nation
 		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
 		history_id = wm_1979_geoffrey_howe
-		position = { 760 735 }
+		position = { 1130 595 }
 		animation = personality_rational
 	}
 }

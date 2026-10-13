@@ -191,7 +191,7 @@
       "party": "labour",
       "female": false,
       "mnis": 525,
-      "seat": "mid_and_south_pembrokeshire",
+      "seat": "south_east_cornwall",
       "id": "wm_1979_david_clark",
       "birth": "1949.2.5",
       "culture": "english"
@@ -251,7 +251,7 @@
       "party": "labour",
       "female": false,
       "mnis": 205,
-      "seat": "mid_dorset_and_north_poole",
+      "seat": "warwick_and_leamington",
       "id": "wm_1979_tom_cox",
       "birth": "1951.11.18",
       "culture": "english"
@@ -287,7 +287,7 @@
       "party": "labour",
       "female": false,
       "mnis": 622,
-      "seat": "great_yarmouth",
+      "seat": "belfast_south_and_mid_down",
       "id": "wm_1979_tam_dalyell",
       "birth": "1930.8.6",
       "culture": "scottish"
@@ -479,7 +479,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 43,
-      "seat": "stafford",
+      "seat": "stratford_on_avon",
       "id": "wm_1979_alan_haselhurst",
       "birth": "1932.6.5",
       "culture": "english"
@@ -623,7 +623,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 131,
-      "seat": "south_east_cornwall",
+      "seat": "south_cotswolds",
       "id": "wm_1979_john_macgregor",
       "birth": "1949.12.1",
       "culture": "english"
@@ -1043,7 +1043,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 270,
-      "seat": "st_neots_and_mid_cambridgeshire",
+      "seat": "north_warwickshire_and_bedworth",
       "id": "wm_1979_michael_spicer",
       "birth": "1932.1.26",
       "culture": "english"
@@ -1187,7 +1187,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 21,
-      "seat": "ynys_mon",
+      "seat": "didcot_and_wantage",
       "id": "wm_1979_ray_whitney",
       "birth": "1939.4.11",
       "culture": "english"
@@ -1199,7 +1199,7 @@
       "party": "plaid",
       "female": false,
       "mnis": 547,
-      "seat": "stratford_on_avon",
+      "seat": "dwyfor_meirionnydd",
       "id": "wm_1979_dafydd_wigley",
       "birth": "1953.2.28",
       "culture": "english"
@@ -1427,7 +1427,7 @@
       "party": "labour",
       "female": false,
       "mnis": 695,
-      "seat": "south_down",
+      "seat": "north_norfolk",
       "id": "wm_1979_james_kilfedder",
       "birth": "1945.12.26",
       "culture": "irish"
@@ -1775,7 +1775,7 @@
       "party": "labour",
       "female": false,
       "mnis": 744,
-      "seat": "luton_south_and_south_bedfordshire",
+      "seat": "mid_and_south_pembrokeshire",
       "id": "wm_1979_gordon_bagier",
       "birth": "1940.3.9",
       "culture": "english"
@@ -2444,7 +2444,7 @@
       "name": "Timothy Eggar",
       "old_seat": "Enfield North",
       "person_id": "uk.org.publicwhip/person/17298",
-      "party": "sdlp",
+      "party": "labour",
       "female": false,
       "mnis": null,
       "seat": "clwyd_north",
@@ -2543,7 +2543,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 824,
-      "seat": "glenrothes_and_mid_fife",
+      "seat": "great_yarmouth",
       "id": "wm_1979_anthony_fell",
       "birth": "1936.2.25",
       "culture": "english"
@@ -2576,7 +2576,7 @@
       "name": "Gerry Fitt",
       "old_seat": "Belfast West",
       "person_id": "uk.org.publicwhip/person/17405",
-      "party": "labour",
+      "party": "sdlp",
       "female": false,
       "mnis": 2780,
       "seat": "bolton_west",
@@ -2687,7 +2687,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 840,
-      "seat": "dwyfor_meirionnydd",
+      "seat": "vale_of_glamorgan",
       "id": "wm_1979_tristan_garel_jones",
       "birth": "1932.1.1",
       "culture": "english"
@@ -2987,7 +2987,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 875,
-      "seat": "mid_norfolk",
+      "seat": "mid_derbyshire",
       "id": "wm_1979_douglas_hurd",
       "birth": "1953.2.24",
       "culture": "english"
@@ -3035,7 +3035,7 @@
       "party": "labour",
       "female": false,
       "mnis": 881,
-      "seat": "north_warwickshire_and_bedworth",
+      "seat": "north_herefordshire",
       "id": "wm_1979_douglas_jay",
       "birth": "1931.7.8",
       "culture": "english"
@@ -3047,7 +3047,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 883,
-      "seat": "vale_of_glamorgan",
+      "seat": "ynys_mon",
       "id": "wm_1979_michael_jopling",
       "birth": "1935.9.8",
       "culture": "english"
@@ -3227,7 +3227,7 @@
       "party": "labour",
       "female": false,
       "mnis": null,
-      "seat": "hartlepool",
+      "seat": "poole",
       "id": "wm_1979_edward_leadbitter",
       "birth": "1946.5.7",
       "culture": "english"
@@ -3635,7 +3635,7 @@
       "party": "uup",
       "female": false,
       "mnis": 1961,
-      "seat": "south_shropshire",
+      "seat": "lagan_valley",
       "id": "wm_1979_james_molyneaux",
       "birth": "1952.3.11",
       "culture": "irish"
@@ -3755,7 +3755,7 @@
       "party": "conservative",
       "female": false,
       "mnis": null,
-      "seat": "halesowen",
+      "seat": "hartlepool",
       "id": "wm_1979_arthur_newens",
       "birth": "1949.2.14",
       "culture": "english"
@@ -3815,7 +3815,7 @@
       "party": "labour",
       "female": false,
       "mnis": 1243,
-      "seat": "airdrie_and_shotts",
+      "seat": "ceredigion_preseli",
       "id": "wm_1979_gordon_oakes",
       "birth": "1945.7.27",
       "culture": "english"
@@ -3899,7 +3899,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 932,
-      "seat": "mid_derbyshire",
+      "seat": "st_neots_and_mid_cambridgeshire",
       "id": "wm_1979_matthew_parris",
       "birth": "1932.4.19",
       "culture": "english"
@@ -3971,7 +3971,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 3162,
-      "seat": "ceredigion_preseli",
+      "seat": "glenrothes_and_mid_fife",
       "id": "wm_1979_john_peyton",
       "birth": "1933.10.16",
       "culture": "english"
@@ -5567,7 +5567,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 1007,
-      "seat": "stretford_and_urmston",
+      "seat": "stafford",
       "id": "wm_1979_hugh_fraser",
       "birth": "1947.4.7",
       "culture": "english"
@@ -5795,7 +5795,7 @@
       "party": "uup",
       "female": false,
       "mnis": 1023,
-      "seat": "belfast_south_and_mid_down",
+      "seat": "south_down",
       "id": "wm_1979_enoch_powell",
       "birth": "1947.8.26",
       "culture": "irish"
@@ -6239,7 +6239,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 1048,
-      "seat": "north_norfolk",
+      "seat": "mid_norfolk",
       "id": "wm_1979_ralph_howell",
       "birth": "1954.12.2",
       "culture": "english"
@@ -6287,7 +6287,7 @@
       "party": "labour",
       "female": false,
       "mnis": 1052,
-      "seat": "doncaster_east_and_the_isle_of_axholme",
+      "seat": "luton_south_and_south_bedfordshire",
       "id": "wm_1979_robert_edwards",
       "birth": "1937.9.21",
       "culture": "english"
@@ -6671,7 +6671,7 @@
       "party": "labour",
       "female": false,
       "mnis": 1079,
-      "seat": "warwick_and_leamington",
+      "seat": "airdrie_and_shotts",
       "id": "wm_1979_thomas_williams",
       "birth": "1945.7.3",
       "culture": "english"
@@ -6695,7 +6695,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 1081,
-      "seat": "north_herefordshire",
+      "seat": "stretford_and_urmston",
       "id": "wm_1979_winston_churchill",
       "birth": "1940.7.1",
       "culture": "english"
@@ -7283,7 +7283,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 1124,
-      "seat": "south_cotswolds",
+      "seat": "south_shropshire",
       "id": "wm_1979_cranborne",
       "birth": "1929.4.8",
       "culture": "english"
@@ -7391,7 +7391,7 @@
       "party": "labour",
       "female": false,
       "mnis": 1319,
-      "seat": "lagan_valley",
+      "seat": "halesowen",
       "id": "wm_1979_andy_mcmahon",
       "birth": "1941.12.1",
       "culture": "scottish"
@@ -7559,7 +7559,7 @@
       "party": "conservative",
       "female": false,
       "mnis": 1253,
-      "seat": "poole",
+      "seat": "mid_dorset_and_north_poole",
       "id": "wm_1979_john_ward",
       "birth": "1932.5.15",
       "culture": "english"
@@ -7685,15 +7685,15 @@
       "culture": "english"
     },
     {
-      "name": "Notional Member for Didcot and Wantage",
+      "name": "Notional Member for Doncaster East and the Isle of Axholme",
       "old_seat": "notional",
-      "seat": "didcot_and_wantage",
+      "seat": "doncaster_east_and_the_isle_of_axholme",
       "party": "conservative",
       "female": false,
       "mnis": null,
       "notional": true,
-      "id": "wm_1979_notional_member_for_didcot_and_wantage",
-      "birth": "1929.3.22",
+      "id": "wm_1979_notional_member_for_doncaster_east_and_the_isle_of_axholme",
+      "birth": "1944.1.9",
       "culture": "english"
     },
     {

@@ -62,6 +62,8 @@ widget = {
 		}
 
 		widget = {
+			# Kept at alpha 0 rather than hidden, so the portrait bindings keep asking and the menu learns when they are ready
+			alpha = "[Select_float( FrontEndMainView.ShouldHoldForCharacters, '(float)0', '(float)1' )]"
 			parentanchor = center
 			size = { 1920 1080 }
 			scale = "[ScaleToFitElementInside('(int32)1920', '(int32)1080')]"
@@ -265,6 +267,7 @@ widget = {
 	}
 
 	widget = {
+		visible = "[Not( FrontEndMainView.ShouldHoldForCharacters )]"
 		parentanchor = center
 		size = { 1920 1080 }
 		scale = "[ScaleToFitElementInside('(int32)1920', '(int32)1080')]"
@@ -661,7 +664,7 @@ widget = {
 							layoutpolicy_horizontal = expanding
 							margin_left = 5
 							text = "SINGLE_PLAYER"
-							default_format = "#weak;italic;glow_color:{0,0,0,0}"
+							default_format = "#weak;italic;glow_color:{0.1,0.1,0.1,1}"
 						}
 
 						vbox = {
@@ -847,7 +850,7 @@ widget = {
 							layoutpolicy_horizontal = expanding
 							margin_left = 5
 							text = "MULTI_PLAYER"
-							default_format = "#weak;italic;glow_color:{0,0,0,0}"
+							default_format = "#weak;italic;glow_color:{0.1,0.1,0.1,1}"
 						}
 
 						spacer = {
@@ -1007,7 +1010,7 @@ widget = {
 								fontsize = 13
 
 								text = "ACHIEVEMENTS"
-								default_format = "#low;glow_color:{0,0,0,0}"
+								default_format = "#low;glow_color:{0.1,0.1,0.1,1}"
 							}
 						}
 					}
@@ -1033,7 +1036,7 @@ widget = {
 								fontsize_min = 10
 
 								text = "HEADING_ENCYCLOPEDIA"
-								default_format = "#low;glow_color:{0,0,0,0}"
+								default_format = "#low;glow_color:{0.1,0.1,0.1,1}"
 							}
 						}
 					}
@@ -1059,7 +1062,7 @@ widget = {
 								fontsize = 13
 
 								text = "CREDITS"
-								default_format = "#low;glow_color:{0,0,0,0}"
+								default_format = "#low;glow_color:{0.1,0.1,0.1,1}"
 							}
 						}
 					}
@@ -1093,7 +1096,7 @@ widget = {
 								fontsize = 13
 
 								text = "ACCOUNT"
-								default_format = "#clickable;glow_color:{0,0,0,0}"
+								default_format = "#clickable;glow_color:{0.1,0.1,0.1,1}"
 								align = nobaseline
 							}
 						}
@@ -1121,7 +1124,7 @@ widget = {
 								fontsize = 13
 
 								text = "SETTINGS"
-								default_format = "#clickable;glow_color:{0,0,0,0}"
+								default_format = "#clickable;glow_color:{0.1,0.1,0.1,1}"
 								align = nobaseline
 							}
 						}
@@ -1344,7 +1347,7 @@ widget = {
 						max_width = 312
 						align = nobaseline
 						using = Font_Size_Small
-						default_format = "#clickable;glow_color:{0,0,0,0}"
+						default_format = "#clickable;glow_color:{0,0,0,1}"
 						background = {
 							texture ="gfx/interface/colors/black.dds"
 							alpha = 0.75
@@ -1392,6 +1395,7 @@ widget = {
 	}
 
 	widget = {
+		visible = "[Not( FrontEndMainView.ShouldHoldForCharacters )]"
 		parentanchor = bottom|left
 		size = { 800 100 }
 		position = { 10 -20}
@@ -1493,7 +1497,7 @@ widget = {
 
 	widget = {
 		name = "challenge_character"
-		visible = "[FrontEndMainView.ShouldShowChallengeCharacter]"
+		visible = "[And( FrontEndMainView.ShouldShowChallengeCharacter, Not( FrontEndMainView.ShouldHoldForCharacters ) )]"
 		datacontext = "[FrontEndMainView.GetChallengeCharacter]"
 		datacontext = "[ChallengeCharacter.GetBookmarkCharacter]"
 		allow_outside = yes
@@ -1654,7 +1658,7 @@ widget = {
 						autoresize = no
 						align = nobaseline|center
 						text = "CHALLENGE_CHARACTER_SUGGESTION"
-						default_format = "#high;glow_color:{0,0,0,0}"
+						default_format = "#high;glow_color:{0,0,0,1}"
 					}
 
 					text_single = {
@@ -1664,7 +1668,7 @@ widget = {
 						align = nobaseline|center
 						text = "CHALLENGE_CHARACTER_INFO"
 						using = Font_Size_Big
-						default_format = "#high;glow_color:{0,0,0,0}"
+						default_format = "#high;glow_color:{0,0,0,1}"
 					}
 
 					text_single = {
@@ -1672,7 +1676,7 @@ widget = {
 						autoresize = no
 						align = nobaseline|center
 						text = "[ChallengeCharacter.GetStartDate.GetStringLong]"
-						default_format = "#medium;glow_color:{0,0,0,0}"
+						default_format = "#medium;glow_color:{0,0,0,1}"
 						using = Font_Size_Medium
 						using = Font_Type_Flavor
 					}

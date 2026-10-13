@@ -1636,11 +1636,11 @@ wm_1979_john_eden = {	# John Eden; 1979 seat: Bournemouth West
 }
 wm_1979_timothy_eggar = {	# Timothy Eggar; 1979 seat: Enfield North
 	name = wm_name_1979_timothy_eggar
-	dynasty_house = wm_house_party_sdlp
+	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat
 	1933.8.13 = { birth = yes }
-	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_sdlp } } }
+	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_labour } } }
 }
 wm_1979_robert_elliott = {	# Robert Elliott; 1979 seat: Newcastle upon Tyne North
 	name = wm_name_1979_robert_elliott
@@ -1725,11 +1725,11 @@ wm_1979_alan_fitch = {	# Alan Fitch; 1979 seat: Wigan
 }
 wm_1979_gerry_fitt = {	# Gerry Fitt; 1979 seat: Belfast West
 	name = wm_name_1979_gerry_fitt
-	dynasty_house = wm_house_party_labour
+	dynasty_house = wm_house_party_sdlp
 	culture = irish
 	religion = wm_ideo_social_democrat
 	1930.9.14 = { birth = yes }
-	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_labour } } }
+	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_sdlp } } }
 }
 wm_1979_charles_fletcher_cooke = {	# Charles Fletcher-Cooke; 1979 seat: Darwen
 	name = wm_name_1979_charles_fletcher_cooke
@@ -5152,12 +5152,12 @@ wm_1979_notional_member_for_cumbernauld_and_kirkintilloch = {	# Notional Member 
 	1954.9.8 = { birth = yes }
 	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_conservative } } }
 }
-wm_1979_notional_member_for_didcot_and_wantage = {	# Notional Member for Didcot and Wantage; 1979 seat: notional
-	name = wm_name_1979_notional_member_for_didcot_and_wantage
+wm_1979_notional_member_for_doncaster_east_and_the_isle_of_axholme = {	# Notional Member for Doncaster East and the Isle of Axholme; 1979 seat: notional
+	name = wm_name_1979_notional_member_for_doncaster_east_and_the_isle_of_axholme
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation
-	1929.3.22 = { birth = yes }
+	1944.1.9 = { birth = yes }
 	1979.5.4 = { effect = { set_variable = { name = wm_party value = title:k_party_conservative } } }
 }
 wm_1979_notional_member_for_dunstable_and_leighton_buzzard = {	# Notional Member for Dunstable and Leighton Buzzard; 1979 seat: notional

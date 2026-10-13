@@ -223,10 +223,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 140 }
 	}
 	title:c_belfast_south_and_mid_down = {
-		set_variable = { name = wm_lean_uup value = 500 }
-		set_variable = { name = wm_lean_dup value = 180 }
-		set_variable = { name = wm_lean_sdlp value = 160 }
-		set_variable = { name = wm_lean_oth value = 160 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_ld value = 120 }
+		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_belfast_west = {
 		set_variable = { name = wm_lean_uup value = 500 }
@@ -409,10 +409,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_bolton_west = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
-		set_variable = { name = wm_lean_ld value = 120 }
-		set_variable = { name = wm_lean_oth value = 60 }
+		set_variable = { name = wm_lean_sdlp value = 500 }
+		set_variable = { name = wm_lean_uup value = 200 }
+		set_variable = { name = wm_lean_dup value = 150 }
+		set_variable = { name = wm_lean_oth value = 150 }
 	}
 	title:c_bootle = {
 		set_variable = { name = wm_lean_lab value = 520 }
@@ -739,8 +739,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_ceredigion_preseli = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -865,10 +865,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_clwyd_north = {
-		set_variable = { name = wm_lean_sdlp value = 500 }
-		set_variable = { name = wm_lean_uup value = 200 }
-		set_variable = { name = wm_lean_dup value = 150 }
-		set_variable = { name = wm_lean_oth value = 150 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_ld value = 120 }
+		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_coatbridge_and_bellshill = {
 		set_variable = { name = wm_lean_lab value = 520 }
@@ -1027,8 +1027,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_doncaster_east_and_the_isle_of_axholme = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -1099,10 +1099,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_dwyfor_meirionnydd = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
-		set_variable = { name = wm_lean_ld value = 120 }
-		set_variable = { name = wm_lean_oth value = 60 }
+		set_variable = { name = wm_lean_pc value = 450 }
+		set_variable = { name = wm_lean_lab value = 350 }
+		set_variable = { name = wm_lean_con value = 150 }
+		set_variable = { name = wm_lean_ld value = 50 }
 	}
 	title:c_ealing_central_and_acton = {
 		set_variable = { name = wm_lean_con value = 520 }
@@ -1525,8 +1525,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_great_yarmouth = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -1555,8 +1555,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_halesowen = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -1627,8 +1627,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_hartlepool = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -1921,10 +1921,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_lagan_valley = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
-		set_variable = { name = wm_lean_ld value = 120 }
-		set_variable = { name = wm_lean_oth value = 60 }
+		set_variable = { name = wm_lean_uup value = 500 }
+		set_variable = { name = wm_lean_dup value = 180 }
+		set_variable = { name = wm_lean_sdlp value = 160 }
+		set_variable = { name = wm_lean_oth value = 160 }
 	}
 	title:c_lancaster_and_wyre = {
 		set_variable = { name = wm_lean_con value = 520 }
@@ -2227,8 +2227,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_mid_dorset_and_north_poole = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -2515,14 +2515,14 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_north_herefordshire = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_north_norfolk = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -2545,8 +2545,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_north_warwickshire_and_bedworth = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -2749,8 +2749,8 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_poole = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -3109,14 +3109,14 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_south_down = {
-		set_variable = { name = wm_lean_lab value = 520 }
-		set_variable = { name = wm_lean_con value = 300 }
-		set_variable = { name = wm_lean_ld value = 120 }
-		set_variable = { name = wm_lean_oth value = 60 }
+		set_variable = { name = wm_lean_uup value = 500 }
+		set_variable = { name = wm_lean_dup value = 180 }
+		set_variable = { name = wm_lean_sdlp value = 160 }
+		set_variable = { name = wm_lean_oth value = 160 }
 	}
 	title:c_south_east_cornwall = {
-		set_variable = { name = wm_lean_con value = 520 }
-		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_lab value = 520 }
+		set_variable = { name = wm_lean_con value = 300 }
 		set_variable = { name = wm_lean_ld value = 120 }
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
@@ -3157,10 +3157,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_south_shropshire = {
-		set_variable = { name = wm_lean_uup value = 500 }
-		set_variable = { name = wm_lean_dup value = 180 }
-		set_variable = { name = wm_lean_sdlp value = 160 }
-		set_variable = { name = wm_lean_oth value = 160 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_ld value = 120 }
+		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_south_suffolk = {
 		set_variable = { name = wm_lean_con value = 520 }
@@ -3367,10 +3367,10 @@ wm_init_1979_seat_leans_effect = {
 		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_stratford_on_avon = {
-		set_variable = { name = wm_lean_pc value = 450 }
-		set_variable = { name = wm_lean_lab value = 350 }
-		set_variable = { name = wm_lean_con value = 150 }
-		set_variable = { name = wm_lean_ld value = 50 }
+		set_variable = { name = wm_lean_con value = 520 }
+		set_variable = { name = wm_lean_lab value = 300 }
+		set_variable = { name = wm_lean_ld value = 120 }
+		set_variable = { name = wm_lean_oth value = 60 }
 	}
 	title:c_streatham_and_croydon_north = {
 		set_variable = { name = wm_lean_con value = 520 }
