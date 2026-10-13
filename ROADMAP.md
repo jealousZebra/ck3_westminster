@@ -57,7 +57,25 @@ In this order.
 ### Also in 0.4
 - The "Empress" label on the Prime Minister's spouse (the fix is written and was held back from 0.3.1).
 
-## 0.5: newspapers (to prototype after 0.4)
+## 0.5: Margaret Thatcher, 4 May 1979
+
+The first historical bookmark and the template for every bookmark that follows.
+
+- Refactor the 2024-only generator into reusable dated snapshots for MPs, parties, governments, opposition and
+  election results.
+- Start on **4 May 1979**, with Margaret Thatcher as Prime Minister, James Callaghan leading Labour, David Steel
+  leading the Liberals, Elizabeth II as monarch, and the first Thatcher ministry.
+- Map the 1979 Commons onto the existing 2024 constituencies using the historical-seat rules in `PLAN.md`, and use
+  the 1979 result rather than 2024 vote shares as the election and polling baseline.
+- Apply era rules: no devolved parliaments or modern mayoralties, the pre-1999 House of Lords, period parties and
+  offices, and period-appropriate terminology and presentation.
+- Add a focused early-Thatcher situation around inflation, industrial relations and the government's Commons
+  majority. Reuse generic political systems elsewhere so the bookmark remains a manageable vertical slice.
+- Create recognisable CK3 character models for the party leaders, Cabinet and other significant figures of 1979.
+- Done when a player can start as Thatcher, Callaghan or another 1979 MP, play a functioning Parliament and reach
+  the next election using 1979 data.
+
+## 0.6: newspapers
 
 - **Legends become press coverage:** a legend becomes a running story (a scandal, a comeback, a landmark bill) that
   spreads across seats like a legend and moves Profile and public trust.
@@ -76,7 +94,8 @@ In this order.
   volunteer reviewers from the comments; other languages after it.
 - **Fringe parties:** made-up fringe parties a player can found, very hard to play; never real far-right parties.
   Open decision.
-- More bookmarks, back through every Prime Minister to Chamberlain (see PLAN.md milestones).
+- More bookmarks, using the 1979 pipeline and working back through every Prime Minister to Chamberlain (see PLAN.md
+  milestones).
 - The House of Lords, mayors and councils as full systems (now only early technical tests).
 - Balance over long games, and AI behaviour after a decade or more.
 - Modern clothing for portraits.

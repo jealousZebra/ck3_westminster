@@ -842,7 +842,8 @@ the intrigue list below.
 | 4 | **Parliament**: Commons votes, whips, confidence motions, rebellions; the House of Lords (peerages, honours lists, revising bills); mayors and their elections; the devolved parliaments; councils and council elections | |
 | 5 | **Content**: political schemes, scandals (secrets), press, activities (conference, PMQs, campaigning), events | It's fun |
 | 6 | **Polish and release**: UI, 9 languages (later), Workshop page | First public beta, 0.3 (English, 2024 bookmark): Workshop page, thumbnail and release script ready 2026-10-09 |
-| 7+ | **More bookmarks**, going back: Sunak 2022, Truss, Johnson, May, Cameron, Brown, Blair, Major, Thatcher, Callaghan, Wilson, Heath, Douglas-Home, Macmillan, Eden, Churchill 1951, Attlee, Churchill 1940, Chamberlain 1937 | |
+| 7 | **1979 Thatcher bookmark**: reusable dated-snapshot generator; the 1979 Commons mapped to the 2024 constituencies; Thatcher's first ministry, opposition and election baseline; era rules; recognisable models for the significant figures | Start as Thatcher, Callaghan or another 1979 MP, play a functioning Parliament and reach the next election using 1979 data |
+| 8+ | **More bookmarks**, going back: Sunak 2022, Truss, Johnson, May, Cameron, Brown, Blair, Major, Callaghan, Wilson, Heath, Douglas-Home, Macmillan, Eden, Churchill 1951, Attlee, Churchill 1940, Chamberlain 1937 | |
 
 ## Open questions
 
