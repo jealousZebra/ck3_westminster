@@ -663,6 +663,9 @@
  wm_name_char_boris_johnson: "ボリス・ジョンソン"
  wm_name_char_liz_truss: "リズ・トラス"
  wm_name_char_jess_okafor: "ジェス・オカフォー"
+ wm_name_char_maya_reed: "マヤ・リード — Just Stop Oil"
+ wm_name_char_alex_mercer: "アレックス・マーサー — Extinction Rebellion"
+ wm_name_char_nadia_rahman: "ナディア・ラーマン — Amnesty International"
  # The MPs' spouses (fictional)
  wm_name_sp_aberafan_maesteg: "メアリー・グウィン"
  wm_name_sp_aberdeenshire_north_and_moray_east: "アリソン・ギブソン"

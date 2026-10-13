@@ -13,7 +13,8 @@
 - Textures: the UI skin (gfx/interface/skinned and every gfx/interface/skins/<culture>) redrawn: window, tooltip
   and panel backgrounds become plain paper (dark by night) with a little grain; ornamental borders become plain
   rules; medieval ornaments that have no modern equivalent are removed. Each texture keeps its size and alpha
-  shape, so the GUI layouts work unchanged. Illustrations and tab icons are replaced separately (fal.ai images).
+  shape, so the GUI layouts work unchanged. Lifestyle, trait and HUD tab icons get a bright flat duotone treatment;
+  scene illustrations are replaced separately (fal.ai images).
 """
 import re
 import sys
@@ -404,6 +405,87 @@ def build_mono():
     return n
 
 
+# Bright, flat accents for screens that still used black medieval line art.  These are deliberately generated from
+# vanilla's masks rather than hand-painted one by one: new DLC tabs and traits inherit the Westminster treatment too.
+MODERN_ACCENTS = {
+    "diplomacy": (78, 174, 218), "foreign": (78, 174, 218), "family": (78, 174, 218), "majesty": (78, 174, 218),
+    "martial": (224, 92, 86), "strategy": (224, 92, 86), "authority": (224, 92, 86), "chivalry": (224, 92, 86),
+    "stewardship": (88, 190, 142), "wealth": (88, 190, 142), "domain": (88, 190, 142), "duty": (88, 190, 142),
+    "intrigue": (174, 120, 219), "skulduggery": (174, 120, 219), "temptation": (174, 120, 219), "intimidation": (174, 120, 219),
+    "learning": (235, 185, 75), "scholarship": (235, 185, 75), "medicine": (235, 185, 75), "theology": (235, 185, 75),
+    "wanderer": (74, 186, 181), "wayfarer": (74, 186, 181), "voyager": (74, 186, 181), "surveyor": (74, 186, 181),
+    "decisions": (235, 185, 75), "situations": (237, 133, 86), "factions": (224, 92, 86),
+    "council": (78, 174, 218), "court": (174, 120, 219),
+    "military": (224, 92, 86), "realm": (88, 190, 142), "activities": (74, 186, 181),
+    "camp": (237, 133, 86), "contracts": (235, 185, 75), "estate": (88, 190, 142),
+}
+
+
+def modern_accent(name):
+    low = name.lower()
+    for word, color in MODERN_ACCENTS.items():
+        if word in low:
+            return np.array(color, dtype=np.float32)
+    return np.array((120, 178, 210), dtype=np.float32)
+
+
+def modern_duotone(rgba, name, card=False):
+    """Turn old dark/gold art into a crisp modern icon with a bright accent and dark navy depth."""
+    rgb = rgba[..., :3].astype(np.float32)
+    alpha = rgba[..., 3].astype(np.float32)
+    lum = rgb @ np.array([0.299, 0.587, 0.114], dtype=np.float32) / 255
+    accent = modern_accent(name)
+    light = np.array((245, 239, 226), dtype=np.float32)
+    deep = np.array((27, 34, 43), dtype=np.float32)
+    solid = alpha > 24
+    lo, hi = np.percentile(lum[solid], (5, 95)) if solid.any() else (0, 1)
+    tone = np.clip((lum - lo) / max(hi - lo, 0.08), 0, 1)[..., None]
+    # A dark base and category colour retain the original silhouette, while the brightest quarter becomes an
+    # off-white highlight. This reads as a flat vector mark at HUD size but keeps enough detail in a trait portrait.
+    out = deep * (1 - tone) + accent * tone
+    highlight = np.clip((tone - 0.72) / 0.28, 0, 1)
+    out = out * (1 - 0.45 * highlight) + light * (0.45 * highlight)
+    if card:
+        # Lifestyle paths are full-bleed pictures. A restrained gradient makes each tree distinct while leaving
+        # perk connectors and labels readable.
+        h, w = alpha.shape
+        yy = np.linspace(0, 1, h)[:, None, None]
+        base = deep[None, None, :] * (0.75 - 0.15 * yy) + accent[None, None, :] * (0.25 + 0.15 * yy)
+        detail = (tone - 0.5) * 38
+        out = np.clip(base + detail, 0, 255)
+        alpha[:] = 255
+    return np.dstack([np.clip(out, 0, 255), alpha]).astype(np.uint8)
+
+
+def build_modern_icons():
+    """Lifestyle paths, perk symbols, personality traits and the right-hand HUD tabs for the night edition."""
+    if not DARK:
+        return {"lifestyle backgrounds": 0, "lifestyle icons": 0, "traits": 0, "hud tabs": 0}
+    groups = {
+        "lifestyle backgrounds": (GAME / "gfx/interface/icons/lifestyle_tree_backgrounds", True),
+        "lifestyle icons": (GAME / "gfx/interface/icons/lifestyles", False),
+        "lifestyle perks": (GAME / "gfx/interface/icons/lifestyles_perks", False),
+        "traits": (GAME / "gfx/interface/icons/traits", False),
+    }
+    counts = {}
+    for label, (directory, card) in groups.items():
+        counts[label] = 0
+        for f in sorted(directory.glob("*.dds")):
+            rgba = np.array(Image.open(f).convert("RGBA"))
+            save_dds(modern_duotone(rgba, f.stem, card), MOD / f.relative_to(GAME))
+            counts[label] += 1
+    counts["hud tabs"] = 0
+    hud_roots = [GAME / "gfx/interface/skinned/hud_maintab"] + sorted((GAME / "gfx/interface/skins").glob("*/hud_maintab"))
+    for directory in hud_roots:
+        for f in sorted(directory.glob("maintab_*.dds")):
+            if f.name.startswith("maintab_bg"):
+                continue
+            rgba = np.array(Image.open(f).convert("RGBA"))
+            save_dds(modern_duotone(rgba, f.stem), MOD / f.relative_to(GAME))
+            counts["hud tabs"] += 1
+    return counts
+
+
 # Paintings that the GUI uses as panel backdrops behind text (the decision window's Effects box, the interaction
 # windows): faded most of the way to paper, so ink text on them reads.
 PALE = ["gfx/interface/icons/lifestyle_tree_backgrounds/skulduggery.dds",
@@ -619,6 +701,7 @@ def main():
     print("chrome recoloured:", build_negative())
     print("decoration bands as rules:", build_rules_and_misc())
     print("alert icons in ink:", build_mono())
+    print("modern lifestyle, trait and HUD icons:", build_modern_icons())
     print("gui files with dark glows patched:", build_glowless_gui())
     build_textformatting()
     print("shared gui files with dark tints made paper:", build_paper_tints())   # after: edits the glow-free copies
