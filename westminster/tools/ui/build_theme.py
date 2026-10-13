@@ -60,7 +60,7 @@ THEMES = {
         "ink": (236, 231, 220), "line": (118, 116, 110), "muted": (128, 126, 120), "empty": (58, 61, 66),
         "red": (200, 16, 46), "sea": (22, 27, 32), "land": (44, 46, 49), "coast": (150, 148, 140),
         "seam": (29, 31, 34), "land_line": (82, 84, 86),
-        "alert_dark": (34, 36, 40), "alert_light": (236, 231, 220), "grain": 0.45, "soften": 0.06,
+        "alert_dark": (67, 82, 104), "alert_light": (245, 202, 116), "grain": 0.45, "soften": 0.06,
     },
 }
 THEME = THEMES[LOOK]
@@ -524,6 +524,32 @@ def paper_tint(m):
     return "%s%.3f %.3f %.3f%s%s" % (m.group(1), base[0], base[1], base[2], m.group(5) or "", m.group(6))
 
 
+ACTION_STATUS_COLORS = {
+    "Status_Suggestion": "0.31 0.39 0.47 1",       # slate blue: neutral actions
+    "Status_Suggestion_Bad": "0.48 0.22 0.20 1",  # warm red: urgent actions
+    "Status_Suggestion_Good": "0.22 0.38 0.30 1", # teal: positive actions
+}
+
+
+def accent_suggestion_colors(text):
+    """Give the current-situation rows distinct slate, red, and teal fills in the night edition."""
+    if not DARK:
+        return text
+    lines = text.splitlines(keepends=True)
+    for name, color in ACTION_STATUS_COLORS.items():
+        start = next((i for i, line in enumerate(lines) if line.strip() == f"template {name}"), None)
+        if start is None:
+            continue
+        end = next((i for i in range(start + 1, len(lines)) if lines[i].startswith("}") and lines[i].strip() == "}"), None)
+        if end is None:
+            continue
+        for i in range(start + 1, end):
+            if re.match(r"\s*color\s*=\s*\{", lines[i]):
+                lines[i] = re.sub(r"(?<=\{)[^}]+", f" {color} ", lines[i], count=1)
+                break
+    return "".join(lines)
+
+
 def build_paper_tints():
     """The shared background templates (gui/shared/*.gui: Background_Area_Solid etc.) tint their textures nearly
     black. Those tints become paper tones, so panels everywhere are light behind the ink text."""
@@ -537,6 +563,8 @@ def build_paper_tints():
         glows = bool(DARK_GLOW.search(src))
         src = DARK_GLOW.sub("glow_color:{0,0,0,0}", src)
         out, k = TINT.subn(paper_tint, src)
+        if rel.as_posix() == "gui/shared/backgrounds.gui":
+            out = accent_suggestion_colors(out)
         if k and out != f.read_text(encoding="utf-8-sig"):
             change = "with its dark text glows made transparent and dark tints made paper" if glows else \
                 "with its dark tints made paper"
