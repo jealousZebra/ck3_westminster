@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parent.parent.parent          # westminster/
 MOD = ROOT / "westminster"
@@ -458,23 +458,10 @@ def modern_duotone(rgba, name, card=False):
 
 
 def build_modern_icons():
-    """Lifestyle paths, perk symbols, personality traits and the right-hand HUD tabs for the night edition."""
+    """Fallback treatment for the right-hand HUD tabs; fal_images.py installs the final generated pictograms."""
     if not DARK:
-        return {"lifestyle backgrounds": 0, "lifestyle icons": 0, "traits": 0, "hud tabs": 0}
-    groups = {
-        "lifestyle backgrounds": (GAME / "gfx/interface/icons/lifestyle_tree_backgrounds", True),
-        "lifestyle icons": (GAME / "gfx/interface/icons/lifestyles", False),
-        "lifestyle perks": (GAME / "gfx/interface/icons/lifestyles_perks", False),
-        "traits": (GAME / "gfx/interface/icons/traits", False),
-    }
-    counts = {}
-    for label, (directory, card) in groups.items():
-        counts[label] = 0
-        for f in sorted(directory.glob("*.dds")):
-            rgba = np.array(Image.open(f).convert("RGBA"))
-            save_dds(modern_duotone(rgba, f.stem, card), MOD / f.relative_to(GAME))
-            counts[label] += 1
-    counts["hud tabs"] = 0
+        return {"hud tabs": 0}
+    counts = {"hud tabs": 0}
     hud_roots = [GAME / "gfx/interface/skinned/hud_maintab"] + sorted((GAME / "gfx/interface/skins").glob("*/hud_maintab"))
     for directory in hud_roots:
         for f in sorted(directory.glob("maintab_*.dds")):
@@ -483,6 +470,115 @@ def build_modern_icons():
             rgba = np.array(Image.open(f).convert("RGBA"))
             save_dds(modern_duotone(rgba, f.stem), MOD / f.relative_to(GAME))
             counts["hud tabs"] += 1
+    return counts
+
+
+GENERATED_UI = ROOT / "art" / "generated_ui"
+TRAIT_ATLAS = [
+    "brave", "craven", "diligent", "lazy", "content",
+    "greedy", "generous", "honest", "deceitful", "compassionate",
+    "callous", "stubborn", "fickle", "gregarious", "shy",
+    "just", "arbitrary", "patient", "impatient", "calm",
+    "wrathful", "humble", "arrogant", "zealous", "cynical",
+    "temperate", "gluttonous", "ambitious", "suspicious", "patient_alt",
+]
+LIFESTYLE_ATLAS = [
+    "_frame_lifestyle", "node_diplomacy", "node_intrigue", "node_learning", "node_martial",
+    "node_stewardship", "node_wanderer", "trait_administrator", "trait_architect", "trait_august",
+    "trait_avaricious", "trait_diplomat", "trait_erudite", "trait_family_first", "trait_gallant",
+    "trait_overseer", "trait_schemer", "trait_seducer", "trait_strategist", "trait_surveyor",
+    "trait_theologian", "trait_torturer", "trait_voyager", "trait_wayfarer", "trait_whole_of_body",
+]
+LIFESTYLE_MAIN = {
+    "diplomacy_lifestyle": 1, "intrigue_lifestyle": 2, "learning_lifestyle": 3,
+    "martial_lifestyle": 4, "stewardship_lifestyle": 5, "wanderer_lifestyle": 6,
+}
+BACKGROUND_CELLS = {
+    "foreign_affairs": 0, "majesty": 0, "family": 0,
+    "strategy": 1, "authority": 1, "chivalry": 1,
+    "wealth": 2, "domain": 2, "duty": 2,
+    "skulduggery": 3, "temptation": 3, "intimidation": 3,
+    "learning_lifestyle": 4, "scholarship": 4, "medicine": 4, "theology": 4,
+    "wayfarer": 5, "voyager": 5, "surveyor": 5,
+}
+
+
+def atlas_cell(atlas, columns, rows, index):
+    """Crop one exact grid cell, avoiding accumulated rounding at the atlas edge."""
+    col, row = index % columns, index // columns
+    return atlas.crop((round(col * atlas.width / columns), round(row * atlas.height / rows),
+                       round((col + 1) * atlas.width / columns), round((row + 1) * atlas.height / rows)))
+
+
+def generated_icon_card(cell, size, name):
+    """Put a generated transparent pictogram in the same high-contrast card language as the HUD tabs."""
+    # Lifestyle and perk textures are horizontal sprite strips (usually normal, hover, selected). Build one square
+    # tile and repeat it into every state instead of shrinking a single icon across the whole strip.
+    if size[0] > size[1] and size[0] % size[1] == 0:
+        frame = generated_icon_card(cell, (size[1], size[1]), name)
+        return np.concatenate([frame] * (size[0] // size[1]), axis=1)
+    cell = cell.convert("RGBA")
+    alpha = cell.getchannel("A")
+    box = alpha.getbbox()
+    if box:
+        cell = cell.crop(box)
+    side = round(min(size) * 0.69)
+    cell.thumbnail((side, side), Image.Resampling.LANCZOS)
+    accent = tuple(int(v) for v in modern_accent(name))
+    canvas = Image.new("RGBA", size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(canvas)
+    margin = max(3, round(min(size) * 0.055))
+    radius = max(7, round(min(size) * 0.17))
+    line = max(2, round(min(size) * 0.025))
+    draw.rounded_rectangle((margin, margin, size[0] - margin - 1, size[1] - margin - 1), radius=radius,
+                           fill=(24, 31, 40, 246), outline=accent + (255,), width=line)
+    x, y = (size[0] - cell.width) // 2, (size[1] - cell.height) // 2
+    canvas.alpha_composite(cell, (x, y))
+    return np.array(canvas)
+
+
+def build_generated_political_icons():
+    """Install the generated modern political art; no vanilla pixels are used by these assets."""
+    counts = {"lifestyle backgrounds": 0, "lifestyle icons": 0, "lifestyle perks": 0, "personality traits": 0}
+    bg_atlas = Image.open(GENERATED_UI / "lifestyle_backgrounds.png").convert("RGB")
+    bg_dir = GAME / "gfx/interface/icons/lifestyle_tree_backgrounds"
+    for name, index in BACKGROUND_CELLS.items():
+        target = bg_dir / f"{name}.dds"
+        tw, th = Image.open(target).size
+        cell = atlas_cell(bg_atlas, 3, 2, index)
+        # Fill the original tall canvas. Slight path-specific crops keep the three trees in a category from being
+        # pixel-identical while retaining a coherent lifestyle identity.
+        shift = sum(name.encode("utf-8")) % max(1, cell.width // 14)
+        scale = max(tw / cell.width, th / cell.height)
+        cell = cell.resize((round(cell.width * scale), round(cell.height * scale)), Image.Resampling.LANCZOS)
+        x = max(0, min(cell.width - tw, (cell.width - tw) // 2 + shift - cell.width // 28))
+        y = max(0, (cell.height - th) // 2)
+        save_dds(np.array(cell.crop((x, y, x + tw, y + th)).convert("RGBA")), MOD / target.relative_to(GAME))
+        counts["lifestyle backgrounds"] += 1
+
+    icon_atlas = Image.open(GENERATED_UI / "lifestyle_icons.png").convert("RGBA")
+    perk_dir = GAME / "gfx/interface/icons/lifestyles_perks"
+    for index, name in enumerate(LIFESTYLE_ATLAS):
+        target = perk_dir / f"{name}.dds"
+        size = Image.open(target).size
+        save_dds(generated_icon_card(atlas_cell(icon_atlas, 5, 5, index), size, name), MOD / target.relative_to(GAME))
+        counts["lifestyle perks"] += 1
+    lifestyle_dir = GAME / "gfx/interface/icons/lifestyles"
+    for name, index in LIFESTYLE_MAIN.items():
+        target = lifestyle_dir / f"{name}.dds"
+        size = Image.open(target).size
+        save_dds(generated_icon_card(atlas_cell(icon_atlas, 5, 5, index), size, name), MOD / target.relative_to(GAME))
+        counts["lifestyle icons"] += 1
+
+    trait_atlas = Image.open(GENERATED_UI / "personality_traits.png").convert("RGBA")
+    trait_dir = GAME / "gfx/interface/icons/traits"
+    for index, name in enumerate(TRAIT_ATLAS[:28]):       # final two cells are alternate concepts, not CK3 traits
+        target = trait_dir / f"{name}.dds"
+        if not target.exists():
+            continue
+        size = Image.open(target).size
+        save_dds(generated_icon_card(atlas_cell(trait_atlas, 5, 6, index), size, name), MOD / target.relative_to(GAME))
+        counts["personality traits"] += 1
     return counts
 
 
@@ -701,7 +797,8 @@ def main():
     print("chrome recoloured:", build_negative())
     print("decoration bands as rules:", build_rules_and_misc())
     print("alert icons in ink:", build_mono())
-    print("modern lifestyle, trait and HUD icons:", build_modern_icons())
+    print("generated modern political artwork:", build_generated_political_icons())
+    print("modern HUD fallback icons:", build_modern_icons())
     print("gui files with dark glows patched:", build_glowless_gui())
     build_textformatting()
     print("shared gui files with dark tints made paper:", build_paper_tints())   # after: edits the glow-free copies
