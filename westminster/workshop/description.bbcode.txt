@@ -1,8 +1,8 @@
 [h1]Westminster: modern UK politics for Crusader Kings III[/h1]
 [b]A total conversion that turns CK3 into British politics.[/b] Start on 5 July 2024, the day after the general election, with all 650 real MPs on a map of the real constituencies. Play any MP, or start as a young party activist, and climb from the doorstep to Downing Street: win selection, fight elections, whip the Commons and survive a confidence vote.
 
-[h2]Beta 0.3[/h2]
-This is the first public release and it is a [b]beta[/b]. The map, the 2024 Parliament, the Commons, elections, campaigns, careers, parties and the new interface all work and are covered by automated in-game tests. Still rough:
+[h2]Beta 0.4[/h2]
+This is a [b]beta[/b]. Version 0.4 adds eight translations, real-world campaigning groups, improved landless contracts and a redesigned dark political interface. The map, the 2024 Parliament, the Commons, elections, campaigns, careers and parties all work. Still rough:
 [list]
 [*]AI balance over long games is untested: expect odd polls or strange governments after a decade or so.
 [*]Portraits still wear the game's medieval clothes.
@@ -23,6 +23,7 @@ Bug reports and ideas are very welcome in the comments.
 [h3]From activist to Prime Minister[/h3]
 [list]
 [*]Start without a seat: canvass, fundraise and write speeches to build Party Standing, pass the candidate assessment and win a selection contest.
+[*]Play campaigners from Just Stop Oil, Extinction Rebellion or Amnesty International, form a party and seek election.
 [*]Parties are houses: Cross the Floor to another party, or Found a Party of your own.
 [*]Leadership contests: MPs nominate, then the members choose between the top two. Challenge your leader if you dare.
 [*]The Speaker is elected by all MPs in a secret ballot, and leaves their party.
@@ -58,7 +59,7 @@ Bug reports and ideas are very welcome in the comments.
 
 [h3]A modern look[/h3]
 [list]
-[*]A newspaper-style interface: newsprint, ink and one red accent, set in Playfair Display and Source Serif.
+[*]A dark newspaper-style interface with high-contrast alerts and modern political artwork, set in Playfair Display and Source Serif.
 [*]The State of the Parties panel: latest poll, public trust, the Commons seat chart and a poll tracker.
 [*]Real flags for the nations and for the counties and cities that have one, and press-photo style pictures instead of medieval art.
 [*]Modern terms: Charisma, Economy, Security, Spin, Policy and Stamina; Funds, Profile, Political Capital, Party Brand, Clout, Pressure and Mandate.
@@ -79,4 +80,4 @@ Real politicians and public figures appear under their real names, but every eve
 [h2]Credits[/h2]
 CREDITS.txt in the mod folder lists every source and licence: constituency boundaries (ONS, Open Government Licence), election results and MPs (UK Parliament, Open Parliament Licence), towns (GeoNames), elevation (Copernicus), the fonts (SIL Open Font License) and each flag from Wikimedia Commons. The pictures are AI-generated (FLUX.1 [dev]) and released under CC0. Not made or endorsed by Paradox Interactive.
 
-[b]Source code:[/b] open source, coming soon to GitHub.
+[b]Source code:[/b] [url=https://github.com/jealousZebra/ck3_westminster]GitHub[/url].
