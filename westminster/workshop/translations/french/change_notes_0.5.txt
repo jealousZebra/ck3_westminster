@@ -1,0 +1,8 @@
+[h1]Bêta 0.5 — Thatcher, 1979[/h1]
+[list]
+[*]Nouveau départ le 4 mai 1979 avec Margaret Thatcher comme Première ministre.
+[*]Ajout de la Chambre des communes de 1979, des chefs historiques, du premier Cabinet Thatcher et d’Élisabeth II.
+[*]Ajout de la situation gouvernementale, des modèles des personnalités majeures et de l’illustration complète du départ.
+[*]Correction de l’écran de départ vide et suppression de la dernière arche gothique du menu principal.
+[*]Toutes les circonscriptions commencent au sein du Royaume-Uni, tout en conservant les possibilités d’indépendance.
+[/list]

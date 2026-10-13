@@ -1,5 +1,12 @@
 # Westminster changelog
 
+## 0.5 — Thatcher, 1979
+
+- Added a new 4 May 1979 start, the 1979 Commons, Thatcher's first Cabinet and key political figures.
+- Added the 1979 election baseline, opening government situation and full bookmark artwork.
+- Added recognisable character models for leading figures and fixed the main-menu and bookmark presentation.
+- Kept all starting constituencies within the UK while preserving independence gameplay.
+
 ## 0.4 (beta)
 - Added French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish localization.
 - Added playable campaigners from Just Stop Oil, Extinction Rebellion and Amnesty International, with paths to

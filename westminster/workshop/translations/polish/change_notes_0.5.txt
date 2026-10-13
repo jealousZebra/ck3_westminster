@@ -1,0 +1,8 @@
+[h1]Beta 0.5 — Thatcher, 1979[/h1]
+[list]
+[*]Nowy start 4 maja 1979 r. z Margaret Thatcher jako premierem.
+[*]Dodano Izbę Gmin 1979, historycznych liderów, pierwszy gabinet Thatcher i Elżbietę II.
+[*]Dodano sytuację rządu, modele ważnych postaci i pełną oprawę daty startowej.
+[*]Naprawiono pusty ekran startowy i usunięto ostatni gotycki łuk z menu głównego.
+[*]Wszystkie okręgi zaczynają w Wielkiej Brytanii, zachowując możliwość niepodległości.
+[/list]

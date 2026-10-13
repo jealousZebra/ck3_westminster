@@ -1,0 +1,8 @@
+[h1]Beta 0.5 — Thatcher, 1979[/h1]
+[list]
+[*]Neuer Start am 4. Mai 1979 mit Margaret Thatcher als Premierministerin.
+[*]Unterhaus 1979, historische Parteiführer, erstes Thatcher-Kabinett und Elisabeth II. hinzugefügt.
+[*]Neue Regierungslage, Modelle wichtiger Persönlichkeiten und vollständige Bookmark-Grafik.
+[*]Leeren Startbildschirm und letzte gotische Verzierung im Hauptmenü behoben.
+[*]Alle Wahlkreise beginnen im Vereinigten Königreich; Unabhängigkeit bleibt im Spiel möglich.
+[/list]

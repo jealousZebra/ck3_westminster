@@ -1,84 +1,51 @@
-[h1]Westminster: política británica actual para Crusader Kings III[/h1]
-AVISO: de momento el mod está solo en inglés. Las traducciones llegarán más adelante.
+[h1]Westminster: gobierna el Reino Unido o conquista Downing Street[/h1]
+[b]Una conversión total de política británica moderna para Crusader Kings III.[/b]
 
-[b]Una conversión total que transforma CK3 en política británica.[/b] Empieza el 5 de julio de 2024, el día después de las elecciones generales, con los 650 diputados reales en un mapa de las circunscripciones reales. Juega con cualquier diputado o empieza como joven activista de un partido y asciende del puerta a puerta a Downing Street: consigue la candidatura, lucha en las elecciones, impón la disciplina de voto en la Cámara de los Comunes (House of Commons) y sobrevive a una cuestión de confianza.
+Lidera a [b]Margaret Thatcher en 1979[/b], gobierna con [b]Keir Starmer tras las elecciones de 2024[/b], juega con cualquier diputado o empieza como activista y funda un nuevo partido.
 
-[h2]Beta 0.3[/h2]
-Es la primera versión pública y es una [b]beta[/b]. El mapa, el Parlamento de 2024, los Comunes, las elecciones, las campañas, las carreras, los partidos y la nueva interfaz funcionan y están cubiertos por pruebas automáticas dentro del juego. Aún por pulir:
+Disputa elecciones en las 650 circunscripciones, dirige el Parlamento y el gabinete, sobrevive a rebeliones y mociones de confianza, moldea la opinión pública e intenta llegar a primer ministro.
+
+[h2]Beta 0.5 — Thatcher, 1979[/h2]
 [list]
-[*]El equilibrio de la IA en partidas largas no se ha probado: es posible que veas encuestas raras o gobiernos extraños pasada una década o así.
-[*]Los retratos siguen llevando la ropa medieval del juego.
-[*]Algunas pantallas del juego base aún tienen aspecto medieval.
-[*]Solo hay un marcador: 2024. Los primeros ministros anteriores llegarán más adelante.
-[*]De momento, solo en inglés. Las traducciones llegarán más adelante.
+[*][b]Dos inicios jugables:[/b] 4 de mayo de 1979 y 5 de julio de 2024.
+[*]La Cámara de los Comunes de 1979 sobre el mapa fijo de 650 escaños.
+[*]Líderes históricos, primer gabinete de Thatcher, Isabel II y otras figuras destacadas.
+[*]Modelos de CK3 reconocibles para los principales políticos.
+[*]Interfaz oscura inspirada en la prensa y arte político moderno.
 [/list]
-Los informes de errores y las ideas son más que bienvenidos en los comentarios.
+
+[b]Si te gusta Westminster, valóralo y añádelo a favoritos. Así ayudas a que otros jugadores lo descubran.[/b]
+
+[h2]Elige tu camino[/h2]
+[list]
+[*][b]Primer ministro:[/b] nombra el gabinete, controla la agenda y mantén unido al partido.
+[*][b]Líder de partido:[/b] define las políticas, gestiona facciones y lucha por el número 10.
+[*][b]Diputado:[/b] gana influencia, rebélate contra la disciplina, consigue un cargo o desafía al líder.
+[*]Activista: crea apoyo, funda un partido y compite en elecciones. Roads to Power es necesario para jugar sin tierras.
+[/list]
 
 [h2]Características[/h2]
-[h3]El Parlamento de 2024[/h3]
 [list]
-[*]Los 650 diputados elegidos el 4 de julio de 2024, en sus escaños reales, sobre un mapa de las circunscripciones de Westminster de 2024 creado a partir de los datos oficiales de límites electorales.
-[*]Keir Starmer en el número 10, los 13 partidos que obtuvieron escaño y los gobiernos autónomos de Edimburgo, Cardiff y Belfast.
-[*]Retratos reconocibles para las figuras principales: caras de CK3 con su pelo, tono de piel y complexión.
+[*]Las 650 circunscripciones de Westminster.
+[*]Elecciones generales y parciales, liderazgos de partido y mociones de confianza.
+[*]Gobierno, oposición, gabinete, gabinete en la sombra y carreras parlamentarias.
+[*]Opinión pública, capital político, disciplina de partido y apoyo local.
+[*]Partidos, ideologías, rasgos, estilos de vida, decisiones y eventos modernos.
 [/list]
-
-[h3]De activista a primer ministro[/h3]
-[list]
-[*]Empieza sin escaño: haz campaña puerta a puerta, recauda fondos y escribe discursos para ganar Party Standing (prestigio en el partido), supera la evaluación de candidatos y gana un proceso de selección.
-[*]Los partidos son casas: cámbiate a otro partido con Cross the Floor (cambiar de bancada) o crea el tuyo propio con Found a Party (fundar un partido).
-[*]Elecciones al liderazgo: los diputados presentan candidatos y luego los afiliados eligen entre los dos más votados. Desafía a tu líder si te atreves.
-[*]El Speaker (presidente de la Cámara) es elegido por todos los diputados en votación secreta y abandona su partido.
-[/list]
-
-[h3]Elecciones[/h3]
-[list]
-[*]Las encuestas de cada partido varían mes a mes, influidas por la popularidad del primer ministro, los disturbios y el desgaste de mitad de legislatura.
-[*]Cada escaño oscila a partir de su resultado real de 2024. La legislatura expira a los cinco años, o el primer ministro adelanta las elecciones.
-[*]Elecciones parciales, resultados en portada («LABOUR LANDSLIDE», «HUNG PARLIAMENT»), recuentos y tribunales electorales para los escaños impugnados.
-[*]Parlamentos sin mayoría: coaliciones con viceprimer ministro o acuerdos de confianza y suministro que pueden romperse.
-[/list]
-
-[h3]La Cámara de los Comunes[/h3]
-[list]
-[*]Proyectos de ley del Gobierno: hacienda, servicios públicos, reformas, poderes de emergencia.
-[*]El Chief Whip (jefe de disciplina del grupo) prevé el resultado de la votación. Aprieta o cede. A la tercera rebelión, el diputado es expulsado del grupo parlamentario.
-[*]Una mayoría efectiva en tiempo real: las derrotas en elecciones parciales y las deserciones la reducen, y perderla trae una moción de censura.
-[/list]
-
-[h3]Política día a día[/h3]
-[list]
-[*]Decisiones semanales de campaña: mítines, debates televisados, presentaciones de propuestas, puerta a puerta y alguna que otra metedura de pata.
-[*]Congresos del partido: el discurso del líder, reuniones paralelas y conspiraciones.
-[*]Confianza ciudadana, que se desgasta con los disturbios, los cambios de rumbo y los escándalos.
-[*]Gasto de campaña: campañas de prensa y campañas de desprestigio que pueden volverse en tu contra.
-[*]Alas del partido: mantén contentos al Left, el Soft Left y los Centrists del Labour (o a los One Nation, Free-marketeers y Traditionalists de los Conservatives) o enfréntate a rebeliones.
-[*]Devolución de competencias: apoyo a la independencia, exigencias de referéndum, competencias transferidas o recuperadas, y la caída y el regreso de Stormont.
-[*]Ideología en lugar de religión: 15 ideologías en cinco bloques (Left, Centre, Right, Nationalist, Unionist).
-[*]Disturbios que plantean exigencias y marchan sobre Westminster: cede, negocia o envía a la policía.
-[*]La Corona como figura secundaria y ceremonial que muy rara vez se pronuncia.
-[/list]
-
-[h3]Un aspecto moderno[/h3]
-[list]
-[*]Una interfaz con estilo de periódico: papel prensa, tinta y un único toque de rojo, con las tipografías Playfair Display y Source Serif.
-[*]El panel State of the Parties (estado de los partidos): última encuesta, confianza ciudadana, el gráfico de escaños de los Comunes y un seguimiento de encuestas.
-[*]Banderas reales para las naciones y para los condados y ciudades que tienen una, e imágenes al estilo de fotos de prensa en lugar de arte medieval.
-[*]Términos modernos (en el juego, en inglés): Charisma, Economy, Security, Spin, Policy y Stamina; Funds, Profile, Political Capital, Party Brand, Clout, Pressure y Mandate.
-[*]Sin eventos medievales, guerras santas, cruzadas ni papas. Las maquinaciones de asesinato, secuestro y seducción están desactivadas.
-[/list]
-
-[h2]Nombres reales, hechos ficticios[/h2]
-Los políticos y personajes públicos reales aparecen con sus nombres reales, pero todos los eventos son genéricos y ficticios. Nada en el mod afirma ni insinúa nada sobre ninguna persona real. Los cónyuges y familiares de los diputados son inventados. Westminster no está afiliado al Parlamento, a ningún partido político ni a la Casa Real, y los emblemas de los partidos son diseños simplificados, no sus logotipos.
 
 [h2]Compatibilidad[/h2]
+Para [b]Crusader Kings III 1.20[/b]. Empieza una partida nueva en 1979 o 2024.
+
+[h2]Idiomas[/h2]
+Inglés, francés, alemán, japonés, coreano, polaco, ruso, chino simplificado y español.
+
+[h2]Notas de la beta[/h2]
 [list]
-[*]Crusader Kings III 1.20. Empieza una partida nueva desde el marcador de 2024: no se puede añadir a una partida guardada.
-[*]Jugar con un personaje sin escaño (el inicio como activista y la carrera política) requiere la expansión [b]Roads to Power[/b], igual que en el juego base. Jugar con cualquier diputado, no.
-[*]Es una conversión total: no lo combines con otros mods que cambien el mapa, los títulos, la historia o la interfaz.
-[*]Los logros están desactivados mientras Westminster esté activo.
+[*]Seguimos mejorando el equilibrio de las partidas largas; algunas prendas y pantallas secundarias aún son medievales.
 [/list]
 
 [h2]Créditos[/h2]
-El archivo CREDITS.txt de la carpeta del mod enumera todas las fuentes y licencias: límites de las circunscripciones (ONS, Open Government Licence), resultados electorales y diputados (UK Parliament, Open Parliament Licence), localidades (GeoNames), relieve (Copernicus), las tipografías (SIL Open Font License) y cada bandera de Wikimedia Commons. Las imágenes están generadas por IA (FLUX.1 [dev]) y se publican bajo CC0. No ha sido creado ni respaldado por Paradox Interactive.
+Creado por JealousZebra. Gracias a la comunidad de modding de CK3 y a quienes lo prueban.
 
-[b]Código fuente:[/b] de código abierto, próximamente en GitHub.
+[h2]Aviso[/h2]
+Westminster es un mod no oficial sin afiliación con Paradox Interactive, el Parlamento británico, partidos, grupos de campaña o figuras públicas.

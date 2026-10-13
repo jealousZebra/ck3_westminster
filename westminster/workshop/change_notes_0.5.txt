@@ -1,0 +1,10 @@
+[h1]Beta 0.5 — Thatcher, 1979[/h1]
+[list]
+[*]Added a new 4 May 1979 start with Margaret Thatcher as Prime Minister.
+[*]Added the 1979 Commons, historical party leaders, the first Thatcher Cabinet and Elizabeth II.
+[*]Added a 1979 election baseline and opening government situation.
+[*]Added recognisable CK3 models for Thatcher, Callaghan, Steel and other leading figures.
+[*]Added complete 1979 bookmark artwork and fixed the blank start screen.
+[*]Removed the remaining vanilla Gothic arch from the main menu.
+[*]Kept every constituency inside the UK at game start while retaining independence gameplay.
+[/list]

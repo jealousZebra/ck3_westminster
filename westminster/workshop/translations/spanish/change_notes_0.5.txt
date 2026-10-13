@@ -1,0 +1,8 @@
+[h1]Beta 0.5 — Thatcher, 1979[/h1]
+[list]
+[*]Nuevo inicio el 4 de mayo de 1979 con Margaret Thatcher como primera ministra.
+[*]Añadidos los Comunes de 1979, líderes históricos, primer gabinete de Thatcher e Isabel II.
+[*]Añadidos la situación inicial, modelos de figuras destacadas y arte completo del marcador.
+[*]Corregida la pantalla vacía y eliminada la última ornamentación gótica del menú principal.
+[*]Todas las circunscripciones empiezan dentro del Reino Unido y conservan la opción de independizarse.
+[/list]

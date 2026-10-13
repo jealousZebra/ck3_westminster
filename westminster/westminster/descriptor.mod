@@ -1,4 +1,4 @@
-version="0.3.1"
+version="0.5"
 tags={
 	"Total Conversion"
 	"Map"
@@ -6,7 +6,7 @@ tags={
 	"Gameplay"
 	"Historical"
 }
-name="Westminster - UK Politics Total Conversion (Modern Britain, Elections, Parliament, Prime Minister)"
+name="Westminster: UK Politics 1979–2024 | CK3 Total Conversion"
 picture="thumbnail.png"
 replace_path="common/landed_titles"
 replace_path="common/decisions"
