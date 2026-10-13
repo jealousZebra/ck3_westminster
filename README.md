@@ -1,9 +1,8 @@
 # Westminster
 
-**Modern UK politics for Crusader Kings III.** A total conversion that starts on 5 July 2024, the day after the
-general election, with all 650 real MPs on a map of the real constituencies. Play any MP, or start as a young party
-activist, and climb from the doorstep to Downing Street: win selection, fight elections, whip the Commons and survive
-a confidence vote.
+**Modern UK politics for Crusader Kings III.** A total conversion with playable starts on 4 May 1979 and 5 July
+2024, with historical MPs mapped onto 650 modern constituencies. Lead Margaret Thatcher's first government, govern
+after the 2024 election, play another MP, or begin as a campaigner and climb from the doorstep to Downing Street.
 
 | | |
 |---|---|
@@ -20,15 +19,17 @@ endorsed by Paradox Interactive.
 
 ## What's in it
 
-- The 2024 Parliament: 650 MPs in their seats, 13 parties, the devolved governments, likenesses for senior figures.
+- Two eras: the 1979 Commons and Thatcher's first government, and the 2024 Parliament with all 650 elected MPs.
 - A career from activist to Prime Minister; parties as houses (Cross the Floor, Found a Party); leadership contests
   and the Speaker's election.
 - Elections with monthly polls, seat-by-seat swing, by-elections, disputed results and coalitions; the House of
   Commons with bills, whips, rebellions, confidence votes and a live majority.
 - Campaigns and conferences, public trust, campaign spending, party wings, devolution, ideology instead of religion,
   riots that march on Westminster, and the Crown as a minor figure.
-- A newspaper-style interface, real flags, modern terms (Charisma, Economy, Security, Spin, Policy, Stamina; Funds,
-  Profile, Political Capital, Party Brand, Clout, Pressure, Mandate).
+- Playable landless campaigners, including Just Stop Oil, Extinction Rebellion and Amnesty International, who can
+  organize, form a party and contest elections.
+- A dark modern political interface, real flags, modern terms (Charisma, Economy, Security, Spin, Policy, Stamina;
+  Funds, Profile, Political Capital, Party Brand, Clout, Pressure, Mandate).
 
 ## Layout
 
@@ -55,7 +56,7 @@ westminster/
   `Paradox Interactive/Crusader Kings III` user folder) if yours is elsewhere.
 - **Python 3.9 or newer:** `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
 - **Build:** a clone has the scripts, localization and GUI, but not the generated textures and map images. Build them
-  as [westminster/README.md](westminster/README.md#setup-install-and-test) describes (map, the 2024 bookmark, seat
+  as [westminster/README.md](westminster/README.md#setup-install-and-test) describes (map, both bookmarks, seat
   leans, then the interface).
 - **Play from a clone:** `python3 common/tools/install_mod.py westminster` writes the launcher's `.mod` file pointing
   at your clone; enable it in the launcher.

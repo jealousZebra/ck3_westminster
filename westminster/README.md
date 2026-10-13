@@ -1,8 +1,8 @@
 # Westminster
 
-A total-conversion CK3 mod about British politics. Rise from activist to Prime Minister on a map of the 650
-Westminster constituencies, with the House of Lords, mayors, councils and the devolved parliaments. There'll be a
-bookmark for every Prime Minister since Neville Chamberlain, starting with 2024.
+A total-conversion CK3 mod about British politics. Rise from campaigner to Prime Minister on a map of the 650
+Westminster constituencies. Play the 1979 or 2024 start; future releases will add more prime-ministerial eras and
+deepen the House of Lords, mayors, councils and devolved politics.
 
 | | |
 |---|---|
@@ -26,7 +26,7 @@ in the game (`tools/ck3_test/gen_spikes.py`).
 
 | Spike | Result |
 |---|---|
-| a. Map | The 650 seats from ONS 2024 boundaries, 48 sea zones, at 160 m per pixel (4608 × 8192). It loads, a 2024 bookmark starts, and the realm map shows the UK. Terrain is a placeholder (gentle slopes, vanilla textures stretched). |
+| a. Map | The 650 seats from ONS 2024 boundaries, 60 sea zones, at 160 m per pixel (6144 × 8192). Both bookmarks load and the realm map shows the UK. |
 | b. Parties | A party is a landless kingdom-tier title. When the leader dies, the party's MPs elect the next one with a custom election (`wm_party_leadership`). They vote for the colleague they like and rate. |
 | c. General election | All 650 seats re-elected in one go, each MP serving their party leader. About 2 seconds; the second election, with incumbents, under 1 second. |
 | d. Peerages | Landless county-tier titles held by people with no seat. A life peerage ends with the holder; a hereditary one passes to the heir. |
@@ -59,6 +59,18 @@ licences in [data/README.md](data/README.md)):
 - The bookmark features Starmer, Rishi Sunak, Ed Davey and Sam Carling, the youngest new MP. The new-game screen
   shows them by their seats on a newspaper election map of the 2024 result, with portraits from their likenesses
   (`tools/ui/build_bookmark_screen.py`).
+
+## The 1979 bookmark
+
+`tools/data/build_1979.py` builds the start on 4 May 1979 using the same 650-seat map:
+
+- Margaret Thatcher holds the United Kingdom and leads her first Cabinet; James Callaghan leads Labour and David
+  Steel leads the Liberals, with Elizabeth II holding the Crown.
+- The historical Commons is mapped to the closest appropriate modern constituencies, with every starting seat kept
+  inside the United Kingdom.
+- The 1979 result supplies the opening election and polling baseline.
+- Thatcher, Callaghan, Steel, Michael Foot, Geoffrey Howe and other significant figures have recognisable CK3
+  character models and dedicated bookmark presentation.
 
 ## Gameplay so far
 
@@ -189,7 +201,7 @@ westminster/
   art/fal/             AI-generated source images and their prompts (prompts.json), the cache for the UI tools
   tools/map/           build_map.py (the map and its titles), geo.py, terrain.py, heightmap_pack.py (CK3's packed
                        heightmap format)
-  tools/data/          build_2024.py (the 2024 bookmark: MPs, parties, seats; with build_spouses.py),
+  tools/data/          build_1979.py and build_2024.py (the bookmarks, MPs, parties and seats),
                        build_seat_leans.py (party-dependent election and poll script from the 2024 results),
                        build_likenesses.py (portraits of recognisable people), build_game_start.py (vanilla's start-up
                        script without the Middle Ages), build_safeguards.py (schemes switched off),
@@ -215,6 +227,7 @@ up to date, but the textures and map images aren't in git, so a clone must be bu
 # 2. Build, in this order (each step reads what the one before wrote)
 .venv/bin/python westminster/tools/map/build_map.py          # map_data, titles, province history, localization
 .venv/bin/python westminster/tools/data/build_2024.py        # the 2024 bookmark (needs the map's titles)
+.venv/bin/python westminster/tools/data/build_1979.py        # the 1979 bookmark and election baseline
 .venv/bin/python westminster/tools/data/build_seat_leans.py  # election and poll script (needs ge2024_results.csv)
 westminster/tools/ui/build_ui.sh                             # the whole interface, flags and CREDITS.txt
 # 3. Then, only when their inputs change (each writes its own files)

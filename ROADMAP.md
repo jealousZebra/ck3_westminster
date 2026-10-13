@@ -1,109 +1,82 @@
 # Westminster roadmap
 
-What's planned after the 0.3 beta (released 2026-10-09; 0.3.1 switched achievements off). Written 2026-10-12 from
-the Workshop comments and the owner's own play, and reviewed with the owner. Design detail for each item goes into
-[westminster/PLAN.md](westminster/PLAN.md) before it's built; UX changes are agreed before they're built.
+Westminster is at **0.5.1 public beta** with playable 1979 and 2024 starts. This roadmap records what has shipped,
+what needs continued attention, and the next major features. Detailed design decisions belong in
+[westminster/PLAN.md](westminster/PLAN.md).
 
-## What players said (Workshop comments, 44 so far)
+## Shipped
 
-| Theme | How many | Example |
-|---|---|---|
-| Crashes on start-up or while loading | 5, plus 1 stutter | "crashes before I get to the main menu" |
-| Interface too bright | 6 | "The white UI is burning my eyes"; "can we have a dark mode?" |
-| The unlanded start is broken | 1 | contract schemes don't run; travelling to accept a contract loops forever |
-| Stutter every minute or so | 1 | probably a weekly or monthly loop over all 650 seats |
-| Chinese translation | about 8 | "Could you localize the English parts into Chinese?" |
-| Schemes back | 1 | "politicians absolutely seduce each other" |
-| Extreme or fringe parties | 1 | play hard-line parties and "really reshape politics" |
-| A Victoria 2-style interface | 1 | |
+### 0.4 — Localization, dark interface and landless politics
 
-## 0.4: stability, a darker look and a proper unlanded start
+- Added French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish localization.
+- Reworked the interface for dark mode, with clearer alerts and modern political art for the HUD, lifestyles, perks
+  and traits.
+- Improved landless political work and added playable campaigners from Just Stop Oil, Extinction Rebellion and
+  Amnesty International. They can build support, form a party and seek election.
+- Corrected political spouse titles and restored political intrigue options while keeping murder, abduction and
+  seduction disabled.
 
-In this order.
+### 0.5 — Margaret Thatcher, 4 May 1979
 
-### 1. Crashes and stutter (first)
-- Boot-test with every DLC switched off in the launcher: some of the copied vanilla interface files may assume content
-  that players without DLC don't have.
-- Make the mod smaller and lighter to load: the two terrain detail maps are 192 MB each and the mod is about 900 MB
-  on disk. Halve or compress textures where nobody can see the difference.
-- Check whether CK3 has been patched since 1.20.0.4, and test on the current version.
-- Ask on the Workshop page for `error.log` and the DLC list from anyone who crashes (a pinned comment).
-- Find the once-a-minute stutter: profile the weekly majority watcher and the monthly poll, trust and devolution ticks,
-  which loop over all 650 seats, and spread or cache the work.
+- Added the 1979 Commons, Thatcher's first Cabinet, the opposition, Elizabeth II and an election baseline based on
+  the 1979 result.
+- Added recognisable CK3 character models for Thatcher, Callaghan, Steel, Foot, Howe and other significant figures.
+- Added complete bookmark art and corrected the main-menu and new-game presentation.
+- Kept every starting constituency within the United Kingdom while retaining independence gameplay.
 
-### 2. A darker interface
-- A "night edition" of the newspaper look as the default: charcoal panels, off-white text, the same red accent and
-  typography. Every hand-tuned colour (text formats, paper tints, overlays, the seat chart, the bookmark map) moves to
-  the dark palette in `tools/ui/build_theme.py` and friends.
-- Open decision: whether to also offer the current light look as an optional companion mod.
+### 0.5.1 — Polish and onboarding
 
-### 3. The unlanded start, fixed and themed
-- Fix the contract schemes that never run and the endless travel loop.
-- Theme the whole adventurer flow: the camp becomes a campaign office, camp purposes become political focuses (for
-  example Grassroots Organiser, Think-Tank Wonk, Party Fixer, Media Pundit), contracts read as modern jobs, and no
-  medieval wording or art is left on those screens.
-- New fal.ai pictures for each focus and the camp backdrops, politics-specific.
+- Added a one-time in-game recommendation and feedback prompt after a year of play.
+- Refined the Workshop presentation, adaptive thumbnail, screenshots, tags, change notes and discussion guides.
+- Made smaller presentation and usability improvements.
 
-### 4. Intrigue options back (political versions only)
-- Bring back schemes in political dress, for example: Fabricate a Scandal (hooks), Leak to the Press (exposing
-  secrets, blackmail), Plot to Oust (leadership plots), and an affair scheme limited to fictional or AI characters.
-- Murder and abduction stay off. Events stay generic and fictional; nothing is scripted against a named real person.
-- Open decision: the exact list.
+## Current priorities
 
-### 5. New map icons
-- Replace the icons shown on the map (holdings, buildings, map-mode buttons) with fal.ai icons in the same badge style
-  as the ideology and stat icons: a constituency office, a town hall, a party headquarters and so on.
+### Stability and performance
 
-### Also in 0.4
-- The "Empress" label on the Prime Minister's spouse (the fix is written and was held back from 0.3.1).
+- Investigate start-up crashes reported by players with different DLC combinations.
+- Profile the weekly and monthly systems that scan all 650 constituencies, especially majority, poll, trust and
+  devolution updates.
+- Reduce large generated textures where that can be done without visible loss.
+- Continue long-campaign balance testing and improve AI behaviour after several election cycles.
 
-## 0.5: Margaret Thatcher, 4 May 1979
+### Complete the modern presentation
 
-The first historical bookmark and the template for every bookmark that follows.
+- Replace remaining medieval clothing and less-used medieval screens.
+- Review every map, holding and sidebar icon at normal play size against the dark interface.
+- Keep the 1979 and 2024 bookmark screens visually consistent as the shared presentation evolves.
 
-- Refactor the 2024-only generator into reusable dated snapshots for MPs, parties, governments, opposition and
-  election results.
-- Start on **4 May 1979**, with Margaret Thatcher as Prime Minister, James Callaghan leading Labour, David Steel
-  leading the Liberals, Elizabeth II as monarch, and the first Thatcher ministry.
-- Map the 1979 Commons onto the existing 2024 constituencies using the historical-seat rules in `PLAN.md`, and use
-  the 1979 result rather than 2024 vote shares as the election and polling baseline.
-- Apply era rules: no devolved parliaments or modern mayoralties, the pre-1999 House of Lords, period parties and
-  offices, and period-appropriate terminology and presentation.
-- Add a focused early-Thatcher situation around inflation, industrial relations and the government's Commons
-  majority. Reuse generic political systems elsewhere so the bookmark remains a manageable vertical slice.
-- Create recognisable CK3 character models for the party leaders, Cabinet and other significant figures of 1979.
-- Done when a player can start as Thatcher, Callaghan or another 1979 MP, play a functioning Parliament and reach
-  the next election using 1979 data.
+### Make the first campaign easier to understand
 
-## 0.6: newspapers
+- Expand the opening guidance for MPs, party leaders, prime ministers and landless campaigners.
+- Surface the State of the Parties panel, working majority, Party Standing and route to selection more clearly.
+- Turn common questions from the Workshop discussions into concise in-game help.
 
-- **Legends become press coverage:** a legend becomes a running story (a scandal, a comeback, a landmark bill) that
-  spreads across seats like a legend and moves Profile and public trust.
-- **Papers with leanings:** a handful of fictional papers, for example *The Clarion* (left), *The Ledger* (centre,
-  financial), *The Sentinel* (right), *The Daily Bulletin* (populist tabloid) and *The Caledonian* (Scottish). The
-  same story is framed differently by each.
-- **Editors as characters:** each paper has an unlanded editor to court, feud with or be endorsed by; election-night
-  front pages come from the paper that backs you.
-- Open decisions: fictional papers (recommended: real titles bring trademark and defamation risk) or real ones; and
-  what "unlanded nobles as editors" should build on (CK3's landless characters and guests, or new landless titles
-  like the parties).
+## 0.6 — The press
+
+- **Running stories:** adapt CK3 legends into political stories such as a scandal, comeback or landmark bill that
+  spread between constituencies and affect Profile and public trust.
+- **Papers with leanings:** add a small group of fictional national and regional newspapers that frame the same
+  story differently.
+- **Editors as characters:** create landless editors whom politicians can court, feud with or seek endorsements
+  from.
+- **Election front pages:** let the publication backing the player shape election-night coverage.
+
+The first implementation should be a small playable slice: one running story, three fictional papers and one editor
+relationship. It should reuse existing trust, scandal, election and landless-character systems before adding more
+content.
 
 ## Later
 
-- **Chinese translation** of the in-game text (about 2,000 interface strings plus Westminster's own events), with
-  volunteer reviewers from the comments; other languages after it.
-- **Fringe parties:** made-up fringe parties a player can found, very hard to play; never real far-right parties.
-  Open decision.
-- More bookmarks, using the 1979 pipeline and working back through every Prime Minister to Chamberlain (see PLAN.md
-  milestones).
-- The House of Lords, mayors and councils as full systems (now only early technical tests).
-- Balance over long games, and AI behaviour after a decade or more.
-- Modern clothing for portraits.
+- More historical starts using the 1979 pipeline, working backwards through post-1937 prime ministers.
+- Fuller House of Lords, mayoral and council systems.
+- More careers for backbenchers, ministers, party staff, journalists, union officials and campaigners.
+- More party, parliamentary and election events across both eras.
+- Additional fictional parties and pressure groups that can become electoral movements.
 
-## Open decisions for the owner
+## Design decisions still open
 
-1. A light look as an optional companion mod, or dark only?
-2. Which schemes come back, under which names?
-3. Fictional or real newspapers?
-4. What "unlanded nobles as editors" builds on?
-5. Fringe parties: yes (made-up only) or no?
+1. Whether the optional light interface is worth maintaining alongside the dark theme.
+2. How many fictional newspapers 0.6 needs and whether they are national, regional or both.
+3. Whether editors should use CK3's ordinary landless characters or dedicated landless titles.
+4. Which historical start should follow 1979.

@@ -4,8 +4,9 @@ Name: **Westminster** (decided). A total-conversion CK3 mod about British politi
 **rises as one politician**: from candidate or backbencher, through ministerial office, to Prime Minister. They build a
 political family along the way. The map is the UK's Westminster constituencies.
 
-Status: 0.3, the first public beta, prepared on 2026-10-09 (the 2024 bookmark, English only); see README.md for what's in it. Decisions marked **(decided)** came from the user. The rest are proposals to
-agree before building.
+Status: **0.5.1 public beta**. The 1979 and 2024 bookmarks, nine in-game languages, dark modern interface, elections,
+the Commons and landless political careers are playable; see README.md for the current feature list. Decisions
+marked **(decided)** came from the owner. The rest are proposals to agree before building.
 
 ## Decisions so far
 
@@ -808,7 +809,7 @@ a referendum doesn't lead to secession; balance over long games is untested.
    its majority faces a confidence motion. A string of by-election losses also hurts the PM's standing and public
    trust.
 
-## 0.4 design (started 2026-10-12; see ROADMAP.md)
+## 0.4 design (shipped; retained as implementation history)
 
 Defaults taken while the roadmap's open decisions wait: dark is the only look for now (no light companion mod yet);
 the intrigue list below.
@@ -836,13 +837,13 @@ the intrigue list below.
 | # | Milestone | Done when |
 |---|---|---|
 | 0 ✅ | **Technical spikes** (prove the risky parts), all on a small test map: (a) generate and load the map, e.g. 10 Scottish seats; (b) a party as a landless kingdom-tier title with a leadership election by its MPs; (c) a general election transferring 650 titles, with timing; (d) a peerage as a landless county-tier title held by a non-MP, life vs hereditary; (e) a mayoralty as a landless duchy-tier title held by a non-MP; (f) a reskinned landless adventurer (candidate) taking a selection contract; (g) a council as a landless title with stored party seat counts and a council election; (h) a devolved parliament: a kingdom-tier title held by its First Minister, plus Northern Ireland's First Minister/deputy diarchy | Each spike works in game, or we've changed the design |
-| 1 | **Map**: all 650 seats from 2024 data, heightmap, rivers, simple terrain | The game loads it with no map errors |
-| 2 | **2024 bookmark**: titles, parties, the 650 MPs elected in July 2024, the Starmer cabinet, the opposition | A playable start as any MP |
-| 3 | **Core loop**: elections, polls, by-elections, candidate selection, leadership elections, the career ladder from unlanded activist to MP to PM | You can go from activist to PM in one game |
+| 1 ✅ | **Map**: all 650 seats from 2024 data, heightmap, rivers and terrain | Shipped |
+| 2 ✅ | **2024 bookmark**: titles, parties, the 650 MPs elected in July 2024, the Starmer cabinet, the opposition | Shipped |
+| 3 ✅ | **Core loop**: elections, polls, by-elections, candidate selection, leadership elections, the career ladder from unlanded activist to MP to PM | Shipped; balance continues |
 | 4 | **Parliament**: Commons votes, whips, confidence motions, rebellions; the House of Lords (peerages, honours lists, revising bills); mayors and their elections; the devolved parliaments; councils and council elections | |
 | 5 | **Content**: political schemes, scandals (secrets), press, activities (conference, PMQs, campaigning), events | It's fun |
-| 6 | **Polish and release**: UI, 9 languages (later), Workshop page | First public beta, 0.3 (English, 2024 bookmark): Workshop page, thumbnail and release script ready 2026-10-09 |
-| 7 | **1979 Thatcher bookmark**: reusable dated-snapshot generator; the 1979 Commons mapped to the 2024 constituencies; Thatcher's first ministry, opposition and election baseline; era rules; recognisable models for the significant figures | Start as Thatcher, Callaghan or another 1979 MP, play a functioning Parliament and reach the next election using 1979 data |
+| 6 ✅ | **Polish and release**: UI, nine languages, Workshop page | Public beta released; localization and dark interface followed in 0.4 |
+| 7 ✅ | **1979 Thatcher bookmark**: reusable dated-snapshot generator; the 1979 Commons mapped to the 2024 constituencies; Thatcher's first ministry, opposition and election baseline; era rules; recognisable models for the significant figures | Shipped in 0.5: start as Thatcher, Callaghan or another 1979 MP and play a functioning Parliament |
 | 8+ | **More bookmarks**, going back: Sunak 2022, Truss, Johnson, May, Cameron, Brown, Blair, Major, Callaghan, Wilson, Heath, Douglas-Home, Macmillan, Eden, Churchill 1951, Attlee, Churchill 1940, Chamberlain 1937 | |
 
 ## Open questions

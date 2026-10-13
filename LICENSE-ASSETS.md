@@ -13,8 +13,8 @@ These assets include:
 
 Exceptions:
 
-- **AI-generated images** (`westminster/art/fal/` and the textures built from them) were made
-  with the FLUX.1 [dev] model through fal.ai. No rights are claimed in them: they are provided under
+- **AI-generated images** (including `westminster/art/fal/`, the Workshop thumbnail source and textures built from
+  them) were made with image-generation models through fal.ai and OpenAI. No rights are claimed in them: they are provided under
   [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). They are illustrations, not photographs of real
   events or people.
 - **Third-party material** (Paradox game files, fonts, data and flags) stays under its own terms. See

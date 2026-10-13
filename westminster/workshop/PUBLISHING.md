@@ -1,6 +1,6 @@
 # Publishing Westminster to the Steam Workshop
 
-- Workshop item: not uploaded yet. After the first upload, put its link here and in the root README.
+- Workshop item: [Westminster: UK Politics 1979–2024 | CK3 Total Conversion](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981).
 - General steps, Steam's limits and how to edit the page in the browser:
   [docs/steam-workshop.md](../../docs/steam-workshop.md).
 
@@ -25,14 +25,13 @@ Commands below are run from the repo root.
 ## Uploading (by the mod owner)
 
 1. Close CK3. Open the Paradox launcher.
-2. Mods → Upload Mod → **Westminster - UK Politics Total Conversion (Modern Britain, Elections, Parliament, Prime
-   Minister)** → Steam Workshop. The launcher uploads `westminster/westminster/` (the mod folder, with the generated
+2. Mods → Upload Mod → **Westminster: UK Politics 1979–2024 | CK3 Total Conversion** → Steam Workshop. The launcher
+   uploads `westminster/westminster/` (the mod folder, with the generated
    textures) using `descriptor.mod` (name, version, tags, picture) and `thumbnail.png`.
-3. **First upload:** set the item to **Hidden** or **Friends only**. Subscribe from a second machine or after
-   disabling the local mod, start a new 2024 game from the Workshop copy, and check the map, the interface and a
-   month or two of play. Only then make it Public (the owner's decision).
-4. After the first upload the launcher writes `remote_file_id` into `westminster/descriptor.mod`. Copy that line into
-   `westminster.mod` too and keep it, so later uploads update the same item.
+3. For a new Workshop item, begin as **Hidden** or **Friends only**. Subscribe from a second machine or after
+   disabling the local mod, start both bookmarks from the Workshop copy, and check the map, interface and a month or
+   two of play before making it public.
+4. Keep `remote_file_id="3816349981"` in both descriptors so uploads update the existing item.
 5. Paste `workshop/title.txt` and `workshop/description.bbcode.txt` into Edit title & description (English), and add
    the screenshots below.
 6. Each upload adds an empty change-notes entry. Fill it in from `change_notes_<version>.txt`.
@@ -40,8 +39,8 @@ Commands below are run from the repo root.
 To update: rebuild, add the changelog entry and change notes, run `release.sh <version>`, then Upload Mod again from
 the launcher (it finds the item by `remote_file_id`).
 
-The tags in `descriptor.mod` (Total Conversion, Map, Bookmarks, Gameplay, Historical) are from CK3's Workshop tag
-list, but we haven't confirmed which ones the launcher accepts. If an upload fails on a tag, drop it.
+The current tags are Total Conversion, Gameplay, Historical, Character Focuses and Interface. Keep
+`westminster.mod` and `westminster/descriptor.mod` in sync because the launcher can overwrite Workshop metadata.
 
 ## Page text
 
@@ -61,27 +60,25 @@ list, but we haven't confirmed which ones the launcher accepts. If an upload fai
 
 ## Thumbnail
 
-`westminster/thumbnail.png` (1024 × 1024, under 1 MB) is built by `.venv/bin/python westminster/art/make_thumbnail.py
-[version]`: a newspaper front page with the masthead WESTMINSTER, a dateline with "BETA <version>" and a photo of the
-Palace of Westminster at dusk. The masthead, dateline and photo are inside the middle band (y 256-768), which
-survives the launcher's 2:1 crop; the folio line and the headline only show in Steam's square view. The photo is
-AI-generated (fal.ai, FLUX.1 [dev]) and cached in `art/fal/thumb_westminster.jpg`; delete it to generate a new one.
+`westminster/thumbnail.png` (1024 × 1024, under 1 MB) is built by
+`.venv/bin/python westminster/art/make_thumbnail.py`. The approved source is
+`art/thumbnail_westminster_v3.png`: Thatcher and Starmer flank Parliament, with the title and date range inside the
+middle band that survives the launcher's centred 2:1 crop.
 
 ## Screenshots
 
-Not taken yet. Take them in the real game at full resolution (`FULL=1`, see
-[docs/ck3-testing.md](../../docs/ck3-testing.md)), crop to 16:9, and save them here as `workshop/screenshots/<n>_<name>.jpg`:
+Current screenshots are in `workshop/screenshots/`. Replace them after visible UI or bookmark changes by capturing
+the real game at full resolution (`FULL=1`, see [docs/ck3-testing.md](../../docs/ck3-testing.md)) and cropping to
+16:9. The current set covers:
 
-| # | File | Screen | Caption |
-|---|---|---|---|
-| 1 | `1_map_2024.jpg` | The realm map zoomed to England and Wales with the party colours, a constituency's tooltip open | All 650 constituencies of 2024, held by the MPs who won them |
-| 2 | `2_state_of_the_parties.jpg` | The State of the Parties panel: latest poll, trust, seat chart, poll tracker | The State of the Parties: polls, public trust and the Commons at a glance |
-| 3 | `3_main_menu.jpg` | The main menu masthead over the Westminster photo, or the 2024 bookmark screen | A modern newspaper interface, from the main menu on |
-| 4 | `4_election_result.jpg` | A general-election front page ("HUNG PARLIAMENT" or "LANDSLIDE") | Elections decided seat by seat from the 2024 result |
-| 5 | `5_commons_vote.jpg` | A Commons bill event with the Chief Whip's forecast and the whipping options | Whip the Commons, face rebellions and confidence votes |
-| 6 | `6_leadership_contest.jpg` | A leadership contest (nominations or the members' ballot), or Cross the Floor | Parties are houses: contests, defections and new parties |
-| 7 | `7_cabinet_character.jpg` | The Prime Minister's character window with the Cabinet (modern skills and currencies) | Charisma, Spin, Political Capital: modern terms throughout |
-| 8 | `8_riot_or_activist.jpg` | A riot marching on Westminster, or the activist's selection contest | Riots that march on Westminster; or start as an activist |
+| # | File | Screen |
+|---|---|---|
+| 1 | `1_main_menu.jpg` | Westminster main menu |
+| 2 | `2_election_map_2024.jpg` | 2024 election map and constituencies |
+| 3 | `3_choose_your_mp.jpg` | 2024 bookmark character selection |
+| 4 | `4_prime_minister_and_cabinet.jpg` | Prime Minister and Cabinet |
+| 5 | `5_london_seats_and_flags.jpg` | London constituencies and modern flags |
+| 6 | `6_scotland_snp.jpg` | Scottish constituencies and the SNP |
 
 Use a start that shows real MPs with likenesses (Starmer, Sunak, Davey). Avoid shots that put words in a real
 person's mouth: events are generic, and captions should describe the game, not the person.
