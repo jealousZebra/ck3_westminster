@@ -1,0 +1,34 @@
+﻿l_english:
+ # Westminster: vanilla's intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt,
+ # tools/data/build_safeguards.py). These keys are vanilla's; build_terms.py must not write them.
+
+ # Fabricate a Scandal (fabricate_hook)
+ fabricate_hook: "Fabricate a Scandal"
+ fabricate_hook_action: "Fabricate a Scandal about"
+ fabricate_hook_desc: "Dig up, or dress up, a story that [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] would rather never saw print"
+ fabricate_hook_desc_general: "A [scheme|E] to dig up, or dress up, a damaging story about a politician. Success gives a [hook|E] on them and the story itself, a [secret|E] you can leak to the press or hold over them. Any real misconduct that turns up along the way is yours too."
+ fabricate_hook_interaction: "Fabricate a Scandal #weak (Scheme)#!"
+ fabricate_hook_interaction_desc: "Dig for a story that would embarrass [recipient.GetShortUINameNoTooltip], or build one. Success gives a [hook|E] on [recipient.GetHerHim] and a story to leak."
+ fabricate_hook_interaction_toast: "Fabricating a Scandal"
+ fabricate_hook_scheme_invalidated_title: "Fabricate a Scandal Ends"
+ FABRICATE_HOOK_SUCCESS_DESC: "You gain a [hook|E] on [TARGET_CHARACTER.GetShortUIName] and a story to leak"
+ FABRICATE_HOOK_DISCOVERY_DESC: "[TARGET_CHARACTER.GetShortUIName|U] finds out who went looking"
+
+ # An affair (seduce): fictional characters only
+ seduce: "An Affair"
+ seduce_action: "Begin an Affair with"
+ seduce_desc: "Late votes, long dinners and the odd quiet word in the corridor: [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] and I are growing close."
+ seduce_desc_general: "A [personal_scheme|E] to win someone over and make them your [lover|E]. Only possible with fictional characters: never a real person from the bookmark, the royal family or anyone under 18.\n\nA multitude of factors determine the [success_chance|E], including [opinion|E], [trait|E] compatibility, and [marriage|E] status. If either of you is married, it becomes a [secret|E] the papers would love."
+ seduce_interaction: "Begin an Affair #weak (Scheme)#!"
+ seduce_interaction_notification: "An Affair"
+ scheme_interaction_tt_seduce_approved: "Try to win over [recipient.GetShortUINameNoTooltip] and make [recipient.GetHerHim] your [lover|E]"
+ SEDUCE_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName|U] becomes your [lover|E]"
+ seduce_invalid: "I stop pursuing [target.GetShortUIName] as we can no longer become [lovers|E]."
+ seduce_invalidated_title: "@personal_scheme_icon! The Affair Ends Before It Begins"
+
+ # Leak to the Press (expose_secret_interaction) and Threaten to Leak (blackmail_interaction)
+ expose_secret_interaction: "Leak to the Press"
+ expose_secret_interaction_desc: "Give the papers a story about [recipient.GetShortUINameNoTooltip]. [recipient.GetHerHis|U] Profile, [recipient.GetHerHis] party's poll and public trust in politics all suffer, and any [hooks|E] the [secret|E] gave are lost. Only political secrets can be leaked."
+ blackmail_interaction: "Threaten to Leak"
+ blackmail_interaction_desc: "Use a political [secret|E] you hold to gain a [hook|E]: keep quiet, and [recipient.GetShortUINameNoTooltip] owes you"
+ blackmail_decline_summary: "@warning_icon! #X If [recipient.GetShortUINameNoTooltip] refuses, you can leak the story to the press!#!"

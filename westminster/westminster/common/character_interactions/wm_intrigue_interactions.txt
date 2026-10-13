@@ -1,0 +1,106 @@
+﻿# Plot to Oust (scheme wm_intrigue_oust, common/schemes/scheme_types/wm_intrigue_schemes.txt): an MP starts a
+# quiet plot against their own party's leader. Success opens a leadership challenge (wm_intrigue_effects.txt).
+wm_intrigue_oust_interaction = {
+	icon = icon_scheme_depose
+	category = interaction_category_hostile
+	interface_priority = 60
+	common_interaction = no
+	scheme = wm_intrigue_oust
+	send_name = START_SCHEME
+	ignores_pending_interaction_block = yes
+	auto_accept = yes
+
+	desc = wm_intrigue_oust_interaction_desc
+
+	is_shown = {
+		scope:actor != scope:recipient
+		scope:actor = { wm_intrigue_can_plot_oust_trigger = yes }
+		scope:actor.var:wm_party.holder ?= scope:recipient
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			can_start_scheme = {
+				type = wm_intrigue_oust
+				target_character = scope:recipient
+			}
+		}
+	}
+
+	on_accept = {
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_intrigue_oust_interaction_toast
+				left_icon = scope:actor
+				right_icon = scope:recipient
+				begin_scheme_basic_effect = {
+					SCHEME_TYPE = wm_intrigue_oust
+					TARGET_TYPE = target_character
+					TARGET_SCOPE = scope:recipient
+				}
+			}
+			stress_impact = {
+				honest = minor_stress_impact_gain
+				loyal = medium_stress_impact_gain
+			}
+		}
+	}
+
+	# The AI: an ambitious or disgruntled MP may plot, rarely (about once in ten years per MP who resents the leader)
+	ai_targets = {
+		ai_recipients = liege
+	}
+	ai_target_quick_trigger = {
+		adult = yes
+	}
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 60
+		duchy = 60
+		kingdom = 60
+		empire = 0
+		hegemony = 0
+	}
+	ai_potential = {
+		wm_intrigue_can_plot_oust_trigger = yes
+		NOR = {
+			has_trait = content
+			has_trait = loyal
+			any_scheme = { scheme_type = wm_intrigue_oust }
+		}
+	}
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = 20
+			has_trait = ambitious
+		}
+		modifier = {
+			add = 20
+			opinion = {
+				target = scope:recipient
+				value <= -20
+			}
+		}
+		modifier = {
+			add = 20
+			has_relation_rival = scope:recipient
+		}
+		modifier = {
+			add = 15
+			var:wm_party ?= { wm_election_leadership_lost_ground_trigger = yes }
+		}
+		modifier = {
+			factor = 0
+			opinion = {
+				target = scope:recipient
+				value >= 20
+			}
+		}
+		modifier = {
+			factor = 0
+			prestige_level < 2
+		}
+	}
+}

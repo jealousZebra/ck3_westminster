@@ -25,7 +25,7 @@ widget = {
 		size = { 100% 100%}
 		parentanchor = center
 		texture = "gfx/interface/colors/white.dds"
-		color = { 0.804 0.839 0.839 1 }
+		color = { 0.086 0.106 0.125 1 }
 	}
 
 	widget = {
@@ -416,7 +416,7 @@ widget = {
 					background = {
 						texture = "gfx/interface/colors/white.dds"
 						spriteType = corneredtiled
-						color = { 0.95 0.93 0.88 1 }
+						color = { 0.114 0.122 0.133 1 }
 						texture_density = 1
 						margin_bottom = -5
 
@@ -745,7 +745,7 @@ widget = {
 				background = {
 					texture = "gfx/interface/colors/white.dds"
 					spriteType = corneredtiled
-					color = { 0.95 0.93 0.88 1 }
+					color = { 0.114 0.122 0.133 1 }
 					margin_top = -22
 					texture_density = 0.7
 
@@ -1426,7 +1426,7 @@ widget = {
 									background = {
 										texture = "gfx/interface/colors/white.dds"
 										spriteType = corneredtiled
-										color = { 0.95 0.93 0.88 1 }
+										color = { 0.114 0.122 0.133 1 }
 										margin_top = -10
 										texture_density = 0.8
 										spriteborder_top = 60
@@ -2290,7 +2290,7 @@ widget = {
 									background = {
 										texture = "gfx/interface/colors/white.dds"
 										spriteType = corneredtiled
-										color = { 0.95 0.93 0.88 1 }
+										color = { 0.114 0.122 0.133 1 }
 										margin_top = -10
 										texture_density = 0.8
 										spriteborder_top = 60

@@ -1,0 +1,247 @@
+﻿# Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: no event
+# names or describes a real person's private life; the target's name is only filled in by the game.
+#   wm_intrigue.1    the moment to act (a player's scheme has completed a phase): go now, or keep working
+#   wm_intrigue.2    how it went, for the player who acted
+#   wm_intrigue.3    a player finds out someone was scheming against them (a discovered failure)
+#   wm_intrigue.10   a story about a player runs on the front pages (Leak to the Press)
+#   wm_intrigue.20   a threat to leak was refused: run the story, or sit on it (the AI always runs it)
+namespace = wm_intrigue
+
+wm_intrigue.1 = {
+	type = character_event
+	title = wm_intrigue.1.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:scheme = { scheme_type = fabricate_hook } }
+				desc = wm_intrigue.1.desc_scandal
+			}
+			triggered_desc = {
+				trigger = { scope:scheme = { scheme_type = seduce } }
+				desc = wm_intrigue.1.desc_affair
+			}
+			desc = wm_intrigue.1.desc_oust
+		}
+	}
+	theme = intrigue
+	override_background = {
+		trigger = { scope:scheme = { scheme_type = wm_intrigue_oust } }
+		reference = council_chamber
+	}
+	left_portrait = {
+		character = root
+		animation = scheme
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	trigger = {
+		exists = scope:scheme
+		exists = scope:target
+	}
+
+	option = {
+		name = wm_intrigue.1.a
+		trigger = {
+			scope:scheme = { wm_intrigue_can_act_trigger = yes }
+		}
+		custom_tooltip = wm_intrigue.1.a.tt
+		hidden_effect = {
+			scope:scheme = { wm_intrigue_resolve_effect = yes }
+		}
+	}
+	option = {
+		name = wm_intrigue.1.b
+		custom_tooltip = wm_intrigue.1.b.tt
+	}
+}
+
+wm_intrigue.2 = {
+	type = character_event
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { exists = scope:wm_intrigue_success }
+				desc = wm_intrigue.2.t_success
+			}
+			triggered_desc = {
+				trigger = { exists = scope:wm_intrigue_discovered }
+				desc = wm_intrigue.2.t_caught
+			}
+			desc = wm_intrigue.2.t_failed
+		}
+	}
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:wm_intrigue_success
+					scope:wm_intrigue_kind = flag:scandal
+				}
+				desc = wm_intrigue.2.desc_scandal_success
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:wm_intrigue_success
+					scope:wm_intrigue_kind = flag:affair
+				}
+				desc = wm_intrigue.2.desc_affair_success
+			}
+			triggered_desc = {
+				trigger = { exists = scope:wm_intrigue_success }
+				desc = wm_intrigue.2.desc_oust_success
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:wm_intrigue_discovered
+					scope:wm_intrigue_kind = flag:scandal
+				}
+				desc = wm_intrigue.2.desc_scandal_caught
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:wm_intrigue_discovered
+					scope:wm_intrigue_kind = flag:affair
+				}
+				desc = wm_intrigue.2.desc_affair_caught
+			}
+			triggered_desc = {
+				trigger = { exists = scope:wm_intrigue_discovered }
+				desc = wm_intrigue.2.desc_oust_caught
+			}
+			triggered_desc = {
+				trigger = { scope:wm_intrigue_kind = flag:scandal }
+				desc = wm_intrigue.2.desc_scandal_failed
+			}
+			triggered_desc = {
+				trigger = { scope:wm_intrigue_kind = flag:affair }
+				desc = wm_intrigue.2.desc_affair_failed
+			}
+			desc = wm_intrigue.2.desc_oust_failed
+		}
+	}
+	theme = intrigue
+	left_portrait = {
+		character = root
+		animation = worry
+		triggered_animation = {
+			trigger = { exists = scope:wm_intrigue_success }
+			animation = happiness
+		}
+	}
+	right_portrait = {
+		character = scope:target
+		animation = idle
+	}
+	trigger = {
+		exists = scope:target
+	}
+
+	option = {
+		name = {
+			first_valid = {
+				triggered_desc = {
+					trigger = { exists = scope:wm_intrigue_success }
+					desc = wm_intrigue.2.a
+				}
+				desc = wm_intrigue.2.b
+			}
+		}
+	}
+}
+
+wm_intrigue.3 = {
+	type = character_event
+	title = wm_intrigue.3.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { scope:wm_intrigue_kind = flag:scandal }
+				desc = wm_intrigue.3.desc_scandal
+			}
+			triggered_desc = {
+				trigger = { scope:wm_intrigue_kind = flag:affair }
+				desc = wm_intrigue.3.desc_affair
+			}
+			desc = wm_intrigue.3.desc_oust
+		}
+	}
+	theme = intrigue
+	left_portrait = {
+		character = root
+		animation = anger
+	}
+	right_portrait = {
+		character = scope:owner
+		animation = worry
+	}
+	trigger = {
+		exists = scope:owner
+	}
+
+	option = {
+		name = wm_intrigue.3.a
+	}
+}
+
+wm_intrigue.10 = {
+	type = character_event
+	title = wm_intrigue.10.t
+	desc = wm_intrigue.10.desc
+	theme = intrigue
+	override_background = {
+		reference = corridor_day
+	}
+	left_portrait = {
+		character = root
+		animation = shock
+	}
+	trigger = {
+		exists = scope:wm_intrigue_leaker
+	}
+
+	option = {
+		name = wm_intrigue.10.a
+	}
+}
+
+# Scopes from blackmail_interaction's on_decline: scope:recipient (who refused), scope:target (the secret).
+wm_intrigue.20 = {
+	type = character_event
+	title = wm_intrigue.20.t
+	desc = wm_intrigue.20.desc
+	theme = intrigue
+	left_portrait = {
+		character = root
+		animation = scheme
+	}
+	right_portrait = {
+		character = scope:recipient
+		animation = anger
+	}
+	trigger = {
+		exists = scope:recipient
+		exists = scope:target
+	}
+	immediate = {
+		root = { save_scope_as = puppet_or_actor }
+	}
+
+	# Run the story
+	option = {
+		name = wm_intrigue.20.a
+		wm_intrigue_leak_effect = yes	# first: exposing the secret removes it
+		scope:target = { expose_secret = root }
+		ai_chance = {
+			base = 100
+		}
+	}
+	# Sit on it
+	option = {
+		name = wm_intrigue.20.b
+		ai_chance = {
+			base = 0
+		}
+	}
+}

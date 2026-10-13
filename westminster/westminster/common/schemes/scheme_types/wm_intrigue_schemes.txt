@@ -1,0 +1,152 @@
+﻿# Plot to Oust: quietly line up colleagues against your own party's leader. On success the plot surfaces as a
+# leadership challenge with the plotter on the ballot (wm_election_leadership_challenge_effect): it never removes
+# anyone by itself. Flow: common/scripted_effects/wm_intrigue_effects.txt; interaction: wm_intrigue_oust_interaction.
+wm_intrigue_oust = {
+	# Basic Setup
+	skill = intrigue
+	desc = wm_intrigue_oust_desc_general
+	success_desc = "WM_INTRIGUE_OUST_SUCCESS_DESC"
+	icon = icon_scheme_depose
+	illustration = "gfx/interface/illustrations/event_scenes/corridor.dds"
+	category = hostile
+	target_type = character
+	is_secret = yes
+	maximum_breaches = 5
+	cooldown = { years = 3 }
+
+	# Parameters (vanilla's tier-2 plots, as Depose)
+	speed_per_skill_point = t2_spsp_owner_value
+	speed_per_target_skill_point = t2_spsp_target_value
+	base_progress_goal = t2_base_phase_length_value
+	maximum_secrecy = 95
+	base_maximum_success = t2_base_max_success_value
+	phases_per_agent_charge = 1
+	success_chance_growth_per_skill_point = t2_scgpsp_value
+
+	# Core Triggers
+	allow = {
+		wm_intrigue_can_plot_oust_trigger = yes
+		is_imprisoned = no
+		custom_description = {
+			text = wm_intrigue_oust_not_leader
+			object = scope:target
+			var:wm_party.holder ?= scope:target
+		}
+	}
+
+	valid = {
+		is_incapable = no
+		wm_intrigue_can_plot_oust_trigger = yes
+		custom_description = {
+			text = wm_intrigue_oust_not_leader
+			object = scope:target
+			var:wm_party.holder ?= scope:target
+		}
+		custom_description = {
+			text = wm_leadership_no_contest_tt
+			NOT = { var:wm_party ?= { has_variable = wm_lead_state } }
+		}
+		scope:target = { is_alive = yes }
+	}
+
+	# Agents: colleagues who whip up support, count heads and keep it quiet
+	agent_leave_threshold = -25
+	agent_join_chance = {
+		base = 0
+		ai_agent_join_chance_basic_suite_modifier = yes
+		ai_agent_join_chance_hostile_general_suite_modifier = yes
+		modifier = {	# colleagues who resent the leader are keen
+			add = 15
+			opinion = {
+				target = scope:target
+				value <= -20
+			}
+		}
+	}
+	valid_agent = { is_valid_agent_standard_trigger = yes }
+	agent_groups_owner_perspective = { courtiers peer_vassals vassals councillors }
+	agent_groups_target_character_perspective = { courtiers vassals }
+
+	odds_prediction = {
+		add = hostile_scheme_base_odds_prediction_target_is_char_value
+		add = odds_skill_contribution_intrigue_value
+		add = agent_groups_owner_perspective_value
+		add = agent_groups_target_character_perspective_value
+		min = 0
+	}
+
+	# Base Chances
+	base_success_chance = {
+		base = 0
+		scheme_type_skill_success_chance_modifier = { SKILL = INTRIGUE }
+		hostile_scheme_base_chance_modifier = yes
+
+		modifier = {	# the party did badly at the last election
+			add = 15
+			desc = WM_INTRIGUE_OUST_LOST_GROUND
+			scope:owner.var:wm_party ?= { wm_election_leadership_lost_ground_trigger = yes }
+		}
+		modifier = {	# public trust in politics is on the floor
+			add = 10
+			desc = WM_INTRIGUE_OUST_LOW_TRUST
+			has_global_variable = wm_public_trust
+			global_var:wm_public_trust < 25
+		}
+		modifier = {
+			add = 10
+			desc = WM_INTRIGUE_OUST_PLOTTER_PROFILE
+			scope:owner.prestige_level >= 3
+		}
+		modifier = {
+			add = -15
+			desc = WM_INTRIGUE_OUST_LEADER_PROFILE
+			scope:target.prestige_level >= 4
+		}
+		modifier = {	# the leader's own Chief Whip is watching
+			add = -10
+			desc = WM_INTRIGUE_OUST_CHIEF_WHIP
+			exists = scope:target.cp:councillor_spymaster
+			scope:target.cp:councillor_spymaster != scope:owner
+			scope:target.cp:councillor_spymaster.intrigue >= 12
+		}
+	}
+	base_secrecy = {
+		add = secrecy_base_value
+	}
+
+	# On Actions
+	on_start = {
+		add_scheme_starting_opportunities_intrigue_effect = yes
+		if = {
+			limit = {
+				scheme_owner = {
+					NOT = { has_variable = agents_added }
+				}
+			}
+			add_agent_slot = agent_diplomat
+			add_agent_slot = agent_socialite
+			add_agent_slot = agent_infiltrator
+			add_agent_slot = agent_lookout
+		}
+	}
+	on_phase_completed = {
+		wm_intrigue_phase_effect = yes
+	}
+	on_hud_click = {
+		wm_intrigue_hud_click_effect = yes
+	}
+	on_semiyearly = {
+		wm_intrigue_semiyearly_effect = yes
+	}
+	on_invalidated = {
+		scheme_target_character = { save_scope_as = target }
+		scheme_owner = {
+			send_interface_toast = {
+				type = event_toast_effect_neutral
+				title = wm_intrigue_oust_invalidated_title
+				left_icon = scope:target
+				custom_tooltip = wm_intrigue_oust_invalidated_desc
+			}
+		}
+	}
+}

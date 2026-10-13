@@ -241,8 +241,7 @@ impassable_mountains = LIST { %s }
     gt = MOD / "gfx" / "map" / "terrain"
     (gt / "flat_maps").mkdir(parents=True, exist_ok=True)
     index, inten = terrain.materials(elev, land)
-    Image.fromarray(index, "RGBA").save(gt / "detail_index.tga")
-    Image.fromarray(inten, "RGBA").save(gt / "detail_intensity.tga")
+    terrain.save_detail_maps(index, inten, gt)     # half size, RLE (terrain.DETAIL_SCALE)
     del index, inten
     step("terrain materials")
     cm = terrain.colormap(elev, land)

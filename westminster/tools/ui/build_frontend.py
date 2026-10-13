@@ -4,7 +4,8 @@
     .venv/bin/python westminster/tools/ui/build_frontend.py
 
 - gfx/interface/frontend/frontend_main_menu_bg.dds: the menu panel (vanilla: stained glass) becomes a newspaper
-  front page: masthead "Westminster", a dateline and column rules, on newsprint.
+  front page: masthead "Westminster", a dateline and column rules, on paper (build_theme.THEME: dark paper and
+  off-white type in the night edition).
 - frontend_main_menu_frame.dds (vanilla: a gothic arch) becomes a plain ruled border; its mask becomes a rectangle;
   the colour-dodge glows become black so they do nothing on paper.
 - gui/frontend_main.gui: vanilla's, with the backdrop set to gfx/interface/frontend/wm_backdrop.dds (from
@@ -18,7 +19,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_theme import GAME, INK, MOD, PAPER, grain, save_dds   # noqa: E402
+from build_theme import DARK, GAME, INK, LINE, MOD, PAPER, THEME, grain, save_dds   # noqa: E402
 
 FRONT = MOD / "gfx" / "interface" / "frontend"
 FONTS = MOD / "fonts"
@@ -34,6 +35,7 @@ def panel():
     im = Image.fromarray(img, "RGBA")
     d = ImageDraw.Draw(im)
     ink = tuple(int(v) for v in INK) + (255,)
+    line = tuple(int(v) for v in LINE) + (255,)
     m = 56
     # Masthead
     d.line([(m, 70), (W - m, 70)], fill=ink, width=3)
@@ -47,15 +49,15 @@ def panel():
     d.line([(m, 348), (W - m, 348)], fill=ink, width=2)
     # Column rules down the page (behind the buttons) and a footer rule
     for x in (m, W - m):
-        d.line([(x, 348), (x, H - 120)], fill=ink + (0,) if False else ink, width=2)
+        d.line([(x, 348), (x, H - 120)], fill=line, width=2)
     d.line([(m, H - 120), (W - m, H - 120)], fill=ink, width=3)
-    d.text((W / 2, H - 80), "Late edition", font=small, fill=ink, anchor="mm")
+    d.text((W / 2, H - 80), "Night edition" if DARK else "Late edition", font=small, fill=ink, anchor="mm")
     return np.array(im)
 
 
 def frame():
     out = np.zeros((H, W, 4), dtype=np.uint8)
-    out[..., :3] = INK.astype(np.uint8)
+    out[..., :3] = LINE.astype(np.uint8)
     for t, inset in ((4, 0), (2, 14)):
         out[inset:inset + t, inset:W - inset, 3] = 255
         out[H - inset - t:H - inset, inset:W - inset, 3] = 255
@@ -65,13 +67,14 @@ def frame():
 
 
 def logo_banner():
-    """The loading screen's little banner (vanilla: the CK3 shield): a black masthead card with a white W."""
+    """The loading screen's little banner (vanilla: the CK3 shield): a dark masthead card with a light W."""
     w, h = 72, 90
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    d.rectangle([2, 2, w - 3, h - 3], fill=(24, 24, 24, 255))
-    d.rectangle([6, 6, w - 7, h - 7], outline=(243, 239, 230, 255), width=1)
-    d.text((w / 2, h / 2 + 2), "W", font=font(FONTS / "Fondamento" / "Fondamento-Regular.ttf", 56), fill=(243, 239, 230, 255), anchor="mm")
+    card, glyph = THEME["alert_dark"] + (255,), THEME["alert_light"] + (255,)
+    d.rectangle([2, 2, w - 3, h - 3], fill=card)
+    d.rectangle([6, 6, w - 7, h - 7], outline=glyph, width=1)
+    d.text((w / 2, h / 2 + 2), "W", font=font(FONTS / "Fondamento" / "Fondamento-Regular.ttf", 56), fill=glyph, anchor="mm")
     return np.array(im)
 
 

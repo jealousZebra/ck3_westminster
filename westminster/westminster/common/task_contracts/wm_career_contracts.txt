@@ -1,13 +1,20 @@
 ﻿# Jobs for unlanded politicians (common/scripted_effects/wm_career_effects.txt). A party's MPs offer them to its
-# hopefuls (wm_career_offer_jobs_effect, monthly); the hopeful takes one in the contracts window. Three weeks later
-# (event wm_career.10) it is settled with a skill check: success pays profile, money, campaign funds, standing with
-# the party and a contact; failure costs a little standing and profile.
-# Contracts are created in the taker's scope (create_task_contract), with the employer given.
+# hopefuls (wm_career_offer_jobs_effect, monthly; which jobs come up depends on the hopeful's political focus); the
+# hopeful takes one on the jobs board. Three weeks later (event wm_career.10) it is settled with a skill check:
+# success pays profile, money, campaign funds, standing with the party and a contact; failure costs a little standing
+# and profile. Contracts are created in the taker's scope (create_task_contract), with the employer given, at the
+# taker's own campaign office (so no job ever needs travel: travel = no, and always in range).
+# Vanilla's contracts are switched off (tools/data/build_contracts.py).
 #
 #   wm_job_canvassing      knocking on doors for an MP          diplomacy     standing +6
 #   wm_job_fundraising     a fundraising dinner for an MP       stewardship   money
 #   wm_job_speechwriting   writing an MP's speeches             learning      profile
 #   wm_job_research        opposition research for an MP        intrigue      standing, money
+#   wm_job_phonebank       an evening on the phones             diplomacy     standing, campaign funds
+#   wm_job_policy_paper    a policy paper for an MP             learning      profile, standing
+#   wm_job_media_round     the morning media round              intrigue      profile
+#   wm_job_gotv            polling day: get out the vote        prowess       standing
+#   wm_job_budget          costing a manifesto pledge           stewardship   money, standing
 #   wm_selection_contract  the party's candidate assessment     diplomacy     the approved list (var:wm_on_shortlist)
 
 wm_job_canvassing = {
@@ -45,7 +52,7 @@ wm_job_canvassing = {
 
 wm_job_fundraising = {
 	group = wm_career_contracts_group
-	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	icon = "gfx/interface/icons/icon_skill_stewardship.dds"
 	travel = no
 	use_diplomatic_range = no
 	weight = { value = 1 }
@@ -78,7 +85,7 @@ wm_job_fundraising = {
 
 wm_job_speechwriting = {
 	group = wm_career_contracts_group
-	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	icon = "gfx/interface/icons/icon_skill_learning.dds"
 	travel = no
 	use_diplomatic_range = no
 	weight = { value = 1 }
@@ -111,7 +118,7 @@ wm_job_speechwriting = {
 
 wm_job_research = {
 	group = wm_career_contracts_group
-	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	icon = "gfx/interface/icons/icon_skill_intrigue.dds"
 	travel = no
 	use_diplomatic_range = no
 	weight = { value = 1 }
@@ -130,6 +137,171 @@ wm_job_research = {
 			should_print_on_complete = yes
 			effect = {
 				wm_career_job_success_effect = { STANDING = 5 PRESTIGE = 15 GOLD = 40 FUNDS = 25 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_phonebank = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/scheme_types/diplomacy.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 4 PRESTIGE = 15 GOLD = 0 FUNDS = 75 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_policy_paper = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/icon_skill_learning.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 4 PRESTIGE = 35 GOLD = 20 FUNDS = 0 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_media_round = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/icon_skill_intrigue.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 3 PRESTIGE = 50 GOLD = 0 FUNDS = 25 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_gotv = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/icon_prowess.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 7 PRESTIGE = 20 GOLD = 0 FUNDS = 25 }
+			}
+		}
+		failure_standard = {
+			positive = no
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_failure_effect = yes
+			}
+		}
+	}
+}
+
+wm_job_budget = {
+	group = wm_career_contracts_group
+	icon = "gfx/interface/icons/icon_skill_stewardship.dds"
+	travel = no
+	use_diplomatic_range = no
+	weight = { value = 1 }
+
+	valid_to_create = { has_variable = wm_party }
+	valid_to_accept = { has_variable = wm_career_hopeful }
+	valid_to_continue = { always = yes }
+	valid_to_keep = { always = yes }
+
+	on_accepted = {
+		wm_career_job_accepted_effect = yes
+	}
+
+	task_contract_reward = {
+		success_standard = {
+			should_print_on_complete = yes
+			effect = {
+				wm_career_job_success_effect = { STANDING = 4 PRESTIGE = 15 GOLD = 60 FUNDS = 25 }
 			}
 		}
 		failure_standard = {

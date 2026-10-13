@@ -79,12 +79,12 @@ template Color_Intense_Orange
 
 template Color_Black
 {
-    color = { 0.850 0.830 0.770 0.7 }
+    color = { 0.091 0.098 0.106 0.7 }
 }
 
 template Color_Button_Background
 {
-    color = { 0.884 0.864 0.808 1 }
+    color = { 0.113 0.121 0.132 1 }
 }
 
 

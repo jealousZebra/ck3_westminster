@@ -1,0 +1,317 @@
+﻿# Intrigue in political dress. Vanilla's scheme events went with replace_path="events/...", so the schemes that are
+# back run on this flow instead (their scheme files: tools/data/build_safeguards.py; Plot to Oust:
+# common/schemes/scheme_types/wm_intrigue_schemes.txt; events: events/wm_intrigue_events.txt).
+#
+#   Fabricate a Scandal  (fabricate_hook)   dig up or dress up a story about a politician. Success: a hook on them,
+#                        and the story itself (secret wm_secret_intrigue_story, known to the schemer) to leak or use;
+#                        any real political secret of theirs that turns up is learnt too.
+#   An affair            (seduce)           fictional characters only (wm_intrigue_triggers.txt). Success: lovers,
+#                        and a lover secret if either is married.
+#   Plot to Oust         (wm_intrigue_oust) line up colleagues against the party leader. Success: a leadership
+#                        challenge with the plotter on the ballot (wm_election_leadership_challenge_effect, KIND = 2).
+#   Leak to the Press    (expose_secret_interaction) and Threaten to Leak (blackmail_interaction): political secrets
+#                        only; a leak costs the target Profile, their party a point or two in the polls, and costs
+#                        public trust (wm_intrigue_leak_effect).
+#
+# Each completed phase is "the moment to act" (event wm_intrigue.1 for a player; the AI acts when the odds are good
+# or the plot has dragged on: wm_intrigue_ai_acts_trigger). Acting rolls the scheme's success chance; a failure may
+# be discovered (100 - secrecy), and then the target knows who was behind it.
+# State: var:wm_intrigue_ready on a scheme (a phase has completed); global_var:wm_intrigue_force (tests only:
+# 1 success, 2 failure discovered, 3 failure unnoticed, 0 roll the dice).
+
+# Scope: a scheme whose phase has just completed (on_phase_completed).
+wm_intrigue_phase_effect = {
+	save_scope_as = scheme
+	scheme_owner = { save_scope_as = owner }
+	scheme_target_character = { save_scope_as = target }
+	set_variable = { name = wm_intrigue_ready value = yes }
+	if = {
+		limit = { scheme_owner = { wm_majority_ask_player_trigger = yes } }
+		scheme_owner = { trigger_event = wm_intrigue.1 }
+	}
+	else_if = {
+		limit = {
+			scheme_owner = { is_ai = yes }
+			wm_intrigue_ai_acts_trigger = yes
+		}
+		wm_intrigue_resolve_effect = yes
+	}
+}
+
+# Scope: a scheme clicked in the HUD: once a phase has completed, the moment to act comes back.
+wm_intrigue_hud_click_effect = {
+	if = {
+		limit = {
+			has_variable = wm_intrigue_ready
+			scheme_owner = { is_ai = no }
+		}
+		save_scope_as = scheme
+		scheme_owner = { save_scope_as = owner }
+		scheme_target_character = { save_scope_as = target }
+		scheme_owner = { trigger_event = wm_intrigue.1 }
+	}
+}
+
+# Scope: a scheme, twice a year: an AI that held off may act now.
+wm_intrigue_semiyearly_effect = {
+	if = {
+		limit = {
+			has_variable = wm_intrigue_ready
+			scheme_owner = { is_ai = yes }
+			wm_intrigue_ai_acts_trigger = yes
+		}
+		wm_intrigue_resolve_effect = yes
+	}
+}
+
+# Scope: a scheme. The owner acts: the rolls, the outcome, word to the players involved, and the scheme ends.
+wm_intrigue_resolve_effect = {
+	save_scope_as = scheme
+	scheme_owner = { save_scope_as = owner }
+	scheme_target_character = { save_scope_as = target }
+	save_scope_value_as = {
+		name = wm_intrigue_discovery_chance
+		value = {
+			value = 100
+			subtract = scheme_secrecy
+			min = 10
+		}
+	}
+	if = {
+		limit = { global_var:wm_intrigue_force ?= 1 }
+		save_scope_value_as = { name = wm_intrigue_success value = yes }
+	}
+	else_if = {
+		limit = { global_var:wm_intrigue_force ?= 2 }
+		save_scope_value_as = { name = wm_intrigue_discovered value = yes }
+	}
+	else_if = {
+		limit = { global_var:wm_intrigue_force ?= 3 }
+	}
+	else = {
+		random = {
+			chance = scheme_success_chance
+			save_scope_value_as = { name = wm_intrigue_success value = yes }
+		}
+		if = {
+			limit = { NOT = { exists = scope:wm_intrigue_success } }
+			random = {
+				chance = scope:wm_intrigue_discovery_chance
+				save_scope_value_as = { name = wm_intrigue_discovered value = yes }
+			}
+		}
+	}
+	if = {
+		limit = { scheme_type = fabricate_hook }
+		wm_intrigue_scandal_outcome_effect = yes
+	}
+	else_if = {
+		limit = { scheme_type = seduce }
+		wm_intrigue_affair_outcome_effect = yes
+	}
+	else_if = {
+		limit = { scheme_type = wm_intrigue_oust }
+		wm_intrigue_oust_outcome_effect = yes
+	}
+	scope:owner = {
+		set_variable = { name = wm_intrigue_last_outcome value = 3 days = 30 }	# for the tests: 1 success, 2 caught, 3 failed
+		if = {
+			limit = { exists = scope:wm_intrigue_success }
+			set_variable = { name = wm_intrigue_last_outcome value = 1 days = 30 }
+		}
+		else_if = {
+			limit = { exists = scope:wm_intrigue_discovered }
+			set_variable = { name = wm_intrigue_last_outcome value = 2 days = 30 }
+		}
+		if = {
+			limit = { wm_majority_ask_player_trigger = yes }
+			trigger_event = wm_intrigue.2
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:wm_intrigue_discovered
+			scope:target = { wm_majority_ask_player_trigger = yes }
+		}
+		scope:target = { trigger_event = wm_intrigue.3 }
+	}
+	end_scheme = yes
+}
+
+# Fabricate a Scandal. Scopes: scope:owner, scope:target; scope:wm_intrigue_success / scope:wm_intrigue_discovered.
+wm_intrigue_scandal_outcome_effect = {
+	save_scope_value_as = { name = wm_intrigue_kind value = flag:scandal }
+	if = {
+		limit = { exists = scope:wm_intrigue_success }
+		scope:owner = {
+			add_hook = {
+				type = manipulation_hook
+				target = scope:target
+			}
+		}
+		scope:target = {
+			add_secret = { type = wm_secret_intrigue_story }
+			random_secret = {
+				type = wm_secret_intrigue_story
+				limit = { NOT = { is_known_by = scope:owner } }
+				reveal_to = scope:owner
+			}
+			# The digging turned up something real, too
+			random_secret = {
+				limit = {
+					NOT = { secret_type = wm_secret_intrigue_story }
+					wm_intrigue_leakable_secret_trigger = yes
+					NOT = { is_known_by = scope:owner }
+				}
+				reveal_to = scope:owner
+			}
+		}
+	}
+	else_if = {
+		limit = { exists = scope:wm_intrigue_discovered }
+		scope:target = {
+			add_opinion = {
+				target = scope:owner
+				modifier = wm_intrigue_caught_digging_opinion
+			}
+		}
+		scope:owner = { add_prestige = minor_prestige_loss }
+	}
+}
+
+# An affair. Scopes as above.
+wm_intrigue_affair_outcome_effect = {
+	save_scope_value_as = { name = wm_intrigue_kind value = flag:affair }
+	if = {
+		limit = { exists = scope:wm_intrigue_success }
+		scope:owner = {
+			set_relation_lover = scope:target
+			if = {
+				limit = {
+					OR = {
+						is_married = yes
+						scope:target = { is_married = yes }
+					}
+				}
+				add_secret = {
+					type = secret_lover
+					target = scope:target
+				}
+				scope:target = {
+					add_secret = {
+						type = secret_lover
+						target = scope:owner
+					}
+				}
+			}
+		}
+	}
+	else = {
+		# Rebuffed: no second try for a while
+		scope:target = {
+			add_opinion = {
+				target = scope:owner
+				modifier = seduce_regular_cooldown_opinion
+			}
+		}
+		if = {
+			limit = { exists = scope:wm_intrigue_discovered }
+			scope:owner = { add_prestige = minor_prestige_loss }
+		}
+	}
+}
+
+# Plot to Oust. Scopes as above. Success opens a leadership challenge with the plotter on the ballot; the
+# leader is weakened going into it.
+wm_intrigue_oust_outcome_effect = {
+	save_scope_value_as = { name = wm_intrigue_kind value = flag:oust }
+	if = {
+		limit = {
+			exists = scope:wm_intrigue_success
+			scope:owner = {
+				exists = var:wm_party
+				var:wm_party.holder ?= scope:target
+				NOT = { var:wm_party = { has_variable = wm_lead_state } }
+			}
+		}
+		scope:target = { add_prestige = medium_prestige_loss }
+		scope:owner = { wm_election_leadership_challenge_effect = yes }
+	}
+	else_if = {
+		limit = { exists = scope:wm_intrigue_discovered }
+		scope:target = {
+			add_opinion = {
+				target = scope:owner
+				modifier = wm_intrigue_caught_plotting_opinion
+			}
+		}
+		scope:owner = { add_prestige = medium_prestige_loss }
+	}
+}
+
+# Leak to the Press (expose_secret_interaction's on_accept). Scopes: scope:recipient (the secret's owner),
+# scope:puppet_or_actor (the leaker), scope:target (the secret, when one was chosen).
+wm_intrigue_leak_effect = {
+	if = {
+		limit = {
+			OR = {
+				scope:target ?= {
+					wm_intrigue_leakable_secret_trigger = yes
+					NOT = { secret_type = wm_secret_smear_campaign }	# its own exposure already costs the party
+				}
+				AND = {
+					NOT = { exists = scope:target }
+					scope:recipient = {
+						any_secret = {
+							is_known_by = scope:puppet_or_actor
+							wm_intrigue_leakable_secret_trigger = yes
+						}
+					}
+				}
+			}
+		}
+		scope:recipient = {
+			save_scope_as = wm_intrigue_leak_victim
+			wm_intrigue_press_hit_effect = yes
+			add_opinion = {
+				target = scope:puppet_or_actor
+				modifier = wm_intrigue_leaked_opinion
+			}
+		}
+		scope:puppet_or_actor = { save_scope_as = wm_intrigue_leaker }
+		scope:recipient = {
+			if = {
+				limit = { wm_majority_ask_player_trigger = yes }
+				trigger_event = wm_intrigue.10
+			}
+		}
+		scope:puppet_or_actor = {
+			if = {
+				limit = {
+					is_ai = no
+					NOT = { has_global_variable = wm_test_quiet }
+				}
+				send_interface_toast = {
+					type = event_toast_effect_good
+					title = wm_intrigue_leak_toast
+					left_icon = scope:recipient
+					custom_tooltip = wm_intrigue_leak_toast_desc
+				}
+			}
+		}
+	}
+}
+
+# Scope: a politician in the papers. Profile, their party's poll (a leader's scandal costs twice as much) and
+# public trust all fall.
+wm_intrigue_press_hit_effect = {
+	add_prestige = wm_intrigue_leak_prestige
+	wm_campaign_own_poll_effect = { AMOUNT = wm_intrigue_leak_poll }
+	wm_trust_scandal_effect = { AMOUNT = wm_intrigue_leak_trust }
+}
+
+# No scope. Game start: flags the real people and sets the test hook.
+wm_intrigue_init_effect = {
+	wm_intrigue_mark_real_people_effect = yes
+	set_global_variable = { name = wm_intrigue_force value = 0 }
+}

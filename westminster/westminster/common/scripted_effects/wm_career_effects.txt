@@ -193,38 +193,98 @@ wm_career_offer_jobs_effect = {
 			limit = { NOT = { exists = scope:wm_career_employer } }
 			var:wm_party.holder = { save_scope_as = wm_career_employer }
 		}
+		# The job is done where the hopeful's campaign office is, never at the employer's: a contract placed out of the
+		# office's range offered "Travel to Accept", and arriving with the office still out of range offered it again
+		# (the endless travel loop players reported).
+		if = {
+			limit = { exists = domicile.domicile_location }
+			domicile.domicile_location = { save_scope_as = wm_career_job_place }
+		}
+		else = {
+			location = { save_scope_as = wm_career_job_place }
+		}
+		# Which jobs come up depends on the hopeful's political focus (camp purpose): Grassroots Organisers (explorers)
+		# get doorstep work, Think-Tank Wonks (scholars) policy work, Media Pundits (brigands) media work, Campaign
+		# Consultants (mercenaries) money and data work, Party Fixers (legitimists) the party's inside jobs.
 		random_list = {
 			30 = {
-				create_task_contract = {
-					task_contract_employer = scope:wm_career_employer
-					task_contract_type = wm_job_canvassing
-					task_contract_tier = 1
-					location = scope:wm_career_employer.location
+				modifier = {
+					add = 60
+					has_realm_law = camp_purpose_explorers
 				}
+				wm_career_offer_job_effect = { TYPE = wm_job_canvassing }
 			}
 			20 = {
-				create_task_contract = {
-					task_contract_employer = scope:wm_career_employer
-					task_contract_type = wm_job_fundraising
-					task_contract_tier = 1
-					location = scope:wm_career_employer.location
+				modifier = {
+					add = 40
+					has_realm_law = camp_purpose_mercenaries
 				}
+				wm_career_offer_job_effect = { TYPE = wm_job_fundraising }
 			}
 			20 = {
-				create_task_contract = {
-					task_contract_employer = scope:wm_career_employer
-					task_contract_type = wm_job_speechwriting
-					task_contract_tier = 1
-					location = scope:wm_career_employer.location
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_scholars
 				}
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_legitimists
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_speechwriting }
 			}
 			20 = {
-				create_task_contract = {
-					task_contract_employer = scope:wm_career_employer
-					task_contract_type = wm_job_research
-					task_contract_tier = 1
-					location = scope:wm_career_employer.location
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_brigands
 				}
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_legitimists
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_research }
+			}
+			15 = {
+				modifier = {
+					add = 40
+					has_realm_law = camp_purpose_explorers
+				}
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_mercenaries
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_phonebank }
+			}
+			15 = {
+				modifier = {
+					add = 50
+					has_realm_law = camp_purpose_scholars
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_policy_paper }
+			}
+			15 = {
+				modifier = {
+					add = 60
+					has_realm_law = camp_purpose_brigands
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_media_round }
+			}
+			10 = {
+				modifier = {
+					add = 40
+					has_realm_law = camp_purpose_explorers
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_gotv }
+			}
+			10 = {
+				modifier = {
+					add = 30
+					has_realm_law = camp_purpose_scholars
+				}
+				modifier = {
+					add = 40
+					has_realm_law = camp_purpose_mercenaries
+				}
+				wm_career_offer_job_effect = { TYPE = wm_job_budget }
 			}
 			40 = {
 				trigger = {
@@ -239,10 +299,21 @@ wm_career_offer_jobs_effect = {
 					task_contract_employer = scope:wm_career_employer
 					task_contract_type = wm_selection_contract
 					task_contract_tier = 1
-					location = scope:wm_career_employer.location
+					location = scope:wm_career_job_place
 				}
 			}
 		}
+	}
+}
+
+# Character (a player hopeful, scope:wm_career_worker): offers job $TYPE$ from scope:wm_career_employer, placed at
+# scope:wm_career_job_place (their campaign office).
+wm_career_offer_job_effect = {
+	create_task_contract = {
+		task_contract_employer = scope:wm_career_employer
+		task_contract_type = $TYPE$
+		task_contract_tier = 1
+		location = scope:wm_career_job_place
 	}
 }
 
@@ -253,10 +324,15 @@ wm_career_resolve_jobs_effect = {
 	wm_career_resolve_job_effect = { TYPE = wm_job_fundraising SKILL = stewardship }
 	wm_career_resolve_job_effect = { TYPE = wm_job_speechwriting SKILL = learning }
 	wm_career_resolve_job_effect = { TYPE = wm_job_research SKILL = intrigue }
+	wm_career_resolve_job_effect = { TYPE = wm_job_phonebank SKILL = diplomacy }
+	wm_career_resolve_job_effect = { TYPE = wm_job_policy_paper SKILL = learning }
+	wm_career_resolve_job_effect = { TYPE = wm_job_media_round SKILL = intrigue }
+	wm_career_resolve_job_effect = { TYPE = wm_job_gotv SKILL = prowess }
+	wm_career_resolve_job_effect = { TYPE = wm_job_budget SKILL = stewardship }
 	wm_career_resolve_job_effect = { TYPE = wm_selection_contract SKILL = diplomacy }
 }
 
-# $TYPE$: contract type; $SKILL$: diplomacy, stewardship, learning or intrigue (wm_career_job_chance_<skill>).
+# $TYPE$: contract type; $SKILL$: diplomacy, stewardship, learning, intrigue or prowess (wm_career_job_chance_<skill>).
 wm_career_resolve_job_effect = {
 	if = {
 		limit = {
@@ -317,6 +393,20 @@ wm_career_job_success_effect = {
 		wm_career_change_standing_effect = { AMOUNT = $STANDING$ }
 		add_prestige = $PRESTIGE$
 		add_gold = $GOLD$
+		# political focus bonuses (camp purposes): Party Fixers are noticed, Media Pundits get airtime, Campaign
+		# Consultants send an invoice
+		if = {
+			limit = { has_realm_law = camp_purpose_legitimists }
+			wm_career_change_standing_effect = { AMOUNT = 2 }
+		}
+		else_if = {
+			limit = { has_realm_law = camp_purpose_brigands }
+			add_prestige = 15
+		}
+		else_if = {
+			limit = { has_realm_law = camp_purpose_mercenaries }
+			add_gold = 25
+		}
 		if = {
 			limit = { exists = domicile }
 			domicile = { change_provisions = $FUNDS$ }
@@ -841,6 +931,14 @@ wm_career_game_start_effect = {
 		}
 		wm_career_start_campaign_effect = yes
 	}
+	# A player who made their own campaigner (a landless adventurer from the character designer) has no party.
+	every_player = {
+		limit = {
+			is_landless_adventurer = yes
+			NOT = { has_variable = wm_party }
+		}
+		wm_career_newcomer_party_effect = yes
+	}
 	every_player = {
 		limit = {
 			has_variable = wm_party
@@ -850,4 +948,27 @@ wm_career_game_start_effect = {
 		}
 		wm_career_start_campaign_effect = yes
 	}
+}
+
+# Character: a campaigner with no party (one the player made in the character designer) joins the party of an MP who
+# shares their ideology, else Labour, and its house, so the career, the jobs and the selections work for them too.
+# Without this they were offered no jobs at all, only vanilla's (now switched off) contracts.
+wm_career_newcomer_party_effect = {
+	save_scope_as = wm_career_newcomer
+	clear_saved_scope = wm_career_newcomer_party
+	random_living_character = {
+		limit = {
+			faith = scope:wm_career_newcomer.faith
+			has_variable = wm_party
+			exists = var:wm_party.holder
+			wm_is_mp_trigger = yes
+		}
+		var:wm_party = { save_scope_as = wm_career_newcomer_party }
+	}
+	if = {
+		limit = { NOT = { exists = scope:wm_career_newcomer_party } }
+		title:k_party_labour = { save_scope_as = wm_career_newcomer_party }
+	}
+	set_variable = { name = wm_party value = scope:wm_career_newcomer_party }
+	wm_party_sync_house_effect = yes
 }

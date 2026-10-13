@@ -1,0 +1,22 @@
+﻿# Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt)
+
+# Caught digging for a scandal about them (Fabricate a Scandal, discovered)
+wm_intrigue_caught_digging_opinion = {
+	opinion = -30
+	years = 5
+	decaying = yes
+}
+
+# Caught plotting to oust them as party leader (Plot to Oust, discovered)
+wm_intrigue_caught_plotting_opinion = {
+	opinion = -50
+	years = 10
+	decaying = yes
+}
+
+# Leaked a story about them to the press
+wm_intrigue_leaked_opinion = {
+	opinion = -40
+	years = 10
+	decaying = yes
+}

@@ -100,7 +100,7 @@ types MapModes
 			margin_bottom = 10
 			margin_top = -12
 			margin_right = 10
-			color = { 0.900 0.880 0.825 0.75 }
+			color = { 0.122 0.131 0.143 0.75 }
 			visible = "[And(CanChangeMapMode, Not( GreaterThan_CFixedPoint( GetPlayer.MakeScope.Var('hide_ui_timeline').GetValue, '(CFixedPoint)0' ) ))]"
 		}
 
@@ -130,7 +130,7 @@ types MapModes
 				using = Background_Area_Dark
 				margin = { 10 10 }
 				margin_top = 5
-				color = { 0.900 0.880 0.825 0.75 }
+				color = { 0.122 0.131 0.143 0.75 }
 			}
 
 			text_single = {
@@ -171,7 +171,7 @@ types MapModes
 				using = Background_Area_Dark
 				margin = { 10 10 }
 				margin_top = 5
-				color = { 0.900 0.880 0.825 0.75 }
+				color = { 0.122 0.131 0.143 0.75 }
 			}
 
 			text_single = {
@@ -212,7 +212,7 @@ types MapModes
 				using = Background_Area_Dark
 				margin = { 10 10 }
 				margin_top = 5
-				color = { 0.900 0.880 0.825 0.75 }
+				color = { 0.122 0.131 0.143 0.75 }
 			}
 
 			text_single = {
@@ -258,7 +258,7 @@ types MapModes
 
 			blockoverride "mm_bg_color"
 			{
-				color = { 0.903 0.883 0.828 1 }
+				color = { 0.124 0.133 0.146 1 }
 			}
 		}
 
@@ -294,7 +294,7 @@ types MapModes
 
 					blockoverride "button_bg_color"
 					{
-						color = { 0.891 0.871 0.815 1 }
+						color = { 0.117 0.125 0.137 1 }
 					}
 				}
 
@@ -314,7 +314,7 @@ types MapModes
 
 					blockoverride "button_bg_color"
 					{
-						color = { 0.891 0.871 0.815 1 }
+						color = { 0.117 0.125 0.137 1 }
 					}
 				}
 
@@ -334,7 +334,7 @@ types MapModes
 
 					blockoverride "button_bg_color"
 					{
-						color = { 0.892 0.872 0.817 1 }
+						color = { 0.117 0.126 0.138 1 }
 					}
 				}
 
@@ -513,7 +513,7 @@ types MapModes
 
 			background = {
 				using = Background_Area_Dark
-				color = { 0.900 0.880 0.825 0.75 }
+				color = { 0.122 0.131 0.143 0.75 }
 			}
 
 			text_single = {
@@ -769,7 +769,7 @@ types MapModes
 
 					blockoverride "button_bg_color"
 					{
-						color = { 0.892 0.872 0.817 1 }
+						color = { 0.117 0.126 0.138 1 }
 					}
 				}
 

@@ -1,0 +1,15 @@
+﻿# Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt)
+
+# A leak (Leak to the Press): the target's Profile, their party's poll in tenths of a percent (a party leader's
+# scandal costs the party twice as much), and public trust in points. Scope: the target.
+wm_intrigue_leak_prestige = {
+	value = medium_prestige_loss
+}
+wm_intrigue_leak_poll = {
+	value = -10
+	if = {
+		limit = { wm_commons_is_party_leader_trigger = yes }
+		value = -20
+	}
+}
+wm_intrigue_leak_trust = -1

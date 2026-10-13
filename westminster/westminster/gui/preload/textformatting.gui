@@ -1,4 +1,4 @@
-﻿# Westminster: Crusader Kings III's own gui/preload/textformatting.gui (Paradox Interactive), with an ink-on-paper palette, by westminster/tools/ui/build_theme.py - edit there.
+﻿# Westminster: Crusader Kings III's own gui/preload/textformatting.gui (Paradox Interactive), with the night edition's palette, by westminster/tools/ui/build_theme.py - edit there.
 textformatting = {
 
 
@@ -6,7 +6,7 @@ textformatting = {
 
 	format = {
 		name = highlight
-		format = "color:{0.69, 0.10, 0.12}"
+		format = "color:{0.96, 0.45, 0.47}"
 	}
 
 	###### COLORS ###
@@ -14,78 +14,78 @@ textformatting = {
 
 	format = {
 		name = color_white
-		format = "color:{0.09, 0.09, 0.09}"
+		format = "color:{0.93, 0.91, 0.86}"
 	}
 
 	format = {
 		name = color_gray
-		format = "color:{0.22, 0.22, 0.21}"
+		format = "color:{0.73, 0.71, 0.67}"
 	}
 
 	format = {
 		name = color_dark_gray
-		format = "color:{0.42, 0.41, 0.40}"
+		format = "color:{0.60, 0.58, 0.56}"
 	}
 
 	format = {
 		name = color_red
-		format = "color:{0.72, 0.11, 0.12}"
+		format = "color:{0.95, 0.42, 0.42}"
 	}
 
 	format = {
 		name = color_light_red
-		format = "color:{0.82, 0.18, 0.18}"
+		format = "color:{1.00, 0.58, 0.56}"
 	}
 
 	format = {
 		name = color_green
-		format = "color:{0.10, 0.45, 0.18}"
+		format = "color:{0.49, 0.79, 0.49}"
 	}
 
 	format = {
 		name = color_yellow
-		format = "color:{0.69, 0.10, 0.12}"
+		format = "color:{0.96, 0.45, 0.47}"
 	}
 
 	format = {
 		name = color_light_blue
-		format = "color:{0.10, 0.32, 0.56}"
+		format = "color:{0.55, 0.73, 0.93}"
 	}
 
 	format = {
 		name = color_dark_blue
-		format = "color:{0.08, 0.20, 0.42}"
+		format = "color:{0.55, 0.67, 0.95}"
 	}
 
 	format = {
 		name = color_blue_gray
-		format = "color:{0.30, 0.32, 0.38}"
+		format = "color:{0.64, 0.68, 0.76}"
 	}
 
 	format = {
 		name = color_goldy_yellow
-		format = "color:{0.45, 0.33, 0.16}"
+		format = "color:{0.89, 0.73, 0.46}"
 	}
 
 	format = {
 		name = color_black
-		format = "color:{0.05, 0.05, 0.05}"
+		format = "color:{0.93, 0.91, 0.86}"
 	}
 
 	format = {
 		name = color_dark_green
-		format = "color:{0.08, 0.38, 0.12}"
+		format = "color:{0.42, 0.75, 0.46}"
 	}
 
 	format = {
 		# WAD.
 		name = color_porple
-		format = "color:{0.40, 0.18, 0.55}"
+		format = "color:{0.76, 0.62, 0.93}"
 	}
 
 	format = {
 		name = charioteer_blue
-		format = "bold;color:{0.10, 0.32, 0.56}"
+		format = "bold;color:{0.55, 0.73, 0.93}"
 	}
 
 	####### TEXT GLOWS ###
@@ -199,7 +199,7 @@ textformatting = {
 
 	format = {
 		name = Xlight
-		format = "color:{0.72, 0.11, 0.12};italic"
+		format = "color:{1.0, 0.58, 0.56};italic"
 	}
 
 	# For when something needs tutorialising repeatedly to the player at point of use; please don't over-use this as a substitute for actual tutorials or better tooltips elsewhere.
@@ -323,12 +323,12 @@ textformatting = {
 
 	format = {
 		name = G
-		format = "color:{0.45, 0.40, 0.55};italic;glow_color:{0.5,0.5,0.5,0.1}"
+		format = "color:{0.74, 0.68, 0.86};italic"
 	}
 
 	format = {
 		name = G_light
-		format = "color:{0.25, 0.20, 0.35};italic;glow_color:{0.5,0.5,0.5,0.1}"
+		format = "color:{0.74, 0.68, 0.86};italic"
 	}
 
 	# For headings in tooltips, the first line
@@ -382,7 +382,7 @@ textformatting = {
 
 	format = {
 		name = date
-		format = "color:{0.09, 0.09, 0.09};glow_color:{0,0,0,0}"
+		format = "color:{0.86, 0.84, 0.79};glow_color:{0,0,0,0}"
 	}
 
 	format = {
@@ -392,22 +392,22 @@ textformatting = {
 
 	format = {
 		name = difficulty_easy
-		format = "bold;color:{0.10, 0.45, 0.18}"
+		format = "bold;color:{0.49, 0.79, 0.49}"
 	}
 
 	format = {
 		name = difficulty_medium
-		format = "bold;color:{0.45, 0.33, 0.16}"
+		format = "bold;color:{0.89, 0.73, 0.46}"
 	}
 
 	format = {
 		name = difficulty_hard
-		format = "bold;color:{0.72, 0.11, 0.12}"
+		format = "bold;color:{1.0, 0.58, 0.56}"
 	}
 
 	format = {
 		name = difficulty_very_hard
-		format = "bold;color:{0.45, 0.06, 0.08}"
+		format = "bold;color:{0.95, 0.42, 0.42}"
 	}
 
 	# Used for when we want to tint via code so we want a clean white
@@ -485,17 +485,17 @@ textformatting = {
 	# Flatulence
 	format = {
 		name = flatulence
-		format = "bold;italic;color:{0.08, 0.38, 0.12}"
+		format = "bold;italic;color:{0.49, 0.79, 0.52}"
 	}
 
 	# For War Overview
 	format = {
 		name = defender_color
-		format = "color:{0.18, 0.30, 0.45}"
+		format = "color:{0.58, 0.70, 0.86}"
 	}
 	format = {
 		name = attacker_color
-		format = "color:{0.85,0.30,0.25}"
+		format = "color:{0.95, 0.47, 0.42}"
 	}
 
 

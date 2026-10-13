@@ -1,0 +1,92 @@
+﻿# Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt): who may be the target of an
+# affair, which secrets the press cares about, and when a scheme's owner may act.
+#
+# The real-people rule: real politicians and royals are never the subject of an affair. Real = any character from the
+# bookmark's history with a wm_mp_, wm_royal_ or wm_char_ id (flagged wm_real_person at game start; older saves
+# fall back to the generated list, wm_intrigue_real_people.txt), plus the royal family however it grows.
+# Fictional = everyone the game generates: by-election MPs, spouses (wm_sp_), activists, children born in play.
+
+# Character: a real person from the bookmark, or in the royal family
+wm_intrigue_is_real_person_trigger = {
+	OR = {
+		has_character_flag = wm_real_person
+		wm_intrigue_is_royal_trigger = yes
+		AND = {
+			NOT = { has_global_variable = wm_intrigue_real_marked }
+			wm_intrigue_real_list_trigger = yes
+		}
+	}
+}
+
+# Character: in the royal family: the House of Windsor, the monarch, or married to one of them
+wm_intrigue_is_royal_trigger = {
+	OR = {
+		dynasty ?= dynasty:wm_dyn_royal_windsor
+		has_title = title:k_wm_crown
+		any_spouse = {
+			OR = {
+				dynasty ?= dynasty:wm_dyn_royal_windsor
+				has_title = title:k_wm_crown
+			}
+		}
+	}
+}
+
+# Character: can be the target of an affair: fictional, not royal, 18 or over
+wm_intrigue_affair_target_trigger = {
+	age >= 18
+	wm_intrigue_is_real_person_trigger = no
+}
+
+# Character (an AI starting an affair with $TARGET$): fictional too, and neither of them married to a real person, so
+# the AI never writes a real person into an affair story
+wm_intrigue_affair_ai_owner_trigger = {
+	wm_intrigue_is_real_person_trigger = no
+	NOT = { any_spouse = { wm_intrigue_is_real_person_trigger = yes } }
+	$TARGET$ = {
+		NOT = { any_spouse = { wm_intrigue_is_real_person_trigger = yes } }
+	}
+}
+
+# Secret: one the press would run - political misconduct, not someone's private identity or beliefs. Vanilla's
+# medieval secrets (sexuality, faith, witchcraft and so on) are never leaked or used for blackmail.
+wm_intrigue_leakable_secret_trigger = {
+	OR = {
+		secret_type = wm_secret_intrigue_story
+		secret_type = wm_secret_smear_campaign
+		secret_type = secret_lover
+		secret_type = secret_embezzler
+		secret_type = secret_coup_plotter
+	}
+}
+
+# Scheme: its owner can act on it now (Plot to Oust needs Parliament sitting and no contest under way)
+wm_intrigue_can_act_trigger = {
+	trigger_if = {
+		limit = { scheme_type = wm_intrigue_oust }
+		wm_majority_parliament_sitting_trigger = yes
+		scheme_owner = {
+			exists = var:wm_party
+			NOT = { var:wm_party = { has_variable = wm_lead_state } }
+		}
+	}
+}
+
+# Scheme (an AI's): good enough odds to act, or it has dragged on long enough
+wm_intrigue_ai_acts_trigger = {
+	wm_intrigue_can_act_trigger = yes
+	OR = {
+		scheme_success_chance >= 50
+		AND = {
+			scheme_success_chance >= 30
+			scheme_duration_days >= 540
+		}
+		scheme_duration_days >= 1095
+	}
+}
+
+# Character: may plot to oust their party's leader (the same as challenging them: wm_election_leadership_triggers.txt)
+wm_intrigue_can_plot_oust_trigger = {
+	is_adult = yes
+	wm_election_leadership_can_challenge_trigger = yes
+}

@@ -292,7 +292,7 @@ types Buttons
 					size = { 100% 100% }
 					alpha = 0.2
 					texture = "gfx/interface/component_masks/mask_vignette.dds"
-					color = { 0.900 0.880 0.825 1 }
+					color = { 0.122 0.131 0.143 1 }
 				}
 			}
 		}
@@ -1633,7 +1633,7 @@ types Buttons
 					parentanchor = center
 					alpha = 0.5
 					texture = "gfx/interface/buttons/button_tenet_vignette_small.dds"
-					color = { 0.900 0.880 0.825 1 }
+					color = { 0.122 0.131 0.143 1 }
 				}
 			}
 		}

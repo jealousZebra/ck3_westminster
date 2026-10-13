@@ -36,6 +36,12 @@ wm_career_job_chance_intrigue = {
 	add = 30
 	max = 95
 }
+wm_career_job_chance_prowess = {
+	value = prowess
+	multiply = 4
+	add = 30
+	max = 95
+}
 
 # Character (an applicant, also scope:wm_sel_applicant): their votes from the local members in the selection for
 # scope:wm_sel_seat: standing, the hustings (10 if they never gave their speech), half the selector's opinion of them

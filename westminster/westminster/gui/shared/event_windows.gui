@@ -18,7 +18,7 @@ types Events
 			size = { 200% 200% }
 			alwaystransparent = yes
 			texture = "gfx/interface/component_masks/mask_fade_circle.dds"
-			color = { 0.883 0.863 0.807 1 }
+			color = { 0.112 0.120 0.131 1 }
 			alpha = 0
 
 			state = {

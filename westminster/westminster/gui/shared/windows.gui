@@ -920,7 +920,7 @@ types WindowTypes
 	## Divider
 	type divider = icon {
 		texture = "gfx/interface/colors/white.dds"
-		color = { 0.883 0.863 0.807 0.8 }
+		color = { 0.112 0.120 0.131 0.8 }
 		spriteType = Corneredtiled
 		size = { 3 3 }
 

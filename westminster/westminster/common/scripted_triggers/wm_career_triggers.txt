@@ -7,6 +7,11 @@ wm_career_is_job_trigger = {
 		has_task_contract_type = wm_job_fundraising
 		has_task_contract_type = wm_job_speechwriting
 		has_task_contract_type = wm_job_research
+		has_task_contract_type = wm_job_phonebank
+		has_task_contract_type = wm_job_policy_paper
+		has_task_contract_type = wm_job_media_round
+		has_task_contract_type = wm_job_gotv
+		has_task_contract_type = wm_job_budget
 		has_task_contract_type = wm_selection_contract
 	}
 }

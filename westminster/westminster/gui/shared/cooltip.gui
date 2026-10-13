@@ -4691,7 +4691,7 @@ template culture_innovation_tooltip {
 						icon = {
 							visible = "[Not(CultureInnovation.CanGainProgress)]"
 							texture = "[CultureInnovation.GetIcon]"
-							tintcolor = { 0.850 0.830 0.770 0.5 }
+							tintcolor = { 0.091 0.098 0.106 0.5 }
 							size = { 90 60 }
 
 							using = Mask_Rough_Edges
@@ -9855,7 +9855,7 @@ template title_troops_tooltip {
 									visible = "[Title.HasDiscountedTitleMaa(GetPlayer.Self)]"
 
 									glow = {
-										color = { 0.850 0.830 0.770 0.8 }
+										color = { 0.091 0.098 0.106 0.8 }
 										glow_radius = 3
 										using = Glow_Standard
 									}
@@ -10141,7 +10141,7 @@ template innovation_icon_tooltip {
 						icon = {
 							visible = "[Not(CultureInnovation.CanGainProgress)]"
 							texture = "[CultureInnovation.GetIcon]"
-							tintcolor = { 0.850 0.830 0.770 0.5 }
+							tintcolor = { 0.091 0.098 0.106 0.5 }
 							size = { 90 60 }
 
 							using = Mask_Rough_Edges

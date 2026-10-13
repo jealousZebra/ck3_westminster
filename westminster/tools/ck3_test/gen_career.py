@@ -19,6 +19,11 @@ What it covers:
               amount and paying money and profile; the candidate assessment puts them on the approved list; a failed
               job costs standing; a job whose three weeks are up is settled by wm_career_resolve_jobs_effect; the
               party offers jobs
+  office      (0.4: the unlanded start) vanilla's contracts are never offered (their scheme and travel events are
+              gone, so they never finished: the reported "schemes don't execute" and the endless travel loop);
+              jobs are placed at the hopeful's own campaign office, so none needs travel; the five new jobs pay;
+              political focuses (camp purposes) add their bonus; the Party Fixer focus needs Party Standing 40; a
+              campaigner made in the character designer joins a party
   selection   Labour opens a selection in a Conservative seat; the activist applies and gives a hustings speech;
               when it closes the activist (given top standing and hustings) is Labour's candidate for the seat, and a
               local rival was found; a Lib Dem selection nobody applies to still picks a local activist
@@ -37,6 +42,7 @@ PM = "title:e_united_kingdom.holder"
 LAB = "title:k_party_labour"
 H1 = "global_var:wm_test_hopeful"
 H2 = "global_var:wm_test_hopeful2"
+H3 = "global_var:wm_test_hopeful3"
 SEAT = "global_var:wm_test_sel_seat"
 BYSEAT = "global_var:wm_test_by_seat"
 
@@ -144,6 +150,56 @@ def jobs():
     check("party_offers_jobs", "any_character_task_contract = { wm_career_is_job_trigger = yes }", H1)
     check("hopeful_can_apply", "wm_career_can_apply_trigger = yes", H1)
     emit("%s = { remove_variable = wm_test_gold remove_variable = wm_test_prestige }" % H1)
+
+
+def office():
+    phase("office")
+    new_hopeful("wm_test_hopeful3", "Test Organiser")
+    emit("%s = { domicile.domicile_location = { save_scope_as = wm_test_office } }" % H3)
+    check("office_has_location", "exists = scope:wm_test_office")
+    # vanilla's adventurer contracts (switched off by tools/data/build_contracts.py) never come up
+    emit("""%s = {
+	populate_task_contracts_for_area = {
+		location = scope:wm_test_office
+		amount = 8
+		group = {
+			laamp_contracts_transport_group laamp_contracts_criminal_group laamp_contracts_diplomacy_group
+			laamp_contracts_hireling_group laamp_contracts_hunting_group laamp_contracts_intrigue_group
+			laamp_contracts_learning_group laamp_contracts_martial_group laamp_contracts_stewardship_group
+			laamp_contracts_justicar_group laamp_contracts_war_group laamp_contracts_legitimist_group
+		}
+	}
+}""" % H3)
+    check("no_vanilla_contracts_offered", "NOT = { any_character_task_contract = { NOT = { wm_career_is_job_trigger = yes } } }", H3)
+    # the party's jobs are placed at the hopeful's campaign office (in range, no travel to accept)
+    emit("%s = { wm_career_offer_jobs_effect = yes wm_career_offer_jobs_effect = yes wm_career_offer_jobs_effect = yes }" % H3)
+    check("three_jobs_offered", "any_character_task_contract = { wm_career_is_job_trigger = yes count >= 3 }", H3)
+    check("jobs_at_own_office", "NOT = { any_character_task_contract = { NOT = { task_contract_location = scope:wm_test_office } } }", H3)
+    check("no_more_than_three_jobs", "NOT = { any_character_task_contract = { count >= 4 } }", H3)
+    emit("%s = { every_character_task_contract = { invalidate_contract = yes } }" % H3)
+    # the new jobs
+    for ctype, gain in (("wm_job_phonebank", 4), ("wm_job_policy_paper", 4), ("wm_job_media_round", 3), ("wm_job_gotv", 7),
+                        ("wm_job_budget", 4)):
+        emit("%s = { set_variable = { name = wm_standing value = 10 } }" % H3)
+        job(H3, ctype)
+        standing("%s_standing_%d" % (ctype, 10 + gain), H3, 10 + gain)
+    # political focus bonuses: a Party Fixer gains 2 more standing per job
+    emit("%s = { set_variable = { name = wm_standing value = 10 } add_realm_law_skip_effects = camp_purpose_legitimists }" % H3)
+    check("fixer_focus_set", "has_realm_law = camp_purpose_legitimists", H3)
+    job(H3, "wm_job_canvassing")
+    standing("fixer_canvassing_standing_18", H3, 18)
+    emit("%s = { add_realm_law_skip_effects = camp_purpose_wanderers }" % H3)
+    # the Party Fixer focus needs Party Standing 40 (vanilla's legitimists needed a claim on a kingdom)
+    emit("%s = { set_variable = { name = wm_standing value = 39 } }" % H3)
+    check("fixer_needs_standing_40", "NOT = { ep3_can_have_legitimists_camp_purpose_trigger = yes }", H3)
+    emit("%s = { set_variable = { name = wm_standing value = 40 } }" % H3)
+    check("fixer_open_at_standing_40", "ep3_can_have_legitimists_camp_purpose_trigger = yes", H3)
+    # a campaigner made in the character designer (no party) joins one
+    emit("""create_character = { name = "Test Newcomer" age = 30 gender = male culture = culture:english faith = faith:wm_faith_not_stated
+	location = root.capital_province save_scope_as = wm_test_newcomer }
+scope:wm_test_newcomer = { wm_career_newcomer_party_effect = yes }""")
+    check("newcomer_joins_a_party", "exists = var:wm_party var:wm_party = { tier = tier_kingdom }", "scope:wm_test_newcomer")
+    check("newcomer_in_party_house", "var:wm_party = title:k_party_labour house = house:wm_house_party_labour", "scope:wm_test_newcomer")
 
 
 def selection():
@@ -283,6 +339,7 @@ set_global_variable = { name = wm_test_by_mp value = scope:wm_test_by_seat.holde
 
 
 jobs()
+office()
 selection()
 election()
 byelection()

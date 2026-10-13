@@ -4,21 +4,30 @@ Heights: land is the DEM (metres) scaled with some vertical exaggeration so hill
 deeper with distance from the coast. Land always stays above the game's water level and sea below it.
 Materials: each pixel blends up to four of the game's terrain materials (detail_index.tga holds their indices in
 gfx/map/terrain/materials.settings, detail_intensity.tga their weights), chosen by height and distance to the sea.
+The two detail maps are written at half the map's resolution (the game stretches them over the map, and the
+materials change slowly enough that nobody can see the difference) and run-length encoded: 37 MB instead of 400 MB
+on disk, and a quarter of the memory.
+
+    python terrain.py --detail-maps    # rewrites existing full-size detail maps in the mod at DETAIL_SCALE, RLE
 """
 import glob
 import re
+import sys
+from pathlib import Path
 
 import numpy as np
 import tifffile
 from PIL import Image
 from scipy import ndimage
 
-from geo import RAW, SCALE, TO_LONLAT, X0, Y1
+from geo import HEIGHT, RAW, SCALE, TO_LONLAT, X0, Y1
 
 WORLD_Y = 50                     # NJominiMap WORLD_EXTENTS_Y: the height range of 0-65535
 WATERLEVEL = 3.0                 # NJominiMap WATERLEVEL
 H_WATER = WATERLEVEL / WORLD_Y   # as a fraction of the heightmap range
 METRES_TO_H = 0.30 / 1345.0      # Ben Nevis (1345 m) ends up 0.30 above the water: about 12x exaggeration
+
+DETAIL_SCALE = 2                 # the detail maps are 1/DETAIL_SCALE of the map's width and height
 
 # Material indices in vanilla's gfx/map/terrain/materials.settings (the order there is the index)
 MAT = {"beach": 8, "cliff": 10, "farmland": 22, "forest": 25, "hills": 28, "hills_rocks": 29,
@@ -88,6 +97,14 @@ def smoothstep(a, b, x):
     return t * t * (3 - 2 * t)
 
 
+def pack_materials(w, mats):
+    """Weights (H, W, K) for materials mats (K indices) -> the four strongest as detail_index, detail_intensity."""
+    order = np.argsort(-w, axis=-1)[..., :4]
+    top = np.take_along_axis(w, order, axis=-1)
+    top = top / top.sum(-1, keepdims=True)
+    return mats[order], np.round(top * 255).astype(np.uint8)
+
+
 def materials(elev, land, seed=3):
     """detail_index (material indices) and detail_intensity (weights) as (H, W, 4) uint8 arrays."""
     height, width = elev.shape
@@ -116,12 +133,35 @@ def materials(elev, land, seed=3):
         w[~L] = 0
         w[~L, 2] = 1                                  # under the sea: anything, it isn't seen
         w += 1e-4                                     # so a pixel with no weight still picks plains etc.
-        order = np.argsort(-w, axis=-1)[..., :4]
-        top = np.take_along_axis(w, order, axis=-1)
-        top = top / top.sum(-1, keepdims=True)
-        index[sl] = mats[order]
-        inten[sl] = np.round(top * 255).astype(np.uint8)
+        index[sl], inten[sl] = pack_materials(w, mats)
     return index, inten
+
+
+def downsample_materials(index, inten, factor=DETAIL_SCALE):
+    """Detail maps at 1/factor of the size: each material's weight is averaged over factor x factor blocks, then
+    the four strongest are kept again (indices can't simply be averaged)."""
+    height, width = index.shape[0] // factor, index.shape[1] // factor
+    mats = np.unique(index)
+    out_i = np.zeros((height, width, 4), dtype=np.uint8)
+    out_w = np.zeros((height, width, 4), dtype=np.uint8)
+    rows = 256
+    for y0 in range(0, height, rows):
+        y1 = min(y0 + rows, height)
+        idx = index[y0 * factor:y1 * factor, :width * factor]
+        wt = inten[y0 * factor:y1 * factor, :width * factor].astype(np.float32)
+        w = np.stack([(wt * (idx == m)).sum(-1) for m in mats], axis=-1)
+        w = w.reshape(y1 - y0, factor, width, factor, len(mats)).mean(axis=(1, 3)) + 1e-4
+        out_i[y0:y1], out_w[y0:y1] = pack_materials(w, mats)
+    return out_i, out_w
+
+
+def save_detail_maps(index, inten, folder, factor=DETAIL_SCALE):
+    """Writes detail_index.tga and detail_intensity.tga (full-size arrays in), shrunk by factor, RLE-compressed."""
+    from PIL import Image
+    if factor > 1:
+        index, inten = downsample_materials(index, inten, factor)
+    Image.fromarray(index, "RGBA").save(Path(folder) / "detail_index.tga", compression="tga_rle")
+    Image.fromarray(inten, "RGBA").save(Path(folder) / "detail_intensity.tga", compression="tga_rle")
 
 
 def colormap(elev, land):
@@ -160,3 +200,15 @@ def watercolor(land, width, height):
     rgb = shallow * (1 - t) + deep * t
     a = np.full(small.shape + (1,), 160)
     return np.concatenate([rgb, a], axis=-1).astype(np.uint8)
+
+
+if __name__ == "__main__" and "--detail-maps" in sys.argv:
+    # Shrinks and compresses the mod's existing full-size detail maps without rebuilding the map
+    from PIL import Image
+    gt = Path(__file__).resolve().parents[2] / "westminster" / "gfx" / "map" / "terrain"
+    index = np.array(Image.open(gt / "detail_index.tga"))
+    inten = np.array(Image.open(gt / "detail_intensity.tga"))
+    if index.shape[0] != HEIGHT:
+        sys.exit("the detail maps are already %dx%d: rebuild the map first" % (index.shape[1], index.shape[0]))
+    save_detail_maps(index, inten, gt)
+    print("detail maps written to", gt)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """The new-game (bookmark) screen: a newspaper election map instead of vanilla's painted map, the featured
-characters standing by their constituencies, and the screen's chrome in ink on paper.
+characters standing by their constituencies, and the screen's chrome in the look's paper and rules (build_theme.THEME:
+dark paper and light hairlines in the night edition; the party colours stay).
 
     .venv/bin/python westminster/tools/ui/build_bookmark_screen.py            # everything below
     .venv/bin/python westminster/tools/ui/build_bookmark_screen.py --preview  # also tools/test_out/bookmark/preview.png
@@ -35,7 +36,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "map"))
 sys.path.insert(0, str(HERE.parent / "data"))
-from build_theme import GAME, MOD, ROOT, grain, save_dds   # noqa: E402
+from build_theme import DARK, GAME, MOD, ROOT, THEME, gui_color, grain, save_dds   # noqa: E402
 
 W, H = 1920, 1080              # vanilla's bookmark backgrounds; the GUI shows them in a 1920 x 1080 frame
 CHAR_DY = 60                   # characters sit in the 1920 x 1200 widget around it: position y = image y + 60
@@ -65,11 +66,13 @@ CHAR_W, CHAR_H = 265, 225      # a character's portrait, banner and two lines of
 BANNER = (0, 127, 262, 175)    # the name banner within it (the callout line ends there)
 PORTRAIT = (55, 0, 210, 127)   # the portrait itself (the rest above the banner is transparent)
 
-PAPER_RGB = (243, 239, 230)
-SEA = (205, 214, 214)
-SCENERY_RGB = (226, 222, 212)
-INK = (24, 24, 24)
-RED = (176, 26, 31)
+PAPER_RGB = THEME["paper"]
+SEA = THEME["sea"]
+SCENERY_RGB = THEME["land"]
+INK = THEME["ink"]                 # lettering and the callouts
+LINE = THEME["line"]               # frames and rules
+MUTED = THEME["muted"]             # leader lines, the legend's subtitle
+RED = THEME["red"]
 
 # Winner codes in ge2024_results.csv -> build_polls_panel.py party codes
 CODE = {"Lab": "lab", "Con": "con", "LD": "ld", "RUK": "ruk", "Green": "grn", "SNP": "snp", "PC": "pc", "SF": "sf",
@@ -80,7 +83,7 @@ def party_colours():
     from build_polls_panel import CHART
     cols = {c: tuple(int(round(v * 255)) for v in rgb) for c, _, _, rgb in CHART}
     names = {c: n for c, _, n, _ in CHART}
-    cols["spk"], names["spk"] = (70, 70, 70), "The Speaker"
+    cols["spk"], names["spk"] = (140, 138, 132) if DARK else (70, 70, 70), "The Speaker"
     return cols, names
 
 
@@ -255,8 +258,9 @@ def fill(d, g, colour, outline=None, width=1):
                 d.line([(x * SS, y * SS) for x, y in ring.coords], fill=outline, width=width, joint="curve")
 
 
-def soften(rgb, k=0.12):
-    """Party colours printed on newsprint: a little of the paper in them."""
+def soften(rgb, k=None):
+    """Party colours printed on paper: a little of the paper in them (THEME["soften"])."""
+    k = THEME["soften"] if k is None else k
     return tuple(int(round(c * (1 - k) + p * k)) for c, p in zip(rgb, PAPER_RGB))
 
 
@@ -264,7 +268,7 @@ def draw_seats(d, key, colours):
     rs = [r for r in seats() if r[key] is not None]
     for r in rs:
         fill(d, r[key], soften(colours[r["winner"]]))
-    border = (250, 247, 240)
+    border = THEME["seam"]
     for r in rs:
         for p in polys(r[key]):
             d.line([(x * SS, y * SS) for x, y in p.exterior.coords], fill=border, width=1 if key == "px" else 2)
@@ -276,13 +280,13 @@ def background(colours, names, positions):
     d = ImageDraw.Draw(img)
     # Neighbouring land (Ireland, the Isle of Man, France ...)
     for g in scenery_px():
-        fill(d, g, SCENERY_RGB, outline=(160, 160, 152), width=SS)
+        fill(d, g, SCENERY_RGB, outline=THEME["land_line"], width=SS)
     draw_seats(d, "px", colours)
     # Coast of the UK
     from shapely.ops import unary_union
     uk = unary_union([r["px"] for r in seats()])
     for p in polys(uk.simplify(0.3)):
-        d.line([(x * SS, y * SS) for x, y in p.exterior.coords], fill=(70, 70, 66), width=SS)
+        d.line([(x * SS, y * SS) for x, y in p.exterior.coords], fill=THEME["coast"], width=SS)
 
     # Shetland inset frame
     import geo
@@ -291,19 +295,19 @@ def background(colours, names, positions):
     sb = shet.intersection(sbox(-1e6, SHETLAND_N, 2e6, 2e6)).bounds          # Shetland, moved into its inset
     bx0, by1 = OX + (sb[0] + SHETLAND_SHIFT[0] - E0) * K, OY + (N1 - sb[1] - SHETLAND_SHIFT[1]) * K
     bx1, by0 = OX + (sb[2] + SHETLAND_SHIFT[0] - E0) * K, OY + (N1 - sb[3] - SHETLAND_SHIFT[1]) * K
-    d.rectangle([(bx0 - 10) * SS, (by0 - 8) * SS, (bx1 + 10) * SS, (by1 + 8) * SS], outline=INK, width=SS)
+    d.rectangle([(bx0 - 10) * SS, (by0 - 8) * SS, (bx1 + 10) * SS, (by1 + 8) * SS], outline=LINE, width=SS)
 
     # London: a box on the main map and the inset
     w_, s_, e_, n_ = LONDON_BOX
     x0, y0 = OX + (w_ - E0) * K, OY + (N1 - n_) * K
     x1, y1 = OX + (e_ - E0) * K, OY + (N1 - s_) * K
-    d.rectangle([x0 * SS, y0 * SS, x1 * SS, y1 * SS], outline=INK, width=SS)
+    d.rectangle([x0 * SS, y0 * SS, x1 * SS, y1 * SS], outline=LINE, width=SS)
     fx0, fy0, fx1, fy1 = london_frame()
     pad = 8
-    d.rectangle([(fx0 - pad) * SS, (fy0 - pad) * SS, (fx1 + pad) * SS, (fy1 + pad) * SS], fill=SEA, outline=INK, width=SS * 2)
+    d.rectangle([(fx0 - pad) * SS, (fy0 - pad) * SS, (fx1 + pad) * SS, (fy1 + pad) * SS], fill=SEA, outline=LINE, width=SS * 2)
     draw_seats(d, "inset", colours)
     # Leader lines from the small box to the inset, in grey (they cross England)
-    grey = (120, 120, 114)
+    grey = MUTED
     d.line([x0 * SS, y0 * SS, (fx1 + pad) * SS, (fy0 - pad) * SS], fill=grey, width=SS)
     d.line([x0 * SS, y1 * SS, (fx1 + pad) * SS, (fy1 + pad) * SS], fill=grey, width=SS)
     lab = font("playfair", 17, 700)
@@ -341,7 +345,7 @@ def legend(d, colours, names):
     bold = font("serif_bold", 15)
     d.line([x * SS, y * SS, (x + 250) * SS, y * SS], fill=INK, width=SS * 3)
     d.text((x * SS, (y + 8) * SS), "General election", font=title, fill=INK)
-    d.text((x * SS, (y + 38) * SS), "Seats won, 4 July 2024", font=small, fill=(70, 70, 66))
+    d.text((x * SS, (y + 38) * SS), "Seats won, 4 July 2024", font=small, fill=THEME["coast"] if DARK else (70, 70, 66))
     y += 70
     for c in order:
         d.rectangle([x * SS, (y + 3) * SS, (x + 14) * SS, (y + 17) * SS], fill=soften(colours[c]))
@@ -350,7 +354,7 @@ def legend(d, colours, names):
         tw = d.textlength(n, font=bold)
         d.text(((x + 250) * SS - tw, y * SS), n, font=bold, fill=INK)
         y += 22
-    d.line([x * SS, (y + 6) * SS, (x + 250) * SS, (y + 6) * SS], fill=INK, width=SS)
+    d.line([x * SS, (y + 6) * SS, (x + 250) * SS, (y + 6) * SS], fill=LINE, width=SS)
 
 
 def location_image(seat, party):
@@ -385,7 +389,7 @@ def location_image(seat, party):
 # ------------------------------------------------------------------------------------------------ chrome
 
 GUI = Path("gui/frontend_bookmarks.gui")
-PAPER_TINT = "0.95 0.93 0.88 1"
+PAPER_TINT = gui_color("paper")
 
 
 def build_gui():
@@ -452,7 +456,7 @@ def inked(rgba, fill=PAPER_RGB, width=3, edge_only=False):
     edge = solid & ~ndimage.binary_erosion(solid, iterations=width)
     h, w = solid.shape
     rgb = np.clip(np.array(fill, np.float32) + grain(h, w, w * 7 + h), 0, 255)
-    rgb[edge] = INK
+    rgb[edge] = LINE
     a = (edge if edge_only else solid).astype(np.uint8) * 255
     return np.dstack([rgb, a]).astype(np.uint8)
 
@@ -489,7 +493,8 @@ def build_chrome_textures(colours):
     # The Start button (GameSetup.GetSelectedBookmark.GetStartButton: start_buttons/<bookmark>.dds) and its frame:
     # the shape of vanilla's, as paper with an ink rule
     shape = np.array(Image.open(bm / "start_buttons" / "bm_1066_hastings.dds").convert("RGBA"))
-    save_dds(inked(shape, fill=(236, 231, 220), width=4), OUT / "start_buttons" / (BOOKMARK + ".dds"))
+    save_dds(inked(shape, fill=THEME["paper_raised"] if DARK else (236, 231, 220), width=4),
+             OUT / "start_buttons" / (BOOKMARK + ".dds"))
     save_dds(inked(np.array(Image.open(bm / "start_buttons" / "start_frame.dds").convert("RGBA")), width=3,
                    edge_only=True), OUT / "start_buttons" / "start_frame.dds")
     out += ["start_buttons/" + BOOKMARK + ".dds", "start_buttons/start_frame.dds"]
@@ -501,7 +506,7 @@ def build_chrome_textures(colours):
     arr[..., 3] = van[..., 3]
     from scipy import ndimage
     solid = van[..., 3] > 128
-    arr[solid & ~ndimage.binary_erosion(solid, iterations=3), :3] = INK
+    arr[solid & ~ndimage.binary_erosion(solid, iterations=3), :3] = LINE
     save_dds(arr, MOD / "gfx" / "interface" / "icons" / "bookmark_buttons" / (BOOKMARK + ".dds"))
     # The year tab along the top (one per bookmark group): dark stone glass -> paper
     yt = icons / "bookmark_buttons" / "year_tab.dds"
@@ -515,10 +520,10 @@ def build_chrome_textures(colours):
     plate = np.zeros((h, w, 4), np.uint8)
     plate[y0:y1, x0:x1, :3] = np.clip(np.array(PAPER_RGB, np.float32) + grain(y1 - y0, x1 - x0, 77), 0, 255)
     plate[y0:y1, x0:x1, 3] = 255
-    for t, c in ((5, INK),):
+    for t, c in ((5, LINE),):
         plate[y0:y0 + t, x0:x1, :3] = plate[y1 - t:y1, x0:x1, :3] = c
         plate[y0:y1, x0:x0 + t, :3] = plate[y0:y1, x1 - t:x1, :3] = c
-    plate[y1 - 14:y1 - 11, x0 + 14:x1 - 14, :3] = INK                 # a thin second rule along the bottom
+    plate[y1 - 14:y1 - 11, x0 + 14:x1 - 14, :3] = LINE                # a thin second rule along the bottom
     save_dds(plate, MOD / "gfx" / "interface" / "icons" / "banners" / "banner_blue_left.dds")
     glow = np.zeros((h, w, 4), np.uint8)
     glow[..., :3] = RED

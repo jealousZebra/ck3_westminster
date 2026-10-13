@@ -1,0 +1,82 @@
+﻿l_english:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "Plot to Oust"
+ wm_intrigue_oust_action: "Plot to Oust"
+ wm_intrigue_oust_desc: "I am quietly counting heads against [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]. When enough colleagues are ready to move, the challenge goes in."
+ wm_intrigue_oust_desc_general: "A [scheme|E] to line up colleagues against your own party leader. If it succeeds, the plot surfaces as a formal leadership challenge with you on the ballot: the party's MPs nominate and its members decide. It never removes anyone by itself.\n\nIf it fails and is discovered, the leader will not forget it."
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "A leadership challenge against [TARGET_CHARACTER.GetShortUIName], with you on the ballot"
+ WM_INTRIGUE_OUST_LOST_GROUND: "The party lost ground at the last election"
+ WM_INTRIGUE_OUST_LOW_TRUST: "Public trust in politics is on the floor"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "Your Profile"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "The leader's Profile"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "The leader's Chief Whip is watching"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] must lead your party"
+ wm_intrigue_oust_invalidated_title: "Plot to Oust Ends"
+ wm_intrigue_oust_invalidated_desc: "The plot against [target.GetShortUIName] has fallen apart: the leadership has changed hands, a contest is already under way, or the plotters have scattered."
+ wm_intrigue_oust_interaction: "Plot to Oust #weak (Scheme)#!"
+ wm_intrigue_oust_interaction_desc: "Quietly line up colleagues against [recipient.GetShortUINameNoTooltip]. If the plot succeeds, it becomes a leadership challenge with you on the ballot."
+ wm_intrigue_oust_interaction_toast: "Plotting to Oust"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] is off limits: affairs are only possible with fictional characters, never a real person from the bookmark, the royal family or anyone under 18"
+ wm_intrigue_not_leakable: "The press would not run this: only political secrets can be leaked"
+ wm_intrigue_leak_toast: "The Story Runs"
+ wm_intrigue_leak_toast_desc: "Your story about [recipient.GetShortUIName] is on the front pages. [recipient.GetHerHis|U] Profile, [recipient.GetHerHis] party's poll and public trust in politics all take a knock."
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "A Damaging Story"
+ wm_secret_intrigue_story_desc: "A damaging story about [CHARACTER.GetShortUIName], ready to run"
+ wm_secret_intrigue_story_type_desc: "A damaging story, true or not, that the papers would run"
+ wm_secret_intrigue_story_tooltip_desc: "Someone holds a damaging story about this politician. Whether or not it is true, the papers would run it."
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "Caught digging for dirt"
+ wm_intrigue_caught_plotting_opinion: "Caught plotting against me"
+ wm_intrigue_leaked_opinion: "Leaked a story about me"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "The Moment to Act"
+ wm_intrigue.1.desc_scandal: "My people have spent weeks on [target.GetShortUINamePossessive] past: old interviews, expense claims, a former aide with a grudge. There is something here, or something that can be made to look like it.\n\nI can move now, or keep digging and hope for something better."
+ wm_intrigue.1.desc_affair: "The late votes, the drinks on the terrace, the long conversations in the corridor: [target.GetShortUIName] and I have grown close.\n\nI could make my feelings plain now, or let things take their course a little longer."
+ wm_intrigue.1.desc_oust: "The numbers are firming up. Colleagues who once said nothing now say \"if it came to it\". The question is whether it has come to it.\n\nI can tell [target.GetShortUIName] that the challenge is going in, or keep counting heads."
+ wm_intrigue.1.a: "Now."
+ wm_intrigue.1.a.tt: "Roll the [scheme|E]'s [success_chance|E]. If it fails it may be discovered."
+ wm_intrigue.1.b: "Not yet."
+ wm_intrigue.1.b.tt: "The [scheme|E] carries on."
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "It Worked"
+ wm_intrigue.2.t_caught: "Found Out"
+ wm_intrigue.2.t_failed: "Nothing Doing"
+ wm_intrigue.2.desc_scandal_success: "The story stands up, or near enough. A draft headline sits in a folder on my desk, and [target.GetShortUIName] knows I could send it to a newsroom whenever I choose.\n\nI could leak it, or simply let [target.GetHerHim] know I have it."
+ wm_intrigue.2.desc_affair_success: "Away from the cameras and the division bells, [target.GetShortUIName] and I have become something more than colleagues. For now, it is our secret."
+ wm_intrigue.2.desc_oust_success: "The letters are in. By the morning the whole of Westminster knows: the party will choose between [target.GetShortUIName] and me."
+ wm_intrigue.2.desc_scandal_caught: "The former aide went straight to [target.GetShortUIName]. There is no story, but there is now a politician who knows exactly who went looking for one."
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] turned me down, kindly but firmly, and the corridor gossip got there before I did."
+ wm_intrigue.2.desc_oust_caught: "One of my colleagues talked. [target.GetShortUIName] knows about the plot, and the whips have been told to keep an eye on me."
+ wm_intrigue.2.desc_scandal_failed: "Every lead went cold. Whatever [target.GetShortUIName] has done, it will not make the papers this time."
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName] did not feel the same way. We will be colleagues, nothing more."
+ wm_intrigue.2.desc_oust_failed: "When it came to it, too many colleagues lost their nerve. The plot is over, and nobody need ever know it existed."
+ wm_intrigue.2.a: "Excellent."
+ wm_intrigue.2.b: "So be it."
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "Someone Has Been Busy"
+ wm_intrigue.3.desc_scandal: "A former member of my staff rang this morning. [owner.GetShortUIName|U] has been asking questions about me: old claims, old friends, anything that might embarrass me. They found nothing, but I will remember who looked."
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] made a pass at me, and the whole tea room seems to know about it. I made my answer clear."
+ wm_intrigue.3.desc_oust: "A loyal backbencher took me aside: [owner.GetShortUIName] has been sounding out colleagues about a challenge to my leadership. The plot has collapsed, but I know who started it."
+ wm_intrigue.3.a: "I will not forget this."
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "The Story Runs on the Front Pages"
+ wm_intrigue.10.desc: "The first call came at six in the morning. By breakfast the story was on every front page and the broadcasters were camped outside my office.\n\nMy Profile has taken a battering, the party is down in the polls, and the public thinks a little less of all of us. Someone gave the papers that story, and I have a good idea who: [wm_intrigue_leaker.GetShortUIName]."
+ wm_intrigue.10.a: "No comment."
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "They Called My Bluff"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] will not be pushed around: if I have a story, I should run it.\n\nOne call to a lobby journalist and it is on tomorrow's front pages. Or I can sit on it, and let [recipient.GetHerHim] wonder."
+ wm_intrigue.20.a: "Call the newsroom."
+ wm_intrigue.20.b: "Sit on it."

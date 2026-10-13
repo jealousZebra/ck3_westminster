@@ -5,11 +5,15 @@
 
 - Fonts: the medieval headline font (Fondamento) becomes Playfair Display, the body font (Gitan) Source Serif 4.
   The files go at vanilla's paths, so fonts.font needn't change. Both are SIL Open Font Licence.
-- Text: gui/preload/textformatting.gui with an ink palette (dark text on paper, red accent, no glows).
+- Colours: THEME (below) is the palette of the whole interface. LOOK = "night" (the default since 0.4) is the
+  "night edition": charcoal paper, off-white text, light hairline rules, the red accent; LOOK = "day" is the light
+  newsprint of 0.1-0.3. The other UI generators (main menu, polls panel, bookmark screen...) import THEME from here.
+- Text: gui/preload/textformatting.gui with the look's palette (TEXT, FORMATS; red accent, no glows). Run with
+  --contrast to print each text colour's contrast against the panels (WCAG AA: 4.5:1).
 - Textures: the UI skin (gfx/interface/skinned and every gfx/interface/skins/<culture>) redrawn: window, tooltip
-  and panel backgrounds become newsprint; ornamental borders become plain ink rules; medieval ornaments that
-  have no modern equivalent are removed. Each texture keeps its size and alpha shape, so the GUI layouts work
-  unchanged. Illustrations and tab icons are replaced separately (images generated with fal.ai).
+  and panel backgrounds become plain paper (dark by night) with a little grain; ornamental borders become plain
+  rules; medieval ornaments that have no modern equivalent are removed. Each texture keeps its size and alpha
+  shape, so the GUI layouts work unchanged. Illustrations and tab icons are replaced separately (fal.ai images).
 """
 import re
 import sys
@@ -24,21 +28,83 @@ RAW = ROOT / "data" / "raw"
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "common" / "tools"))
 from ck3paths import GAME  # noqa: E402  (CK3_GAME_DIR overrides the Steam default)
 
-PAPER = np.array([243, 239, 230], dtype=np.float32)            # newsprint
-PAPER_DARK = np.array([232, 226, 214], dtype=np.float32)       # inset panels
-INK = np.array([24, 24, 24], dtype=np.float32)
-RED = (0.69, 0.10, 0.12)                                        # the one accent colour
+# ---------------------------------------------------------------- the palette
+# One place for every colour of the look. LOOK picks the set; the other UI generators import THEME (and TEXT, FORMATS)
+# from here, so switching the whole interface between the night edition and the old light newsprint is this one line.
+LOOK = "night"                  # "night": charcoal panels, off-white text (0.4 default); "day": ink on newsprint (0.1-0.3)
 
-# Text palette: name -> (r, g, b) in 0-1. Everything else in textformatting.gui stays as vanilla.
-PALETTE = {
-    "highlight": RED, "color_white": (0.09, 0.09, 0.09), "color_gray": (0.22, 0.22, 0.21),
+# Colours are (r, g, b) 0-255.
+#   paper         panel and window backgrounds (newsprint / dark paper)
+#   paper_raised  inset and raised areas: sidebars, sub-windows, HUD bars (slightly darker by day, lighter by night)
+#   heading       the tint behind window headings (color_theme.dds)
+#   ink           text-coloured marks drawn into textures (masthead lettering, the polls panel's Speaker)
+#   line          rules, borders and bevels (ink rules by day, light hairlines by night)
+#   muted         secondary marks (leader lines, faint labels in textures)
+#   empty         an empty bar or seat behind party colours
+#   red           the accent (the Times-red #c8102e family): selection rules, the majority line, a selected seat
+#   sea, land     the bookmark screen's election map: sea and neighbouring countries (seats keep party colours)
+#   coast         the UK's coastline there; seam: the borders between seats
+#   alert_dark, alert_light   the alert diamonds' body and glyph
+#   grain         strength of the paper grain (1 = the light look's)
+#   soften        how much paper is mixed into party colours on the map (printed on newsprint)
+THEMES = {
+    "day": {
+        "paper": (243, 239, 230), "paper_raised": (232, 226, 214), "heading": (226, 220, 207),
+        "ink": (24, 24, 24), "line": (24, 24, 24), "muted": (120, 120, 114), "empty": (214, 209, 196),
+        "red": (176, 26, 31), "sea": (205, 214, 214), "land": (226, 222, 212), "coast": (70, 70, 66),
+        "seam": (250, 247, 240), "land_line": (160, 160, 152),
+        "alert_dark": (24, 24, 24), "alert_light": (243, 239, 230), "grain": 1.0, "soften": 0.12,
+    },
+    "night": {
+        "paper": (29, 31, 34), "paper_raised": (39, 42, 46), "heading": (47, 50, 55),
+        "ink": (236, 231, 220), "line": (118, 116, 110), "muted": (128, 126, 120), "empty": (58, 61, 66),
+        "red": (200, 16, 46), "sea": (22, 27, 32), "land": (44, 46, 49), "coast": (150, 148, 140),
+        "seam": (29, 31, 34), "land_line": (82, 84, 86),
+        "alert_dark": (34, 36, 40), "alert_light": (236, 231, 220), "grain": 0.45, "soften": 0.06,
+    },
+}
+THEME = THEMES[LOOK]
+DARK = LOOK == "night"
+
+
+def rgb01(c):
+    """A palette colour as 0-1 floats (GUI colour = { r g b a })."""
+    return tuple(round(v / 255, 3) for v in c)
+
+
+def gui_color(name, alpha=1):
+    """A palette colour written for a .gui file: 'r g b a'."""
+    return "%.3f %.3f %.3f %g" % (rgb01(THEME[name]) + (alpha,))
+
+
+PAPER = np.array(THEME["paper"], dtype=np.float32)            # newsprint
+PAPER_DARK = np.array(THEME["paper_raised"], dtype=np.float32)  # inset panels (the name is the light look's)
+INK = np.array(THEME["ink"], dtype=np.float32)
+LINE = np.array(THEME["line"], dtype=np.float32)
+RED = rgb01(THEME["red"])                                       # the one accent colour
+
+# Text palette (gui/preload/textformatting.gui): name -> (r, g, b) in 0-1. Everything else stays as vanilla, whose
+# own colours were made for its dark stone and read on the night edition's charcoal. The night colours are checked
+# against the panels (contrast_report(): WCAG AA, 4.5:1 for text).
+TEXT_DAY = {
+    "highlight": (0.69, 0.10, 0.12), "color_white": (0.09, 0.09, 0.09), "color_gray": (0.22, 0.22, 0.21),
     "color_dark_gray": (0.42, 0.41, 0.40), "color_red": (0.72, 0.11, 0.12), "color_light_red": (0.82, 0.18, 0.18),
-    "color_green": (0.10, 0.45, 0.18), "color_yellow": RED, "color_light_blue": (0.10, 0.32, 0.56),
+    "color_green": (0.10, 0.45, 0.18), "color_yellow": (0.69, 0.10, 0.12), "color_light_blue": (0.10, 0.32, 0.56),
     "color_dark_blue": (0.08, 0.20, 0.42), "color_blue_gray": (0.30, 0.32, 0.38), "color_goldy_yellow": (0.45, 0.33, 0.16),
     "color_black": (0.05, 0.05, 0.05), "color_dark_green": (0.08, 0.38, 0.12),
 }
+TEXT_NIGHT = {
+    "highlight": (0.96, 0.45, 0.47), "color_white": (0.925, 0.906, 0.863), "color_gray": (0.73, 0.71, 0.67),
+    "color_dark_gray": (0.60, 0.585, 0.56), "color_red": (0.95, 0.42, 0.42), "color_light_red": (1.0, 0.58, 0.56),
+    "color_green": (0.49, 0.79, 0.49), "color_yellow": (0.96, 0.45, 0.47), "color_light_blue": (0.55, 0.73, 0.93),
+    "color_dark_blue": (0.55, 0.67, 0.95), "color_blue_gray": (0.64, 0.68, 0.76), "color_goldy_yellow": (0.89, 0.73, 0.46),
+    # "text on a light background" (letters, parchment): those backgrounds are dark paper now
+    "color_black": (0.925, 0.906, 0.863), "color_dark_green": (0.42, 0.75, 0.46),
+}
+TEXT = TEXT_NIGHT if DARK else TEXT_DAY
+PALETTE = TEXT                  # (the old name)
 # Formats whose whole definition is replaced: light colours with dark glows, made for stone (the HUD date, difficulty).
-FORMATS = {
+FORMATS_DAY = {
     "date": "color:{0.09, 0.09, 0.09};glow_color:{0,0,0,0}",
     "difficulty_easy": "bold;color:{0.10, 0.45, 0.18}", "difficulty_medium": "bold;color:{0.45, 0.33, 0.16}",
     "difficulty_hard": "bold;color:{0.72, 0.11, 0.12}", "difficulty_very_hard": "bold;color:{0.45, 0.06, 0.08}",
@@ -46,6 +112,39 @@ FORMATS = {
     "defender_color": "color:{0.18, 0.30, 0.45}", "Xlight": "color:{0.72, 0.11, 0.12};italic",
     "flatulence": "bold;italic;color:{0.08, 0.38, 0.12}",
 }
+FORMATS_NIGHT = {
+    "date": "color:{0.86, 0.84, 0.79};glow_color:{0,0,0,0}",
+    "difficulty_easy": "bold;color:{0.49, 0.79, 0.49}", "difficulty_medium": "bold;color:{0.89, 0.73, 0.46}",
+    "difficulty_hard": "bold;color:{1.0, 0.58, 0.56}", "difficulty_very_hard": "bold;color:{0.95, 0.42, 0.42}",
+    "charioteer_blue": "bold;color:{0.55, 0.73, 0.93}", "color_porple": "color:{0.76, 0.62, 0.93}",
+    "defender_color": "color:{0.58, 0.70, 0.86}", "attacker_color": "color:{0.95, 0.47, 0.42}",
+    "Xlight": "color:{1.0, 0.58, 0.56};italic", "flatulence": "bold;italic;color:{0.49, 0.79, 0.52}",
+    "G": "color:{0.74, 0.68, 0.86};italic", "G_light": "color:{0.74, 0.68, 0.86};italic",
+}
+FORMATS = FORMATS_NIGHT if DARK else FORMATS_DAY
+
+
+def luminance(c):
+    """WCAG relative luminance of an (r, g, b) colour, 0-1 floats or 0-255 ints."""
+    c = [v / 255 if max(c) > 1 else v for v in c]
+    lin = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4 for v in c]
+    return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
+
+
+def contrast(a, b):
+    la, lb = sorted((luminance(a), luminance(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+def contrast_report():
+    """Every text colour this look sets, against the panel and the raised panel: (name, worst ratio, ok)."""
+    rows = []
+    fmts = {k: tuple(float(x) for x in re.search(r"color:\{([^}]*)\}", v).group(1).split(","))
+            for k, v in FORMATS.items() if "color:" in v}
+    for name, c in list(TEXT.items()) + list(fmts.items()):
+        worst = min(contrast(c, THEME["paper"]), contrast(c, THEME["paper_raised"]))
+        rows.append((name, worst, worst >= 4.5))
+    return rows
 
 
 # ---------------------------------------------------------------- fonts
@@ -98,7 +197,7 @@ def build_textformatting():
         s = re.sub(r'(name = %s\s*\n\s*format = )"[^"]*"' % g, r'\1"glow_color:{0.0,0.0,0.0,0.0}"', s)
     out = MOD / "gui" / "preload" / "textformatting.gui"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(provenance("gui/preload/textformatting.gui", "with an ink-on-paper palette") + s, encoding="utf-8-sig")
+    out.write_text(provenance("gui/preload/textformatting.gui", "with the %s palette" % ("night edition's" if DARK else "ink-on-paper")) + s, encoding="utf-8-sig")
 
 
 # ---------------------------------------------------------------- textures
@@ -120,7 +219,7 @@ def grain(h, w, seed):
     from scipy import ndimage
     mottle = ndimage.gaussian_filter(rng.normal(0, 1, (h // 16 + 1, w // 16 + 1)), 1.5)
     mottle = np.kron(mottle, np.ones((16, 16)))[:h, :w] * 9
-    return (fine + mottle)[..., None]
+    return (fine + mottle)[..., None] * THEME["grain"]
 
 
 def paper(rgba, name):
@@ -140,17 +239,17 @@ def paper(rgba, name):
             # seam, as a line across the middle of a panel. Only other textures get them.
             sides += [np.s_[y0:y0 + t, x0:x1 + 1], np.s_[y1 - t + 1:y1 + 1, x0:x1 + 1]]
         for sl in sides:
-            rgb[sl] = INK
+            rgb[sl] = LINE
     return np.dstack([rgb, a]).astype(np.uint8)
 
 
 def rule(rgba, name):
-    """Replace an ornamental border with a newspaper rule: a thick and a thin ink line along its long axis,
-    where the ornament was."""
+    """Replace an ornamental border with a newspaper rule: a thick and a thin line (ink, or a light hairline by
+    night) along its long axis, where the ornament was."""
     h, w = rgba.shape[:2]
     a = rgba[..., 3].astype(np.float32) / 255
     out = np.zeros((h, w, 4), dtype=np.uint8)
-    out[..., :3] = INK
+    out[..., :3] = LINE
     horizontal = w >= h
     prof = a.sum(axis=1 if horizontal else 0)              # mass per row (horizontal) or column
     if prof.sum() == 0:
@@ -172,7 +271,7 @@ def rule(rgba, name):
 def frame(rgba, name):
     h, w = rgba.shape[:2]
     out = np.zeros((h, w, 4), dtype=np.uint8)
-    out[..., :3] = INK
+    out[..., :3] = LINE
     out[:2, :, 3] = out[-2:, :, 3] = out[:, :2, 3] = out[:, -2:, 3] = 255
     return out
 
@@ -205,9 +304,9 @@ def build_textures():
                 print("  can't read %s: %s" % (rel, e))
                 continue
             if name == "color_theme.dds":
-                # The theme tint behind window headings: light newsprint grey, so the ink heading reads (black hid it)
+                # The theme tint behind window headings: a shade off the paper, so the heading reads (black hid it)
                 arr = np.full(rgba.shape, 255, np.uint8)
-                arr[..., :3] = (226, 220, 207)
+                arr[..., :3] = THEME["heading"]
                 kind = "background"
             elif name == "mask_pattern.dds":
                 # A lattice of crosses laid over buttons and rows: subtle on dark stone, a loud cross-hatch on paper
@@ -259,7 +358,7 @@ def negative(rgba, name):
     dist = ndimage.distance_transform_edt(inside)
     keep = np.clip(1 - dist / edge, 0, 1)                               # 1 at the edge, 0 well inside
     t = keep * t + (1 - keep) * np.minimum(ndimage.gaussian_filter(t, 2), 0.10 if min(h, w) < 256 else 0.02)
-    out = PAPER * (1 - t[..., None]) + INK * t[..., None] + grain(h, w, hash(name) & 0xffff) * 0.6
+    out = PAPER * (1 - t[..., None]) + LINE * t[..., None] + grain(h, w, hash(name) & 0xffff) * 0.6
     return np.dstack([np.clip(out, 0, 255), a]).astype(np.uint8)
 
 
@@ -286,8 +385,9 @@ MONO_DIRS = ["icons/alerts"]                  # the purple alert diamonds along 
 def mono(rgba, name):
     rgb = rgba[..., :3].astype(np.float32) / 255
     lum = rgb @ np.array([0.299, 0.587, 0.114], dtype=np.float32)
-    t = np.clip((lum - 0.15) / 0.7, 0, 1)                     # dark -> ink, light -> paper
-    out = INK * (1 - t[..., None]) + PAPER * t[..., None]
+    t = np.clip((lum - 0.15) / 0.7, 0, 1)                     # dark body, light glyph, in either look
+    dark, light = (np.array(THEME[k], np.float32) for k in ("alert_dark", "alert_light"))
+    out = dark * (1 - t[..., None]) + light * t[..., None]
     return np.dstack([out, rgba[..., 3]]).astype(np.uint8)
 
 
@@ -412,9 +512,15 @@ def paper_tint(m):
     lum = 0.299 * r + 0.587 * g + 0.114 * b
     if lum >= 0.3:
         return m.group(0)
-    # Dark backdrop tints become paper: the darker the original, the deeper the paper tone
     k = 1 - lum / 0.3                         # 0 (grey) .. 1 (black)
-    base = np.array([0.95, 0.93, 0.88]) - k * np.array([0.10, 0.10, 0.11])
+    if DARK:
+        # Vanilla's dark tints suit dark paper; only the near-blacks are lifted to the charcoal of the panels, a
+        # little darker than the paper for the darkest (wells), up to the raised tone
+        paper, raised = np.array(rgb01(THEME["paper"])), np.array(rgb01(THEME["paper_raised"]))
+        base = raised - k * (raised - paper * 0.8)
+    else:
+        # Dark backdrop tints become paper: the darker the original, the deeper the paper tone
+        base = np.array([0.95, 0.93, 0.88]) - k * np.array([0.10, 0.10, 0.11])
     return "%s%.3f %.3f %.3f%s%s" % (m.group(1), base[0], base[1], base[2], m.group(5) or "", m.group(6))
 
 
@@ -425,12 +531,11 @@ def build_paper_tints():
     for f in sorted((GAME / "gui" / "shared").glob("*.gui")):
         rel = f.relative_to(GAME)
         dest = MOD / rel
-        mine = dest.read_text(encoding="utf-8-sig") if dest.exists() else ""
-        first, _, rest = mine.partition("\n")
-        if "build_theme.py" in first:                    # the glow-free copy (or this pass's own earlier output)
-            src, glows = rest, "dark text glows made transparent" in first
-        else:
-            src, glows = f.read_text(encoding="utf-8-sig"), False
+        # Always from vanilla (with the glow pass's change, if it makes one): an earlier run's output has the other
+        # look's tints, which this pass wouldn't recognise as dark
+        src = f.read_text(encoding="utf-8-sig")
+        glows = bool(DARK_GLOW.search(src))
+        src = DARK_GLOW.sub("glow_color:{0,0,0,0}", src)
         out, k = TINT.subn(paper_tint, src)
         if k and out != f.read_text(encoding="utf-8-sig"):
             change = "with its dark text glows made transparent and dark tints made paper" if glows else \
@@ -467,11 +572,18 @@ def build_event_text_panel():
 
 
 def main():
+    if "--contrast" in sys.argv:
+        for n, r, ok in contrast_report():
+            print("%-22s %5.2f:1 %s" % (n, r, "" if ok else "LOW"))
+        return
     Image.MAX_IMAGE_PIXELS = None
     build_fonts()
     print("fonts: Playfair Display (headlines), Source Serif 4 (text)")
     build_textformatting()
-    print("textformatting.gui: ink palette, no glows")
+    print("textformatting.gui: %s palette, no glows" % LOOK)
+    for n, r, ok in contrast_report():
+        if not ok:
+            print("  low contrast: %s %.2f:1" % (n, r))
     print("pale panel backdrops:", build_pale())
     print("grunge masks evened out:", build_masks())
     print("overlay textures neutral:", build_overlays())

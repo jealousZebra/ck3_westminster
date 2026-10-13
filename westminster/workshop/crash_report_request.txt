@@ -1,0 +1,12 @@
+[b]Crashing? Please send me a report.[/b] If the game crashes on start-up, while loading or in play, post (or link via Pastebin/Google Drive):
+
+- [b]error.log[/b] from the run that crashed (the next start overwrites it):
+  Windows: Documents\Paradox Interactive\Crusader Kings III\logs\error.log (or OneDrive\Documents\...)
+  Mac: ~/Documents/Paradox Interactive/Crusader Kings III/logs/error.log
+  Linux: ~/.local/share/Paradox Interactive/Crusader Kings III/logs/error.log
+- The newest folder in [b]crashes[/b], next to logs, if there is one (exception.txt is enough)
+- Your [b]game version[/b] (top left of the launcher, e.g. 1.20.0.4)
+- Your [b]DLC[/b] (which are switched on) and any other mods in the playset
+- When it crashes (before the main menu, loading the 2024 start, in play) and your OS, graphics card and RAM
+
+Thank you!

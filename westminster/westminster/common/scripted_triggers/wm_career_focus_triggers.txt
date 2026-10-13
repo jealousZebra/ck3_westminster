@@ -1,0 +1,10 @@
+﻿# Westminster: the political focuses (camp purposes, build_campaign_office.py). Vanilla's legitimists purpose (here the
+# Party Fixer) needs a claim on a kingdom (07_ep3_triggers.txt), which no campaigner ever has; it needs Party Standing
+# instead. This file loads after vanilla's and replaces that trigger.
+ep3_can_have_legitimists_camp_purpose_trigger = {
+	custom_tooltip = {
+		text = ep3_can_have_legitimists_camp_purpose_trigger.tt.explanation
+		has_variable = wm_standing
+		var:wm_standing >= 40
+	}
+}

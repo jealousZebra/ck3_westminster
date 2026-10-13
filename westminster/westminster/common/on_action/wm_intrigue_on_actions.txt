@@ -1,0 +1,11 @@
+﻿# Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt): flag the real people at game start
+# (appended to vanilla's on_game_start).
+on_game_start = {
+	on_actions = { wm_intrigue_on_game_start }
+}
+
+wm_intrigue_on_game_start = {
+	effect = {
+		wm_intrigue_init_effect = yes
+	}
+}

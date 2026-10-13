@@ -22,3 +22,4 @@ $PY westminster/tools/ui/build_flags.py                 # every title's flag (re
 $PY westminster/tools/data/build_credits.py               # CREDITS.txt: data, font, picture and flag attribution (after build_flags)
 $PY westminster/tools/ui/build_ideology_icons.py         # ideology and camp badges (faith icons; cached in westminster/art/fal)
 $PY westminster/tools/ui/build_stat_icons.py            # skill and currency icons (cached in westminster/art/fal)
+$PY westminster/tools/ui/build_map_icons.py              # map-mode, holding and map-marker badges; gui/wm_map_icons.gui (cached in westminster/art/fal; after build_theme)

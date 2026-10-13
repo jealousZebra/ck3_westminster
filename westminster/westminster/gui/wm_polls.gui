@@ -39,7 +39,7 @@ window = {
 				onclick = "[GetScriptedGui('wm_ui_polls_toggle').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
 			}
 		}
-		widget = { size = { 780 3 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+		widget = { size = { 780 3 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 		hbox = {
 			layoutpolicy_horizontal = expanding
 			spacing = 10
@@ -53,7 +53,7 @@ window = {
 				widget = {
 					size = { 170 3 }
 					visible = "[Not( Or( GetPlayer.MakeScope.Var('wm_ui_tab_chamber').IsSet, GetPlayer.MakeScope.Var('wm_ui_tab_tracker').IsSet ) )]"
-					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.75 0.10 0.10 1 } }
+					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.784 0.063 0.180 1 } }
 				}
 			}
 			vbox = {
@@ -66,7 +66,7 @@ window = {
 				widget = {
 					size = { 170 3 }
 					visible = "[GetPlayer.MakeScope.Var('wm_ui_tab_chamber').IsSet]"
-					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.75 0.10 0.10 1 } }
+					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.784 0.063 0.180 1 } }
 				}
 			}
 			vbox = {
@@ -79,12 +79,12 @@ window = {
 				widget = {
 					size = { 170 3 }
 					visible = "[GetPlayer.MakeScope.Var('wm_ui_tab_tracker').IsSet]"
-					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.75 0.10 0.10 1 } }
+					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.784 0.063 0.180 1 } }
 				}
 			}
 			expand = {}
 		}
-		widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+		widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 		vbox = {
 			name = "wm_polls_tab_poll"
 			visible = "[Not( Or( GetPlayer.MakeScope.Var('wm_ui_tab_chamber').IsSet, GetPlayer.MakeScope.Var('wm_ui_tab_tracker').IsSet ) )]"
@@ -107,7 +107,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_LAB" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -126,7 +126,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_CON" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -145,7 +145,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_LD" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -164,7 +164,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_RUK" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -183,7 +183,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_GRN" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -202,7 +202,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_SNP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -221,7 +221,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_PC" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -240,7 +240,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_SF" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -259,7 +259,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_DUP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -278,7 +278,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_SDLP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -297,7 +297,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_APNI" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -316,7 +316,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_UUP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -335,7 +335,7 @@ window = {
 					text_single = { text = "WM_UI_PARTY_TUV" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						progressbar = {
 							size = { 100% 100% }
 							texture = "gfx/interface/colors/white.dds"
@@ -349,7 +349,7 @@ window = {
 					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_tuv')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 			}
-			widget = { size = { 760 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 760 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			text_single = { text = "WM_UI_POLLS_FOOT" autoresize = no size = { 760 22 } align = left|nobaseline default_format = "#weak" }
 			text_single = { text = "WM_UI_POLLS_TRUST" autoresize = no size = { 760 22 } align = left|nobaseline default_format = "#high" }
 		}
@@ -373,7 +373,7 @@ window = {
 					text = "WM_SC_HEAD_NO_MAJORITY" default_format = "#high"
 				}
 			}
-			widget = { size = { 780 3 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 780 3 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			widget = {
 				size = { 780 156 }
 				# Labels
@@ -385,7 +385,7 @@ window = {
 					size = { 720 40 }
 					widget = {
 						size = { 720 40 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						widget = {
 							position = { 0 32 }
 							size = { 720 8 }
@@ -480,13 +480,13 @@ window = {
 					}
 				}
 				# The majority line: the 326th seat
-				widget = { position = { 579 14 } size = { 2 52 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.75 0.10 0.10 1 } } }
+				widget = { position = { 579 14 } size = { 2 52 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.784 0.063 0.180 1 } } }
 				# The Speaker's chair at the end of the aisle
 				widget = {
 					position = { 22 70 }
 					size = { 14 14 }
 					visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_spk'), '(CFixedPoint)0' )]"
-					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } }
+					icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.925 0.906 0.863 1 } }
 				}
 				text_single = { position = { 4 88 } text = "WM_SC_SPEAKER" default_format = "#low" }
 				text_single = { position = { 60 69 } text = "WM_SC_AISLE" default_format = "#weak" }
@@ -496,7 +496,7 @@ window = {
 					size = { 720 40 }
 					widget = {
 						size = { 720 40 }
-						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.84 0.82 0.77 1 } }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
 						widget = {
 							position = { 0 0 }
 							size = { 720 8 }
@@ -592,7 +592,7 @@ window = {
 				}
 				text_single = { position = { 60 136 } text = "WM_SC_OPP_BENCHES" default_format = "#low" }
 			}
-			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			# The legend: a flowcontainer of flowcontainers in a fixed-size widget. (Layouts (hbox) inside a
 			# flowcontainer placed straight in a vbox resize each other forever and crash the game.)
 			widget = {
@@ -715,7 +715,7 @@ window = {
 			layoutpolicy_horizontal = expanding
 			spacing = 3
 			text_single = { text = "WM_SC_TRACK_POLLS" autoresize = no size = { 780 24 } align = left|nobaseline default_format = "#high" }
-			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
@@ -814,7 +814,7 @@ window = {
 			}
 			widget = { size = { 10 8 } }
 			text_single = { text = "WM_SC_TRACK_SEATS" autoresize = no size = { 780 24 } align = left|nobaseline default_format = "#high" }
-			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
@@ -919,7 +919,7 @@ window = {
 				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
-			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.09 0.09 1 } } }
+			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
 			text_single = { text = "WM_SC_TRACK_FOOT" autoresize = no size = { 780 22 } align = left|nobaseline default_format = "#weak" }
 		}
 		expand = {}
