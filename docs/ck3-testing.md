@@ -1,11 +1,7 @@
 # Testing mods in the real game
 
-> These notes started in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo, which Westminster shared with
-> another mod, Realm Forge. Examples that mention Realm Forge or `realm_forge/` refer to that repo; Westminster's own
-> commands are in this repo's README.md.
-
-Mods are tested by running CK3 itself, not by asking someone to click through and send screenshots. The shared tools
-are in `common/ck3_test/`. Each mod keeps its own tests and its own test harness.
+Mods are tested by running CK3 itself, not by asking someone to click through and send screenshots. The repository-level
+tools are in `common/ck3_test/`. The mod keeps its own tests and test harness.
 
 The test tools are macOS-only (they use `osascript`, `screencapture`, `sips` and two small Swift helpers built with
 `swiftc`); the mods themselves aren't. Steam must be running. The tools look for the game and its user folder in the
@@ -38,20 +34,20 @@ Then `python3 common/ck3_test/report.py <log>` prints the pass/fail summary. `de
 `RFT_DETAIL` line prints the offending scope.
 
 ```sh
-python3 realm_forge/tools/ck3_test/gen_tests.py          # writes the suite into the harness
-HARNESS=realm_forge/tools/ck3_test/harness common/ck3_test/run_test.sh realm_forge/tools/ck3_test/gen_tests.log
-python3 common/ck3_test/report.py realm_forge/tools/ck3_test/gen_tests.log
-python3 common/tools/ck3_checks.py errorlog rf_           # any errors from the mod's own files?
+python3 westminster/tools/ck3_test/gen_gameplay.py   # writes the suite into the harness
+HARNESS=westminster/tools/ck3_test/harness common/ck3_test/run_test.sh westminster/tools/ck3_test/gameplay.log
+python3 common/ck3_test/report.py westminster/tools/ck3_test/gameplay.log
+python3 common/tools/ck3_checks.py errorlog wm_           # any errors from the mod's own files?
 ```
 
 The mod under test must already be enabled in the playset. A mod's release script runs all of this, for example
-`realm_forge/tools/release.sh`.
+`westminster/tools/release.sh`.
 
 ## Writing tests
 
-Write the suite with a Python generator (Realm Forge: `tools/ck3_test/gen_tests.py`) rather than by hand. Each check
+Write the suite with a Python generator (Westminster: `tools/ck3_test/gen_gameplay.py`) rather than by hand. Each check
 is a trigger, and the generator wraps it in `if/else` with `debug_log = "RFT_PASS name"` or `"RFT_FAIL name"`. A test
-sets up its own scenario on the save (for example, take an empire, then organise it) and checks the results.
+sets up its own scenario on the save (for example, start an election and check its results) and checks the results.
 
 - The save is whatever CK3 loaded last (unless the run passes `SAVE=`), so tests mustn't depend on the player's own
   campaign.
@@ -68,8 +64,7 @@ sets up its own scenario on the save (for example, take an empire, then organise
   compiled to `$TMPDIR/rf_park_mouse`), so no tooltips appear.
 - `FULL=1` keeps full screen resolution, for the Workshop page.
 
-The generator for the steps chooses what each step shows using `global_var:rf_test_step` (Realm Forge:
-`tools/ck3_test/gen_ui.py`).
+The generator for the steps chooses what each step shows using a global test-step variable.
 
 - The screen must be unlocked, or the captures come out black.
 - **Other languages:** change `language="l_english"` to `l_<language>` in `pdx_settings.txt`, take the screenshots, then
@@ -93,7 +88,7 @@ For a total conversion (or any test without a save to load):
 
 ## Harness folder contents
 
-Copy `realm_forge/tools/ck3_test/harness/` for a new mod and keep these parts:
+The local harness is in `westminster/tools/ck3_test/harness/`. A new mod can use the same structure:
 
 - `descriptor.mod`
 - `gui/rf_test.gui` (rewritten by `ui_walkthrough.sh`)
@@ -102,13 +97,9 @@ Copy `realm_forge/tools/ck3_test/harness/` for a new mod and keep these parts:
 - `common/scripted_effects/rf_test_effects.txt` (written by the generator; not in git, so run a generator before
   the first test)
 
-Westminster's harness adds `events/rf_test_events.txt`, the later event that timed suites (run with `UNPAUSE=1`)
-schedule to log their remaining checks and `RFT done`.
-
 Optionally add `on_action` hooks that log events the tests want to see.
 
 ## Looking at portraits
 
-Westminster's `tools/data/build_likenesses.py --gallery` (or `--catalogue`, every vanilla hairstyle and beard) writes
-a small test mod into `tools/test_out/wm_gallery/` whose HUD widget shows a page of 20 portraits with names. The
-script's docstring says how to enable it; `--page N` switches page while the game runs (debug mode reloads the GUI).
+For portrait work, a temporary test mod with a HUD widget can show a page of portraits with names. In debug mode,
+the GUI can be reloaded while the game runs.

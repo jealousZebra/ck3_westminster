@@ -59,7 +59,7 @@ OUT_CE = MOD / "gfx" / "coat_of_arms" / "colored_emblems"
 OUT_COA = MOD / "common" / "coat_of_arms" / "coat_of_arms" / "wm_title_flags.txt"
 README = ROOT / "data" / "README.md"
 PREVIEW = ROOT / "tools" / "test_out" / "flags_preview.png"
-UA = os.environ.get("CK3MOD_USER_AGENT", "WestminsterCK3ModFlagBuilder/0.2 (Crusader Kings III mod; one-off download of ~80 flag SVGs, cached locally)")	# set CK3MOD_USER_AGENT to add a contact URL
+UA = os.environ.get("CK3_USER_AGENT", "WestminsterCK3ModFlagBuilder/0.2 (Crusader Kings III mod; one-off download of ~80 flag SVGs, cached locally)")	# set CK3_USER_AGENT to add a contact URL
 API = "https://commons.wikimedia.org/w/api.php"
 
 FLAG_SIZE = 256                    # real flag textures (square; the flag is the middle 3:2 band)

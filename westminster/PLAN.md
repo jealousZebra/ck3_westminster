@@ -648,8 +648,7 @@ Some, not a lot. The aim is gentle political comedy.
     - the candidate (skills, profile, scandals);
     - incumbency;
     - the seat's lean (a stored variable).
-  - The new MPs are then handed their seats. This is the same bulk title-transfer approach as Realm Forge's
-    Organise, so the performance lessons apply.
+  - The new MPs are then handed their seats using a bulk title-transfer approach.
 - **Results night UI**: seat counts, swing, a map coloured by party (CK3's map modes can colour by liege).
 - **Opinion polls**: national and regional support per party, moved by events, scandals and the economy. Shown in a
   new window.
@@ -738,7 +737,7 @@ A total conversion has to replace or turn off a lot of vanilla:
 Approach:
 1. Start from a minimal working TC: one bookmark, the map, the titles, no war.
 2. Turn off vanilla content in bulk: `replace_path` for history, events and on_actions that fire medieval content.
-3. Bring back only what we've reskinned. Realm Forge's test harness and checks carry straight over.
+3. Bring back only what we've reskinned, then run the local test harness and checks.
 
 ## Ideology replaces religion (decided and built 2026-10-08)
 

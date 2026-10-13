@@ -63,8 +63,3 @@ westminster/
   need `swiftc` (Xcode command-line tools). The generators and static checks work anywhere.
 - **Releases** go to the Workshop through the Paradox launcher: see
   [westminster/workshop/PUBLISHING.md](westminster/workshop/PUBLISHING.md).
-
-## History
-
-Westminster began in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo alongside Realm Forge, and moved here
-on 2026-10-12 for its own roadmap and releases.

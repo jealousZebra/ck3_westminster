@@ -56,7 +56,7 @@ ROOT = Path(__file__).resolve().parent.parent.parent          # westminster/
 RAW = ROOT / "data" / "raw"
 MOD = ROOT / "westminster"
 REFRESH = "--refresh" in sys.argv
-UA = os.environ.get("CK3MOD_USER_AGENT", "WestminsterCK3Mod/0.1 (Crusader Kings III mod data build; open-source tooling)")	# set CK3MOD_USER_AGENT to add a contact URL
+UA = os.environ.get("CK3_USER_AGENT", "WestminsterCK3Mod/0.1 (Crusader Kings III mod data build; open-source tooling)")	# set CK3_USER_AGENT to add a contact URL
 
 START = "2024.7.5"
 CANDIDACIES_URL = "https://electionresults.parliament.uk/general-elections/6/candidacies.csv"

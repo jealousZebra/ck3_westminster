@@ -1,9 +1,5 @@
 # CK3 modding notes
 
-> These notes started in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo, which Westminster shared with
-> another mod, Realm Forge. Examples that mention Realm Forge or `realm_forge/` refer to that repo; Westminster's own
-> commands are in this repo's README.md.
-
 What we've learned making mods for Crusader Kings III 1.20 (on macOS, but most of it applies everywhere). Most of these cost a debugging session, and many
 fail silently. Read this before writing script or GUI for a new mod, and add to it when the game surprises you.
 
@@ -20,15 +16,15 @@ fail silently. Read this before writing script or GUI for a new mod, and add to 
 | Game language | `language` in `~/Documents/Paradox Interactive/Crusader Kings III/pdx_settings.txt` |
 
 Each mod has a `.mod` file in the launcher's `mod/` folder whose `path` points at the mod folder in this repo, for
-example `path="/path/to/ck3mod/realm_forge/realm_forge"`. `python3 common/tools/install_mod.py <mod>` writes it
+for example `path="/path/to/repository/<mod>/<mod>"`. `python3 common/tools/install_mod.py <mod>` writes it
 from the mod's template. Move the repo and you must run it again.
 
 ## Files and encoding
 
 - Script (`.txt`), GUI (`.gui`) and localization (`.yml`) files need a **UTF-8 BOM**. Without it the game may skip the
   file or garble non-ASCII text. `common/tools/ck3_checks.py static <mod>` checks this.
-- Prefix every file, variable, effect, trigger, scripted GUI and localization key with the mod's prefix (`rf_` for
-  Realm Forge) so mods don't clash with each other or vanilla, and so error-log checks can find the mod's own errors.
+- Prefix every file, variable, effect, trigger, scripted GUI and localization key with the mod's prefix (`wm_` for
+  Westminster) so mods don't clash with each other or vanilla, and so error-log checks can find the mod's own errors.
 - Localization files go in `localization/<language>/<name>_l_<language>.yml` and start with `l_<language>:`.
 - Write symbols like "+" in GUI text with `raw_text`.
 
@@ -73,7 +69,7 @@ from the mod's template. Move the repo and you must run it again.
 - **Changing a vanilla window** means overriding its whole file (for example `gui/window_title.gui`). Only
   `type`/`template` definitions can be overridden on their own, and they rarely sit where you want to add things.
   Generate the override from the installed game's file with a script, and record the game version in it so a release
-  check can catch a game update (see `realm_forge/tools/patch_title_view.py`). A whole-file override conflicts with any
+  check can catch a game update (see a local generator script). A whole-file override conflicts with any
   other mod that changes the same window.
 - In debug mode (`-debug_mode`) the game reloads GUI files when they change. The test harness relies on this (see
   [ck3-testing.md](ck3-testing.md)).
@@ -110,8 +106,7 @@ from the mod's template. Move the repo and you must run it again.
 
 - Take terms from the game's own localization (`game/localization/<language>/`) so the mod matches the game's UI in
   every language.
-- Keep `[data expressions]`, `$KEY$` references, `#format` codes and `\n` exactly as in the English. Realm Forge's
-  `tools/translations/check.py` checks this. Copy it for a new mod.
+- Keep `[data expressions]`, `$KEY$` references, `#format` codes and `\n` exactly as in the English. a translation-check script can verify this.
 - The game ships 9 languages: English, French, German, Spanish, Russian, Polish, Simplified Chinese, Korean and
   Japanese.
 

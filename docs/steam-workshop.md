@@ -1,10 +1,6 @@
 # Publishing to the Steam Workshop
 
-> These notes started in the [ck3_realm_manager](https://github.com/jealousZebra/ck3_realm_manager) (formerly ck3mod) repo, which Westminster shared with
-> another mod, Realm Forge. Examples that mention Realm Forge or `realm_forge/` refer to that repo; Westminster's own
-> commands are in this repo's README.md.
-
-General steps for every mod in this repo. Each mod's `workshop/PUBLISHING.md` has its own specifics: its item ID,
+General steps for publishing the mod. Its `workshop/PUBLISHING.md` has project-specific details: its item ID,
 screenshot commands and so on.
 
 ## Uploading (by the mod owner)
@@ -44,9 +40,8 @@ Keep every piece of page text as files in the mod's `workshop/` folder: English 
 - The description limit is **8000 bytes**, and Steam counts each line break as 2 bytes (CRLF). The Russian
   description had to be trimmed to about 7,800 bytes of file size before it would save.
 - The title limit is 128 characters.
-- Steam's search matches **whole words**. Put the words players type into the title (for Realm Forge: take titles,
-  organize, cheat, de jure, vassals), and use the US spelling "organize" as well as the British spelling used in the
-  text.
+- Steam's search matches **whole words**. Put the words players type into the title (for this mod: UK politics,
+  elections, parliament, campaign), and use the US spelling "organize" alongside the British spelling in the text.
 - Steam CK3 tags are a fixed list (Gameplay, Utilities, Character Interactions, Interface, Translation, the language
   tags…). The launcher sets them from `descriptor.mod`. We haven't confirmed which ones it accepts, and a tag it
   doesn't accept may make an upload fail.
@@ -92,7 +87,7 @@ What works and what doesn't:
 - **Steam's limits are in bytes, not characters:** the title is 128 bytes and the description 8,000 bytes of UTF-8,
   with each line break sent as CRLF (2 bytes). Cyrillic takes 2 bytes a character and Chinese, Japanese and Korean 3,
   so translations hit the limit long before the English does. Over the limit, the save is silently dropped: the page
-  reloads with no error and the old text. Westminster's `workshop/translations/check.py` checks both.
+  reloads with no error and the old text. A local validation script can check both byte limits before publishing.
 - **Faster than editing each page:** the edit form is a plain POST to `/sharedfiles/itemedittext/` with `id`,
   `sessionid` (read it from the edit page), `language`, `title` and `description`. Posting with `fetch` from a
   steamcommunity.com tab saves a language without loading the page; re-fetch the edit page to confirm.
