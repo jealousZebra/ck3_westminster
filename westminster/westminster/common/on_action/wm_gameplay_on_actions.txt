@@ -6,6 +6,23 @@ yearly_global_pulse = {
 	}
 }
 
+# A one-time, player-only reminder after a full year of play. This avoids interrupting the opening
+# sequence and never repeats in the same campaign.
+yearly_playable_pulse = {
+	on_actions = { wm_recommendation_yearly_pulse }
+}
+
+wm_recommendation_yearly_pulse = {
+	trigger = {
+		is_ai = no
+		NOT = { has_character_flag = wm_recommendation_seen }
+	}
+	effect = {
+		add_character_flag = wm_recommendation_seen
+		trigger_event = wm_recommendation.1
+	}
+}
+
 # No root. Tidies up riots whose organiser has gone, then (usually) starts a new riot somewhere,
 # most likely in a seat whose people are unhappy with their MP.
 wm_riot_yearly_pulse = {

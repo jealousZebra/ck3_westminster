@@ -1,0 +1,5 @@
+[h1]Beta 0.5.1 — Improvements[/h1]
+[list]
+[*]General polish and quality-of-life improvements.
+[*]Small presentation and usability refinements.
+[/list]

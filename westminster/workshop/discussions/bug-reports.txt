@@ -1,0 +1,25 @@
+TITLE: Bug Reports & Known Issues
+
+[h1]Report a problem with Westminster[/h1]
+
+Thank you for helping improve the mod. Please check the known issues below, then post one reply per problem so it is easy to track.
+
+[h2]Include these details[/h2]
+[list]
+[*]What you were doing when the problem happened
+[*]Which start date and character you were playing
+[*]Whether you started a new game after the latest update
+[*]Your CK3 version and enabled DLC
+[*]Any other enabled mods
+[*]A screenshot or save file, if useful
+[/list]
+
+[h2]Known beta limitations[/h2]
+[list]
+[*]Long campaigns may still need balance adjustments.
+[*]Some less-used screens may retain medieval presentation.
+[*]Roads to Power is required to play an unlanded activist or campaigner.
+[*]Major updates require a new campaign unless the change notes say otherwise.
+[/list]
+
+Please keep reports factual and reproducible. Political debate belongs elsewhere; this topic is for gameplay and technical problems.

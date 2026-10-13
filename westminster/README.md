@@ -6,7 +6,7 @@ bookmark for every Prime Minister since Neville Chamberlain, starting with 2024.
 
 | | |
 |---|---|
-| Status | 0.3 public beta (first release, for the Steam Workshop). The map, the 2024 Parliament, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Status | 0.5.1 public beta. The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
 | Release | [workshop/PUBLISHING.md](workshop/PUBLISHING.md): Workshop page text, thumbnail, screenshots; `tools/release.sh <version>` checks and zips |
 | Game | CK3 1.20 (any platform; the in-game test tools are macOS-only) |
 | Prefix | `wm_` (files, variables, effects, localization keys) |

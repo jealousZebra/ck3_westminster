@@ -1,0 +1,15 @@
+﻿namespace = wm_recommendation
+
+wm_recommendation.1 = {
+	type = character_event
+	title = wm_recommendation.1.t
+	desc = wm_recommendation.1.desc
+	theme = realm
+
+	option = {
+		name = wm_recommendation.1.a
+	}
+	option = {
+		name = wm_recommendation.1.b
+	}
+}

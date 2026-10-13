@@ -1,0 +1,32 @@
+TITLE: How to Play: Elections, Parliament & Becoming Prime Minister
+
+[h1]Choose your route to Downing Street[/h1]
+
+[b]Prime Minister[/b]
+[list]
+[*]Appoint a capable Cabinet and keep your party wings satisfied.
+[*]Introduce bills, manage the whip and protect your working majority.
+[*]Watch public trust and polling before calling an early election.
+[/list]
+
+[b]Party leader or backbench MP[/b]
+[list]
+[*]Build profile and political capital through parliamentary and party activity.
+[*]Support or rebel against the whip, seek promotion and prepare for leadership contests.
+[*]Use the State of the Parties button on the left of the screen to follow polls and the Commons.
+[/list]
+
+[b]Activist or campaigner[/b]
+[list]
+[*]Roads to Power is required for unlanded play.
+[*]Complete political work to build Party Standing, reach the approved list and contest a selection.
+[*]Win a constituency at a general election or by-election, or build support and found a new party.
+[/list]
+
+[h2]Winning elections[/h2]
+Polls move monthly. Campaign choices, public trust, party leadership and political events affect the national picture, while every constituency retains its own starting lean. A strong national campaign still needs the right candidates in the right seats.
+
+[h2]Forming a government[/h2]
+The largest party may govern alone, negotiate a coalition or seek confidence and supply. A government that loses its Commons majority can face a confidence vote and an early election.
+
+Westminster is a beta, so please use the Bug Reports topic for anything that does not behave as expected.

@@ -1,0 +1,24 @@
+TITLE: Roadmap & Feature Requests
+
+[h1]Help shape Westminster[/h1]
+
+Westminster is growing from its 1979 and 2024 starts into a broader modern British political simulation. Suggestions are welcome, especially when they describe the political story or decision a feature would create for the player.
+
+[h2]Current priorities[/h2]
+[list]
+[*]More historical starting dates and political figures
+[*]Deeper elections, campaigning and parliamentary strategy
+[*]More complete careers for backbenchers, party leaders and activists
+[*]Additional modern interface and character presentation
+[*]Balance, stability and clearer onboarding
+[/list]
+
+[h2]When suggesting a feature[/h2]
+[list]
+[*]Describe who would use it.
+[*]Explain the choice or trade-off it creates.
+[*]Mention any historical example that would help model it.
+[*]Keep separate ideas in separate replies so other players can discuss them clearly.
+[/list]
+
+The roadmap may change as testing reveals what the game needs most, but thoughtful suggestions are read and considered.
