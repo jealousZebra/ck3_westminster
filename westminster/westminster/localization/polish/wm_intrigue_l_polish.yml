@@ -1,0 +1,82 @@
+﻿l_polish:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "Spisek o usunięcie"
+ wm_intrigue_oust_action: "Spisek o usunięcie"
+ wm_intrigue_oust_desc: "Cicho liczę głosy przeciwko [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]. Gdy wystarczająca liczba kolegów będzie gotowa do działania, wyzwanie zostanie podjęte."
+ wm_intrigue_oust_desc_general: "[scheme|E], aby ustawić współpracowników przeciwko liderowi własnej partii. Jeśli się powiedzie, spisek wychodzi na jaw jako formalne wyzwanie przywódcze z Twoim nazwiskiem na karcie do głosowania: posłowie partii nominują, a członkowie decydują. Samodzielnie nikogo nie usuwa.\n\nJeśli się nie uda i zostanie odkryte, lider tego nie zapomni."
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "Wyzwanie przywódcze wobec [TARGET_CHARACTER.GetShortUIName], z tobą na liście wyborczej."
+ WM_INTRIGUE_OUST_LOST_GROUND: "Partia straciła poparcie w ostatnich wyborach"
+ WM_INTRIGUE_OUST_LOW_TRUST: "Zaufanie publiczne do polityki jest na sali"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "Twój profil"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "Profil lidera"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "Szef Lorda Lidera obserwuje"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] musi kierować twoją partią"
+ wm_intrigue_oust_invalidated_title: "Koniec spisku o usunięcie"
+ wm_intrigue_oust_invalidated_desc: "Spisek przeciwko [target.GetShortUIName] upadł: przywództwo zmieniło ręce, konkurs jest już w toku lub spiskowcy się rozproszyli."
+ wm_intrigue_oust_interaction: "Spisek o usunięcie #weak (Schemat)#!"
+ wm_intrigue_oust_interaction_desc: "Cicho ustaw kolegów przeciwko [recipient.GetShortUINameNoTooltip]. Jeśli spisek się powiedzie, staje się wyzwaniem przywództwa z tobą na karcie do głosowania."
+ wm_intrigue_oust_interaction_toast: "Spiskowanie o usunięcie"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] jest niedostępny: romanse są możliwe tylko z fikcyjnymi postaciami, nigdy z prawdziwą osobą z zakładki, rodziny królewskiej ani z kimkolwiek poniżej 18 lat"
+ wm_intrigue_not_leakable: "Prasa nie opublikowałaby tego: tylko polityczne sekrety mogą być ujawnione"
+ wm_intrigue_leak_toast: "Historia Biegnie"
+ wm_intrigue_leak_toast_desc: "Twoja historia o [recipient.GetShortUIName] jest na pierwszych stronach. [recipient.GetHerHis|U] Profil, [recipient.GetHerHis] sondaże partii i zaufanie publiczne do polityki ucierpiały."
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "Szkodliwa historia"
+ wm_secret_intrigue_story_desc: "Szkodliwa historia o [CHARACTER.GetShortUIName], gotowa do publikacji"
+ wm_secret_intrigue_story_type_desc: "Szkodliwa historia, prawdziwa lub nie, którą gazety by opublikowały"
+ wm_secret_intrigue_story_tooltip_desc: "Ktoś posiada szkodzącą historię o tym polityku. Niezależnie od tego, czy jest prawdziwa, gazety by ją opublikowały."
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "Przyłapany na kopaniu brudnych informacji"
+ wm_intrigue_caught_plotting_opinion: "Przyłapany na spiskowaniu przeciwko mnie"
+ wm_intrigue_leaked_opinion: "Wyciekła historia o mnie"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "Moment działania"
+ wm_intrigue.1.desc_scandal: "Moi ludzie spędzili tygodnie na [target.GetShortUINamePossessive] przeszłości: stare rozmowy kwalifikacyjne, roszczenia o wydatki, były asystent z urazą. Jest tu coś, albo coś, co można tak wyglądać. \n\nI może się teraz przeprowadzić albo dalej kopać i mieć nadzieję na coś lepszego."
+ wm_intrigue.1.desc_affair: "Późne głosy, napoje na tarasie, długie rozmowy na korytarzu: [target.GetShortUIName] i ja zbliżyliśmy się do siebie.\n\n Mogę teraz wyrazić moje uczucia jasno, albo pozwolić rzeczom toczyć się jeszcze trochę dłużej."
+ wm_intrigue.1.desc_oust: "Liczby się stabilizują. Koledzy, którzy wcześniej nic nie mówili, teraz mówią \"jeśli zajdzie taka potrzeba\". Pytanie brzmi, czy już do tego doszło.\n\n Mogę powiedzieć [target.GetShortUIName], że wyzwanie wchodzi, lub nadal liczyć głosy."
+ wm_intrigue.1.a: "Teraz."
+ wm_intrigue.1.a.tt: "Rzuć [scheme|E]'s [success_chance|E]. Jeśli się nie uda, może zostać odkryte."
+ wm_intrigue.1.b: "Jeszcze nie."
+ wm_intrigue.1.b.tt: "[scheme|E] kontynuuje."
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "Zadziałało"
+ wm_intrigue.2.t_caught: "się dowiedział"
+ wm_intrigue.2.t_failed: "Nic się nie dzieje"
+ wm_intrigue.2.desc_scandal_success: "Historia jest solidna, lub prawie tak. Szkic nagłówka leży w folderze na moim biurku, a [target.GetShortUIName] wie, że mogę go wysłać do redakcji, kiedy zechcę. \n\n mogę go ujawnić lub po prostu dać [target.GetHerHim] znać, że go mam."
+ wm_intrigue.2.desc_affair_success: "Z dala od kamer i dzwonków podziału, [target.GetShortUIName] i ja staliśmy się czymś więcej niż współpracownikami. Na razie to nasza tajemnica."
+ wm_intrigue.2.desc_oust_success: "Listy nadeszły. Rano całe Westminster będzie wiedział: partia wybierze między [target.GetShortUIName] a mną."
+ wm_intrigue.2.desc_scandal_caught: "Były asystent poszedł prosto do [target.GetShortUIName]. Nie ma żadnej historii, ale teraz jest polityk, który dokładnie wie, kto szukał jednej."
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] odmówił mi uprzejmie, ale stanowczo, a plotki z korytarza dotarły przede mną."
+ wm_intrigue.2.desc_oust_caught: "Jeden z moich współpracowników mówił. [target.GetShortUIName] zna spisek, a stronnicy zostali poinformowani, aby mnie obserwowali."
+ wm_intrigue.2.desc_scandal_failed: "Każdy trop wyszedł na zimno. Cokolwiek [target.GetShortUIName] zrobił, tym razem nie trafi na łamy gazet."
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName] nie odczuwał tego samego. Będziemy kolegami, nic więcej."
+ wm_intrigue.2.desc_oust_failed: "Gdy przyszło do tego słowa, zbyt wielu kolegów straciło odwagę. Spisek się skończył i nikt nie musi się o nim dowiedzieć."
+ wm_intrigue.2.a: "Doskonale."
+ wm_intrigue.2.b: "Niech tak będzie."
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "Ktoś był zajęty"
+ wm_intrigue.3.desc_scandal: "Były członek mojego personelu dzwonił dziś rano. [owner.GetShortUIName|U] zadawał pytania o mnie: stare roszczenia, starzy przyjaciele, wszystko, co mogłoby mnie kompromitować. Nie znaleziono nic, ale zapamiętam, kto się rozglądał."
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] próbował mnie poderwać, a cała sala herbaciana zdaje się o tym wiedzieć. Wyraziłem swoją odpowiedź jasno."
+ wm_intrigue.3.desc_oust: "Lojalny posłaniec podszedł do mnie na boku: [owner.GetShortUIName] rozpytywał kolegów o wyzwanie w kierownictwie. Spisek upadł, ale wiem, kto go rozpoczął."
+ wm_intrigue.3.a: "Nie zapomnę tego."
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "Historia Biegnie na Pierwszych Stronach"
+ wm_intrigue.10.desc: "The first call came at six in the morning. By breakfast the story was on every front page and the broadcasters were camped outside my office.\n\nMy Profile has taken a battering, the party is down in the polls, and the public thinks a little less of all of us. Someone gave the papers that story, and I have a good idea who: [wm_intrigue_leaker.GetShortUIName]."
+ wm_intrigue.10.a: "Brak komentarza."
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "wykryli mój blef"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] will not be pushed around: if I have a story, I should run it.\n\nOne call to a lobby journalist and it is on tomorrow's front pages. Or I can sit on it, and let [recipient.GetHerHim] wonder."
+ wm_intrigue.20.a: "Zadzwoń do redakcji."
+ wm_intrigue.20.b: "Usiądź na tym."

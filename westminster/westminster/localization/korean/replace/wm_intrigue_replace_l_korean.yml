@@ -1,0 +1,34 @@
+﻿l_korean:
+ # Westminster: vanilla's intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt,
+ # tools/data/build_safeguards.py). These keys are vanilla's; build_terms.py must not write them.
+
+ # Fabricate a Scandal (fabricate_hook)
+ fabricate_hook: "스캔들 조작"
+ fabricate_hook_action: "스캔들을 조작하다"
+ fabricate_hook_desc: "[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]가 절대 출판되고 싶지 않아 하는 기사를 파내거나 꾸미다"
+ fabricate_hook_desc_general: "정치인에 대한 해로운 이야기를 발굴하거나 꾸며낼 수 있는 [scheme|E]. 성공하면 그들에게 영향력을 주는 [hook|E]와 이야기 자체에 대한 [secret|E]를 얻을 수 있으며, 이를 언론에 유출하거나 그들에게 쥐어줄 수 있습니다. 진행 과정에서 발견되는 실제 비리는 모두 당신의 것입니다."
+ fabricate_hook_interaction: "스캔들 #weak 조작(음모)#!"
+ fabricate_hook_interaction_desc: "[recipient.GetShortUINameNoTooltip]를 곤란하게 할 기사를 캐거나 만들기. 성공하면 [recipient.GetHerHim]에 대한 [hook|E]와 유출할 기사를 얻음"
+ fabricate_hook_interaction_toast: "스캔들 조작"
+ fabricate_hook_scheme_invalidated_title: "스캔들 조작 종료"
+ FABRICATE_HOOK_SUCCESS_DESC: "당신은 [TARGET_CHARACTER.GetShortUIName]에 대한 [hook|E]와 유출할 이야기를 얻습니다."
+ FABRICATE_HOOK_DISCOVERY_DESC: "[TARGET_CHARACTER.GetShortUIName|U]는 누가 찾으러 갔는지 알아낸다."
+
+ # An affair (seduce): fictional characters only
+ seduce: "불륜"
+ seduce_action: "불륜을 시작하다"
+ seduce_desc: "늦은 투표, 긴 저녁 식사, 그리고 복도에서 가끔 들려오는 조용한 말들: [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]와 나는 점점 가까워지고 있다."
+ seduce_desc_general: "누군가를 설득하여 자신의 [lover|E]로 만드는 [personal_scheme|E]. 픽션 속 캐릭터만 가능: 즐겨찾기의 실제 인물, 왕실 가족, 18세 미만은 불가.\n\n [success_chance|E]는 [opinion|E], [trait|E] 호환성, [marriage|E] 상태 등 여러 요소에 의해 결정된다. 둘 중 한 명이라도 결혼했으면, 신문에서 좋아할 [secret|E]가 된다."
+ seduce_interaction: "불륜 #weak 시작(계획)#!"
+ seduce_interaction_notification: "불륜"
+ scheme_interaction_tt_seduce_approved: "[recipient.GetShortUINameNoTooltip]를 설득하여 [recipient.GetHerHim]를 당신의 [lover|E]로 만드세요"
+ SEDUCE_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName|U]는 당신의 [lover|E]가 됩니다."
+ seduce_invalid: "나는 더 이상 [lovers|E]가 될 수 없기 때문에 [target.GetShortUIName]을 추구하는 것을 멈춘다."
+ seduce_invalidated_title: "@personal_scheme_icon! 연애는 시작 전에 끝난다"
+
+ # Leak to the Press (expose_secret_interaction) and Threaten to Leak (blackmail_interaction)
+ expose_secret_interaction: "언론에 정보 유출"
+ expose_secret_interaction_desc: "[recipient.GetShortUINameNoTooltip]에 대한 이야기를 신문에 제공한다. [recipient.GetHerHis|U]의 프로필, [recipient.GetHerHis] 당의 여론 조사와 정치에 대한 신뢰가 모두 손상되고, [hooks|E]로 [secret|E]가 제공한 내용도 사라진다. 정치적 비밀만 유출될 수 있다."
+ blackmail_interaction: "유출 위협"
+ blackmail_interaction_desc: "당신이 가진 정치적 [secret|E]을 사용하여 [hook|E]을 얻는다: 조용히 하고, [recipient.GetShortUINameNoTooltip]가 당신에게 빚을 진다"
+ blackmail_decline_summary: "@warning_icon! #X [recipient.GetShortUINameNoTooltip]가 거부하면 언론에 이야기를 흘려도 돼! #!"

@@ -1,0 +1,34 @@
+﻿l_japanese:
+ # Westminster: vanilla's intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt,
+ # tools/data/build_safeguards.py). These keys are vanilla's; build_terms.py must not write them.
+
+ # Fabricate a Scandal (fabricate_hook)
+ fabricate_hook: "スキャンダルを捏造する"
+ fabricate_hook_action: "スキャンダルを捏造する"
+ fabricate_hook_desc: "[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]決して掲載されたくない物語を掘り起こしたり、飾り付けたりする"
+ fabricate_hook_desc_general: "政治家に関する損害を与える話を掘り起こしたり、盛り上げたりする [scheme|E]。成功すると、対象者とその話自体に影響を与える [hook|E]、あなたが報道に流したり圧力として使える [secret|E] を得ます。途中で見つかった実際の不正行為もあなたのものとなります。"
+ fabricate_hook_interaction: "捏造のスキャンダル#weak(スキーム)#!"
+ fabricate_hook_interaction_desc: "[recipient.GetShortUINameNoTooltip]を恥ずかしがらせるような話を掘り下げるか、あるいは物語を作り上げる。成功は、[recipient.GetHerHim]の[hook|E]とリークする物語をもたらす。"
+ fabricate_hook_interaction_toast: "醜聞捏造"
+ fabricate_hook_scheme_invalidated_title: "でっち上げるスキャンダル終結"
+ FABRICATE_HOOK_SUCCESS_DESC: "あなたは [TARGET_CHARACTER.GetShortUIName] に [hook|E] を得て、リークするストーリーを得ます。"
+ FABRICATE_HOOK_DISCOVERY_DESC: "[TARGET_CHARACTER.GetShortUIName|U]誰が探したのか突き止める"
+
+ # An affair (seduce): fictional characters only
+ seduce: "恋愛関係"
+ seduce_action: "不倫を始める"
+ seduce_desc: "遅い投票、長いディナー、そして廊下でのささやかな会話：[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]と私は親しくなりつつあります。"
+ seduce_desc_general: "誰かの心をつかみ、彼らを自分の [lover|E] にするための [personal_scheme|E]。架空のキャラクターのみ可能：ブックマークにある実在人物、王室の人、18歳未満の人は不可。\n\n [success_chance|E] は、多くの要因によって決まります。[opinion|E]、[trait|E] の相性、そして [marriage|E] の地位も含まれます。どちらかが結婚している場合、新聞が喜ぶような [secret|E] になります。"
+ seduce_interaction: "不倫#weak(計画)を始める#!"
+ seduce_interaction_notification: "恋愛関係"
+ scheme_interaction_tt_seduce_approved: "[recipient.GetShortUINameNoTooltip]を味方につけ[recipient.GetHerHim]をあなたの[lover|E]にしようとする"
+ SEDUCE_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName|U] はあなたの [lover|E] になります。"
+ seduce_invalid: "私たちはもはや[lovers|E]にはなれないので、[target.GetShortUIName]を追求するのをやめる。"
+ seduce_invalidated_title: "@personal_scheme_icon! 恋愛沙汰は始まる前に終わる"
+
+ # Leak to the Press (expose_secret_interaction) and Threaten to Leak (blackmail_interaction)
+ expose_secret_interaction: "報道へのリーク"
+ expose_secret_interaction_desc: "新聞に[recipient.GetShortUINameNoTooltip]についての記事を伝えましょう。[recipient.GetHerHis|U] Profile、[recipient.GetHerHis]党の世論調査、そして政治への国民の信頼はすべて損なわれ、[secret|E]が示したすべての[hooks|E]が失われます。漏洩できるのは政治的な秘密だけです。"
+ blackmail_interaction: "漏らすと脅す"
+ blackmail_interaction_desc: "[hook|E]を得るために持つ政治的の[secret|E]を使えば、黙っていれば[recipient.GetShortUINameNoTooltip]があなたに借りがある"
+ blackmail_decline_summary: "@warning_icon! #X [recipient.GetShortUINameNoTooltip]が拒否したら、報道機関に漏らすこともできます!#!"

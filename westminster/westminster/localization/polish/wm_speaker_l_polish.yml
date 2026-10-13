@@ -1,0 +1,12 @@
+﻿l_polish:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "Krzesło jest wolne"
+ wm_speaker.1.desc: "The House of Commons must elect a new Speaker: the MP who keeps order, calls members to speak and sets aside party for good. Nominations close in a week; then every MP votes in a secret ballot, round after round, until someone has more than half.\n\nYou could stand. The Speaker leaves their party and never holds office again, but the chair carries great prestige."
+ wm_speaker.1.a: "Zgłoszę swoje nazwisko."
+ wm_speaker.1.a.tt: "Kandydujesz na przewodniczącego. Jeśli zostaniesz wybrany, opuszczasz swoją partię i zajmujesz nad nią."
+ wm_speaker.1.b: "Nie dla mnie."
+ wm_speaker.2.t: "Fotel Marszałka"
+ wm_speaker.2.desc: "Izba wybrała cię na przewodniczącego, po [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] głosowaniach. Zgodnie z tradycją jesteś wciągany do krzesła, udając niechęć. Od dziś nie należysz do żadnej partii."
+ wm_speaker.2.a: "Porządek! Porządek!"
+ wm_speaker_elected_toast: "Wybrano nowego przewodniczącego"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] jest nowym Przewodniczącym Izby Gmin, z [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] głosami na [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] po [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] głosowaniach."

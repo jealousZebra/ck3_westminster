@@ -1,0 +1,52 @@
+﻿l_simp_chinese:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "资助媒体宣传活动"
+ wm_spend_press_decision_desc: "购买广告，资助智库报告，并保持友好专栏作家的故事供应。一个关于你政党及其政策的活动，每月支付。\n\n费用大约为 #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#! 资金每月（收入的30%）。党派领导人的活动每月提升政党约0.15个百分点，最终稳定在比本应高出约3个百分点的位置；一个后座议员的效果是其五分之一。"
+ wm_spend_press_decision_tooltip: "花钱提高本党民调。"
+ wm_spend_press_decision_confirm: "签支票"
+ wm_spend_press_decision_effect_tt: "每个月支付30%的收入，你的政党民调会上升。竞选持续最长一年，或直到你停止它或资金用完。"
+ wm_spend_not_campaigning_tt: "你还没有为竞选支付费用"
+ wm_spend_press_afford_tt: "你可以负担第一个月（[GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1] 资金）"
+ wm_spend_smear_afford_tt: "你可以负担第一个月（[GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1] 资金）"
+
+ wm_spend_smear_decision: "资助抹黑活动"
+ wm_spend_smear_decision_desc: "攻击性广告、反驳单元以及对竞争党派记录和财务的不利报道的持续滴注。绝不涉及任何人的私人生活：目标是政党及其政策。\n\n这每月花费大约 #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#! 基金（占你收入的40%）。领导人的竞选每月使对手下降约0.2点，普通议员的影响是其四分之一。它会消磨公众信任，每个月有 #N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#! 的机会会适得其反（对于优秀的策士来说风险较小）：你自己的政党失去一点信任，对手的领导人会对你心生怨恨，媒体会继续报道此事。"
+ wm_spend_smear_decision_tooltip: "花钱打压竞争政党。可能会适得其反。"
+ wm_spend_smear_decision_confirm: "选择目标"
+ wm_spend_smear_decision_effect_tt: "选择对立政党。每个月你缴纳40%的收入，他们的民调下滑，公众信任度下滑，竞选可能会适得其反。"
+
+ wm_spend_stop_decision: "停止竞选资金"
+ wm_spend_stop_decision_desc: "取消广告，停止为你的活动付费。"
+ wm_spend_stop_decision_tooltip: "结束你的新闻或抹黑运动。"
+ wm_spend_stop_decision_confirm: "取消它"
+ wm_spend_stop_decision_effect_tt: "你的竞选结束了，你停止为此付费。"
+
+ wm_spend_favour_decision: "求助"
+ wm_spend_favour_decision_desc: "多年来党鞭办公室之间的低调交易让一个对立政党欠你人情：配对安排得到尊重，委员会席位交换，关键时刻投出一票。花点政治资本确保他们的领导人记住这一点。"
+ wm_spend_favour_decision_tooltip: "花费政治资本以换取竞争政党领导人欠的恩惠。"
+ wm_spend_favour_decision_confirm: "打电话"
+ wm_spend_favour_decision_effect_tt: "选择敌对党派的领袖：你获得对他们的#bold favorour#!钩子。"
+ wm_spend_favour_rival_tt: "另一个政党有领袖"
+
+ wm_spend.10.t: "攻击战役"
+ wm_spend.10.desc: "代理机构已经准备好了广告，研究人员也已检查过每一项成本和每一项失信承诺。我们要追究哪个党的记录？"
+ wm_spend.10.a: "[wm_spend_party_1.GetNameNoTier]。"
+ wm_spend.10.b: "[wm_spend_party_2.GetNameNoTier]。"
+ wm_spend.10.c: "[wm_spend_party_3.GetNameNoTier]。"
+ wm_spend.10.d: "仔细考虑后，让我们保持干净。"
+
+ wm_spend.20.t: "一项欠下的人情"
+ wm_spend.20.desc: "你的首席党鞭有其他党派欠我们的所有人情名单。应该提醒他们的哪位领导人？"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName] 来自 [wm_spend_party_1.GetNameNoTier]。"
+ wm_spend.20.b: "[wm_spend_rival_2.GetName] 来自 [wm_spend_party_2.GetNameNoTier]。"
+ wm_spend.20.c: "[wm_spend_rival_3.GetName] 来自 [wm_spend_party_3.GetNameNoTier]。"
+
+ wm_spend_ended_toast: "竞选结束"
+ wm_spend_ended_toast_desc: "你的付费活动已经结束：一年结束了，资金用尽了，或者目标消失了。"
+ wm_spend_backfire_toast: "肮脏伎俩被揭露"
+ wm_spend_backfire_toast_desc: "针对 [wm_spend_target_party.GetNameNoTier] 的抹黑运动已追溯到 [wm_spend_spender.GetName]。他们的党在民意调查中失去一分，公众信任再次受挫。"
+
+ wm_secret_smear_campaign: "抹黑运动"
+ wm_secret_smear_campaign_type_desc: "为抹黑运动付款"
+ wm_secret_smear_campaign_desc: "为针对竞争党派的抹黑运动付款"
+ wm_secret_smear_campaign_tooltip_desc: "这个人为对对立政党的抹黑行动买单，媒体可以证明这一点。"

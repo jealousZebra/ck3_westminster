@@ -1,0 +1,24 @@
+﻿l_spanish:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "Compromiso para limpiar la política"
+ wm_trust_clean_up_decision_desc: "#bold Confianza pública en la política: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] de 100#!, con una participación en las elecciones generales esperada alrededor de [EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%. \n\nBaja confianza hace que los disturbios sean más probables, eleva a partidos pequeños y nuevos en las encuestas y mantiene a los votantes en casa; alta confianza ayuda al gobierno. Giros de 180 grados, promesas incumplidas, disturbios y cómo se controlan, escándalos y campañas sucias la desgastan; proyectos de ley populares, promesas cumplidas y campañas limpias la construyen. \n\nUn paquete de reformas de estándares mostraría al país que Westminster está escuchando."
+ wm_trust_clean_up_decision_tooltip: "Confianza pública: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] de 100."
+ wm_trust_clean_up_decision_confirm: "Hacer la Promesa"
+ wm_trust_clean_up_decision_not_pledged_tt: "Aún no has hecho un compromiso de limpieza que siga vigente"
+ wm_trust_clean_up_decision_effect_tt: "La confianza pública aumenta en #P 5#! puntos. Si surge un escándalo en los próximos tres años, el compromiso se rompe: la confianza cae #N 4#! puntos más y pierdes prestigio."
+
+ wm_trust_promise_broken_toast: "PROMESA ROTA"
+ wm_trust_promise_broken_toast_desc: "La elección anticipada prometida a los manifestantes nunca llegó. La confianza pública cae #N 6#! puntos."
+
+ wm_trust.10.t_expenses: "Filas de Gastos Envuelven Westminster"
+ wm_trust.10.t_lobbying: "Controversia sobre el lobby"
+ wm_trust.10.t_unity: "Un Momento de Unidad Nacional"
+ wm_trust.10.t_standards: "Un Informe de Salud Limpio"
+ wm_trust.10.desc_expenses: "#italic Primera plana#!\n\nUna solicitud de acceso a la información ha abierto los reclamos de gastos de los diputados, y los periódicos los publican una página al día: una prensa de pantalones aquí, un calefactor de patio allí, una segunda vivienda que resulta ser la primera. Nadie ha infringido una regla, dicen las autoridades de la Cámara, lo cual es precisamente el punto.\n\nNingún partido se salva, y el público está poco impresionado con todos ellos."
+ wm_trust.10.desc_lobbying: "#italic Primera plana#!\n\nPeriodistas encubiertos haciéndose pasar por una consultoría extranjera han filmado a una serie de exministros ofreciendo abrir puertas por una tarifa. El gobierno insiste en que se siguieron las reglas; las reglas, resulta, fueron escritas por exministros.\n\nEl gobierno se lleva la peor parte."
+ wm_trust.10.desc_unity: "#italic Primera plana#!\n\nPor una vez, todo el país está viendo lo mismo: un triunfo deportivo, un rescate heroico, una celebración nacional. Se muestra a políticos de todos los partidos vitoreando juntos, y por unos días nadie los abuchea.\n\nEl gobierno recibe parte del sentimiento positivo."
+ wm_trust.10.desc_standards: "#italic Páginas interiores#!\n\nEl informe anual del Comité de Normas encuentra que la conducta de Westminster es la mejor en años: menos quejas, investigaciones más rápidas y nadie filmado haciendo algo lamentable. No es una noticia sensacionalista, y precisamente por eso ayuda."
+ wm_trust.10.desc_trust: "\n\n#bold La confianza pública en la política es ahora [EmptyScope.ScriptValue('wm_ui_public_trust')|0] de 100.#!"
+ wm_trust.10.a: "Publica cada recibo."
+ wm_trust.10.b: "Mantén la cabeza baja."
+ wm_trust.10.c: "Disfrútalo mientras dure."

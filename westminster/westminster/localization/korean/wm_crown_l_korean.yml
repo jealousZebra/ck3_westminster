@@ -1,0 +1,33 @@
+﻿l_korean:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "왕관 왕관과 지팡이는 하나님의 헛간 열쇠를 누가 소유하는지 두고 정면으로 맞서고; 세속 후원자들은 성직자들에게 지팡이와 반지를 부여하지만, 교회는 그들의 명령을 인정하지 않는다."
+ k_wm_crown_adj: "왕립"
+ wm_dyn_royal_windsor: "윈저"
+
+ wm_crown_government: "입헌군주제"
+ wm_crown_government_adjective: "왕립"
+ wm_crown_government_realm: "왕실"
+ wm_crown_government_desc: "군주는 통치하지만 실제로 지배하지는 않습니다. 그들은 어떤 직위도 없고, 봉신도 없으며, 거의 항상 정치에 관여하지 않습니다."
+ king_wm_crown_male: "킹"
+ king_wm_crown_female: "여왕"
+ kingdom_wm_crown: "왕관 왕관과 지팡이는 하나님의 헛간 열쇠를 누가 소유하는지 두고 정면으로 맞서고; 세속 후원자들은 성직자들에게 지팡이와 반지를 부여하지만, 교회는 그들의 명령을 인정하지 않는다."
+
+ wm_speak_out_against_mp_interaction: "국회의원에 반대하는 목소리를 내다"
+ wm_speak_out_against_mp_interaction_desc: "통치를 습관적으로 반복하는 것을 깨고 공공장소에서 [recipient.GetTitledFirstName]를 비판하라. 왕실은 기억에 있는 한 이렇게 한 적이 없다: 엄청난 금액의 [prestige|E]이 들며, 10번가(총리실)는 격노할 것이다."
+ wm_speak_out_against_mp_interaction_toast: "궁전이 목소리를 냅니다."
+ wm_crown_speak_out_toast: "궁전이 [recipient.GetTitledFirstName]를 비판합니다."
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName]는 [recipient.GetTitledFirstName]에 반대하는 발언을 했습니다. 헌법이 골칫거리를 겪고 있습니다."
+
+ wm_crown.1.t: "궁전으로부터의 꾸짖음"
+ wm_crown.1.desc: "매일 신문의 1면을 장식하고 있습니다. 평생 동안 자신의 의견을 감춰왔던 [actor.GetTitledFirstName]가 내가 어떻게 생각하는지 정확히 알리게 되었고, 이는 칭찬할 만한 것이 아닙니다. 내 전화는 갑자기 나와 함께 있는 것이 보이지 않는 동료들의 메시지로 가득합니다."
+ wm_crown.1.a: "입 다물어. 당신은 왕궁과 싸움을 벌이면 안 됩니다."
+ wm_crown.1.b: "반격: 군주는 정치에서 물러나야 합니다."
+
+ wm_rebuked_by_the_crown_modifier: "왕실에 의해 꾸중받다"
+ wm_rebuked_by_the_crown_modifier_desc: "군주는 이 국회의원(MP)에 대해 공개적으로 반대 의견을 표명했습니다."
+ wm_crown_criticism_county_modifier: "왕실로부터 비판받은 국회의원"
+ wm_crown_criticism_county_modifier_desc: "군주는 이 지역구의 국회의원(MP)에 대해 공개적으로 반대 의견을 표명했습니다."
+ wm_spoken_against_by_crown_opinion: "나한테 반대했어"
+ wm_embarrassed_party_opinion: "정당을 난처하게 만들었다"
+ wm_crown_meddling_opinion: "정치에 개입함"
+ wm_hit_back_at_crown_opinion: "왕실을 공격했다"

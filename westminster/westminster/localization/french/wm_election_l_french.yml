@@ -1,0 +1,28 @@
+﻿l_french:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "Parlement dissous"
+ wm_election_dissolution_toast_desc: "Le Premier ministre s'est rendu au Palais et le Parlement est dissous. Tous les sièges sont à pourvoir : le jour du scrutin est dans cinq semaines."
+
+ wm_election_results.1.a: "Lisez tout à ce sujet."
+ wm_election_results_intro_hold: "#italic Nuit des résultats#!\n\nLes électeurs ont parlé : #bold [wm_el_seats|0]#! des 650 sièges pour le [wm_el_party.GetNameNoTier], une majorité de [wm_el_majority|0]. [wm_el_pm.GetName] reste à Downing Street avec un nouveau mandat.\n"
+ wm_election_results_intro_change: "#italic Résultats de la nuit#!\n\nLes électeurs ont parlé : #bold [wm_el_seats|0]#! des 650 sièges pour le [wm_el_party.GetNameNoTier], et [wm_el_pm.GetName] est le nouveau Premier Ministre. Les camions de déménagement sont déjà devant le numéro 10.\n"
+ wm_election_results_intro_hung: "#italic Nuit des résultats#!\n\nAucun parti n'a la majorité. Le plus grand est le [wm_el_party.GetNameNoTier] avec #bold [wm_el_seats|0]#! sièges, en dessous des 326 nécessaires, et [wm_el_pm.GetName] tentera de gouverner sans majorité.\n"
+ wm_election_results_table: "\n#bold Sièges (changement)#!"
+ wm_election_results_my_seat_held: "\n\n#bold Votre siège : #! vous déteniez [wm_my_seat.GetNameNoTier] avec [wm_my_share|1] % des voix, une majorité de [wm_my_majority|1] points."
+ wm_election_results_my_seat_lost: "\n\n#bold Votre siège : #! les électeurs de [wm_my_lost_seat.GetNameNoTier] vous ont écarté. [wm_my_lost_seat.GetHolder.GetName] est leur nouveau député, et vous êtes hors des bancs verts."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "Élection partielle : [wm_by_party.GetAdjective] Maintien"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] a conservé [wm_by_seat.GetNameNoTier] pour le [wm_by_party.GetNameNoTier] lors de l'élection partielle."
+ wm_byelection_gain_toast: "Élection partielle : [wm_by_party.GetAdjective] Gain"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] a remporté [wm_by_seat.GetNameNoTier] pour la [wm_by_party.GetNameNoTier] lors de l’élection partielle, un gain qui fera la une des journaux de demain."
+
+ wm_election_call_decision: "Convoquer des élections générales"
+ wm_election_call_decision_desc: "Demander au monarque de dissoudre le Parlement et de convoquer de nouvelles élections. Chaque siège sera disputé selon l'humeur nationale : le parti au gouvernement recueille [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%, avec une avance de [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] points sur le rival le mieux placé (un chiffre négatif signifie en retard). Le Parlement siège depuis [EmptyScope.ScriptValue('wm_election_months_sat')|0] mois ; il doit se présenter devant les électeurs dans un délai de cinq ans."
+ wm_election_call_decision_tooltip: "Allez à la campagne tant que les sondages sont favorables, ou avant qu'ils ne changent."
+ wm_election_call_decision_confirm: "Dissoudre le Parlement"
+ wm_election_call_decision_not_scheduled_tt: "Une élection générale n'a pas encore été convoquée"
+ wm_election_call_decision_min_months_tt: "Parlement siège depuis au moins six mois"
+ wm_election_call_decision_effect_tt: "Le Parlement est dissous et une #bold élection générale#! a lieu dans cinq semaines. Les sièges qui changent de mains vont à de nouveaux députés, et le chef du plus grand parti devient Premier ministre."

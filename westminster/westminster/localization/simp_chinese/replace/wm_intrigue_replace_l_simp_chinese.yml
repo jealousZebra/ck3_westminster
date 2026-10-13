@@ -1,0 +1,34 @@
+﻿l_simp_chinese:
+ # Westminster: vanilla's intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt,
+ # tools/data/build_safeguards.py). These keys are vanilla's; build_terms.py must not write them.
+
+ # Fabricate a Scandal (fabricate_hook)
+ fabricate_hook: "捏造丑闻"
+ fabricate_hook_action: "捏造丑闻"
+ fabricate_hook_desc: "挖掘或粉饰一个[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]宁愿永远不见报的故事"
+ fabricate_hook_desc_general: "一个 [scheme|E]，用来挖掘或美化关于某政治人物的损害性报道。成功会给他们和报道本身带来 [hook|E]，[secret|E] 你可以向媒体泄露或用来威胁他们。过程中出现的任何真实不当行为也归你所有。"
+ fabricate_hook_interaction: "捏造丑闻#weak（骗局）#!"
+ fabricate_hook_interaction_desc: "挖掘一个会让[recipient.GetShortUINameNoTooltip]尴尬的故事，或编造一个。成功会给[hook|E]一个[recipient.GetHerHim]和一个可泄露的故事。"
+ fabricate_hook_interaction_toast: "捏造丑闻"
+ fabricate_hook_scheme_invalidated_title: "捏造丑闻终结"
+ FABRICATE_HOOK_SUCCESS_DESC: "您在 [TARGET_CHARACTER.GetShortUIName] 上获得了 [hook|E]，并且有一个可以泄露的故事。"
+ FABRICATE_HOOK_DISCOVERY_DESC: "[TARGET_CHARACTER.GetShortUIName|U]查明是谁去找的"
+
+ # An affair (seduce): fictional characters only
+ seduce: "一段恋情"
+ seduce_action: "与……开始一段婚外情"
+ seduce_desc: "深夜投票、漫长的晚餐和走廊里偶尔低声的交谈：[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] 我和他关系越来越亲近。"
+ seduce_desc_general: "A [personal_scheme|E] 争取某人，使他们成为你的 [lover|E]。只可能用于虚构角色：绝不可能是书签上的真实人物、皇室成员或任何未满18岁的人。\n\n有许多因素决定 [success_chance|E]，包括 [opinion|E]、[trait|E] 的兼容性，以及 [marriage|E] 的地位。如果你们中有人已婚，这将成为 [secret|E]，媒体会非常感兴趣。"
+ seduce_interaction: "开始一段婚外情 #weak（计划）#!"
+ seduce_interaction_notification: "一段恋情"
+ scheme_interaction_tt_seduce_approved: "尝试赢得 [recipient.GetShortUINameNoTooltip] 的支持并使 [recipient.GetHerHim] 成为你的 [lover|E]"
+ SEDUCE_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName|U] 成为您的 [lover|E]。"
+ seduce_invalid: "我停止追求 [target.GetShortUIName]，因为我们再也无法成为 [lovers|E]。"
+ seduce_invalidated_title: "@personal_scheme_icon! 这段婚外情未开始便结束"
+
+ # Leak to the Press (expose_secret_interaction) and Threaten to Leak (blackmail_interaction)
+ expose_secret_interaction: "向媒体泄漏"
+ expose_secret_interaction_desc: "给报纸一则关于[recipient.GetShortUINameNoTooltip]的新闻。[recipient.GetHerHis|U]的资料、[recipient.GetHerHis]党的民意和公众对政治的信任都会受到影响，[secret|E]提供的任何[hooks|E]都会丢失。只能泄露政治机密。"
+ blackmail_interaction: "威胁泄密"
+ blackmail_interaction_desc: "利用你所拥有的政治[secret|E]来获得[hook|E]：保持沉默，[recipient.GetShortUINameNoTooltip]欠你人情"
+ blackmail_decline_summary: "@warning_icon! #X 如果 [recipient.GetShortUINameNoTooltip] 拒绝，你可以向媒体泄露这个故事！#!"

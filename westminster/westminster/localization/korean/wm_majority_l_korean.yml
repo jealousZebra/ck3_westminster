@@ -1,0 +1,16 @@
+﻿l_korean:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "정부가 과반수 상실"
+ wm_majority.1.desc: "#italic 웨스트민스터#!\n\n 잇따른 보궐선거 패배와 탈당 이후, [wm_majority_pm.GetName] 정부는 더 이상 하원에서 과반수를 기대할 수 없습니다. 당의 조직 담당자 계산에 따르면 [EmptyScope.ScriptValue('wm_sc_short_by')|0] 표가 부족하여 스스로 투표를 이길 수 없습니다.\n\n 야당은 기회를 눈치채고 있습니다: 하원이 시간이 생기자마자 신임투표 불신임안이 예상됩니다."
+ wm_majority.1.a_pm: "우리는 더 적게 통치했습니다."
+ wm_majority.1.a: "한 시대의 끝?"
+ wm_majority.2.t: "정부는 과반수가 없습니다"
+ wm_majority.2.desc: "수치가 마침내 바뀌었습니다. [wm_majority_pm.GetName]는 더 이상 하원의 과반수를 장악할 수 없으며, 로비에는 신임 투표에 대한 이야기가 가득합니다. \n\n 야당 대표로서 다음 움직임은 당신의 몫입니다. 지금 신임 투표를 제안하고, 정부가 붕괴되면 총선이 있을 것입니다."
+ wm_majority.2.a: "불신임 동의안을 제출했습니다."
+ wm_majority.2.b: "아직. 그냥 놔두세요."
+ wm_majority_losing_run_toast: "10번가 보궐선거에서 또 한 번 패배"
+ wm_majority_losing_run_toast_desc: "정부는 지금 연속으로 [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] 보궐선거에서 패했고, [wm_majority_pm.GetName]의 동료들이 이제 집계를 시작하고 있다. 실질적인 다수는 [EmptyScope.ScriptValue('wm_majority_value')|0]로 줄어들었다."
+ wm_majority_byelection_blues_modifier: "보궐선거 우울증"
+ wm_majority_byelection_blues_modifier_desc: "연속 두 차례 보궐선거 패배로 이 총리의 권위가 손상되었다."
+ wm_majority_losing_streak_modifier: "연패"
+ wm_majority_losing_streak_modifier_desc: "보궐선거가 연이어 정부에 불리하게 진행되면서, 정부 소속 백벤처 의원들은 다음 선거에서 누가 그들을 이끌어야 할지 고민하고 있다."

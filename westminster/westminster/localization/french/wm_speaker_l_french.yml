@@ -1,0 +1,12 @@
+﻿l_french:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "La Présidence est Vacante"
+ wm_speaker.1.desc: "La Chambre des communes doit élire un nouveau Président : le député qui maintient l'ordre, appelle les membres à prendre la parole et met de côté le parti pour de bon. Les nominations se ferment dans une semaine ; ensuite, chaque député vote à bulletin secret, tour après tour, jusqu'à ce que quelqu'un ait plus de la moitié. \n\n Vous pourriez vous présenter. Le Président quitte son parti et ne tient jamais plus de fonction, mais le fauteuil confère un grand prestige."
+ wm_speaker.1.a: "Proposer mon nom."
+ wm_speaker.1.a.tt: "Vous vous présentez à la présidence. Si vous êtes élu, vous quittez votre parti et vous en êtes au-dessus."
+ wm_speaker.1.b: "Pas pour moi."
+ wm_speaker.2.t: "Le Fauteuil du Président"
+ wm_speaker.2.desc: "La Chambre vous a choisi comme Président, après [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] scrutins. Selon la tradition, vous êtes traîné jusqu'au fauteuil, feignant de la réticence. À partir d'aujourd'hui, vous n'appartenez à aucun parti."
+ wm_speaker.2.a: "Ordre ! Ordre !"
+ wm_speaker_elected_toast: "Nouveau président élu"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] est le nouveau président de la Chambre des communes, avec [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] voix de [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] après [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] bulletins."

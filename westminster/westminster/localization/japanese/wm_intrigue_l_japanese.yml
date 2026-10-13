@@ -1,0 +1,82 @@
+﻿l_japanese:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "排除計画"
+ wm_intrigue_oust_action: "排除計画"
+ wm_intrigue_oust_desc: "静かに[SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]に対して党内の賛同者を数えています。十分な同僚が動く準備ができたら、挑戦が行われます。"
+ wm_intrigue_oust_desc_general: "自党の党首に対抗する同僚をまとめるための [scheme|E]。成功すれば、この陰謀は正式な党首への挑戦として表面化し、あなたも立候補者として名前が載ります：党の議員が指名し、党員が決定します。それ自体で誰かを解任することはありません。\n\n もし失敗した場合、発覚すれば党首は決して忘れません。"
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName] に対する指導権争い、あなたも候補者名簿に入っています。"
+ WM_INTRIGUE_OUST_LOST_GROUND: "党は前回の選挙で地盤を失った。"
+ WM_INTRIGUE_OUST_LOW_TRUST: "政治に対する国民の信頼は低い"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "あなたのプロフィール"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "リーダーのプロフィール"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "リーダーのチーフホイップが見ている"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] はあなたの党を率いなければなりません。"
+ wm_intrigue_oust_invalidated_title: "追放の陰謀"
+ wm_intrigue_oust_invalidated_desc: "[target.GetShortUIName]に対する陰謀は崩壊した：指導権は移り、すでに競争が始まっているか、陰謀者たちは散らばった。"
+ wm_intrigue_oust_interaction: "陰謀#weak 排除(計画)#!"
+ wm_intrigue_oust_interaction_desc: "静かに同僚を[recipient.GetShortUINameNoTooltip]に対抗させましょう。もし計画が成功すれば、あなたが候補者として選ばれるリーダーシップ挑戦になります。"
+ wm_intrigue_oust_interaction_toast: "排除を企てる"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] は制限対象です：関係は架空のキャラクターとしか可能でなく、ブックマークにある実在の人物、王室、または18歳未満の人とは絶対にできません"
+ wm_intrigue_not_leakable: "このことを報道機関は報じないだろう：漏れるのはあくまで政治的秘密だけである。"
+ wm_intrigue_leak_toast: "物語の展開"
+ wm_intrigue_leak_toast_desc: "あなたの[recipient.GetShortUIName]に関する記事が一面を飾っています。[recipient.GetHerHis|U] Profile、[recipient.GetHerHis]党の世論調査、そして政治に対する世論の信頼がすべて批判されています。"
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "有害な物語"
+ wm_secret_intrigue_story_desc: "[CHARACTER.GetShortUIName]に関する有害な記事、掲載準備完了。"
+ wm_secret_intrigue_story_type_desc: "真実かどうかにかかわらず、新聞が掲載する有害な記事。"
+ wm_secret_intrigue_story_tooltip_desc: "誰かがこの政治家について有害な話を持っている。それが真実かどうかは別として、新聞はそれを載せるだろう。"
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "土探しで捕まった"
+ wm_intrigue_caught_plotting_opinion: "私に対して陰謀を企てていたところが捕まった"
+ wm_intrigue_leaked_opinion: "私に関する記事をリークされた"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "行動の瞬間"
+ wm_intrigue.1.desc_scandal: "私のチームは[target.GetShortUINamePossessive]の過去に何週間も費やしました：古いインタビュー、経費請求、恨みを持つ元補佐官。ここには何かがあります、または何かがそれらしく見せることができます。\n\n 今動くか、それとも掘り続けてより良いものを期待するかです。"
+ wm_intrigue.1.desc_affair: "遅くまでの投票、テラスでの飲み物、廊下での長い会話：[target.GetShortUIName]と私は親しくなった。\n\n今、私の気持ちをはっきりさせることもできるし、もう少し様子を見ることもできる。"
+ wm_intrigue.1.desc_oust: "数字は固まってきている。以前は何も言わなかった同僚たちが今は\"それが必要になった場合\"と言う。問題はそれが必要になったかどうかだ。\n\n[target.GetShortUIName]私はこの挑戦が進行中であると知らせるか、頭数を数え続けるか選べる。"
+ wm_intrigue.1.a: "今。"
+ wm_intrigue.1.a.tt: "[scheme|E]の[success_chance|E]を振る。失敗すれば発覚するかもしれない。"
+ wm_intrigue.1.b: "まだ。"
+ wm_intrigue.1.b.tt: "[scheme|E]は続行します。"
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "うまくいった"
+ wm_intrigue.2.t_caught: "見つけた"
+ wm_intrigue.2.t_failed: "何もしない"
+ wm_intrigue.2.desc_scandal_success: "その話は成立しています、あるいはほぼ成立しています。ドラフトの見出しが私の机のフォルダーにあり、[target.GetShortUIName]は私がいつでもニュースルームに送れることを知っています。\n\n私はそれを漏らすことも、単に[target.GetHerHim]に持っていることを知らせることもできます。"
+ wm_intrigue.2.desc_affair_success: "カメラや投票ベルから離れ、[target.GetShortUIName]と私は単なる同僚以上の存在になりました。今のところ、それは私たちの秘密です。"
+ wm_intrigue.2.desc_oust_success: "手紙が届いた。朝にはウェストミンスター全体が知ることになる：党は[target.GetShortUIName]と私のどちらかを選ぶ。"
+ wm_intrigue.2.desc_scandal_caught: "元補佐官はすぐにそのまま[target.GetShortUIName]に行った。話はないが、今や誰が探したのか正確に知っている政治家がいる。"
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] は親切だが断固として私を断り、その間に廊下の噂が先に広まりました。"
+ wm_intrigue.2.desc_oust_caught: "同僚の一人が話した。陰謀のことを知っている[target.GetShortUIName]、ウィップたちに私を監視するように言われている。"
+ wm_intrigue.2.desc_scandal_failed: "すべての手がかりが消えた。[target.GetShortUIName]が何をしたにせよ、今回は新聞には載らないだろう。"
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName]は同じ気持ちではなかった。私たちは同僚で、それ以上でもない。"
+ wm_intrigue.2.desc_oust_failed: "結局のところ、多くの同僚は勇気を失ったのです。陰謀は終わり、それが存在したことを誰も知る必要はありません。"
+ wm_intrigue.2.a: "素晴らしい。"
+ wm_intrigue.2.b: "そうであれ"
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "誰か忙しかった"
+ wm_intrigue.3.desc_scandal: "今朝、私の元スタッフの一人から電話がありました。[owner.GetShortUIName|U] は私に関して質問をしていたようです：古い請求、古い友人、私を恥ずかしめる可能性のあること。彼らは何も見つけませんでしたが、誰が調べたのかは覚えておきます。"
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] は私にアプローチしてきましたが、ティールーム全体がそれを知っているようです。私は自分の答えをはっきりと示しました。"
+ wm_intrigue.3.desc_oust: "忠実な平議員が私を引き寄せて言いました：[owner.GetShortUIName] が同僚に私の指導権への挑戦について探りを入れていたようです。陰謀は崩壊しましたが、誰が始めたかは分かっています。"
+ wm_intrigue.3.a: "このことを忘れない。"
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "物語は一面に掲載される"
+ wm_intrigue.10.desc: "最初の電話は朝6時にかかってきた。朝食時にはその話がすべての一面を載り、放送局は私のオフィスの外に陣取っていた。\n\nMy Profileは打撃を受け、党の支持率は下がり、世間は私たち全員を少し評価が下がっている。誰かがその話を新聞に渡した。誰かが誰かだと思う:[wm_intrigue_leaker.GetShortUIName]。"
+ wm_intrigue.10.a: "コメントなし。"
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "私のブラフを見抜かれた"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U]は押しのけられることはない：もし私に話があれば、それを報じるべきだ。\n\n一度ロビーのジャーナリストに電話すれば、明日の一面に載る。あるいは、話を抱えたまま、[recipient.GetHerHim]に思い巡らせてもらうこともできる。"
+ wm_intrigue.20.a: "ニュースルームに電話して。"
+ wm_intrigue.20.b: "その上に座る"

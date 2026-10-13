@@ -1,0 +1,33 @@
+﻿l_spanish:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Corona"
+ k_wm_crown_adj: "Real"
+ wm_dyn_royal_windsor: "Windsor"
+
+ wm_crown_government: "Monarquía constitucional"
+ wm_crown_government_adjective: "Real"
+ wm_crown_government_realm: "Casa Real"
+ wm_crown_government_desc: "El monarca reina pero no gobierna. No ocupa ningún puesto, no tiene vasallos y se mantiene al margen de la política, casi siempre."
+ king_wm_crown_male: "King"
+ king_wm_crown_female: "Reina"
+ kingdom_wm_crown: "Corona"
+
+ wm_speak_out_against_mp_interaction: "Hablar en contra del diputado"
+ wm_speak_out_against_mp_interaction_desc: "Rompe el hábito de un reinado y critica [recipient.GetTitledFirstName] en público. El Palacio no ha hecho esto en la memoria viva: cuesta una cantidad enorme de [prestige|E], y el Número 10 estará furioso."
+ wm_speak_out_against_mp_interaction_toast: "El Palacio se pronuncia"
+ wm_crown_speak_out_toast: "El Palacio critica a [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] se ha pronunciado en contra de [recipient.GetTitledFirstName]. La constitución tiene un dolor de cabeza."
+
+ wm_crown.1.t: "Una Reprimenda del Palacio"
+ wm_crown.1.desc: "Está en todas las portadas. [actor.GetTitledFirstName], que ha pasado toda su vida guardando para sí sus opiniones, ha dejado saber exactamente lo que piensa de mí, y no es halagador. Mi teléfono está lleno de mensajes de colegas que de repente no pueden ser vistos conmigo."
+ wm_crown.1.a: "Me muerdo la lengua. No se pelea uno con el Palacio."
+ wm_crown.1.b: "Contraatacar: el monarca debe mantenerse al margen de la política."
+
+ wm_rebuked_by_the_crown_modifier: "Reprendido por la Corona"
+ wm_rebuked_by_the_crown_modifier_desc: "El monarca habló en público contra este diputado."
+ wm_crown_criticism_county_modifier: "Diputado criticado por la Corona"
+ wm_crown_criticism_county_modifier_desc: "El monarca habló en contra del diputado de este escaño."
+ wm_spoken_against_by_crown_opinion: "Se pronunció en mi contra"
+ wm_embarrassed_party_opinion: "Avergonzó al partido"
+ wm_crown_meddling_opinion: "Entrometido en la política"
+ wm_hit_back_at_crown_opinion: "Atacó a la Corona"

@@ -1,0 +1,12 @@
+﻿l_japanese:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "議長席は空席です"
+ wm_speaker.1.desc: "下院は新しい議長を選出しなければなりません：議員の秩序を維持し、発言を求め、党派を超えて行動する議員です。指名は1週間で締め切られ、その後すべての議員が秘密投票で、誰かが過半数を獲得するまでラウンドごとに投票を行います。\n\nあなたも立候補できます。議長は党を離れ、二度と公職には就きませんが、議長席には大きな名誉があります。"
+ wm_speaker.1.a: "私の名前を推薦してください。"
+ wm_speaker.1.a.tt: "あなたは議長に立候補します。当選すれば党を離れ、その上に座ります。"
+ wm_speaker.1.b: "私には向かない。"
+ wm_speaker.2.t: "議長の椅子"
+ wm_speaker.2.desc: "下院はあなたを議長に選びました。投票は[EmptyScope.ScriptValue('wm_speaker_rounds_value')|0]回行われました。慣例として、あなたは拒否するふりをしながら議長席に引きずられます。本日から、あなたはどの党にも属しません。"
+ wm_speaker.2.a: "静粛に!静粛に!"
+ wm_speaker_elected_toast: "新議長選出"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] は新しい下院議長であり、[EmptyScope.ScriptValue('wm_speaker_rounds_value')|0]の投票の後、[EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0]票の[EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0]を得ました。"

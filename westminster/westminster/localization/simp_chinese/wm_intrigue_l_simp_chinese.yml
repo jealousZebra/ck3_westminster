@@ -1,0 +1,82 @@
+﻿l_simp_chinese:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "推翻阴谋"
+ wm_intrigue_oust_action: "推翻阴谋"
+ wm_intrigue_oust_desc: "我正在悄悄地盘点对抗 [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] 的人数。当足够的同事准备行动时，挑战就会提出。"
+ wm_intrigue_oust_desc_general: "A [scheme|E] 让同事们联合起来对抗你自己的党派领导。如果成功，这个阴谋将变成正式的领导权挑战，而你会出现在选票上：由党的议员提名，其成员决定。它不会自己直接罢免任何人。\n\n如果失败且被发现，领导不会忘记它。"
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "对 [TARGET_CHARACTER.GetShortUIName] 的领导层挑战，而你在投票名单上"
+ WM_INTRIGUE_OUST_LOST_GROUND: "党派在上次选举中失去了票源。"
+ WM_INTRIGUE_OUST_LOW_TRUST: "公共对政治的信任降至最低"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "你的形象"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "领导者简介"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "首领的首席党鞭正在注视"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] 必须领导你的党派"
+ wm_intrigue_oust_invalidated_title: "罢免阴谋"
+ wm_intrigue_oust_invalidated_desc: "针对[target.GetShortUIName]的阴谋已经瓦解：领导权已经易手，竞赛已经进行，或者阴谋者已经四散。"
+ wm_intrigue_oust_interaction: "推翻#weak 阴谋（阴谋）#!"
+ wm_intrigue_oust_interaction_desc: "安静地联合同事反对[recipient.GetShortUINameNoTooltip]。如果阴谋成功，将成为一次领导层挑战，你将出现在候选名单上。"
+ wm_intrigue_oust_interaction_toast: "策划推翻"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] 禁止接触：情事只能发生在虚构角色身上，不能与收藏夹中的真实人物、王室成员或18岁以下的人发生"
+ wm_intrigue_not_leakable: "新闻不会发布这个：只有政治机密可以泄露。"
+ wm_intrigue_leak_toast: "新闻报道"
+ wm_intrigue_leak_toast_desc: "你讲述 [recipient.GetShortUIName] 的故事登上了头版。[recipient.GetHerHis|U] 个人资料、[recipient.GetHerHis] 政党的民意调查及公众对政治的信任都受到影响。"
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "一则有害的报道"
+ wm_secret_intrigue_story_desc: "一则关于[CHARACTER.GetShortUIName]的有害故事，准备发布。"
+ wm_secret_intrigue_story_type_desc: "一个有害的故事，无论是真是假，新闻媒体都会报道。"
+ wm_secret_intrigue_story_tooltip_desc: "有人掌握了关于这位政治家的不利故事。无论其是否属实，报纸都会报道。"
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "被抓到挖土"
+ wm_intrigue_caught_plotting_opinion: "被抓到密谋对付我"
+ wm_intrigue_leaked_opinion: "泄露关于我的消息"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "行动的时刻"
+ wm_intrigue.1.desc_scandal: "我的团队已经花了好几周研究[target.GetShortUINamePossessive]的过去：旧访谈、报销记录、一个心怀怨恨的前助理。这里有一些东西，或者至少可以做成像有东西的样子。\n\n我可以现在行动，或者继续挖掘，希望能找到更好的东西。"
+ wm_intrigue.1.desc_affair: "迟到的投票，露台上的饮品，走廊里的长谈：[target.GetShortUIName]和我变得亲近了。\n\nI现在可以把我的感受说清楚，或者让事情再拖延一会儿。"
+ wm_intrigue.1.desc_oust: "数字正在稳定。曾经沉默的同僚现在说\"如果真到了那一步\"。问题是是否已经到了那一步。\n\n我可以告诉[target.GetShortUIName]挑战正在进行，或者继续数人数。"
+ wm_intrigue.1.a: "现在。"
+ wm_intrigue.1.a.tt: "掷出[scheme|E]的[success_chance|E]。如果失败，它可能会被发现。"
+ wm_intrigue.1.b: "还没有。"
+ wm_intrigue.1.b.tt: "[scheme|E] 继续前进。"
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "成功了"
+ wm_intrigue.2.t_caught: "发现了"
+ wm_intrigue.2.t_failed: "什么都不做"
+ wm_intrigue.2.desc_scandal_success: "故事基本成立，或近似成立。一份草拟的标题在我桌上的文件夹里，[target.GetShortUIName] 知道我随时可以将其发送到新闻编辑室。\n\n我可以泄露它，或只是让 [target.GetHerHim] 知道我拥有它。"
+ wm_intrigue.2.desc_affair_success: "离开摄像机和表决铃声，[target.GetShortUIName] 和我变成了不仅仅是同事的人。暂时，这是我们的秘密。"
+ wm_intrigue.2.desc_oust_success: "信件已经寄来了。到早上，整个威斯敏斯特都会知道：党派将在[target.GetShortUIName]和我之间做选择。"
+ wm_intrigue.2.desc_scandal_caught: "前助手直接去了[target.GetShortUIName]。没有故事，但现在有一个政治家确切知道是谁去寻找的。"
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] 礼貌但坚定地拒绝了我，而走廊的闲言碎语比我还快传开。"
+ wm_intrigue.2.desc_oust_caught: "我的一个同事谈过。[target.GetShortUIName] 知道这个阴谋，并且党鞭已被告知要关注我。"
+ wm_intrigue.2.desc_scandal_failed: "所有线索都断了。无论[target.GetShortUIName]做了什么，这次都不会上报纸。"
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName]并不这么想。我们只是同事，仅此而已。"
+ wm_intrigue.2.desc_oust_failed: "到了关键时刻，太多同事失去了勇气。阴谋结束了，没人需要知道它的存在。"
+ wm_intrigue.2.a: "太好了。"
+ wm_intrigue.2.b: "那就这么定了。"
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "有人一直很忙"
+ wm_intrigue.3.desc_scandal: "我的一名前工作人员今天早上打来电话。[owner.GetShortUIName|U] 一直在打听关于我的问题：旧的索赔、老朋友、任何可能让我难堪的事情。他们没找到什么，但我会记住是谁在打听。"
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] 对我有调情行为，整个茶室似乎都知道。我已经明确了我的回答。"
+ wm_intrigue.3.desc_oust: "一个忠诚的后座议员把我拉到一边：[owner.GetShortUIName] 一直在探听同事对我领导地位提出挑战的看法。阴谋已崩溃，但我知道是谁发起的。"
+ wm_intrigue.3.a: "我不会忘记这一点。"
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "新闻登上头版"
+ wm_intrigue.10.desc: "第一通电话是在早上六点打来的。到早餐时间，这条新闻已登上每一份头版，广播公司驻扎在我的办公室外。\n\n我的形象受到了打击，党的民调下降，公众对我们的印象稍差。有人将这条新闻泄露给了媒体，我有很大把握是谁：[wm_intrigue_leaker.GetShortUIName]。"
+ wm_intrigue.10.a: "无可奉告。"
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "他们叫我的虚张声势"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] 不会被随意摆布：如果我有一个故事，我就应该发布它。\n\n打给一个大厅记者，它就会出现在明天的头版。或者我可以先不发，让 [recipient.GetHerHim] 猜测。"
+ wm_intrigue.20.a: "打电话给新闻编辑室"
+ wm_intrigue.20.b: "坐下吧。"

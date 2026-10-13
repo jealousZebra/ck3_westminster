@@ -1,0 +1,28 @@
+﻿l_russian:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "Парламент распущен"
+ wm_election_dissolution_toast_desc: "Премьер-министр посетил дворец, и парламент распущен. Все места открыты для выборов: день голосования через пять недель."
+
+ wm_election_results.1.a: "Прочтите всё об этом."
+ wm_election_results_intro_hold: "#italic Ночь результатов#!\n\nИзбиратели высказались: #bold [wm_el_seats|0]#! из 650 мест для [wm_el_party.GetNameNoTier], большинство [wm_el_majority|0]. [wm_el_pm.GetName] остается на Даунинг-стрит с новым мандатом.\n"
+ wm_election_results_intro_change: "#italic Ночь результатов#!\n\nИзбиратели высказались: #bold [wm_el_seats|0]#! из 650 мест для [wm_el_party.GetNameNoTier], и [wm_el_pm.GetName] — новый премьер-министр. Грузовые фургоны уже стоят у дома № 10.\n"
+ wm_election_results_intro_hung: "#italic Ночь результатов#!\n\nНи одна партия не имеет большинства. Крупнейшая — [wm_el_party.GetNameNoTier] с #bold [wm_el_seats|0]#! местами, что меньше необходимых 326, и [wm_el_pm.GetName] попытается управлять без большинства.\n"
+ wm_election_results_table: "\n#bold Места (изменение) #!"
+ wm_election_results_my_seat_held: "\n\n#bold Ваше место:#! вы удерживали [wm_my_seat.GetNameNoTier] с [wm_my_share|1]% голосов, большинство на [wm_my_majority|1] пунктов."
+ wm_election_results_my_seat_lost: "\n\n#bold Ваше место:#! избиратели [wm_my_lost_seat.GetNameNoTier] исключили вас. [wm_my_lost_seat.GetHolder.GetName] — их новый депутат, а вы покидаете зеленые скамьи."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "Дополнительные выборы: Удержание [wm_by_party.GetAdjective]"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] удержал [wm_by_seat.GetNameNoTier] на [wm_by_party.GetNameNoTier] на дополнительных выборах."
+ wm_byelection_gain_toast: "Дополнительные выборы: Прибыль [wm_by_party.GetAdjective]"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] выиграл [wm_by_seat.GetNameNoTier] для [wm_by_party.GetNameNoTier] на дополнительных выборах, и эта победа будет на первых полосах всех завтрашних газет."
+
+ wm_election_call_decision: "Назвать всеобщие выборы"
+ wm_election_call_decision_desc: "Попросите монарха распустить Парламент и обратиться к народу. Каждое место будет оспариваться в зависимости от национального настроения: партия правительства набирает [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%, с преимуществом [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] пунктов над лучшим конкурентом (отрицательное значение означает отставание). Парламент заседает [EmptyScope.ScriptValue('wm_election_months_sat')|0] месяцев; он должен предстать перед избирателями в течение пяти лет."
+ wm_election_call_decision_tooltip: "Уезжайте за город, пока выборы благоприятны, или прежде чем ситуация изменится."
+ wm_election_call_decision_confirm: "Распустить парламент"
+ wm_election_call_decision_not_scheduled_tt: "Всеобщие выборы еще не были объявлены."
+ wm_election_call_decision_min_months_tt: "Парламент заседает как минимум шесть месяцев"
+ wm_election_call_decision_effect_tt: "парламент распускается, а #bold года проходят всеобщие выборы#! через пять недель. Места, переходящие из рук в руки, переходят к новым депутатам, а лидер крупнейшей партии становится премьер-министром."

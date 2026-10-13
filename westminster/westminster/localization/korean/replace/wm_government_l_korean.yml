@@ -1,0 +1,8 @@
+﻿l_korean:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "의회의"
+ feudal_government_adjective: "의회의"
+ feudal_government_realm: "의회 의석"
+ feudal_government_vassals_label: "의회 [obligations|E]는 각 후배 의원의 [vassal_contract|E]에 의해 설정됩니다"
+ feudal_government_desc: "\n#F 국회의원들은 선거구에서 선출되어 하원에 앉습니다. 그들은 당 지도자에게 충성, 표결 로비에서의 투표 및 선거 자금 일부를 제공합니다; 대가로 지도자는 그들에게 채찍, 권력의 그림자 속 자리와, 운이 좋은 몇몇에게는 사무실을 제공합니다.#!"
+ GAME_DATE_STRING_ERA_CE: ""

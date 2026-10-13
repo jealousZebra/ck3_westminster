@@ -1,0 +1,16 @@
+﻿l_russian:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "ПРАВИТЕЛЬСТВО ТЕРЯЕТ БОЛЬШИНСТВО"
+ wm_majority.1.desc: "#italic Вестминстер#!\n\n После серии поражений на дополнительных выборах и переходов, правительство [wm_majority_pm.GetName] больше не может рассчитывать на большинство в Палате общин. Аритметика партийных организаторов теперь ставит его [EmptyScope.ScriptValue('wm_sc_short_by')|0] голосов коротким для победы в голосовании самостоятельно.\n\n Оппозиция чувствует слабость: ожидается вотум недоверия, как только у Палаты появится время для этого."
+ wm_majority.1.a_pm: "Мы управляли с меньшими ресурсами."
+ wm_majority.1.a: "Конец эпохи?"
+ wm_majority.2.t: "У правительства нет большинства"
+ wm_majority.2.desc: "Цифры наконец изменились. [wm_majority_pm.GetName] больше не может командовать большинством в Палате, и вокруг много разговоров о вотуме недоверия.\n\nКак лидер оппозиции, следующий ход за вами. Предложите вотум недоверия сейчас, и если правительство падет, будет проведено всеобщее голосование."
+ wm_majority.2.a: "Внесите вотум недоверия."
+ wm_majority.2.b: "Пока нет. Пусть варятся."
+ wm_majority_losing_run_toast: "Еще одно поражение на довыборах для Номер 10"
+ wm_majority_losing_run_toast_desc: "Правительство теперь проиграло [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] выборов подряд, и коллеги [wm_majority_pm.GetName] начинают считать. Рабочее большинство сократилось до [EmptyScope.ScriptValue('wm_majority_value')|0]."
+ wm_majority_byelection_blues_modifier: "Проблемы на дополнительном голосовании"
+ wm_majority_byelection_blues_modifier_desc: "Два поражения на довыборах подряд ослабили авторитет этого премьер-министра."
+ wm_majority_losing_streak_modifier: "Серия поражений"
+ wm_majority_losing_streak_modifier_desc: "Выбор за выбором на дополнительных выборах идет против правительства, а его собственные задние скамьи задаются вопросом, кто должен вести их на следующий выборный цикл."

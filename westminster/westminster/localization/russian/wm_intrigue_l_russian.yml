@@ -1,0 +1,82 @@
+﻿l_russian:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "Заговор с целью смещения"
+ wm_intrigue_oust_action: "Заговор с целью смещения"
+ wm_intrigue_oust_desc: "Я тихо считаю головы против [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]. Когда достаточно коллег будут готовы действовать, вызов будет подан."
+ wm_intrigue_oust_desc_general: "[scheme|E], чтобы настроить коллег против лидера вашей партии. Если удастся, заговор станет формальным вызовом лидеру, на котором вы будете в бюллетене: депутаты партии номинируют кандидатов, а её члены решают исход. Он никогда сам никого не смещает.\n\nЕсли попытка провалится и будет раскрыта, лидер не забудет об этом."
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "Вызов лидерству [TARGET_CHARACTER.GetShortUIName], с вашим участием в голосовании."
+ WM_INTRIGUE_OUST_LOST_GROUND: "Партия потеряла позиции на последних выборах."
+ WM_INTRIGUE_OUST_LOW_TRUST: "Общественное доверие к политике на уровне"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "Ваш профиль"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "Профиль лидера"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "Главный кнут лидера наблюдает"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] должен возглавлять вашу партию"
+ wm_intrigue_oust_invalidated_title: "Конец заговора по смещению"
+ wm_intrigue_oust_invalidated_desc: "Заговор против [target.GetShortUIName] распался: руководство сменилось, конкурс уже идет или заговорщики разбежались."
+ wm_intrigue_oust_interaction: "Заговор с целью смещения #weak (Схема)#!"
+ wm_intrigue_oust_interaction_desc: "Тихо выстраивайте коллег против [recipient.GetShortUINameNoTooltip]. Если заговор увенчается успехом, это превращается в вызов лидерству, а вы в бюллетене."
+ wm_intrigue_oust_interaction_toast: "Заговор с целью смещения"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] недоступен: романы возможны только с вымышленными персонажами, никогда с реальными людьми из закладок, королевской семьи или с лицами младше 18 лет"
+ wm_intrigue_not_leakable: "Пресса бы это не напечатала: можно утекать только политические секреты"
+ wm_intrigue_leak_toast: "История развивается"
+ wm_intrigue_leak_toast_desc: "Ваша история о [recipient.GetShortUIName] на первых полосах. [recipient.GetHerHis|U] Профиль, [recipient.GetHerHis] рейтинг партии и доверие общества к политике все пострадали."
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "Вредоносная история"
+ wm_secret_intrigue_story_desc: "Разрушительная история о [CHARACTER.GetShortUIName], готовая к публикации"
+ wm_secret_intrigue_story_type_desc: "Разрушительная история, правда она или нет, которую газеты опубликовали бы"
+ wm_secret_intrigue_story_tooltip_desc: "Кто-то рассказывает компрометирующую историю об этом политике. Правда это или нет, газеты опубликуют её."
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "Пойман за поиском компромата"
+ wm_intrigue_caught_plotting_opinion: "Пойман за заговором против меня"
+ wm_intrigue_leaked_opinion: "Слив истории обо мне"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "Момент действовать"
+ wm_intrigue.1.desc_scandal: "Мои люди провели недели, изучая прошлое [target.GetShortUINamePossessive]: старые интервью, отчёты о расходах, бывший помощник с обидой. Здесь есть что-то, или что-то, что можно заставить выглядеть так, будто это есть.\n\n Я могу действовать сейчас или продолжать копать и надеяться на что-то лучшее."
+ wm_intrigue.1.desc_affair: "Поздние голоса, напитки на террасе, долгие разговоры в коридоре: [target.GetShortUIName] и я сблизились. \n\nI мог бы сейчас выразить ясность своим чувствам или позволить всему идти своим чередом немного дольше."
+ wm_intrigue.1.desc_oust: "Цифры укрепляются. Коллеги, которые раньше молчали, теперь говорят \"если доходит до этого\". Вопрос в том, дошло ли до этого.\n\nЯ могу сообщить [target.GetShortUIName], что вызов принят, или продолжать считать головы."
+ wm_intrigue.1.a: "Сейчас."
+ wm_intrigue.1.a.tt: "Бросьте [scheme|E]'s [success_chance|E]. Если не удастся, это может быть обнаружено."
+ wm_intrigue.1.b: "Пока нет."
+ wm_intrigue.1.b.tt: "[scheme|E] продолжается."
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "Это сработало"
+ wm_intrigue.2.t_caught: "Обнаружил"
+ wm_intrigue.2.t_failed: "Ничего не происходит"
+ wm_intrigue.2.desc_scandal_success: "История держится, или почти держится. Черновой заголовок лежит в папке на моем столе, и [target.GetShortUIName] знает, что я могу отправить его в редакцию в любое время, когда захочу. \n\n я могу это просочить, или просто дать [target.GetHerHim] знать, что я это имею."
+ wm_intrigue.2.desc_affair_success: "Вдали от камер и всех сигналов заседания, [target.GetShortUIName] и я стали чем-то большим, чем просто коллегами. Пока что это наш секрет."
+ wm_intrigue.2.desc_oust_success: "Письма пришли. К утру весь Вестминстер знает: партия выберет между [target.GetShortUIName] и мной."
+ wm_intrigue.2.desc_scandal_caught: "Бывший помощник сразу же обратился к [target.GetShortUIName]. Сюжета нет, но теперь есть политик, который точно знает, кто за этим пришёл."
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] отказал мне, доброжелательно, но решительно, и коридорные слухи дошли до людей раньше меня."
+ wm_intrigue.2.desc_oust_caught: "Один из моих коллег говорил. [target.GetShortUIName] знает о заговоре, и партийные кнуты получили указание следить за мной."
+ wm_intrigue.2.desc_scandal_failed: "Every lead went cold. Whatever [target.GetShortUIName] has done, it will not make the papers this time."
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName] не чувствовал того же. Мы будем коллегами, не больше."
+ wm_intrigue.2.desc_oust_failed: "Когда дело дошло до этого, слишком много коллег потеряли мужество. Заговор окончен, и никто никогда не узнает, что он существовал."
+ wm_intrigue.2.a: "Excellent."
+ wm_intrigue.2.b: "Так тому и быть."
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "кто-то был занят"
+ wm_intrigue.3.desc_scandal: "Бывший сотрудник моего штаба звонил сегодня утром. [owner.GetShortUIName|U] задавал вопросы обо мне: старые претензии, старые друзья, все, что могло бы меня смутить. Ничего не нашли, но я запомню, кто интересовался."
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] сделал мне предложение, и вся чайная кажется знает об этом. Я ясно дал свой ответ."
+ wm_intrigue.3.desc_oust: "Верный рядовой депутат отставил меня в сторону: [owner.GetShortUIName] расспрашивал коллег насчет вызова моему лидерству. Заговор рухнул, но я знаю, кто его начал."
+ wm_intrigue.3.a: "я этого не забуду."
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "История на первых полосах"
+ wm_intrigue.10.desc: "Первый звонок раздался в шесть утра. К завтраку история оказалась на всех первых полосах, а телерадиокомпании дежурили у моего кабинета.\n\nМой профиль пострадал, партия просела в опросах, а общество стало думать о нас немного меньше. Кто-то предоставил газетам эту историю, и у меня есть хорошая догадка, кто: [wm_intrigue_leaker.GetShortUIName]."
+ wm_intrigue.10.a: "Без комментариев."
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "Они Проверили Мою Блеф"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] не даст себя запугать: если у меня есть история, я должен её опубликовать. \n\n Один звонок журналисту из лобби — и это окажется на первых страницах завтра. Или я могу приберечь это, и позволить [recipient.GetHerHim] гадать."
+ wm_intrigue.20.a: "Позвонить в редакцию."
+ wm_intrigue.20.b: "Сиди на этом."

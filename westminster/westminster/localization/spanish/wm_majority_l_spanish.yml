@@ -1,0 +1,16 @@
+﻿l_spanish:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "EL GOBIERNO PIERDE SU MAYORÍA"
+ wm_majority.1.desc: "#italic Westminster#!\n\n Tras una serie de derrotas en elecciones parciales y deserciones, [wm_majority_pm.GetName]'s gobierno ya no puede contar con una mayoría en la Cámara de los Comunes. La aritmética de los 'whips' ahora lo pone [EmptyScope.ScriptValue('wm_sc_short_by')|0] votos por debajo de ganar una votación por sí solo.\n\n La Oposición huele sangre: se espera una moción de censura tan pronto como la Cámara tenga tiempo para ello."
+ wm_majority.1.a_pm: "Hemos gobernado con menos."
+ wm_majority.1.a: "¿El fin de una era?"
+ wm_majority.2.t: "El Gobierno No Tiene Mayoría"
+ wm_majority.2.desc: "Los números finalmente han cambiado. [wm_majority_pm.GetName] ya no puede comandar la mayoría de la Cámara, y el vestíbulo está lleno de conversaciones sobre una moción de confianza.\n\nComo Líder de la Oposición, el siguiente movimiento es tuyo. Presenta una moción de censura ahora, y si el gobierno cae habrá elecciones generales."
+ wm_majority.2.a: "Presentar una moción de censura."
+ wm_majority.2.b: "Todavía no. Déjalos hervir."
+ wm_majority_losing_run_toast: "Otra derrota en elecciones parciales para el Número 10"
+ wm_majority_losing_run_toast_desc: "El gobierno ha perdido ahora [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] elecciones parciales consecutivas, y los colegas de [wm_majority_pm.GetName] están empezando a contar. La mayoría activa ha caído a [EmptyScope.ScriptValue('wm_majority_value')|0]."
+ wm_majority_byelection_blues_modifier: "Tristezas de la Elección Parcial"
+ wm_majority_byelection_blues_modifier_desc: "Dos derrotas consecutivas en elecciones parciales han mermado la autoridad de este primer ministro."
+ wm_majority_losing_streak_modifier: "Racha de Derrotas"
+ wm_majority_losing_streak_modifier_desc: "Elección tras elección parcial ha ido en contra del gobierno, y sus propios miembros de la bancada trasera se preguntan quién debería conducirlos en la próxima elección."

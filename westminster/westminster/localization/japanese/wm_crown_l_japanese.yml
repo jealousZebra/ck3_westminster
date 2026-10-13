@@ -1,0 +1,33 @@
+﻿l_japanese:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "王冠 王冠と司教杖"
+ k_wm_crown_adj: "王立"
+ wm_dyn_royal_windsor: "ウィンザー"
+
+ wm_crown_government: "立憲君主制"
+ wm_crown_government_adjective: "王立"
+ wm_crown_government_realm: "王室"
+ wm_crown_government_desc: "君主は統治するが、支配はしない。座席を持たず、家臣もおらず、政治にはほとんど関与しない。"
+ king_wm_crown_male: "キング"
+ king_wm_crown_female: "女王"
+ kingdom_wm_crown: "王冠 王冠と司教杖"
+
+ wm_speak_out_against_mp_interaction: "議員に反対する声を上げる"
+ wm_speak_out_against_mp_interaction_desc: "支配の習慣を破り、公の場で[recipient.GetTitledFirstName]批判すること。宮殿は生きている記憶の中でこれをやったことがない。莫大な[prestige|E]がかかり、ナンバー10は激怒するだろう。"
+ wm_speak_out_against_mp_interaction_toast: "宮殿が語る"
+ wm_crown_speak_out_toast: "宮殿は[recipient.GetTitledFirstName]を批判する"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName]は[recipient.GetTitledFirstName]に反対の意見を述べました。憲法が頭痛を抱えています。"
+
+ wm_crown.1.t: "宮殿からの叱責"
+ wm_crown.1.desc: "それはすべての一面に掲載されています。[actor.GetTitledFirstName]、長年自分の意見を内に秘めてきた人物が、私に対して何を考えているかを正確に公表しました。そして、それは称賛には値しません。私の電話は、突然私と一緒に見られなくなった同僚からのメッセージでいっぱいです。"
+ wm_crown.1.a: "黙れ。宮殿と喧嘩を売るな。"
+ wm_crown.1.b: "反論: 君主は政治に関与すべきではない。"
+
+ wm_rebuked_by_the_crown_modifier: "王冠に叱責される"
+ wm_rebuked_by_the_crown_modifier_desc: "君主はこの国会議員に対して公の場で意見を述べた。"
+ wm_crown_criticism_county_modifier: "国会議員 王室からの批判"
+ wm_crown_criticism_county_modifier_desc: "君主はこの議席の国会議員に対して意見を述べた。"
+ wm_spoken_against_by_crown_opinion: "私に反対の声を上げた"
+ wm_embarrassed_party_opinion: "党を恥ずかしがらせた"
+ wm_crown_meddling_opinion: "政治に干渉した"
+ wm_hit_back_at_crown_opinion: "王室を攻撃した"

@@ -1,0 +1,16 @@
+﻿l_japanese:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "政府が過半数を失う"
+ wm_majority.1.desc: "#italic ウェストミンスター #!\n\n 補欠選挙での敗北と離反の連続により、[wm_majority_pm.GetName]政権はもはや下院での過半数を期待できなくなった。幹事の計算では、単独で議席を勝ち取るには[EmptyScope.ScriptValue('wm_sc_short_by')|0]票差が見込まれている。\n\n 野党は血の匂いを嗅ぎつけている:議会が時間ができ次第、不信任決議が提出されると予想されている。"
+ wm_majority.1.a_pm: "我々はより少なくで統治してきました。"
+ wm_majority.1.a: "時代の終わり?"
+ wm_majority.2.t: "政府は過半数を持っていません"
+ wm_majority.2.desc: "数字はついに変わった。[wm_majority_pm.GetName]はもはや議会の過半数を指揮できず、ロビーでは信任投票の話で持ちきりだ。\n\n野党のリーダーとして、次の手はあなたのものだ。今すぐ不信任動議を提出し、政府が倒れれば総選挙が行われる。"
+ wm_majority.2.a: "不信任動議を提出する。"
+ wm_majority.2.b: "まだ。彼らを煮えたぎらせておけ。"
+ wm_majority_losing_run_toast: "ナンバー10の別の補欠選挙での敗北"
+ wm_majority_losing_run_toast_desc: "政府は現在、補欠選挙[EmptyScope.ScriptValue('wm_majority_loss_run_value')|0]連続で敗れており、[wm_majority_pm.GetName]の同僚たちが数え始めています。過半数は[EmptyScope.ScriptValue('wm_majority_value')|0]にまで減少しています。"
+ wm_majority_byelection_blues_modifier: "補欠選挙ブルース"
+ wm_majority_byelection_blues_modifier_desc: "連続で2回の補欠選挙での敗北により、この首相の権威は損なわれた。"
+ wm_majority_losing_streak_modifier: "連敗"
+ wm_majority_losing_streak_modifier_desc: "補欠選挙は次々と政府に不利に終わり、党内閣僚たちは次の選挙で誰が自分たちを率いるべきかを考えている。"

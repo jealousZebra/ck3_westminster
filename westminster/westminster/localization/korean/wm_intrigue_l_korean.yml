@@ -1,0 +1,82 @@
+﻿l_korean:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "축출 계획"
+ wm_intrigue_oust_action: "축출 계획"
+ wm_intrigue_oust_desc: "나는 조용히 [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]에 맞서 인원을 세고 있습니다. 동료들이 충분히 움직일 준비가 되면 도전이 시작됩니다."
+ wm_intrigue_oust_desc_general: "동료들을 자신의 당 지도자에 반대하도록 설득하는 [scheme|E]. 성공하면, 이 음모는 공식적인 지도부 도전으로 표면화되며 당신이 후보에 오르게 된다: 당의 국회의원이 지명하고 당원들이 결정한다. 혼자서는 누구도 제거하지 않는다.\n\n 실패하고 발각되면, 지도자는 그것을 잊지 않을 것이다."
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName]에 대한 리더십 도전, 당신이 투표용지에 오른 상황"
+ WM_INTRIGUE_OUST_LOST_GROUND: "정당은 지난 선거에서 지지율을 잃었습니다."
+ WM_INTRIGUE_OUST_LOW_TRUST: "정치에 대한 공공 신뢰가 최저치임"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "당신의 프로필"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "지도자의 프로필"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "지도자의 수석 휘프가 지켜보고 있습니다"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U]은 당신의 당을 이끌어야 합니다."
+ wm_intrigue_oust_invalidated_title: "축출 계획 종료"
+ wm_intrigue_oust_invalidated_desc: "[target.GetShortUIName]에 대한 음모는 실패했습니다: 지도부가 교체되었거나, 이미 경쟁이 진행 중이거나, 음모자들이 흩어졌습니다."
+ wm_intrigue_oust_interaction: "#weak 축출 계획 (음모)#!"
+ wm_intrigue_oust_interaction_desc: "조용히 동료들을 [recipient.GetShortUINameNoTooltip]에 맞서 싸우세요. 음모가 성공하면, 당신이 투표용지에 오르는 리더십 도전이 됩니다."
+ wm_intrigue_oust_interaction_toast: "축출을 위한 음모 계획"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] 금지입니다: 불륜은 허구의 인물과만 가능하며, 책갈피에 나오는 실제 인물, 왕실 가족, 18세 미만 누구와도 불가능합니다"
+ wm_intrigue_not_leakable: "언론은 이 일을 보도하지 않을 것입니다: 오직 정치적 비밀만 유출될 수 있습니다."
+ wm_intrigue_leak_toast: "이야기는 전해집니다"
+ wm_intrigue_leak_toast_desc: "[recipient.GetShortUIName]에 관한 당신의 이야기가 신문 1면을 장식했습니다. [recipient.GetHerHis|U] 프로필, [recipient.GetHerHis] 정당의 여론조사와 정치 신뢰도 모두 타격을 받습니다."
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "손상된 이야기"
+ wm_secret_intrigue_story_desc: "[CHARACTER.GetShortUIName]에 대한 손상되는 이야기가 게재 준비 완료입니다."
+ wm_secret_intrigue_story_type_desc: "신문에 실릴 진실 여부와 관계없는 손상되는 이야기."
+ wm_secret_intrigue_story_tooltip_desc: "누군가 이 정치인에 대해 해로운 이야기를 가지고 있습니다. 사실이든 아니든, 신문들은 그것을 보도할 것입니다."
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "불법 자료를 캐다 걸림"
+ wm_intrigue_caught_plotting_opinion: "나를 음모로 공격하다 걸림"
+ wm_intrigue_leaked_opinion: "나에 대한 이야기를 유출했다"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "행동할 순간"
+ wm_intrigue.1.desc_scandal: "내 사람들은 과거 [target.GetShortUINamePossessive] 몇 주를 들여다봤어: 옛 면접, 경비 청구, 원한을 품은 전 보좌관. 여기 뭔가가 있거나, 그렇게 보이게 만들 수 있는 무언가가 있어. \n\nI 지금 움직일 수도 있고, 계속 파헤치며 더 나은 무언가를 바랄 수도 있어."
+ wm_intrigue.1.desc_affair: "늦은 투표, 테라스에서의 술자리, 복도에서의 긴 대화들: [target.GetShortUIName]와 나는 가까워졌다. \n\nI 지금 내 감정을 분명히 할 수도 있고, 아니면 조금 더 오래 지켜볼 수도 있다."
+ wm_intrigue.1.desc_oust: "수치가 확고해지고 있습니다. 한때 아무 말도 없던 동료들이 이제 \" 상황이 발생하면\"이라고 말합니다. 문제는 그것이 실제로 발생했는가입니다. \n\n나는 [target.GetShortUIName]에게 도전이 진행 중이라고 말할 수도 있고, 아니면 계속 머리 수를 세어볼 수도 있습니다."
+ wm_intrigue.1.a: "지금."
+ wm_intrigue.1.a.tt: "[scheme|E]의 [success_chance|E]을 굴려. 실패하면 발각될 수 있다."
+ wm_intrigue.1.b: "아직"
+ wm_intrigue.1.b.tt: "[scheme|E]는 계속된다."
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "효과가 있었다"
+ wm_intrigue.2.t_caught: "발견했다"
+ wm_intrigue.2.t_failed: "아무 일도 없음"
+ wm_intrigue.2.desc_scandal_success: "이야기는 설득력이 있거나 거의 그렇습니다. 초안 헤드라인은 제 책상 위 폴더에 있으며, [target.GetShortUIName]는 제가 원할 때 언제든지 뉴스룸에 보낼 수 있다는 것을 알고 있습니다. \n\n 저는 그것을 유출할 수도 있고, 아니면 단순히 [target.GetHerHim]에게 제가 그것을 가지고 있다는 것을 알릴 수도 있습니다."
+ wm_intrigue.2.desc_affair_success: "카메라와 부서 종소리에서 벗어나, [target.GetShortUIName]와 나는 단순한 동료 이상의 관계가 되었다. 지금은 우리만의 비밀이다."
+ wm_intrigue.2.desc_oust_success: "편지가 도착했어. 아침이 되면 웨스트민스터 전체가 알게 돼: 당은 [target.GetShortUIName]와 나 중 하나를 선택할 거야."
+ wm_intrigue.2.desc_scandal_caught: "전 수석보좌관은 곧바로 [target.GetShortUIName]로 갔다. 이야기는 없지만, 이제 누가 찾아갔는지 정확히 아는 정치인이 있다."
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName]는 저를 부드럽지만 단호하게 거절했으며, 복도 소문이 제가 도착하기 전에 이미 도달했습니다."
+ wm_intrigue.2.desc_oust_caught: "제 동료 중 한 명이 말했습니다. [target.GetShortUIName]는 음모에 대해 알고 있으며, 당직자들은 저를 주시하도록 지시받았습니다."
+ wm_intrigue.2.desc_scandal_failed: "모든 단서가 끊겼어. [target.GetShortUIName] 뭘 했든 이번에는 신문에 나오지 않을 거야."
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName] 같은 생각이 아니었어. 우리는 동료일 뿐, 그 이상도 이하도 아니야."
+ wm_intrigue.2.desc_oust_failed: "결국 너무 많은 동료들이 용기를 잃었습니다. 음모는 끝났고, 아무도 그것이 존재했음을 알 필요가 없습니다."
+ wm_intrigue.2.a: "훌륭해."
+ wm_intrigue.2.b: "그렇게 하자."
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "누군가 바빴다"
+ wm_intrigue.3.desc_scandal: "오늘 아침에 내 전 직원이 전화했어. [owner.GetShortUIName|U]가 나에 대해 질문을 했어: 옛 주장, 옛 친구들, 나를 곤란하게 할 만한 모든 것들. 아무것도 찾지 못했지만, 누가 봤는지 기억할 거야."
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U]가 나에게 접근했으며, 찻집 전체가 이를 아는 것 같습니다. 나는 내 답변을 분명히 했습니다."
+ wm_intrigue.3.desc_oust: "충성스러운 백벤처 의원이 나를 따로 불렀다: [owner.GetShortUIName] 내 리더십에 대한 도전에 대해 동료들에게 물어보고 있었다. 음모는 무너졌지만, 누가 시작했는지는 알고 있다."
+ wm_intrigue.3.a: "나는 이것을 잊지 않을 것이다."
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "이야기가 1면에 실립니다"
+ wm_intrigue.10.desc: "첫 번째 전화는 오전 6시에 걸려왔습니다. 아침 식사 전까지 모든 신문 1면에 기사가 실렸고, 방송국들은 제 사무실 밖에 대기하고 있었습니다.\n\n 제 프로필은 타격을 받았고, 정당 지지도는 하락했으며, 국민은 우리 모두를 조금 덜 신뢰하게 되었습니다. 누군가가 신문사에 그 이야기를 넘겼고, 누군지 잘 알고 있습니다: [wm_intrigue_leaker.GetShortUIName]."
+ wm_intrigue.10.a: "답변하지 않겠습니다."
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "그들은 내 블러프를 불렀다"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] 강요당하지 않을 것이다: 내가 이야기가 있다면 내보내야 한다. \n\n로비 기자에게 전화하면 내일 1면에 나올 것이다. 아니면 그냥 앉아두고 궁금해[recipient.GetHerHim] 수도 있다."
+ wm_intrigue.20.a: "뉴스룸 호출"
+ wm_intrigue.20.b: "앉아 있어."

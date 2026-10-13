@@ -1,0 +1,52 @@
+﻿l_korean:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "언론 캠페인 자금 지원"
+ wm_spend_press_decision_desc: "광고를 사고, 싱크탱크 보고서를 후원하며, 친근한 칼럼니스트들에게 이야기를 계속 제공하세요. 당과 정책에 관한 캠페인을 매달 지원하세요. \n\nit는 한 달에 약 #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#! 펀드(소득의 30%)가 듭니다. 당 대표의 캠페인은 한 달에 약 0.15포인트 상승시켜 약 3포인트 높게 안정되고; 백벤처 의원의 캠페인은 그 5분의 1을 올립니다."
+ wm_spend_press_decision_tooltip: "당의 지지율을 높이기 위해 돈을 쓰세요."
+ wm_spend_press_decision_confirm: "수표에 서명하세요"
+ wm_spend_press_decision_effect_tt: "매달 소득의 30%를 지불하면 당신의 당 지지율이 상승합니다. 선거운동은 최대 1년 동안 진행되거나, 당신이 중단하거나 자금이 소진될 때까지 계속됩니다."
+ wm_spend_not_campaigning_tt: "당신은 이미 캠페인 비용을 지불하고 있지 않습니다."
+ wm_spend_press_afford_tt: "당신은 첫 달을 감당할 수 있습니다 ([GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1] 자금)."
+ wm_spend_smear_afford_tt: "당신은 첫 달을 감당할 수 있습니다 ([GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1] 자금)."
+
+ wm_spend_smear_decision: "비방 캠페인 자금 지원"
+ wm_spend_smear_decision_desc: "공격 광고, 반박 유닛, 그리고 경쟁 정당의 실적과 그 금액에 대한 불리한 이야기들이 끊임없이 쏟아집니다. 누구의 사생활도 절대 하지 않습니다: 목표는 당과 그 정책입니다. \n\nitititit는 한 달에 약 #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#! 펀드(소득의 40%)가 듭니다. 당 대표의 선거 캠페인은 경쟁 당보다 한 달에 약 0.2포인트, 백벤처는 그 4분의 1을 깎아냅니다. 이것은 대중의 신뢰를 갉아먹고, 매달 #N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#! 확률이 역효과를 낸다(좋은 계략가라면 더 낮다): 내 정당이 한 점을 잃고, 신뢰가 떨어지며, 경쟁자의 지도자가 당신을 원망하게 되고, 언론이 이 이야기를 계속 유지한다."
+ wm_spend_smear_decision_tooltip: "경쟁 정당을 끌어내리기 위해 돈을 쓰는 것. 역효과가 날 수도 있다."
+ wm_spend_smear_decision_confirm: "목표 선택해"
+ wm_spend_smear_decision_effect_tt: "경쟁 정당을 선택하세요. 매달 소득의 40%를 내면, 그들의 지지율이 떨어지고 대중의 신뢰도가 떨어지며, 선거운동이 역효과를 낼 수도 있습니다."
+
+ wm_spend_stop_decision: "선거 자금 중단"
+ wm_spend_stop_decision_desc: "광고를 취소하고 캠페인 비용 지불을 중단하세요."
+ wm_spend_stop_decision_tooltip: "언론이나 중상 모략 캠페인을 끝내라."
+ wm_spend_stop_decision_confirm: "취소"
+ wm_spend_stop_decision_effect_tt: "당신의 캠페인이 종료되어 더 이상 비용을 지불하지 않습니다."
+
+ wm_spend_favour_decision: "부탁 한 건 요청"
+ wm_spend_favour_decision_desc: "수년간 당직자 사무실 간의 조용한 협상으로 경쟁 정당이 당신에게 빚을 지게 되었습니다: 페어링 합의가 존중되고, 위원회 자리가 교환되었으며, 중요한 순간에 투표가 이루어졌습니다. 정치적 자본을 써서 그들의 지도자가 그것을 기억하도록 하세요."
+ wm_spend_favour_decision_tooltip: "경쟁 정당 지도자에게 빚진 호의를 위해 정치적 자본을 쓰는 것."
+ wm_spend_favour_decision_confirm: "결정을 내리다"
+ wm_spend_favour_decision_effect_tt: "경쟁 파티의 리더를 선택하면 그들에게 #bold Pavour#!의 훅을 얻습니다."
+ wm_spend_favour_rival_tt: "또 다른 정당에는 지도자가 있다"
+
+ wm_spend.10.t: "공격 캠페인"
+ wm_spend.10.desc: "광고는 이미 준비되었고, 연구원들은 모든 비용과 깨진 약속을 확인했습니다. 우리는 어느 당의 기록을 문제 삼아야 할까요?"
+ wm_spend.10.a: "[wm_spend_party_1.GetNameNoTier]."
+ wm_spend.10.b: "[wm_spend_party_2.GetNameNoTier]."
+ wm_spend.10.c: "[wm_spend_party_3.GetNameNoTier]."
+ wm_spend.10.d: "곰곰이 생각해 보니, 깨끗하게 유지합시다."
+
+ wm_spend.20.t: "빚진 은혜"
+ wm_spend.20.desc: "당신의 수석 당직자가 다른 당들이 우리에게 져야 할 모든 호의 목록을 가지고 있습니다. 어느 지도자에게 상기시켜야 합니까?"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName]는 [wm_spend_party_1.GetNameNoTier]의 것입니다."
+ wm_spend.20.b: "[wm_spend_rival_2.GetName]는 [wm_spend_party_2.GetNameNoTier]의 것입니다."
+ wm_spend.20.c: "[wm_spend_rival_3.GetName]는 [wm_spend_party_3.GetNameNoTier]의 것입니다."
+
+ wm_spend_ended_toast: "캠페인 종료"
+ wm_spend_ended_toast_desc: "유료 캠페인이 종료되었습니다: 해가 지나거나, 자금이 바닥났거나, 목표가 사라졌습니다."
+ wm_spend_backfire_toast: "더운 수법 노출"
+ wm_spend_backfire_toast_desc: "[wm_spend_target_party.GetNameNoTier]에 대한 비방 캠페인이 [wm_spend_spender.GetName]에서 비롯된 것으로 밝혀졌습니다. 그들의 당은 여론 조사에서 한 점을 잃고, 공적 신뢰도 역시 타격을 입습니다."
+
+ wm_secret_smear_campaign: "비방 캠페인"
+ wm_secret_smear_campaign_type_desc: "흑색선전 캠페인 비용 지불"
+ wm_secret_smear_campaign_desc: "경쟁 정당에 대한 흑색선전 캠페인 비용 지불"
+ wm_secret_smear_campaign_tooltip_desc: "이 인물은 경쟁 정당에 대한 명예 훼손 캠페인을 위해 돈을 지불했으며, 언론이 이를 입증할 수 있습니다."

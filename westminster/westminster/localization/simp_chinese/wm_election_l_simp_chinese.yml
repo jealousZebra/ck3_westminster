@@ -1,0 +1,28 @@
+﻿l_simp_chinese:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "议会解散"
+ wm_election_dissolution_toast_desc: "总理已前往王宫，议会已解散。每个席位都可争取：投票日为五周后。"
+
+ wm_election_results.1.a: "阅读全部内容。"
+ wm_election_results_intro_hold: "#italic 选举夜#!\n\n选民已发声：#bold [wm_el_seats|0]#! 在 650 个席位中为 [wm_el_party.GetNameNoTier] 的席位，占 [wm_el_majority|0] 的多数。[wm_el_pm.GetName] 带着新的授权继续留在唐宁街。\n"
+ wm_election_results_intro_change: "#italic 选举夜#!\n\n选民已发声：#bold [wm_el_seats|0]#! 在 650 个席位中为 [wm_el_party.GetNameNoTier] 的席位，而 [wm_el_pm.GetName] 是新的首相。搬迁车已在 10 号门外等待。\n"
+ wm_election_results_intro_hung: "#italic 选举夜#!\n\n没有政党拥有多数席位。最大的 [wm_el_party.GetNameNoTier] 拥有 #bold [wm_el_seats|0]#! 个席位，尚缺 326 个所需席位，[wm_el_pm.GetName] 将尝试在无多数情况下执政。\n"
+ wm_election_results_table: "\n#bold 议席（变化）#!"
+ wm_election_results_my_seat_held: "\n\n#bold 你的席位：#! 你以 [wm_my_share|1]% 的选票保住了 [wm_my_seat.GetNameNoTier]，多数领先 [wm_my_majority|1] 个百分点。"
+ wm_election_results_my_seat_lost: "\n\n#bold 你的席位：#! [wm_my_lost_seat.GetNameNoTier] 的选民将你赶下台。[wm_my_lost_seat.GetHolder.GetName] 是他们的新议员，而你将离开绿色长椅。"
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "补选：[wm_by_party.GetAdjective] 保持"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] 已在补选中保住 [wm_by_seat.GetNameNoTier] 的 [wm_by_party.GetNameNoTier]。"
+ wm_byelection_gain_toast: "补选：[wm_by_party.GetAdjective] 赢"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] 在补选中为 [wm_by_party.GetNameNoTier] 赢得了 [wm_by_seat.GetNameNoTier]，这一胜利将出现在明天的所有头版。"
+
+ wm_election_call_decision: "召集大选"
+ wm_election_call_decision_desc: "请君主解散议会并向全国选民寻求授权。每个席位的竞争将依据国家情绪：政府党派的民调为 [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%，领先表现最好的竞争对手 [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] 个百分点（负数表示落后）。议会已运作 [EmptyScope.ScriptValue('wm_election_months_sat')|0] 个月；必须在五年内面向选民。"
+ wm_election_call_decision_tooltip: "趁民调还不错，或者在民调转折之前，去乡下。"
+ wm_election_call_decision_confirm: "解散议会"
+ wm_election_call_decision_not_scheduled_tt: "大选还没有被宣布"
+ wm_election_call_decision_min_months_tt: "议会已开会至少六个月"
+ wm_election_call_decision_effect_tt: "国会解散，并在五周内举行一次#bold 大选#!。易手的席位将由新议员占据，最大党的领导人成为首相。"

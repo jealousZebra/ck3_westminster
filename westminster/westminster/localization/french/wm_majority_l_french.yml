@@ -1,0 +1,16 @@
+﻿l_french:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "LE GOUVERNEMENT PERD SA MAJORITÉ"
+ wm_majority.1.desc: "#italic Westminster#!\n\n Après une série de défaites lors d'élections partielles et de défections, [wm_majority_pm.GetName] le gouvernement ne peut plus compter sur une majorité à la Chambre des communes. L'arithmétique des whips le met désormais [EmptyScope.ScriptValue('wm_sc_short_by')|0] votes en dessous pour remporter une division par lui-même.\n\n L'opposition sent le sang : une motion de censure est attendue dès que la Chambre aura le temps pour cela."
+ wm_majority.1.a_pm: "Nous avons gouverné avec moins."
+ wm_majority.1.a: "La fin d'une époque ?"
+ wm_majority.2.t: "Le Gouvernement n'a pas de majorité"
+ wm_majority.2.desc: "Les chiffres ont finalement tourné. [wm_majority_pm.GetName] ne peut plus commander une majorité à la Chambre, et le lobby est rempli de discussions sur un vote de confiance.\n\nEn tant que Leader de l'Opposition, le prochain mouvement est le vôtre. Présentez une motion de défiance maintenant, et si le gouvernement tombe, il y aura des élections générales."
+ wm_majority.2.a: "Présenter une motion de défiance."
+ wm_majority.2.b: "Pas encore. Laissez-les mijoter."
+ wm_majority_losing_run_toast: "Une autre défaite aux élections partielles pour le numéro 10"
+ wm_majority_losing_run_toast_desc: "Le gouvernement a maintenant perdu [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] élections partielles consécutives, et les collègues de [wm_majority_pm.GetName] ont commencé à compter. La majorité travaillante est passée à [EmptyScope.ScriptValue('wm_majority_value')|0]."
+ wm_majority_byelection_blues_modifier: "Blues des élections partielles"
+ wm_majority_byelection_blues_modifier_desc: "Deux défaites consécutives lors d’élections partielles ont entamé l’autorité de ce Premier ministre."
+ wm_majority_losing_streak_modifier: "Série de défaites"
+ wm_majority_losing_streak_modifier_desc: "Élection partielle après élection partielle a tourné contre le gouvernement, et ses propres députés de la majorité se demandent qui devrait les mener à la prochaine élection."

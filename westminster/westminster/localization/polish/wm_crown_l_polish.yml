@@ -1,0 +1,33 @@
+﻿l_polish:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Crown"
+ k_wm_crown_adj: "Królewski"
+ wm_dyn_royal_windsor: "Windsor"
+
+ wm_crown_government: "Monarchia konstytucyjna"
+ wm_crown_government_adjective: "Królewski"
+ wm_crown_government_realm: "Gospodarstwo królewskie"
+ wm_crown_government_desc: "Monarcha panuje, ale nie rządzi. Nie zajmuje żadnego stanowiska, nie ma wasali i prawie zawsze trzyma się z dala od polityki."
+ king_wm_crown_male: "King"
+ king_wm_crown_female: "Królowa"
+ kingdom_wm_crown: "Crown"
+
+ wm_speak_out_against_mp_interaction: "Wypowiadać się przeciwko posłowi"
+ wm_speak_out_against_mp_interaction_desc: "Zerwij nawyk panowania i publicznie skrytykuj [recipient.GetTitledFirstName]. Pałac tego nie robił w żywej pamięci: kosztuje to ogromną ilość [prestige|E], a Numer 10 będzie wściekły."
+ wm_speak_out_against_mp_interaction_toast: "Pałac zabiera głos"
+ wm_crown_speak_out_toast: "Pałac krytykuje [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] wypowiedział się przeciwko [recipient.GetTitledFirstName]. Konstytucja ma ból głowy."
+
+ wm_crown.1.t: "Upomnienie z Pałacu"
+ wm_crown.1.desc: "Jest na każdej pierwszej stronie. [actor.GetTitledFirstName], który przez całe życie zachowywał swoje opinie dla siebie, dał jasno znać, co o mnie myśli, i to wcale nie jest pochlebne. Mój telefon jest pełen wiadomości od kolegów, którzy nagle nie mogą być ze mną widziani."
+ wm_crown.1.a: "Powstrzymuję się od słów. Nie zaczynasz kłótni z Pałacem."
+ wm_crown.1.b: "Odpowiedz: monarcha powinien trzymać się z dala od polityki."
+
+ wm_rebuked_by_the_crown_modifier: "Upokarany przez koronę"
+ wm_rebuked_by_the_crown_modifier_desc: "Monarch publicznie wypowiedział się przeciwko temu posłowi."
+ wm_crown_criticism_county_modifier: "poseł krytykowany przez koronę"
+ wm_crown_criticism_county_modifier_desc: "Monarch wypowiedział się przeciwko temu posłowi z tego okręgu."
+ wm_spoken_against_by_crown_opinion: "Wypowiedział się przeciwko mnie"
+ wm_embarrassed_party_opinion: "Zawstydził partię"
+ wm_crown_meddling_opinion: "Zaangażowany w politykę"
+ wm_hit_back_at_crown_opinion: "Atakowano Koronę"

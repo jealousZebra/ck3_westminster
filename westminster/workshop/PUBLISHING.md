@@ -53,8 +53,7 @@ list, but we haven't confirmed which ones the launcher accepts. If an upload fai
 - Translations of the page (title, description, short description, change notes) are in
   `workshop/translations/<language>/` for French, German, Spanish (also use it for Latin American Spanish), Russian,
   Polish, Simplified Chinese, Korean and Japanese. `python3 workshop/translations/check.py` checks them against the
-  English. Paste each into the Workshop page's language selector (codes in docs/steam-workshop.md). The mod itself
-  is English-only for now, and every page says so.
+  English. Paste each into the Workshop page's language selector (codes in docs/steam-workshop.md). The in-game mod includes English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish localization. Workshop page translations are maintained separately.
 - `title.txt` holds the words players search for (UK politics, total conversion, modern Britain, elections,
   Parliament, Prime Minister). It is also `name` in `westminster/descriptor.mod` and `westminster.mod`, so a launcher
   upload keeps the title. If you change one, change the other.

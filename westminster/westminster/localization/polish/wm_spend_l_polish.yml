@@ -1,0 +1,52 @@
+﻿l_polish:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "Sfinansuj kampanię prasową"
+ wm_spend_press_decision_desc: "Kupuj reklamy, sponsoruj raporty think-tanków i zaopatruj przyjaznych felietonistów w historie. Kampania o Twojej partii i jej polityce, opłacana co miesiąc. \n\nKosztuje to około #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#! Funduszy miesięcznie (30% twojego dochodu). Kampania lidera partii podnosi poparcie partii o około 0,15 punktu miesięcznie, stabilizując się około 3 punktów wyżej niż byłoby; kampania zwykłego posła działa w jednej piątej tego."
+ wm_spend_press_decision_tooltip: "Wydawać pieniądze, aby podnieść poparcie dla swojej partii w sondażach."
+ wm_spend_press_decision_confirm: "podpisz czeki"
+ wm_spend_press_decision_effect_tt: "Każdego miesiąca płacisz 30% swojego dochodu, a poparcie dla twojej partii rośnie. Kampania trwa maksymalnie rok, lub do momentu jej przerwania lub wyczerpania pieniędzy."
+ wm_spend_not_campaigning_tt: "Nie płacisz już za kampanię"
+ wm_spend_press_afford_tt: "Możesz pozwolić sobie na pierwszy miesiąc ([GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1] Fundusze)"
+ wm_spend_smear_afford_tt: "Możesz pozwolić sobie na pierwszy miesiąc ([GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1] Fundusze)"
+
+ wm_spend_smear_decision: "Sfinansować kampanię oczernień"
+ wm_spend_smear_decision_desc: "Reklamy atakujące, jednostki odpierające i stały strumień niepochlebnych informacji o dorobku rywalizującej partii i jej finansach. Nigdy prywatne życie nikogo: celem jest partia i jej polityka.\n\nKosztuje to około #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#! funduszy miesięcznie (40% twojego dochodu). Kampania lidera obniża około 0,2 punktu miesięcznie względem rywala, kampania backbenchera to jedna czwarta tej wartości. To osłabia zaufanie publiczne, a każdego miesiąca istnieje #N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#! szansa, że się nie powiedzie (mniejsza dla dobrego stratega): własna partia traci punkt, zaufanie spada, lider rywala cię nie lubi, a prasa kontynuuje temat."
+ wm_spend_smear_decision_tooltip: "Wydawać pieniądze, aby zdyskredytować konkurencyjną partię. Może to się odbić czkawką."
+ wm_spend_smear_decision_confirm: "Wybierz cel"
+ wm_spend_smear_decision_effect_tt: "Wybierz partię rywala. Każdego miesiąca wypłacasz 40% swoich dochodów, ich sondaże spadają, a zaufanie społeczne maleje, a kampania może się obrócić przeciwko tobie."
+
+ wm_spend_stop_decision: "Stop Campaign Spending"
+ wm_spend_stop_decision_desc: "Anuluj reklamy i przestań płacić za swoją kampanię."
+ wm_spend_stop_decision_tooltip: "Zakończ swoją kampanię prasową lub kampanię oczerniania."
+ wm_spend_stop_decision_confirm: "Anuluj to"
+ wm_spend_stop_decision_effect_tt: "Twoja kampania się kończy i przestajesz za nią płacić."
+
+ wm_spend_favour_decision: "Poprosić o przysługę"
+ wm_spend_favour_decision_desc: "Lata cichych układów między biurami dyscyplinarnych sprawiły, że konkurencyjna partia została ci zadłużona: dotrzymał porozumienia parowania, wymianę miejsca w komitecie, głosowanie przeprowadzone, gdy miało to znaczenie. Wydaj część swojego kapitału politycznego, by ich lider o tym pamiętał."
+ wm_spend_favour_decision_tooltip: "Wydawać kapitał polityczny na przysługę, którą jest winny lider konkurencyjnej partii."
+ wm_spend_favour_decision_confirm: "Zadzwoń"
+ wm_spend_favour_decision_effect_tt: "Wybierz lidera rywalizującej partii: zyskujesz #bold hak Favour#! na nich."
+ wm_spend_favour_rival_tt: "Inna partia ma lidera"
+
+ wm_spend.10.t: "Kampania Ataku"
+ wm_spend.10.desc: "Agencja ma gotowe reklamy, a badacze przejrzeli każdy koszt i każdą złamaną obietnicę. Po rekordzie której partii mamy iść?"
+ wm_spend.10.a: "[wm_spend_party_1.GetNameNoTier]."
+ wm_spend.10.b: "[wm_spend_party_2.GetNameNoTier]."
+ wm_spend.10.c: "[wm_spend_party_3.GetNameNoTier]."
+ wm_spend.10.d: "Po namyśle, utrzymajmy to w czystości."
+
+ wm_spend.20.t: "Dług wdzięczności"
+ wm_spend.20.desc: "Twój główny dyscyplinator ma listę wszystkich przysług, które inne partie nam są winne. Który z ich przywódców powinien być o tym przypomniany?"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName] z [wm_spend_party_1.GetNameNoTier]."
+ wm_spend.20.b: "[wm_spend_rival_2.GetName] z [wm_spend_party_2.GetNameNoTier]."
+ wm_spend.20.c: "[wm_spend_rival_3.GetName] z [wm_spend_party_3.GetNameNoTier]."
+
+ wm_spend_ended_toast: "Kampania zakończona"
+ wm_spend_ended_toast_desc: "Twoja płatna kampania zakończyła się: upłynął rok, skończyły się pieniądze lub cel został osiągnięty."
+ wm_spend_backfire_toast: "UJAWNIONE BRUDNE SZTUCZKI"
+ wm_spend_backfire_toast_desc: "Kampania oszczerstw przeciwko [wm_spend_target_party.GetNameNoTier] została prześledzona do [wm_spend_spender.GetName]. Ich partia traci punkt w sondażach, a zaufanie społeczne znów cierpi."
+
+ wm_secret_smear_campaign: "Kampania oczerniająca"
+ wm_secret_smear_campaign_type_desc: "Opłacił kampanię oszczerstw"
+ wm_secret_smear_campaign_desc: "Opłacił kampanię oszczerstw przeciwko rywalizującej partii"
+ wm_secret_smear_campaign_tooltip_desc: "Ta postać zapłaciła za kampanię zniesławiającą rywalizującą partię, a prasa może to udowodnić."

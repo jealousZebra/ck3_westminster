@@ -1,0 +1,24 @@
+﻿l_german:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "Versprechen, die Politik aufzuräumen"
+ wm_trust_clean_up_decision_desc: "#bold Öffentliches Vertrauen in die Politik: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] von 100#!, bei einer erwarteten Wahlbeteiligung bei einer Generalwahl von etwa [EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%.\n\nNiedriges Vertrauen macht Aufstände wahrscheinlicher, hebt kleine und neue Parteien in den Umfragen und hält Wähler zu Hause; hohes Vertrauen hilft der Regierung. Kehrtwenden, gebrochene Versprechen, Aufstände und ihre Polizeihandhabung, Skandale und schmutzige Kampagnen schwächen es; beliebte Gesetze, eingehaltene Versprechen und saubere Kampagnen bauen es auf.\n\nEin Paket von Standardsreformen würde dem Land zeigen, dass Westminster zuhört."
+ wm_trust_clean_up_decision_tooltip: "Öffentliches Vertrauen: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] von 100."
+ wm_trust_clean_up_decision_confirm: "Das Versprechen abgeben"
+ wm_trust_clean_up_decision_not_pledged_tt: "Sie haben noch kein bestehendes Aufräum-Versprechen abgegeben"
+ wm_trust_clean_up_decision_effect_tt: "Das öffentliche Vertrauen steigt um #P 5#! Punkte. Wenn in den nächsten drei Jahren ein Skandal ausbricht, wird das Versprechen gebrochen: Das Vertrauen sinkt um weitere #N 4#! Punkte und Sie verlieren an Ansehen."
+
+ wm_trust_promise_broken_toast: "VERSPRECHEN GEBROCHEN"
+ wm_trust_promise_broken_toast_desc: "Die den Protestierenden versprochene vorgezogene Wahl fand nie statt. Das öffentliche Vertrauen sinkt um #N 6#! Punkte."
+
+ wm_trust.10.t_expenses: "Ausgabenspalte verschlingt Westminster"
+ wm_trust.10.t_lobbying: "Lobbying Row"
+ wm_trust.10.t_unity: "Ein Moment der nationalen Einheit"
+ wm_trust.10.t_standards: "Ein Gesundheitsaustellung"
+ wm_trust.10.desc_expenses: "#italic Titelseite#!\n\nEine Anfrage nach Informationsfreiheit hat die Ausgabenabrechnungen der Abgeordneten aufgedeckt, und die Zeitungen berichten eine Seite pro Tag: eine Hosenpresse hier, ein Terrassenheizer dort, ein Zweitwohnsitz, der sich als Erstwohnsitz herausstellt. Niemand hat eine Regel verletzt, sagen die Behörden des Hauses, was eigentlich der Punkt ist.\n\nKeine Partei wird verschont, und die Öffentlichkeit ist von keinem beeindruckt."
+ wm_trust.10.desc_lobbying: "#italic Titelseite#!\n\nUndercover-Journalisten, die sich als ausländische Beratung ausgeben, haben eine Reihe ehemaliger Minister gefilmt, die angeboten haben, gegen eine Gebühr Türen zu öffnen. Die Regierung besteht darauf, dass die Regeln befolgt wurden; die Regeln, wie sich herausstellt, wurden von ehemaligen Ministern geschrieben.\n\nDie Regierung bekommt das Schlimmste davon ab."
+ wm_trust.10.desc_unity: "#italic Titelseite#!\n\nEinmal sieht das ganze Land dasselbe: ein sportlicher Triumph, eine heldenhafte Rettung, eine nationale Feier. Politiker aller Parteien werden gemeinsam jubelnd abgebildet, und für ein paar Tage wird niemand ausgebuht.\n\nDie Regierung bekommt einen Teil des warmen Gefühls."
+ wm_trust.10.desc_standards: "#italic Innenseiten#!\n\nDer Jahresbericht des Ausschusses für Standards stellt fest, dass das Verhalten von Westminster das beste seit Jahren ist: weniger Beschwerden, schnellere Untersuchungen und niemand wurde bei etwas Bedauerlichem gefilmt. Es ist keine Schlagzeilengeschichte, genau deshalb ist es hilfreich."
+ wm_trust.10.desc_trust: "\n\n#bold Das öffentliche Vertrauen in die Politik beträgt nun [EmptyScope.ScriptValue('wm_ui_public_trust')|0] von 100.#!"
+ wm_trust.10.a: "Jede Quittung veröffentlichen."
+ wm_trust.10.b: "Kopf unten halten."
+ wm_trust.10.c: "Genieße es, solange es dauert."

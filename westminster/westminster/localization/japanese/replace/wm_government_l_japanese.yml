@@ -1,0 +1,8 @@
+﻿l_japanese:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "議会の"
+ feudal_government_adjective: "議会の"
+ feudal_government_realm: "議会の議席"
+ feudal_government_vassals_label: "議会の[obligations|E]は各バックベンチャーの[vassal_contract|E]によって設定されます"
+ feudal_government_desc: "\n#F 議員は選挙区から選出され、下院に座る。彼らは党首への忠誠、分割ロビーでの投票、および選挙資金の一部を負っている。見返りとして、党首はウィップ、権力の影に位置する座席、そして幸運な少数にはオフィスを提供する#!"
+ GAME_DATE_STRING_ERA_CE: ""

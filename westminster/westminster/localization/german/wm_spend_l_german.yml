@@ -1,0 +1,52 @@
+﻿l_german:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "Finanzierung einer Pressekampagne"
+ wm_spend_press_decision_desc: "Kaufen Sie Anzeigen, sponsern Sie Think-Tank-Berichte und versorgen Sie die freundlichen Kolumnisten mit Geschichten. Eine Kampagne über Ihre Partei und ihre Richtlinien, die jeden Monat bezahlt wird. \n\n Es kostet etwa #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#! Mittel im Monat (30 % Ihres Einkommens). Die Kampagne eines Parteiführers erhöht die Partei um etwa 0,15 Punkte pro Monat, wobei sie sich etwa 3 Punkte über dem Niveau stabilisiert, an dem sie ohne Kampagne wäre; die eines einfachen Abgeordneten bewirkt ein Fünftel davon."
+ wm_spend_press_decision_tooltip: "Geld ausgeben, um die eigene Partei in den Umfragen zu steigern."
+ wm_spend_press_decision_confirm: "Die Schecks unterschreiben"
+ wm_spend_press_decision_effect_tt: "Jeden Monat zahlen Sie 30 % Ihres Einkommens und die Umfragewerte Ihrer Partei steigen. Die Kampagne läuft bis zu einem Jahr oder bis Sie sie stoppen oder das Geld ausgeht."
+ wm_spend_not_campaigning_tt: "Sie zahlen noch nicht für eine Kampagne"
+ wm_spend_press_afford_tt: "Sie können sich den ersten Monat ([GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1] Mittel) leisten"
+ wm_spend_smear_afford_tt: "Sie können sich den ersten Monat ([GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1] Mittel) leisten"
+
+ wm_spend_smear_decision: "Finanzierung einer Schmutzkampagne"
+ wm_spend_smear_decision_desc: "Angriffs-Werbung, Gegenmaßnahmen und ein stetiges Tropfen von wenig schmeichelhaften Geschichten über die Bilanz einer rivalisierenden Partei und deren Summen. Niemals das Privatleben von Einzelpersonen: Das Ziel ist die Partei und ihre Politik.\n\nEs kostet etwa #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#! Gelder pro Monat (40 % Ihres Einkommens). Die Kampagne eines Führers mindert die Punkte des Rivalen etwa um 0,2 Punkte pro Monat, die eines Backbenchers ein Viertel davon. Es schwächt das öffentliche Vertrauen, und jeden Monat gibt es eine #N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#! Chance, dass es nach hinten losgeht (weniger für einen guten Strategen): Ihre eigene Partei verliert einen Punkt, das Vertrauen fällt, der Führer des Rivalen ist verärgert über Sie, und die Presse behält die Geschichte."
+ wm_spend_smear_decision_tooltip: "Geld ausgeben, um eine rivalisierende Partei zu schwächen. Es kann nach hinten losgehen."
+ wm_spend_smear_decision_confirm: "Wähle ein Ziel"
+ wm_spend_smear_decision_effect_tt: "Wähle die rivalisierende Partei. Jeden Monat zahlst du 40 % deines Einkommens, deren Umfrage fällt und öffentliche Vertrauensverschlüsse sinken, und der Wahlkampf kann nach hinten losgehen."
+
+ wm_spend_stop_decision: "Stopp der Kampagnenausgaben"
+ wm_spend_stop_decision_desc: "Brechen Sie die Werbung ab und hören Sie auf, Ihre Kampagne zu bezahlen."
+ wm_spend_stop_decision_tooltip: "Beende deine Presse- oder Schmierkampagne."
+ wm_spend_stop_decision_confirm: "Abbrechen"
+ wm_spend_stop_decision_effect_tt: "Ihre Kampagne endet und Sie hören auf, dafür zu bezahlen."
+
+ wm_spend_favour_decision: "Einen Gefallen einfordern"
+ wm_spend_favour_decision_desc: "Jahre stiller Abmachungen zwischen den Büros der Whips haben eine rivalisierende Partei in Ihre Schulden gezwungen: eine Paarung wurde eingehalten, ein Ausschusssitz wurde getauscht, eine Abstimmung wurde abgegeben, wenn es darauf ankam. Geben Sie etwas von Ihrem politischen Kapital aus, damit ihr Anführer sich daran erinnert."
+ wm_spend_favour_decision_tooltip: "Politisches Kapital einsetzen für einen Gefallen, den der Führer einer rivalisierenden Partei schuldet."
+ wm_spend_favour_decision_confirm: "Den Anruf tätigen"
+ wm_spend_favour_decision_effect_tt: "Wähle den Anführer einer rivalisierenden Gruppe: Du erhältst einen #bold Favour#!ZZ-Haken auf ihn."
+ wm_spend_favour_rival_tt: "Eine andere Partei hat einen Vorsitzenden"
+
+ wm_spend.10.t: "Die Angriffskampagne"
+ wm_spend.10.desc: "Die Agentur hat die Werbeanzeigen fertig und die Forscher haben jede Kostenaufstellung und jedes gebrochene Versprechen überprüft. Welcher Partei gehen wir an den Kragen?"
+ wm_spend.10.a: "Die [wm_spend_party_1.GetNameNoTier]."
+ wm_spend.10.b: "Die [wm_spend_party_2.GetNameNoTier]."
+ wm_spend.10.c: "Die [wm_spend_party_3.GetNameNoTier]."
+ wm_spend.10.d: "Bei Überlegung, lassen Sie uns es sauber halten."
+
+ wm_spend.20.t: "Eine Schuldige Gefälligkeit"
+ wm_spend.20.desc: "Ihr Chief Whip hat eine Liste aller Gefallen, die uns die anderen Parteien schulden. An wen ihrer Anführer sollte man sich erinnern?"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName] der [wm_spend_party_1.GetNameNoTier]."
+ wm_spend.20.b: "[wm_spend_rival_2.GetName] der [wm_spend_party_2.GetNameNoTier]."
+ wm_spend.20.c: "[wm_spend_rival_3.GetName] der [wm_spend_party_3.GetNameNoTier]."
+
+ wm_spend_ended_toast: "Kampagne beendet"
+ wm_spend_ended_toast_desc: "Ihre bezahlte Kampagne ist beendet: Das Jahr ist vorbei, das Geld ist ausgegangen oder ihr Ziel ist verschwunden."
+ wm_spend_backfire_toast: "SCHMUTZIGE TRICKS AUFGEDECKT"
+ wm_spend_backfire_toast_desc: "Eine Schmutzkampagne gegen die [wm_spend_target_party.GetNameNoTier] wurde bis [wm_spend_spender.GetName] zurückverfolgt. Ihre Partei verliert einen Punkt in den Umfragen und das öffentliche Vertrauen bekommt einen weiteren Schlag."
+
+ wm_secret_smear_campaign: "Schmutzkampagne"
+ wm_secret_smear_campaign_type_desc: "Hat eine Schmutzkampagne bezahlt"
+ wm_secret_smear_campaign_desc: "Bezahlte eine Schmutzkampagne gegen eine rivalisierende Partei"
+ wm_secret_smear_campaign_tooltip_desc: "Dieser Charakter bezahlte eine Schmutzkampagne gegen eine rivalisierende Partei, und die Presse kann es beweisen."

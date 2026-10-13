@@ -1,0 +1,24 @@
+﻿l_french:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "engagement à assainir la politique"
+ wm_trust_clean_up_decision_desc: "#bold Confiance publique en politique : [EmptyScope.ScriptValue('wm_ui_public_trust')|0] sur 100#!, avec une participation aux élections générales attendue autour de [EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%.\n\nUne faible confiance rend les émeutes plus probables, favorise les petits et nouveaux partis dans les sondages et garde les électeurs chez eux ; une grande confiance aide le gouvernement. Les revirements, promesses non tenues, émeutes et leur gestion, scandales et campagnes sales l'affaiblissent ; les projets populaires, promesses tenues et campagnes propres la renforcent.\n\nUn ensemble de réformes standard montrerait au pays que Westminster écoute."
+ wm_trust_clean_up_decision_tooltip: "Confiance du public : [EmptyScope.ScriptValue('wm_ui_public_trust')|0] sur 100."
+ wm_trust_clean_up_decision_confirm: "Faire la promesse"
+ wm_trust_clean_up_decision_not_pledged_tt: "Vous n'avez pas déjà fait de promesse de nettoyage qui soit encore en vigueur"
+ wm_trust_clean_up_decision_effect_tt: "La confiance du public augmente de #P de 5 points #!. Si un scandale éclate dans les trois prochaines années, la promesse est rompue : la confiance chute encore #N 4#! points et vous perdez la face."
+
+ wm_trust_promise_broken_toast: "PROMESSE BRIDÉE"
+ wm_trust_promise_broken_toast_desc: "L'élection anticipée promise aux manifestants n'est jamais venue. La confiance du public chute de #N 6#! points."
+
+ wm_trust.10.t_expenses: "La ligne des dépenses engloutit Westminster"
+ wm_trust.10.t_lobbying: "Lobbying Row"
+ wm_trust.10.t_unity: "Un moment d'unité nationale"
+ wm_trust.10.t_standards: "Un certificat de bonne santé"
+ wm_trust.10.desc_expenses: "#italic Première page#!\n\nUne demande de liberté d'information a mis au jour les dépenses des députés, et les journaux les publient une page par jour : un presse-pantalon ici, un chauffage de patio là, une résidence secondaire qui s'avère être la première. Personne n'a enfreint de règle, affirment les autorités de la Chambre, ce qui est d'ailleurs le point. \n\nAucun parti n'est épargné, et le public n'est impressionné par aucun d'entre eux."
+ wm_trust.10.desc_lobbying: "#italic Première page#!\n\nDes journalistes infiltrés se faisant passer pour une société de conseil étrangère ont filmé une série d'anciens ministres offrant d'ouvrir des portes contre rémunération. Le gouvernement insiste sur le fait que les règles ont été suivies ; les règles, il s'avère, ont été écrites par d'anciens ministres. \n\nLe gouvernement en prend le plus gros."
+ wm_trust.10.desc_unity: "#italic Première page#!\n\nPour une fois, tout le pays regarde la même chose : un triomphe sportif, un sauvetage héroïque, une célébration nationale. Les politiciens de tous les partis sont photographiés en train d'acclamer ensemble, et pendant quelques jours personne ne les hue. \n\nLe gouvernement reçoit une part de appréciation chaleureuse."
+ wm_trust.10.desc_standards: "#italic Pages intérieures#!\n\nLe rapport annuel du Comité des Normes estime que la conduite de Westminster est la meilleure depuis des années : moins de plaintes, enquêtes plus rapides, et personne filmé en train de faire quelque chose de regrettable. Ce n'est pas une histoire qui fait la une, ce qui est exactement pourquoi cela aide."
+ wm_trust.10.desc_trust: "\n\n#bold La confiance du public en politique est désormais [EmptyScope.ScriptValue('wm_ui_public_trust')|0] sur 100 #!"
+ wm_trust.10.a: "Publiez tous les reçus."
+ wm_trust.10.b: "Garder la tête basse."
+ wm_trust.10.c: "Profitez-en tant que ça dure."

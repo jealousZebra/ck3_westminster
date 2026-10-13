@@ -1,0 +1,12 @@
+﻿l_german:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "Der Vorsitz ist vakant"
+ wm_speaker.1.desc: "Das Unterhaus muss einen neuen Sprecher wählen: den Abgeordneten, der Ordnung hält, Mitglieder zum Reden ruft und die Partei dauerhaft beiseitelegt. Nominierungen schließen in einer Woche; dann stimmt jeder Abgeordnete in geheimer Abstimmung ab, Runde um Runde, bis jemand mehr als die Hälfte hat.\n\nSie könnten kandidieren. Der Sprecher verlässt seine Partei und bekleidet nie wieder ein Amt, aber der Vorsitz bringt großes Ansehen."
+ wm_speaker.1.a: "Stellen Sie meinen Namen vor."
+ wm_speaker.1.a.tt: "Sie kandidieren für das Amt des Sprechers. Wenn Sie gewählt werden, verlassen Sie Ihre Partei und sitzen darüber."
+ wm_speaker.1.b: "Nicht für mich."
+ wm_speaker.2.t: "Der Sitz des Sprechers"
+ wm_speaker.2.desc: "Das Haus hat Sie nach [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] Stimmen als seinen Sprecher gewählt. Traditionell werden Sie zum Sitz gescheucht, wobei Sie Widerwillen vortäuschen. Von heute an gehören Sie keiner Partei an."
+ wm_speaker.2.a: "Ordnung! Ordnung!"
+ wm_speaker_elected_toast: "Neuer Sprecher gewählt"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] ist der neue Sprecher des Unterhauses mit [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] Stimmen von [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] nach [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] Stimmzetteln."

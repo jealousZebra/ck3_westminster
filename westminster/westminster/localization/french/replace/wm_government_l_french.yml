@@ -1,0 +1,8 @@
+﻿l_french:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Parlementaire"
+ feudal_government_adjective: "Parlementaire"
+ feudal_government_realm: "Siège parlementaire"
+ feudal_government_vassals_label: "Les [obligations|E] parlementaires[vassal_contract|E] sont définis par chaque député de base"
+ feudal_government_desc: "\n#F Les députés sont élus dans leurs circonscriptions et siègent à la Chambre des communes. Ils doivent loyauté à leur chef de parti, leurs votes dans les salles de scrutin et une part de leurs fonds de campagne; en retour le chef leur donne le fouet, un siège dans l'ombre du pouvoir et, pour quelques chanceux, un bureau.#!"
+ GAME_DATE_STRING_ERA_CE: ""

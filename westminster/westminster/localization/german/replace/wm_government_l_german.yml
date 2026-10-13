@@ -1,0 +1,8 @@
+﻿l_german:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Parlament"
+ feudal_government_adjective: "Parlament"
+ feudal_government_realm: "Parlamentssitz"
+ feudal_government_vassals_label: "Parlaments [obligations|E] werden durch die [vassal_contract|E] jedes Hinterbänklers festgelegt"
+ feudal_government_desc: "\n#F Abgeordnete werden für ihre Wahlkreise gewählt und sitzen im Unterhaus. Sie schulden ihrem Parteivorsitzenden Loyalität, ihre Stimmen in den Abstimmungsfluren und einen Teil ihrer Kampagnenmittel; im Gegenzug gibt der Vorsitzende ihnen die Peitsche, einen Sitz im Schatten der Macht und für einige Glückliche ein Büro.#!"
+ GAME_DATE_STRING_ERA_CE: ""

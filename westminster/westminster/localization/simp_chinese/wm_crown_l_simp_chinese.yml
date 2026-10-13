@@ -1,0 +1,33 @@
+﻿l_simp_chinese:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "皇冠"
+ k_wm_crown_adj: "皇家"
+ wm_dyn_royal_windsor: "温莎"
+
+ wm_crown_government: "立宪君主制"
+ wm_crown_government_adjective: "皇家"
+ wm_crown_government_realm: "皇家宫廷"
+ wm_crown_government_desc: "君主虽在位，却不执政。他们没有席位，没有附庸，几乎总是远离政治。"
+ king_wm_crown_male: "国王"
+ king_wm_crown_female: "女王"
+ kingdom_wm_crown: "皇冠"
+
+ wm_speak_out_against_mp_interaction: "公开反对议员"
+ wm_speak_out_against_mp_interaction_desc: "打破统治习惯并公开批评[recipient.GetTitledFirstName]。宫殿在有生之年从未这样做过：这会花费大量[prestige|E]，唐宁街10号将会非常生气。"
+ wm_speak_out_against_mp_interaction_toast: "王室发声"
+ wm_crown_speak_out_toast: "王室批评 [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] 已公开反对 [recipient.GetTitledFirstName]。宪法感到头痛。"
+
+ wm_crown.1.t: "来自宫殿的斥责"
+ wm_crown.1.desc: "它登在每个头版头条。[actor.GetTitledFirstName]，一直保持意见不表露的人，已经明确表达了他们对我的看法，而这看法并不讨喜。我的电话里充满了同事的留言，他们突然不能被看到与我在一起。"
+ wm_crown.1.a: "闭嘴。你不能跟宫廷吵架。"
+ wm_crown.1.b: "反击：君主应远离政治。"
+
+ wm_rebuked_by_the_crown_modifier: "被王权谴责"
+ wm_rebuked_by_the_crown_modifier_desc: "君主公开反对这位议员。"
+ wm_crown_criticism_county_modifier: "议员 被王室批评"
+ wm_crown_criticism_county_modifier_desc: "君主公开反对这个选区的议员。"
+ wm_spoken_against_by_crown_opinion: "公开反对我"
+ wm_embarrassed_party_opinion: "让党尴尬"
+ wm_crown_meddling_opinion: "干涉政治"
+ wm_hit_back_at_crown_opinion: "攻击王室"

@@ -1,0 +1,12 @@
+﻿l_korean:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "의장은 공석입니다"
+ wm_speaker.1.desc: "하원은 새로운 의장을 선출해야 합니다: 질서를 유지하고, 의원들에게 발언 기회를 주며, 당적을 무시하는 의원입니다. 지명은 일주일 후 마감되며, 그 후 모든 의원은 비밀 투표로, 라운드별로, 누군가 과반수를 얻을 때까지 투표합니다.\n\n당신이 출마할 수도 있습니다. 의장은 당을 떠나며 다시는 공직을 맡지 않지만, 의장직은 큰 명예를 가집니다."
+ wm_speaker.1.a: "내 이름을 내줘."
+ wm_speaker.1.a.tt: "당신은 의장직에 출마합니다. 선출되면 당을 떠나 그 위에 앉게 됩니다."
+ wm_speaker.1.b: "내게는 아닙니다."
+ wm_speaker.2.t: "의장석"
+ wm_speaker.2.desc: "하원은 [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] 투표 후 당신을 의장으로 선택했습니다. 전통에 따라 당신은 마지못해 의자에 끌려가게 됩니다. 오늘부터 당신은 어떤 정당에도 속하지 않습니다."
+ wm_speaker.2.a: "질서! 질서!"
+ wm_speaker_elected_toast: "새 의장 선출"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName]는 [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] 투표 후 [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] 표 [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] 얻은 새로운 하원 의장입니다."

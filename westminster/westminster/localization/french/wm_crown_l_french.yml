@@ -1,0 +1,33 @@
+﻿l_french:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Couronne"
+ k_wm_crown_adj: "Royal"
+ wm_dyn_royal_windsor: "Windsor"
+
+ wm_crown_government: "Monarchie constitutionnelle"
+ wm_crown_government_adjective: "Royal"
+ wm_crown_government_realm: "Maison royale"
+ wm_crown_government_desc: "Le monarque règne mais ne gouverne pas. Il n'a aucun siège, n'a pas de vassaux et reste presque toujours en dehors de la politique."
+ king_wm_crown_male: "King"
+ king_wm_crown_female: "Reine"
+ kingdom_wm_crown: "Couronne"
+
+ wm_speak_out_against_mp_interaction: "S’exprimer contre le député"
+ wm_speak_out_against_mp_interaction_desc: "Briser l'habitude d'un règne et critiquer [recipient.GetTitledFirstName] en public. Le Palais ne l'a pas fait de mémoire vivante : cela coûte énormément de [prestige|E], et le 10 Downing Street sera furieux."
+ wm_speak_out_against_mp_interaction_toast: "Le Palais s'exprime"
+ wm_crown_speak_out_toast: "Le Palais critique [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] s’est exprimé contre [recipient.GetTitledFirstName]. La constitution a mal à la tête."
+
+ wm_crown.1.t: "Un réprimande du palais"
+ wm_crown.1.desc: "C'est à la une de tous les journaux. [actor.GetTitledFirstName], qui a passé sa vie à garder ses opinions pour lui, a fait savoir exactement ce qu'il pense de moi, et ce n'est pas flatteur. Mon téléphone est plein de messages de collègues qui ne peuvent soudainement plus être vus avec moi."
+ wm_crown.1.a: "Mords ta langue. Tu ne te disputes pas avec le Palais."
+ wm_crown.1.b: "Riposter : le monarque doit rester en dehors de la politique."
+
+ wm_rebuked_by_the_crown_modifier: "Réprimandé par la Couronne"
+ wm_rebuked_by_the_crown_modifier_desc: "Le monarque s'est exprimé publiquement contre ce député."
+ wm_crown_criticism_county_modifier: "Député critiqué par la Couronne"
+ wm_crown_criticism_county_modifier_desc: "Le monarque s'est exprimé contre le député de ce siège."
+ wm_spoken_against_by_crown_opinion: "S’est exprimé contre moi"
+ wm_embarrassed_party_opinion: "Embarrassé le parti"
+ wm_crown_meddling_opinion: "Interféré en politique"
+ wm_hit_back_at_crown_opinion: "Attaqué la Couronne"

@@ -1,0 +1,12 @@
+﻿l_simp_chinese:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "该职位空缺"
+ wm_speaker.1.desc: "下议院必须选出一位新的议长：负责维持秩序、召集议员发言，并完全抛开党派利益的议员。提名将在一周后截止；然后每位议员将通过多轮秘密投票，直至某人获得超过半数票数。\n\n你可以参选。议长离开其原党派，并且再也不担任任何公职，但议长席位具有极高的威望。"
+ wm_speaker.1.a: "提名自己。"
+ wm_speaker.1.a.tt: "你竞选议长。如果当选，你将离开你的政党并置身于其之上。"
+ wm_speaker.1.b: "不是对我。"
+ wm_speaker.2.t: "议长席"
+ wm_speaker.2.desc: "在 [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] 张选票之后，下议院选你为议长。按照惯例，你会被拖到议长席位上，装作不情愿。从今天起，你不属于任何政党。"
+ wm_speaker.2.a: "秩序！秩序！"
+ wm_speaker_elected_toast: "新议长当选"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] 是下议院的新议长，在 [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] 张选票之后获得了 [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] 张票中的 [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] 票。"

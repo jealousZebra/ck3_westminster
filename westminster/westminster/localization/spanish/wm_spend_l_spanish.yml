@@ -1,0 +1,52 @@
+﻿l_spanish:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "Financiar una campaña de prensa"
+ wm_spend_press_decision_desc: "Compra anuncios, patrocina informes de grupos de expertos y mantén a los columnistas amigables abastecidos con historias. Una campaña sobre tu partido y sus políticas, pagada cada mes.\n\nCuesta aproximadamente #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#! fondos al mes (30% de tus ingresos). La campaña de un líder de partido eleva al partido alrededor de 0.15 puntos al mes, situándose aproximadamente 3 puntos por encima de donde estaría; la de un parlamentario subordinado logra una quinta parte."
+ wm_spend_press_decision_tooltip: "Gastar dinero para subir a su partido en las encuestas."
+ wm_spend_press_decision_confirm: "Firmar los cheques"
+ wm_spend_press_decision_effect_tt: "Cada mes pagas el 30% de tus ingresos y la encuesta de tu partido sube. La campaña dura hasta un año, o hasta que la detengas o se acaben los fondos."
+ wm_spend_not_campaigning_tt: "Usted no está pagando por una campaña"
+ wm_spend_press_afford_tt: "Puede pagar el primer mes ([GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1] Fondos)"
+ wm_spend_smear_afford_tt: "Puede pagar el primer mes ([GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1] Fondos)"
+
+ wm_spend_smear_decision: "Financiar una campaña difamatoria"
+ wm_spend_smear_decision_desc: "Anuncios de ataque, unidades de refutación y un goteo constante de historias poco halagadoras sobre el récord de un partido rival y sus cifras. Nunca la vida privada de nadie: el objetivo es el partido y sus políticas.\n\nCuesta aproximadamente #bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#! Fondos al mes (40 % de sus ingresos). La campaña de un líder resta alrededor de 0.2 puntos al mes al rival, la de un backbencher una cuarta parte de eso. Agota la confianza pública, y cada mes hay un #N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#! de probabilidad de que salga mal (menos para un buen estratega): su propio partido pierde un punto, la confianza disminuye, el líder rival le guarda resentimiento y la prensa mantiene la historia."
+ wm_spend_smear_decision_tooltip: "Gastar dinero para perjudicar a un partido rival. Puede salir mal."
+ wm_spend_smear_decision_confirm: "Elige un Objetivo"
+ wm_spend_smear_decision_effect_tt: "Elige el partido rival. Cada mes pagas el 40% de tus ingresos, sus encuestas caen y la confianza pública disminuye, y la campaña puede tener un efecto adverso."
+
+ wm_spend_stop_decision: "Detener el gasto en campañas"
+ wm_spend_stop_decision_desc: "Cancela los anuncios y deja de pagar por tu campaña."
+ wm_spend_stop_decision_tooltip: "Termina tu campaña de prensa o de difamación."
+ wm_spend_stop_decision_confirm: "Cancelar"
+ wm_spend_stop_decision_effect_tt: "Su campaña termina y deja de pagar por ella."
+
+ wm_spend_favour_decision: "Llamar un Favor"
+ wm_spend_favour_decision_desc: "Años de acuerdos discretos entre las oficinas de los whips han dejado a un partido rival en deuda contigo: un acuerdo de emparejamiento respetado, un asiento en un comité intercambiado, una votación entregada cuando importaba. Gasta parte de tu capital político para asegurarte de que su líder lo recuerde."
+ wm_spend_favour_decision_tooltip: "Gastar capital político por un favor que debe el líder de un partido rival."
+ wm_spend_favour_decision_confirm: "Tomar la Decisión"
+ wm_spend_favour_decision_effect_tt: "Elige al líder de un partido rival: obtienes un gancho de #bold Favor#! sobre ellos."
+ wm_spend_favour_rival_tt: "Otro partido tiene un líder"
+
+ wm_spend.10.t: "La Campaña de Ataque"
+ wm_spend.10.desc: "La agencia tiene los anuncios listos y los investigadores han revisado cada coste y cada promesa incumplida. ¿De qué partido vamos a investigar el historial?"
+ wm_spend.10.a: "El [wm_spend_party_1.GetNameNoTier]."
+ wm_spend.10.b: "El [wm_spend_party_2.GetNameNoTier]."
+ wm_spend.10.c: "El [wm_spend_party_3.GetNameNoTier]."
+ wm_spend.10.d: "Pensándolo bien, mantengámoslo limpio."
+
+ wm_spend.20.t: "Un Favor Debido"
+ wm_spend.20.desc: "Tu Látigo en Jefe tiene una lista de todos los favores que los otros partidos nos deben. ¿A cuál de sus líderes se le debe recordar?"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName] del [wm_spend_party_1.GetNameNoTier]."
+ wm_spend.20.b: "[wm_spend_rival_2.GetName] del [wm_spend_party_2.GetNameNoTier]."
+ wm_spend.20.c: "[wm_spend_rival_3.GetName] del [wm_spend_party_3.GetNameNoTier]."
+
+ wm_spend_ended_toast: "Fin de la campaña"
+ wm_spend_ended_toast_desc: "Su campaña pagada ha terminado: se acabó el año, se acabó el dinero o su objetivo ha desaparecido."
+ wm_spend_backfire_toast: "TRUCOS SUCIOS EXPUESTOS"
+ wm_spend_backfire_toast_desc: "Se ha rastreado una campaña de difamación contra el [wm_spend_target_party.GetNameNoTier] hasta [wm_spend_spender.GetName]. Su partido pierde un punto en las encuestas y la confianza pública recibe otro golpe."
+
+ wm_secret_smear_campaign: "Campaña de difamación"
+ wm_secret_smear_campaign_type_desc: "Pagado por una campaña de difamación"
+ wm_secret_smear_campaign_desc: "Pagado por una campaña de difamación contra un partido rival"
+ wm_secret_smear_campaign_tooltip_desc: "Este personaje pagó por una campaña difamatoria contra un partido rival, y la prensa puede probarlo."

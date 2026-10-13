@@ -1,0 +1,28 @@
+﻿l_polish:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "Rozwiązanie parlamentu"
+ wm_election_dissolution_toast_desc: "Premier był w Pałacu, a Parlament został rozwiązany. Każde miejsce jest do zdobycia: dzień głosowania za pięć tygodni."
+
+ wm_election_results.1.a: "Przeczytaj wszystko o tym."
+ wm_election_results_intro_hold: "#italic Noc wyników#!\n\nWyborcy się wypowiedzieli: #bold [wm_el_seats|0]#! z 650 mandatów dla [wm_el_party.GetNameNoTier], co daje większość w wysokości [wm_el_majority|0]. [wm_el_pm.GetName] pozostaje w Downing Street z nowym mandatem.\n"
+ wm_election_results_intro_change: "#italic Noc wyników#!\n\nWyborcy się wypowiedzieli: #bold [wm_el_seats|0]#! z 650 mandatów dla [wm_el_party.GetNameNoTier], a [wm_el_pm.GetName] jest nowym premierem. Furgony do przeprowadzek już stoją przed numerem 10.\n"
+ wm_election_results_intro_hung: "#italic Noc wyników#!\n\nŻadna partia nie ma większości. Największa jest [wm_el_party.GetNameNoTier] z #bold [wm_el_seats|0]#! mandatami, co jest mniej niż potrzebne 326, a [wm_el_pm.GetName] spróbuje rządzić bez większości.\n"
+ wm_election_results_table: "\n#bold Mandaty (zmiana) #!"
+ wm_election_results_my_seat_held: "\n\n#bold Twoje miejsce:#! uzyskałeś [wm_my_seat.GetNameNoTier] z [wm_my_share|1]% głosów, większość o [wm_my_majority|1] punktów."
+ wm_election_results_my_seat_lost: "\n\n#bold Twoje miejsce:#! wyborcy z [wm_my_lost_seat.GetNameNoTier] Cię odrzucili. [wm_my_lost_seat.GetHolder.GetName] jest ich nowym MP, a Ty jesteś poza zielonymi ławkami."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "Wybory uzupełniające: [wm_by_party.GetAdjective] Utrzymanie"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] utrzymało [wm_by_seat.GetNameNoTier] [wm_by_party.GetNameNoTier] w wyborach uzupełniających."
+ wm_byelection_gain_toast: "Wybory uzupełniające: [wm_by_party.GetAdjective] Zysk"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] wygrał [wm_by_seat.GetNameNoTier] dla [wm_by_party.GetNameNoTier] w wyborach dodatkowych, zysk, który znajdzie się na pierwszych stronach gazet jutro."
+
+ wm_election_call_decision: "Ogłosić wybory powszechne"
+ wm_election_call_decision_desc: "Poproś monarchę o rozwiązanie parlamentu i przejazd na wieś. Każdy mandat będzie rozgrywane w nastroju narodowym: partia rządu zdobywa [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%, z przewagą [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] punktów nad najlepiej spozycjonowanym rywalem (negatywnie oznacza tyle). Parlament obraduje od [EmptyScope.ScriptValue('wm_election_months_sat')|0] miesięcy; musi stawić czoła wyborcom w ciągu pięciu lat."
+ wm_election_call_decision_tooltip: "Jedź na wieś, gdy sondaże są przychylne, lub zanim się odwrócą."
+ wm_election_call_decision_confirm: "Rozwiązać parlament"
+ wm_election_call_decision_not_scheduled_tt: "Wybory powszechne nie zostały jeszcze ogłoszone."
+ wm_election_call_decision_min_months_tt: "Parlament obraduje od co najmniej sześciu miesięcy"
+ wm_election_call_decision_effect_tt: "Parlament zostaje rozwiązany, a #bold wybory powszechne#! odbywają się za pięć tygodni. Mandaty, które zmieniają właściciela, przechodzą na nowych posłów, a przywódca największej partii zostaje Premierem."

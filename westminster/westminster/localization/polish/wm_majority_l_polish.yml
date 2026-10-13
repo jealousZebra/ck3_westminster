@@ -1,0 +1,16 @@
+﻿l_polish:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "RZĄD TRACI WIĘKSZOŚĆ"
+ wm_majority.1.desc: "#italic Westminster#!\n\nAfter a run of by-election defeats and defections, [wm_majority_pm.GetName]'s government can no longer count on a majority in the House of Commons. The whips' arithmetic now puts it [EmptyScope.ScriptValue('wm_sc_short_by')|0] votes short of winning a division on its own.\n\nThe Opposition smells blood: a motion of no confidence is expected as soon as the House has time for it."
+ wm_majority.1.a_pm: "Rządziliśmy posiadając mniej."
+ wm_majority.1.a: "Koniec pewnej ery?"
+ wm_majority.2.t: "Rząd nie ma większości"
+ wm_majority.2.desc: "Liczby w końcu się zmieniły. [wm_majority_pm.GetName] nie może już dowodzić większością w Izbie, a korytarze pełne są rozmów o wotum nieufności.\n\n Jako Lider Opozycji, kolejny ruch należy do ciebie. Wnieś teraz propozycję wotum nieufności, a jeśli rząd upadnie, odbędą się wybory powszechne."
+ wm_majority.2.a: "Przedstawić wniosek o wotum nieufności."
+ wm_majority.2.b: "Jeszcze nie. Niech się duszą."
+ wm_majority_losing_run_toast: "kolejna porażka numer 10 w wyborach uzupełniających"
+ wm_majority_losing_run_toast_desc: "Rząd teraz przegrał [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0] wyborami uzupełniającymi z rzędu, a koledzy [wm_majority_pm.GetName] zaczynają liczyć. Większość robocza spadła do [EmptyScope.ScriptValue('wm_majority_value')|0]."
+ wm_majority_byelection_blues_modifier: "Smutek po wyborach uzupełniających"
+ wm_majority_byelection_blues_modifier_desc: "Dwie kolejne porażki w wyborach uzupełniających osłabiły autorytet tego premiera."
+ wm_majority_losing_streak_modifier: "Seria porażek"
+ wm_majority_losing_streak_modifier_desc: "Jedne wybory uzupełniające za drugimi były przeciwko rządowi, a jego własni posłowie tylnych ław zastanawiają się, kto powinien poprowadzić ich do następnych wyborów."

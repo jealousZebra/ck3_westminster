@@ -1,0 +1,34 @@
+﻿l_polish:
+ # Westminster: vanilla's intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt,
+ # tools/data/build_safeguards.py). These keys are vanilla's; build_terms.py must not write them.
+
+ # Fabricate a Scandal (fabricate_hook)
+ fabricate_hook: "Sfałszuj skandal"
+ fabricate_hook_action: "Sfałszuj skandal dotyczący"
+ fabricate_hook_desc: "Wydobądź lub dopraw historię, której [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] wolałby nigdy nie zobaczyć w druku"
+ fabricate_hook_desc_general: "[scheme|E], aby wykopać lub ubarwić szkodliwą historię o polityku. Sukces daje [hook|E] wobec niego i samej historii, [secret|E], które możesz ujawnić prasie lub użyć jako sposób nacisku na niego. Każde prawdziwe wykroczenie, które się pojawi, również staje się Twoje."
+ fabricate_hook_interaction: "Sfałszuj skandal #weak (Schemat)#!"
+ fabricate_hook_interaction_desc: "Szukaj historii, która zawstydziłaby [recipient.GetShortUINameNoTooltip], lub stwórz ją. Sukces daje [hook|E] na [recipient.GetHerHim] i historię do wycieku."
+ fabricate_hook_interaction_toast: "Fałszowanie skandalu"
+ fabricate_hook_scheme_invalidated_title: "Koniec fałszowania skandalu"
+ FABRICATE_HOOK_SUCCESS_DESC: "Zyskujesz [hook|E] na [TARGET_CHARACTER.GetShortUIName] oraz historię do ujawnienia"
+ FABRICATE_HOOK_DISCOVERY_DESC: "[TARGET_CHARACTER.GetShortUIName|U] dowiaduje się, kto szukał"
+
+ # An affair (seduce): fictional characters only
+ seduce: "Romans"
+ seduce_action: "Rozpocznij romans z"
+ seduce_desc: "Późne głosy, długie kolacje i pojedyncze ciche słowo na korytarzu: [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip] i ja zbliżamy się do siebie."
+ seduce_desc_general: "[personal_scheme|E], aby kogoś pozyskać i uczynić go swoim [lover|E]. Możliwe tylko z fikcyjnymi postaciami: nigdy prawdziwą osobą z zakładki, członkiem rodziny królewskiej ani kimkolwiek poniżej 18 roku życia.\n\nWiele czynników decyduje o [success_chance|E], w tym [opinion|E], kompatybilność [trait|E] i status [marriage|E]. Jeśli któreś z Was jest w związku małżeńskim, staje się to [secret|E], które prasa pokochalaby."
+ seduce_interaction: "Rozpocznij romans #weak (Intryga)#!"
+ seduce_interaction_notification: "Romans"
+ scheme_interaction_tt_seduce_approved: "Spróbuj zdobyć [recipient.GetShortUINameNoTooltip] i uczynić z [recipient.GetHerHim] swoje [lover|E]"
+ SEDUCE_SUCCESS_DESC: "[TARGET_CHARACTER.GetShortUIName|U] staje się twoim [lover|E]"
+ seduce_invalid: "Przestaję ścigać [target.GetShortUIName], ponieważ nie możemy już stać się [lovers|E]."
+ seduce_invalidated_title: "@personal_scheme_icon! Romans Kończy Się Zanim Zacznie"
+
+ # Leak to the Press (expose_secret_interaction) and Threaten to Leak (blackmail_interaction)
+ expose_secret_interaction: "Wyciec do prasy"
+ expose_secret_interaction_desc: "Daj gazetom materiał o [recipient.GetShortUINameNoTooltip]. [recipient.GetHerHis|U] Profil, [recipient.GetHerHis] sondaż partii i zaufanie publiczne do polityki ucierpią, a wszelkie [hooks|E], które [secret|E] dał, zostaną utracone. Można ujawniać tylko sekrety polityczne."
+ blackmail_interaction: "Zagrozić ujawnieniem"
+ blackmail_interaction_desc: "Wykorzystaj polityczny [secret|E], który posiadasz, by zdobyć [hook|E]: milcz, a [recipient.GetShortUINameNoTooltip] ci coś winien"
+ blackmail_decline_summary: "@warning_icon! #X Jeśli [recipient.GetShortUINameNoTooltip] odmówi, możesz przekazać tę historię prasie! #!"

@@ -1,0 +1,8 @@
+﻿l_simp_chinese:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "国会的"
+ feudal_government_adjective: "国会的"
+ feudal_government_realm: "国会席位"
+ feudal_government_vassals_label: "国会[obligations|E]由每位后座议员的[vassal_contract|E]设定"
+ feudal_government_desc: "\n#F 国会议员为其选区当选，并在下议院任职。他们对党领袖忠诚，在分组投票中投票，并分享一部分竞选资金；作为回报，领导者给予鞭策、权力阴影下的席位，以及少数幸运者的官职。#!"
+ GAME_DATE_STRING_ERA_CE: ""

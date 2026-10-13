@@ -1,0 +1,8 @@
+﻿l_polish:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Parlamentarny"
+ feudal_government_adjective: "Parlamentarny"
+ feudal_government_realm: "Mandat parlamentarny"
+ feudal_government_vassals_label: "[obligations|E] Parlamentarne są ustalane przez każdego posła [vassal_contract|E]"
+ feudal_government_desc: "\n#F Posłowie są wybierani dla swoich okręgów i zasiadają w Izbie Gmin. Są lojalni wobec swojego lidera, oddają głosy w kuluarach głosowań i dzielą się częścią swoich funduszy kampanii; w zamian lider daje im bat, miejsce w cieniu władzy i, dla nielicznych szczęśliwców, urząd. #!"
+ GAME_DATE_STRING_ERA_CE: ""

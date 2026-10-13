@@ -1,0 +1,16 @@
+﻿l_german:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "REGIERUNG VERLIERT IHRE MEHRHEIT"
+ wm_majority.1.desc: "#italic Westminster#!\n\nA Nach einer Reihe von Niederlagen bei Nachwahlen und Überläufen kann die Regierung [wm_majority_pm.GetName] nicht mehr auf eine Mehrheit im Unterhaus zählen. Die Arithmetik der Whips bringt sie nun [EmptyScope.ScriptValue('wm_sc_short_by')|0] Stimmen davon entfernt, eine Wahlkreis zu gewinnen. \n\nDe Opposition riecht Blut: Ein Misstrauensantrag wird erwartet, sobald das Haus Zeit dafür hat."
+ wm_majority.1.a_pm: "Wir haben mit weniger regiert."
+ wm_majority.1.a: "Das Ende einer Ära?"
+ wm_majority.2.t: "Die Regierung hat keine Mehrheit"
+ wm_majority.2.desc: "Die Zahlen haben sich endlich gedreht. [wm_majority_pm.GetName] kann keine Mehrheit mehr im Haus erreichen, und die Lobby ist voller Gespräche über ein Vertrauensvotum. \n\nA Oppositionsführer, der nächste Schritt ist Ihrer. Legen Sie jetzt ein Misstrauensvotum ein, und falls die Regierung fällt, gibt es Parlamentswahlen."
+ wm_majority.2.a: "Einen Misstrauensantrag einbringen."
+ wm_majority.2.b: "Noch nicht. Lass sie schmoren."
+ wm_majority_losing_run_toast: "Eine weitere Niederlage bei einer Nachwahl für Nummer 10"
+ wm_majority_losing_run_toast_desc: "Die Regierung hat nun die [EmptyScope.ScriptValue('wm_majority_loss_run_value')|0]-Nachwahlen in Folge verloren, und die Kollegen von [wm_majority_pm.GetName] beginnen zu zählen. Die regierende Mehrheit ist auf [EmptyScope.ScriptValue('wm_majority_value')|0] gesunken."
+ wm_majority_byelection_blues_modifier: "Nachwahl-Blues"
+ wm_majority_byelection_blues_modifier_desc: "Zwei aufeinanderfolgende Niederlagen bei Nachwahlen haben die Autorität dieses Premierministers geschwächt."
+ wm_majority_losing_streak_modifier: "Niederlagenserie"
+ wm_majority_losing_streak_modifier_desc: "Wahl nach Wahl ist gegen die Regierung ausgefallen, und ihre eigenen Hinterbänkler fragen sich, wer sie in die nächste Wahl führen sollte."

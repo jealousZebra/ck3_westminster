@@ -1,0 +1,52 @@
+﻿l_japanese:
+ # Campaign spending (common/scripted_effects/wm_spend_effects.txt)
+ wm_spend_press_decision: "プレスキャンペーンに資金提供"
+ wm_spend_press_decision_desc: "広告を買い、シンクタンクの報告をスポンサーし、親切なコラムニストにストーリーを提供し続ける。党とその政策に関するキャンペーンを毎月支払う。\n\nitの費用は月に約#bold [GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]#!ファンド(収入の30%)。党首のキャンペーンは党を月に約0.15ポイント引き上げ、約3ポイント上回る。バックベンチャー議員のキャンペーンはその5分の1。"
+ wm_spend_press_decision_tooltip: "党の支持率を高めるためにお金を使う。"
+ wm_spend_press_decision_confirm: "小切手に署名する"
+ wm_spend_press_decision_effect_tt: "毎月、収入の30％を支払うと、あなたの党の支持率が上がります。キャンペーンは最長1年間実施されるか、あなたが停止するか、資金が尽きるまで続きます。"
+ wm_spend_not_campaigning_tt: "あなたはすでにキャンペーンに支払っていません。"
+ wm_spend_press_afford_tt: "あなたは最初の月（[GetPlayer.MakeScope.ScriptValue('wm_spend_press_cost')|1]資金）を支払う余裕があります。"
+ wm_spend_smear_afford_tt: "あなたは最初の月（[GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]資金）を支払う余裕があります。"
+
+ wm_spend_smear_decision: "連続中傷キャンペーンに資金提供"
+ wm_spend_smear_decision_desc: "攻撃広告、反論ユニット、そして対立政党の実績や財務に関する不利な話題の持続的な供給。誰かの私生活は決してターゲットにせず、ターゲットは政党とその政策です。\n\n費用は月に約#bold [GetPlayer.MakeScope.ScriptValue('wm_spend_smear_cost')|1]#!資金かかります（収入の40％）。党首のキャンペーンは競合相手から毎月約0.2ポイント減らし、バックベンチャーはその4分の1です。これは公衆の信頼を削ぎ、毎月#N [GetPlayer.MakeScope.ScriptValue('wm_spend_backfire_chance')|0]%#!の確率で逆効果になる可能性があります（優れた策略家の場合は低確率）：自党の支持率が1ポイント減り、信頼が低下し、対立党首はあなたに憤慨し、報道はその話題を取り上げ続けます。"
+ wm_spend_smear_decision_tooltip: "対立する政党を引きずり下ろすためにお金を使うこと。それは裏目に出ることもある。"
+ wm_spend_smear_decision_confirm: "目標を選択"
+ wm_spend_smear_decision_effect_tt: "対立政党を選択。毎月、収入の40％を支払い、彼らの世論調査は下落し、公共の信頼も下がり、キャンペーンは逆効果になる場合があります。"
+
+ wm_spend_stop_decision: "選挙資金停止"
+ wm_spend_stop_decision_desc: "広告をキャンセルし、キャンペーンの支払いをやめてください。"
+ wm_spend_stop_decision_tooltip: "報道や中傷キャンペーンを終わらせてください。"
+ wm_spend_stop_decision_confirm: "キャンセルして"
+ wm_spend_stop_decision_effect_tt: "キャンペーンが終了し、支払いをやめる。"
+
+ wm_spend_favour_decision: "頼みを込めて"
+ wm_spend_favour_decision_desc: "幹事同士の静かな取引が長年続いた結果、ライバル政党に借りを負わせた。ペアリングの取り決めは守られ、委員会の席は交換され、重要な時に投票が行われた。政治的資本の一部を使って、その党首にそれを覚えてもらうようにしなさい。"
+ wm_spend_favour_decision_tooltip: "対立する政党の指導者に借りがある借金のために政治的資本を使うこと。"
+ wm_spend_favour_decision_confirm: "電話をかけて"
+ wm_spend_favour_decision_effect_tt: "対立政党の党首を選択：彼らに対する#bold 好意#!のフックを獲得します。"
+ wm_spend_favour_rival_tt: "別の党にもリーダーがいる"
+
+ wm_spend.10.t: "攻撃キャンペーン"
+ wm_spend.10.desc: "代理店は広告を用意していて、研究者たちはすべての原価計算と破棄した約束を徹底的に調べている。どの政党の記録を追及すべきか?"
+ wm_spend.10.a: "[wm_spend_party_1.GetNameNoTier]。"
+ wm_spend.10.b: "[wm_spend_party_2.GetNameNoTier]。"
+ wm_spend.10.c: "[wm_spend_party_3.GetNameNoTier]。"
+ wm_spend.10.d: "振り返ってみると、きれいにしておこう。"
+
+ wm_spend.20.t: "借りがある"
+ wm_spend.20.desc: "あなたのチーフ・ウィップは、他の政党が私たちに借りているすべての恩恵のリストを持っている。彼らの指導者のうち、どの人物に思い出させるべきだ?"
+ wm_spend.20.a: "[wm_spend_rival_1.GetName] は [wm_spend_party_1.GetNameNoTier] の。"
+ wm_spend.20.b: "[wm_spend_rival_2.GetName] は [wm_spend_party_2.GetNameNoTier] の。"
+ wm_spend.20.c: "[wm_spend_rival_3.GetName] は [wm_spend_party_3.GetNameNoTier] の。"
+
+ wm_spend_ended_toast: "キャンペーン終了"
+ wm_spend_ended_toast_desc: "あなたの有料キャンペーンは終了しました:1年が終わったか、資金が尽きたか、ターゲットが消えたかのどちらかです。"
+ wm_spend_backfire_toast: "汚い手口が暴かれる"
+ wm_spend_backfire_toast_desc: "[wm_spend_target_party.GetNameNoTier]に対する中傷キャンペーンが[wm_spend_spender.GetName]に遡ることが判明しました。彼らの党は世論調査で1ポイント下がり、国民の信頼は再び打撃を受けました。"
+
+ wm_secret_smear_campaign: "中傷キャンペーン"
+ wm_secret_smear_campaign_type_desc: "中傷キャンペーンに資金を出した"
+ wm_secret_smear_campaign_desc: "対立政党に対する中傷キャンペーンのために資金を出した"
+ wm_secret_smear_campaign_tooltip_desc: "このキャラクターはライバル党に対する中傷キャンペーンに資金を支払い、報道機関がそれを証明できる。"

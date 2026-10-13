@@ -1,0 +1,82 @@
+﻿l_spanish:
+ # Intrigue in political dress (common/scripted_effects/wm_intrigue_effects.txt). Generic and fictional: nothing here
+ # describes a real person's private life.
+
+ # Plot to Oust (scheme wm_intrigue_oust)
+ wm_intrigue_oust: "Trama para destituir"
+ wm_intrigue_oust_action: "Trama para destituir"
+ wm_intrigue_oust_desc: "Estoy contando silenciosamente cabezas en contra de [SCHEME.GetTargetCharacter.GetShortUINameNoTooltip]. Cuando suficientes colegas estén listos para actuar, se presenta el desafío."
+ wm_intrigue_oust_desc_general: "Un [scheme|E] para alinear a los colegas contra el líder de su propio partido. Si tiene éxito, la trama surge como un desafío formal de liderazgo con usted en la boleta: los diputados del partido nominan y sus miembros deciden. Nunca elimina a nadie por sí sola.\n\nSi fracasa y se descubre, el líder no lo olvidará."
+ WM_INTRIGUE_OUST_SUCCESS_DESC: "Un desafío de liderazgo contra [TARGET_CHARACTER.GetShortUIName], con usted en la papeleta."
+ WM_INTRIGUE_OUST_LOST_GROUND: "El partido perdió terreno en las últimas elecciones"
+ WM_INTRIGUE_OUST_LOW_TRUST: "La confianza pública en la política está en el suelo"
+ WM_INTRIGUE_OUST_PLOTTER_PROFILE: "Tu Perfil"
+ WM_INTRIGUE_OUST_LEADER_PROFILE: "El Perfil del Líder"
+ WM_INTRIGUE_OUST_CHIEF_WHIP: "El líder del Partido del Líder está observando"
+ wm_intrigue_oust_not_leader: "[target.GetShortUIName|U] debe liderar tu partido."
+ wm_intrigue_oust_invalidated_title: "Fin de la trama para destituir"
+ wm_intrigue_oust_invalidated_desc: "La conspiración contra [target.GetShortUIName] se ha desmoronado: el liderazgo ha cambiado de manos, ya hay un concurso en curso, o los conspiradores se han dispersado."
+ wm_intrigue_oust_interaction: "Trama para destituir a #weak (Esquema)#!"
+ wm_intrigue_oust_interaction_desc: "Formar discretamente a colegas contra [recipient.GetShortUINameNoTooltip]. Si el complot tiene éxito, se convierte en un desafío de liderazgo con usted en la papeleta."
+ wm_intrigue_oust_interaction_toast: "Tramar para destituir"
+
+ # An affair (seduce) and Leak to the Press (expose_secret_interaction, blackmail_interaction)
+ wm_intrigue_affair_fictional_only: "[target.GetShortUIName|U] está fuera de límites: los asuntos son posibles solo con personajes ficticios, nunca con una persona real del marcador, la familia real o alguien menor de 18 años"
+ wm_intrigue_not_leakable: "La prensa no publicaría esto: solo los secretos políticos pueden filtrarse."
+ wm_intrigue_leak_toast: "La Historia se Desarrolla"
+ wm_intrigue_leak_toast_desc: "Tu historia sobre [recipient.GetShortUIName] está en las portadas. [recipient.GetHerHis|U] Perfil, la encuesta de [recipient.GetHerHis] partido y la confianza pública en la política se ven afectadas."
+
+ # The story a successful Fabricate a Scandal leaves behind (secret wm_secret_intrigue_story)
+ wm_secret_intrigue_story: "Una Historia Dañina"
+ wm_secret_intrigue_story_desc: "Una historia perjudicial sobre [CHARACTER.GetShortUIName], lista para publicarse"
+ wm_secret_intrigue_story_type_desc: "Una historia perjudicial, verdadera o no, que los periódicos publicarían"
+ wm_secret_intrigue_story_tooltip_desc: "Alguien tiene una historia perjudicial sobre este político. Ya sea verdad o no, los periódicos la publicarían."
+
+ # Opinions
+ wm_intrigue_caught_digging_opinion: "Sorprendido cavando información"
+ wm_intrigue_caught_plotting_opinion: "Sorprendido conspirando contra mí"
+ wm_intrigue_leaked_opinion: "Filtraron una historia sobre mí"
+
+ # wm_intrigue.1: the moment to act
+ wm_intrigue.1.t: "El Momento de Actuar"
+ wm_intrigue.1.desc_scandal: "Mi gente ha pasado semanas en el pasado de [target.GetShortUINamePossessive]: viejas entrevistas, reclamaciones de gastos, un antiguo asistente con un rencor. Hay algo aquí, o algo que puede hacerse parecer como tal.\n\nPuedo actuar ahora, o seguir investigando y esperar algo mejor."
+ wm_intrigue.1.desc_affair: "Las votaciones tardías, las bebidas en la terraza, las largas conversaciones en el pasillo: [target.GetShortUIName] y yo nos hemos acercado.\n\nPodría hacer evidente mis sentimientos ahora, o dejar que las cosas sigan su curso un poco más."
+ wm_intrigue.1.desc_oust: "Los números se están consolidando. Colegas que antes no decían nada ahora dicen \"si llegara a eso\". La cuestión es si ha llegado a eso.\n\nPuedo decir [target.GetShortUIName] que el desafío está en marcha, o seguir contando cabezas."
+ wm_intrigue.1.a: "Ahora."
+ wm_intrigue.1.a.tt: "Lanza el [scheme|E] de [success_chance|E]. Si falla, puede ser descubierto."
+ wm_intrigue.1.b: "Todavía no."
+ wm_intrigue.1.b.tt: "El [scheme|E] continúa."
+
+ # wm_intrigue.2: how it went
+ wm_intrigue.2.t_success: "Funcionó"
+ wm_intrigue.2.t_caught: "Descubrí"
+ wm_intrigue.2.t_failed: "Nada que hacer"
+ wm_intrigue.2.desc_scandal_success: "La historia se sostiene, o lo suficientemente cerca. Un borrador de titular está en una carpeta sobre mi escritorio, y [target.GetShortUIName] sabe que podría enviarlo a una sala de redacción cuando yo quiera. \n\n Podría filtrarlo, o simplemente hacerle saber a [target.GetHerHim] que lo tengo."
+ wm_intrigue.2.desc_affair_success: "Lejos de las cámaras y de las campanas de división, [target.GetShortUIName] y yo nos hemos convertido en algo más que colegas. Por ahora, es nuestro secreto."
+ wm_intrigue.2.desc_oust_success: "Las cartas han llegado. Para la mañana, todo Westminster sabrá: el partido elegirá entre [target.GetShortUIName] y yo."
+ wm_intrigue.2.desc_scandal_caught: "El exasistente fue directamente a [target.GetShortUIName]. No hay historia, pero ahora hay un político que sabe exactamente quién fue a buscar uno."
+ wm_intrigue.2.desc_affair_caught: "[target.GetShortUIName] me rechazó, amablemente pero con firmeza, y el chisme del pasillo llegó antes que yo."
+ wm_intrigue.2.desc_oust_caught: "Uno de mis compañeros habló. [target.GetShortUIName] sabe del complot, y los látigos han sido advertidos de vigilarme."
+ wm_intrigue.2.desc_scandal_failed: "Cada pista se enfrió. Sea lo que [target.GetShortUIName] haya hecho, no saldrá en los periódicos esta vez."
+ wm_intrigue.2.desc_affair_failed: "[target.GetShortUIName] no sentía lo mismo. Seremos colegas, nada más."
+ wm_intrigue.2.desc_oust_failed: "Cuando llegó el momento, demasiados colegas perdieron el valor. La trama ha terminado, y nadie necesitará saber jamás que existió."
+ wm_intrigue.2.a: "Excelente."
+ wm_intrigue.2.b: "Que así sea."
+
+ # wm_intrigue.3: found out
+ wm_intrigue.3.t: "Alguien ha estado ocupado"
+ wm_intrigue.3.desc_scandal: "Un ex miembro de mi equipo llamó esta mañana. [owner.GetShortUIName|U] ha estado haciendo preguntas sobre mí: antiguos reclamos, viejos amigos, cualquier cosa que pueda avergonzarme. No encontraron nada, pero recordaré quién buscó."
+ wm_intrigue.3.desc_affair: "[owner.GetShortUIName|U] me insinuó algo, y toda la sala de té parece saberlo. Dejé mi respuesta clara."
+ wm_intrigue.3.desc_oust: "Un diputado leal me llevó aparte: [owner.GetShortUIName] ha estado tanteando a colegas sobre un desafío a mi liderazgo. La conspiración ha colapsado, pero sé quién la comenzó."
+ wm_intrigue.3.a: "No olvidaré esto."
+
+ # wm_intrigue.10: Leak to the Press
+ wm_intrigue.10.t: "La Historia se Desarrolla en las Portadas"
+ wm_intrigue.10.desc: "La primera llamada llegó a las seis de la mañana. Para el desayuno la noticia estaba en todas las portadas y los medios estaban acampados fuera de mi oficina.\n\nMi perfil ha recibido un golpe, el partido está bajando en las encuestas y el público piensa un poco menos de todos nosotros. Alguien dio a los periódicos esa historia, y tengo una buena idea de quién: [wm_intrigue_leaker.GetShortUIName]."
+ wm_intrigue.10.a: "Sin comentarios."
+
+ # wm_intrigue.20: the threat was refused
+ wm_intrigue.20.t: "Me Llamaron el Farol"
+ wm_intrigue.20.desc: "[recipient.GetShortUIName|U] no se dejará intimidar: si tengo una historia, debería publicarla.\n\nUna llamada a un periodista del lobby y estará en las portadas de mañana. O puedo guardarla y dejar que [recipient.GetHerHim] se pregunte."
+ wm_intrigue.20.a: "Llamar a la sala de redacción."
+ wm_intrigue.20.b: "Siéntate sobre ello."

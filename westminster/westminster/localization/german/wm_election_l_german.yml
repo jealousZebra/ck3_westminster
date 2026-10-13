@@ -1,0 +1,28 @@
+﻿l_german:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "Parlament aufgelöst"
+ wm_election_dissolution_toast_desc: "Der Premierminister war beim Palast und das Parlament ist aufgelöst. Jeder Sitz ist verfügbar: Wahltag ist in fünf Wochen."
+
+ wm_election_results.1.a: "Lies alles darüber."
+ wm_election_results_intro_hold: "#italic Wahlnacht#!\n\nDie Wähler haben gesprochen: #bold [wm_el_seats|0]#! der 650 Sitze für die [wm_el_party.GetNameNoTier], eine Mehrheit von [wm_el_majority|0]. [wm_el_pm.GetName] bleibt mit einem frischen Mandat in der Downing Street.\n"
+ wm_election_results_intro_change: "#italic Wahlnacht#!\n\nDie Wähler haben gesprochen: #bold [wm_el_seats|0]#! der 650 Sitze für die [wm_el_party.GetNameNoTier], und [wm_el_pm.GetName] ist der neue Premierminister. Die Umzugswagen stehen bereits vor Nummer 10.\n"
+ wm_election_results_intro_hung: "#italic Wahlnacht#!\n\nKeine Partei hat die Mehrheit. Die größte ist die [wm_el_party.GetNameNoTier] mit #bold [wm_el_seats|0]#! Sitzen, weniger als die benötigten 326, und [wm_el_pm.GetName] wird versuchen, ohne Mehrheit zu regieren.\n"
+ wm_election_results_table: "\n#bold Sitze (Änderung)#!"
+ wm_election_results_my_seat_held: "\n\n#bold Ihr Sitz:#! Sie hielten [wm_my_seat.GetNameNoTier] mit [wm_my_share|1]% der Stimmen, eine Mehrheit von [wm_my_majority|1] Punkten."
+ wm_election_results_my_seat_lost: "\n\n#bold Ihr Sitz:#! die Wähler von [wm_my_lost_seat.GetNameNoTier] haben Sie abgewählt. [wm_my_lost_seat.GetHolder.GetName] ist deren neuer Abgeordneter, und Sie sind von den grünen Bänken raus."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "Nachwahl: [wm_by_party.GetAdjective] Halten"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName] hat bei der Nachwahl [wm_by_seat.GetNameNoTier] für die [wm_by_party.GetNameNoTier] gehalten."
+ wm_byelection_gain_toast: "Nachwahl: [wm_by_party.GetAdjective] Gewinn"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName] hat [wm_by_seat.GetNameNoTier] für die [wm_by_party.GetNameNoTier] bei der Nachwahl gewonnen, ein Gewinn, der morgen auf allen Titelseiten zu sehen sein wird."
+
+ wm_election_call_decision: "Eine Parlamentswahl ausrufen"
+ wm_election_call_decision_desc: "Bitten Sie den Monarchen, das Parlament aufzulösen und Neuwahlen anzusetzen. Jeder Sitz wird im nationalen Stimmungsbild umkämpft sein: Die Regierungspartei liegt bei [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%, mit einem Vorsprung von [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] Punkten vor dem bestplatzierten Rivalen (negativ bedeutet im Rückstand). Das Parlament ist seit [EmptyScope.ScriptValue('wm_election_months_sat')|0] Monaten im Amt; es muss innerhalb von fünf Jahren die Wähler gegenüber treten."
+ wm_election_call_decision_tooltip: "Geh ins Land, solange die Wahllokale freundlich sind oder bevor sie sich drehen."
+ wm_election_call_decision_confirm: "Parlament auflösen"
+ wm_election_call_decision_not_scheduled_tt: "Eine allgemeine Wahl wurde noch nicht ausgerufen"
+ wm_election_call_decision_min_months_tt: "Parlament tagt seit mindestens sechs Monaten"
+ wm_election_call_decision_effect_tt: "Parlament wird aufgelöst und eine #bold Parlamentswahl#! findet in fünf Wochen statt. Sitze, die den Besitzer wechseln, gehen an neue Abgeordnete, und der Vorsitzende der größten Partei wird Premierminister."

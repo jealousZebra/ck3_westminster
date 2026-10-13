@@ -1,0 +1,24 @@
+﻿l_simp_chinese:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "承诺清理政治"
+ wm_trust_clean_up_decision_desc: "#bold 政治公众信任度：[EmptyScope.ScriptValue('wm_ui_public_trust')|0]满分100#!，预计大选投票率约为[EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%。\n\n低信任度会增加暴动可能性，提高小党和新党的民调支持率并使选民留在家中；高信任度有利于政府。政策反转、失信、暴动及其处理方式、丑闻和不正当竞选会削弱信任；热门法案、信守承诺和公正竞选会建立信任。\n\n一揽子标准改革会向全国展示威斯敏斯特正在倾听。"
+ wm_trust_clean_up_decision_tooltip: "公共信任：100分中 [EmptyScope.ScriptValue('wm_ui_public_trust')|0] 分。"
+ wm_trust_clean_up_decision_confirm: "宣誓"
+ wm_trust_clean_up_decision_not_pledged_tt: "你还没有做出至今仍然有效的清理承诺"
+ wm_trust_clean_up_decision_effect_tt: "公众信任上升 #P 5#! 点。如果三年内爆发丑闻，承诺破裂：信任再下降 #N 4#! 点，你会失面子。"
+
+ wm_trust_promise_broken_toast: "承诺破裂"
+ wm_trust_promise_broken_toast_desc: "承诺给抗议者的提前大选从未到来。公众信任下跌#N 6#!个百分点。"
+
+ wm_trust.10.t_expenses: "费用争议席卷威斯敏斯特"
+ wm_trust.10.t_lobbying: "游说排"
+ wm_trust.10.t_unity: "一刻全国团结"
+ wm_trust.10.t_standards: "健康证明"
+ wm_trust.10.desc_expenses: "#italic 头版 #!\n\n 一项信息自由请求揭开了议员的费用申报文件，报纸每天刊登一页：这里是衣裤烫衣机，那里是庭院暖器，第二个住所原来是第一个。众议院当局称没人违反规则，这正是重点。 \n\n 没有政党被豁免，公众对所有人都不满意。"
+ wm_trust.10.desc_lobbying: "#italic 头版 #!\n\n 伪装成外国咨询公司的卧底记者拍摄了一系列前部长开价提供关系的情况。政府坚持称规则已遵循；事实证明，规则是由前部长制定的。 \n\n 政府承担了最糟糕的部分。"
+ wm_trust.10.desc_unity: "#italic 头版 #!\n\n 这一次，全国都在观看同一件事：一场体育胜利，一次英雄救援，一次全国庆典。每个政党的政治人物都被拍到一起欢呼，在几天内无人嘘他们。 \n\n 政府也分享了部分温暖的光环。"
+ wm_trust.10.desc_standards: "#italic 内页#!\n\n标准委员会的年度报告认为威斯敏斯特的行为是近年来最好的：投诉减少，调查更快，且没有人拍摄到令人遗憾的行为。这不是一个引人注目的新闻，正因如此它才有帮助。"
+ wm_trust.10.desc_trust: "\n\n#bold 公共对政治的信任现为 [EmptyScope.ScriptValue('wm_ui_public_trust')|0] （满分100）。#!"
+ wm_trust.10.a: "公布每一笔收据。"
+ wm_trust.10.b: "保持低调。"
+ wm_trust.10.c: "享受当下。"

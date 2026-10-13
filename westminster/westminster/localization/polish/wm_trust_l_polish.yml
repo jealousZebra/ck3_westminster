@@ -1,0 +1,24 @@
+﻿l_polish:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "Zobowiązanie do oczyszczenia polityki"
+ wm_trust_clean_up_decision_desc: "#bold Public trust in politics: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] out of 100#!, with turnout at a general election expected around [EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%.\n\nLow trust makes riots likelier, lifts small and new parties in the polls and keeps voters at home; high trust helps the government. U-turns, broken promises, riots and how they are policed, scandals and dirty campaigns wear it down; popular bills, kept promises and clean campaigns build it up.\n\nA package of standards reforms would show the country that Westminster is listening."
+ wm_trust_clean_up_decision_tooltip: "Zaufanie publiczne: [EmptyScope.ScriptValue('wm_ui_public_trust')|0] na 100."
+ wm_trust_clean_up_decision_confirm: "Złoż przysięgę"
+ wm_trust_clean_up_decision_not_pledged_tt: "Nie złożyłeś jeszcze obietnicy sprzątania, która nadal obowiązuje"
+ wm_trust_clean_up_decision_effect_tt: "Zaufanie publiczne rośnie o #P 5#! punktów. Jeśli w ciągu najbliższych trzech lat wybuchnie skandal, obietnica zostaje złamana: zaufanie spada o kolejne #N 4#! punktów i tracisz twarz."
+
+ wm_trust_promise_broken_toast: "ZŁAMANA OBIETNICA"
+ wm_trust_promise_broken_toast_desc: "Obiecane protestującym przedterminowe wybory nigdy nie nastąpiły. Zaufanie społeczne spadło o #N 6 punktów #!."
+
+ wm_trust.10.t_expenses: "Rząd wydatków pochłania Westminster"
+ wm_trust.10.t_lobbying: "Spor o lobbing"
+ wm_trust.10.t_unity: "Moment jedności narodowej"
+ wm_trust.10.t_standards: "Czysty stan zdrowia"
+ wm_trust.10.desc_expenses: "#italic Front page#!\n\nA freedom of information request has prised open MPs' expense claims, and the papers are running them a page a day: a trouser press here, a patio heater there, a second home that turns out to be the first. Nobody has broken a rule, says the House authorities, which is rather the point.\n\nNo one party is spared, and the public is unimpressed with all of them."
+ wm_trust.10.desc_lobbying: "#italic Front page#!\n\nUndercover reporters posing as a foreign consultancy have filmed a string of former ministers offering to open doors for a fee. The government insists the rules were followed; the rules, it turns out, were written by former ministers.\n\nThe government takes the worst of it."
+ wm_trust.10.desc_unity: "#italic Front page#!\n\nFor once the whole country is watching the same thing: a sporting triumph, a heroic rescue, a national celebration. Politicians of every party are pictured cheering together, and for a few days nobody is booing them.\n\nThe government gets a share of the warm glow."
+ wm_trust.10.desc_standards: "#italic Strony wewnętrzne#!\n\nCoroczny raport Komitetu ds. Standardów ocenia zachowanie Westminsterskie jako najlepsze od lat: mniej skarg, szybsze dochodzenia i nikt nie jest nagrany robiąc coś godnego pożałowania. To nie jest historia przyciągająca nagłówki, co jest dokładnie powodem, dla którego pomaga."
+ wm_trust.10.desc_trust: "\n\n#bold Zaufanie społeczne do polityki wynosi teraz [EmptyScope.ScriptValue('wm_ui_public_trust')|0] na 100.#!"
+ wm_trust.10.a: "Publikuj każdy paragon."
+ wm_trust.10.b: "Trzymaj głowę nisko."
+ wm_trust.10.c: "Ciesz się tym, dopóki trwa."

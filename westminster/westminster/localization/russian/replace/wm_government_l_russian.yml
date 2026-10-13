@@ -1,0 +1,8 @@
+﻿l_russian:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Парламентский"
+ feudal_government_adjective: "Парламентский"
+ feudal_government_realm: "Парламентское место"
+ feudal_government_vassals_label: "Парламентские [obligations|E] определяются [vassal_contract|E] каждого рядового депутата"
+ feudal_government_desc: "\n#F Депутаты выбираются по своим избирательным округам и заседают в Палате общин. Они обязаны своему лидеру партии лояльностью, голосованием в коридорах и частью средств избирательной кампании; взамен лидер дает им партийное требование, место в тени власти и, для некоторых счастливчиков, должность. #!"
+ GAME_DATE_STRING_ERA_CE: ""

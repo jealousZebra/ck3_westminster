@@ -1,0 +1,33 @@
+﻿l_russian:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Корона"
+ k_wm_crown_adj: "Королевский"
+ wm_dyn_royal_windsor: "Виндзор"
+
+ wm_crown_government: "Конституционная монархия"
+ wm_crown_government_adjective: "Королевский"
+ wm_crown_government_realm: "Королевский двор"
+ wm_crown_government_desc: "Монарх царствует, но не управляет. У него нет престола, нет вассалов и почти всегда он держится подальше от политики."
+ king_wm_crown_male: "Кинг"
+ king_wm_crown_female: "Королева"
+ kingdom_wm_crown: "Корона"
+
+ wm_speak_out_against_mp_interaction: "Выступать против депутата"
+ wm_speak_out_against_mp_interaction_desc: "Прервать привычку правления и критиковать [recipient.GetTitledFirstName] публично. Дворец этого не делал в памяти живущих: это требует огромных затрат [prestige|E], и Десятый номер будет в ярости."
+ wm_speak_out_against_mp_interaction_toast: "Дворец выражает свое мнение"
+ wm_crown_speak_out_toast: "Дворец критикует [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] выступил против [recipient.GetTitledFirstName]. Конституция испытывает головную боль."
+
+ wm_crown.1.t: "Выговор от дворца"
+ wm_crown.1.desc: "Это на каждой первой полосе. [actor.GetTitledFirstName], который всю жизнь держал свои мнения при себе, сообщил всем, что он думает обо мне, и это не лестно. Мой телефон полон сообщений от коллег, которые вдруг не хотят со мной общаться."
+ wm_crown.1.a: "Прикусил язык. С Дворцом не спорят."
+ wm_crown.1.b: "Ответь ударом: монарх должен оставаться вне политики."
+
+ wm_rebuked_by_the_crown_modifier: "Осуждённый короной"
+ wm_rebuked_by_the_crown_modifier_desc: "Монарх публично выступил против этого депутата."
+ wm_crown_criticism_county_modifier: "Депутат подвергся критике со стороны короны"
+ wm_crown_criticism_county_modifier_desc: "Монарх выступил против депутата от этого округа."
+ wm_spoken_against_by_crown_opinion: "Выступил против меня"
+ wm_embarrassed_party_opinion: "Поставил партию в неловкое положение"
+ wm_crown_meddling_opinion: "Вмешивался в политику"
+ wm_hit_back_at_crown_opinion: "Напал на Корон"

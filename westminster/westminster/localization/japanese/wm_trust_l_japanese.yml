@@ -1,0 +1,24 @@
+﻿l_japanese:
+ # Public trust (common/scripted_effects/wm_trust_effects.txt)
+ wm_trust_clean_up_decision: "政治の浄化を誓う"
+ wm_trust_clean_up_decision_desc: "#bold 政治に対する国民の信頼:100#!中[EmptyScope.ScriptValue('wm_ui_public_trust')|0]、総選挙の投票率は約[EmptyScope.ScriptValue('wm_ui_trust_turnout')|0]%と予想される。\n\nZ信頼は暴動を起こしやすくし、小規模で新しい政党を支持し、有権者を自宅に留めておく。高い信頼は政府を助ける。Uターン、約束の破り、暴動とその取り締まり方、スキャンダルや汚い選挙運動が信頼を消耗させる。人気のある法案、守られた約束、クリーンな選挙運動がそれを築き上げる。基準改革のパッケージ\n\nA、ウェストミンスターが耳を傾けていることを国民に示すだろう。"
+ wm_trust_clean_up_decision_tooltip: "国民の信頼: 100中の[EmptyScope.ScriptValue('wm_ui_public_trust')|0]"
+ wm_trust_clean_up_decision_confirm: "誓約を立てる"
+ wm_trust_clean_up_decision_not_pledged_tt: "あなたはまだ有効なクリーンアップの誓約をしていません"
+ wm_trust_clean_up_decision_effect_tt: "国民の信頼は#P 5#!ポイント上昇する。次の三年間にスキャンダルが発覚した場合、誓約は破られ、信頼はさらに#N 4#!ポイント低下し、面目を失う"
+
+ wm_trust_promise_broken_toast: "約束が破られた"
+ wm_trust_promise_broken_toast_desc: "抗議者に約束された早期選挙は実現しなかった。国民の信頼は#N 6#!ポイントも下がった。"
+
+ wm_trust.10.t_expenses: "ウェストミンスターを覆う経費問題"
+ wm_trust.10.t_lobbying: "ロビング・ロウ"
+ wm_trust.10.t_unity: "国民統一の瞬間"
+ wm_trust.10.t_standards: "健康証明書"
+ wm_trust.10.desc_expenses: "#italic トップページ#!\n\nA情報公開請求は議員の経費請求を公開し、新聞は毎日1ページずつ掲載しています。ここにはズボンのプレス機、あそこにはパティオヒーター、そして実は最初の家だったと。誰も規則を破っていないと議会当局は言いますが、それこそが重要なポイントです。\n\nどの政党も免れず、一般の人々は彼ら全員に感銘を受けていません。"
+ wm_trust.10.desc_lobbying: "#italic トップページ#!\n\n報道記者たちが、外国コンサルタントを装った元閣僚たちが、料金を払って扉を開くと申し出る一連の映像を撮影しました。政府は規則は守られたと主張していますが、その規則は、実は元大臣たちによって書かれたものでした。\n\nZ政府は最悪の目を遭いました。"
+ wm_trust.10.desc_unity: "#italic フロントページ#!\n\n国中が同じものを見ている時には、スポーツの勝利、英雄的な救出、国民的な祝賀。あらゆる政党の政治家たちが一緒に応援している写真が写り、数日間は誰もブーイングしない。\n\n政府もその温かい輝きの一部を得ている。"
+ wm_trust.10.desc_standards: "#italic 内面ページ#!\n\n 規範委員会の年次報告書は、ウェストミンスターの行動が過去数年で最良であると評価しています：苦情が減り、調査が迅速で、誰も後悔する行動を撮影されていません。これは見出しになる話ではありませんが、まさにそれが役立つ理由です。"
+ wm_trust.10.desc_trust: "\n\n#bold 政治に対する公共の信頼は現在100点中[EmptyScope.ScriptValue('wm_ui_public_trust')|0]です.#!"
+ wm_trust.10.a: "すべての領収書を公開する"
+ wm_trust.10.b: "頭を低くしていろ。"
+ wm_trust.10.c: "あるうちに楽しんでください。"

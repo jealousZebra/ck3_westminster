@@ -8,7 +8,7 @@ This is the first public release and it is a [b]beta[/b]. The map, the 2024 Parl
 [*]Portraits still wear the game's medieval clothes.
 [*]Some vanilla screens still look medieval.
 [*]Only one bookmark: 2024. Earlier Prime Ministers come later.
-[*]English only for now. Translations later.
+[*]In-game text is available in English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish.
 [/list]
 Bug reports and ideas are very welcome in the comments.
 

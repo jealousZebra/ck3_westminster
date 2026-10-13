@@ -1,0 +1,16 @@
+﻿l_simp_chinese:
+ # The working majority and by-elections that can bring a government down (common/scripted_effects/wm_majority_effects.txt)
+ wm_majority.1.t: "政府失去多数"
+ wm_majority.1.desc: "#italic 西敏寺#!\n\n在一系列补选失利和脱党事件之后，[wm_majority_pm.GetName]的政府不再能依靠下议院的多数票。现在，党鞭的算术计算显示它 [EmptyScope.ScriptValue('wm_sc_short_by')|0] 票缺口，无法单独赢得议会表决。\n\n反对派嗅到了机会：只要议会有时间，就预期会提出一项不信任动议。"
+ wm_majority.1.a_pm: "我们以更少的资源治理。"
+ wm_majority.1.a: "一个时代的终结？"
+ wm_majority.2.t: "政府没有多数席位"
+ wm_majority.2.desc: "数字终于发生了转变。[wm_majority_pm.GetName]已无法掌控众议院多数，而大厅中充满了对不信任投票的讨论。\n\n作为反对党的领袖，下一步由你决定。现在提出不信任动议，如果政府倒台，将举行大选。"
+ wm_majority.2.a: "提出不信任动议。"
+ wm_majority.2.b: "还没。让他们慢慢炖吧。"
+ wm_majority_losing_run_toast: "10号选区又一次补选失利"
+ wm_majority_losing_run_toast_desc: "政府现在连续在[EmptyScope.ScriptValue('wm_majority_loss_run_value')|0]的补选中失败，[wm_majority_pm.GetName]的同事开始进行计数。工作多数已降至[EmptyScope.ScriptValue('wm_majority_value')|0]。"
+ wm_majority_byelection_blues_modifier: "补选忧郁"
+ wm_majority_byelection_blues_modifier_desc: "连续两次补选失败削弱了这位首相的权威。"
+ wm_majority_losing_streak_modifier: "连败"
+ wm_majority_losing_streak_modifier_desc: "一次又一次的补选都对政府不利，其自家后座议员正在思考谁应该带领他们参加下一次选举。"

@@ -1,0 +1,12 @@
+﻿l_spanish:
+ # Electing the Speaker (common/scripted_effects/wm_speaker_effects.txt)
+ wm_speaker.1.t: "La Presidencia está Vacante"
+ wm_speaker.1.desc: "La Cámara de los Comunes debe elegir un nuevo Presidente: el diputado que mantiene el orden, llama a los miembros a hablar y deja de lado el partido para siempre. Las nominaciones cierran en una semana; luego cada diputado vota en una papeleta secreta, ronda tras ronda, hasta que alguien obtenga más de la mitad.\n\nPodrías postularte. El Presidente deja su partido y nunca vuelve a ocupar un cargo, pero la presidencia conlleva un gran prestigio."
+ wm_speaker.1.a: "Presentar mi nombre."
+ wm_speaker.1.a.tt: "Te postulas para Presidente de la Cámara. Si eres elegido, dejarás tu partido y te sentarás por encima de él."
+ wm_speaker.1.b: "No para mí."
+ wm_speaker.2.t: "La Silla del Presidente"
+ wm_speaker.2.desc: "La Cámara te ha elegido como su Presidente, después de [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] votaciones. Por tradición, eres arrastrado a la silla, fingiendo reticencia. A partir de hoy no perteneces a ningún partido."
+ wm_speaker.2.a: "¡Orden! ¡Orden!"
+ wm_speaker_elected_toast: "Nuevo Portavoz Elegido"
+ wm_speaker_elected_toast_desc: "[wm_speaker_new.GetName] es el nuevo Presidente de la Cámara de los Comunes, con [EmptyScope.ScriptValue('wm_speaker_last_votes_value')|0] votos de [EmptyScope.ScriptValue('wm_speaker_last_turnout_value')|0] después de [EmptyScope.ScriptValue('wm_speaker_rounds_value')|0] papeletas."

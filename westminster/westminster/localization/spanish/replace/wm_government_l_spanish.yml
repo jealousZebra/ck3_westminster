@@ -1,0 +1,8 @@
+﻿l_spanish:
+ # Westminster: the government type and the date, without the Middle Ages.
+ feudal_government: "Parlamentario"
+ feudal_government_adjective: "Parlamentario"
+ feudal_government_realm: "Escaño Parlamentario"
+ feudal_government_vassals_label: "Parlamentarios [obligations|E] son establecidos por cada [vassal_contract|E] diputado de base"
+ feudal_government_desc: "\n#F Los diputados son elegidos por sus circunscripciones y se sientan en la Cámara de los Comunes. Deben lealtad a su líder de partido, sus votos en los vestíbulos de votación y una parte de los fondos de campaña; a cambio, el líder les da el látigo, un asiento en la sombra del poder y, para unos pocos afortunados, una oficina.#!"
+ GAME_DATE_STRING_ERA_CE: ""

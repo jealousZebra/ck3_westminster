@@ -1,0 +1,28 @@
+﻿l_japanese:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "議会解散"
+ wm_election_dissolution_toast_desc: "首相は宮殿を訪れ、議会は解散されました。すべての議席が争われています。投票日は5週間後です。"
+
+ wm_election_results.1.a: "詳しくはどうぞ。 権限委譲ブリーフィングを読む"
+ wm_election_results_intro_hold: "#italic 結果発表の夜#!\n\n 有権者の意思は明確です：#bold [wm_el_seats|0]#! 650議席中 [wm_el_party.GetNameNoTier] の議席を獲得し、[wm_el_majority|0] の過半数を占めます。[wm_el_pm.GetName] は新たな信任を受けてダウニング街に留まります。\n"
+ wm_election_results_intro_change: "#italic 結果の夜#!\n\n有権者の声が反映されました: #bold [wm_el_seats|0]#! 650議席中 [wm_el_party.GetNameNoTier]、そして [wm_el_pm.GetName] が新しい首相です。引越し用のバンはすでにナンバー10の外にあります。\n"
+ wm_election_results_intro_hung: "#italic 結果発表の夜#!\n\n どの党も多数派ではありません。最大党は [wm_el_party.GetNameNoTier] で #bold [wm_el_seats|0]#! 議席を持ち、必要な326議席に届かず、[wm_el_pm.GetName] は多数派なしで政権運営を試みます。\n"
+ wm_election_results_table: "\n#bold 議席（変動）#!"
+ wm_election_results_my_seat_held: "\n\n#bold あなたの議席:#! [wm_my_seat.GetNameNoTier] [wm_my_share|1]%の票、つまり[wm_my_majority|1]ポイントの過半数で保持しました。"
+ wm_election_results_my_seat_lost: "\n\n#bold あなたの席:#! [wm_my_lost_seat.GetNameNoTier]の有権者たちはあなたを追い出しました。[wm_my_lost_seat.GetHolder.GetName]は彼らの新しい議員であり、あなたは緑のベンチから外れました。"
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "補欠選挙:維持 [wm_by_party.GetAdjective]"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName]は補欠選挙で[wm_by_party.GetNameNoTier]のために[wm_by_seat.GetNameNoTier]を維持しました。"
+ wm_byelection_gain_toast: "補欠選挙:[wm_by_party.GetAdjective]"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName]は補欠選挙で[wm_by_party.GetNameNoTier]のために[wm_by_seat.GetNameNoTier]を獲得しました。これは明日の新聞の一面に必ず掲載されるでしょう。"
+
+ wm_election_call_decision: "総選挙の実施"
+ wm_election_call_decision_desc: "君主に議会を解散し、国民投票に臨むよう求める。すべての議席は国民の関心で争われます：政権与党は [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]% の支持率で、最も好位置のライバルに対して [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1] ポイントのリードがあります（マイナスは後れを意味します）。議会は [EmptyScope.ScriptValue('wm_election_months_sat')|0] か月間開催されました；5年以内に有権者に直面しなければなりません。"
+ wm_election_call_decision_tooltip: "世論調査が順調なうち、あるいは投票が変わる前に田舎に行ってみる。"
+ wm_election_call_decision_confirm: "議会解散"
+ wm_election_call_decision_not_scheduled_tt: "総選挙はまだ公示されていません。"
+ wm_election_call_decision_min_months_tt: "議会は少なくとも6か月間会期を迎えています 議会"
+ wm_election_call_decision_effect_tt: "議会は解散され、5週間後に#bold 総選挙#!が行われます。議席が移動した場合、新しい議員がその席を引き継ぎ、最大政党の党首が首相となります。"

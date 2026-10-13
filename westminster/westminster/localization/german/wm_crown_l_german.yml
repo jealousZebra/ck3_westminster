@@ -1,0 +1,33 @@
+﻿l_german:
+ # The Crown: the monarch is in the game but not important (common/landed_titles/40_wm_crown.txt)
+ k_wm_crown: "Krone"
+ k_wm_crown_adj: "Royal"
+ wm_dyn_royal_windsor: "Windsor"
+
+ wm_crown_government: "Konstitutionelle Monarchie"
+ wm_crown_government_adjective: "Royal"
+ wm_crown_government_realm: "Königlicher Haushalt"
+ wm_crown_government_desc: "Der Monarch regiert, herrscht aber nicht. Er hat keinen Sitz, keine Vasallen und hält sich fast immer aus der Politik heraus."
+ king_wm_crown_male: "King"
+ king_wm_crown_female: "Königin"
+ kingdom_wm_crown: "Krone"
+
+ wm_speak_out_against_mp_interaction: "Gegen den Abgeordneten äußern"
+ wm_speak_out_against_mp_interaction_desc: "Brechen Sie die Gewohnheit einer Herrschaft und kritisieren Sie [recipient.GetTitledFirstName] öffentlich. Der Palast hat dies seit lebender Erinnerung nicht getan: Es kostet eine enorme Menge an [prestige|E], und Nummer 10 wird wütend sein."
+ wm_speak_out_against_mp_interaction_toast: "Der Palast äußert sich"
+ wm_crown_speak_out_toast: "Der Palast kritisiert [recipient.GetTitledFirstName]"
+ wm_crown_speak_out_toast_desc: "[actor.GetTitledFirstName] hat sich gegen [recipient.GetTitledFirstName] ausgesprochen. Die Verfassung hat Kopfschmerzen."
+
+ wm_crown.1.t: "Eine Rüge vom Palast"
+ wm_crown.1.desc: "Es ist auf jeder Titelseite. [actor.GetTitledFirstName], der sein Leben lang seine Meinungen für sich behalten hat, hat genau mitgeteilt, was er von mir hält, und es ist nicht schmeichelhaft. Mein Telefon ist voll mit Nachrichten von Kollegen, die plötzlich nicht mehr mit mir gesehen werden wollen."
+ wm_crown.1.a: "Halte meinen Mund. Du gehst keinen Streit mit dem Palast ein."
+ wm_crown.1.b: "Zurückschlagen: Der Monarch sollte sich aus der Politik heraushalten."
+
+ wm_rebuked_by_the_crown_modifier: "Vom Königreich gerügt"
+ wm_rebuked_by_the_crown_modifier_desc: "Der Monarch hat sich öffentlich gegen diesen Abgeordneten ausgesprochen."
+ wm_crown_criticism_county_modifier: "Abgeordneter von der Krone kritisiert"
+ wm_crown_criticism_county_modifier_desc: "Der Monarch sprach sich gegen den Abgeordneten dieses Wahlkreises aus."
+ wm_spoken_against_by_crown_opinion: "Mich kritisiert"
+ wm_embarrassed_party_opinion: "Die Partei in Verlegenheit gebracht"
+ wm_crown_meddling_opinion: "Sich in die Politik eingemischt"
+ wm_hit_back_at_crown_opinion: "Die Krone angegriffen"

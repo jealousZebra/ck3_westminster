@@ -1,0 +1,28 @@
+﻿l_korean:
+ # General elections, polls and by-elections (common/scripted_effects/wm_election_effects.txt and friends).
+ # Headlines and the seat table per party: wm_election_parties_l_english.yml (generated).
+
+ wm_election_dissolution_toast: "의회 해산"
+ wm_election_dissolution_toast_desc: "총리는 궁전에 방문했으며 의회가 해산되었습니다. 모든 의석이 경쟁 대상입니다: 투표일은 다섯 주 후입니다."
+
+ wm_election_results.1.a: "모두 읽어보세요."
+ wm_election_results_intro_hold: "#italic 결과 밤#!\n\n 유권자들이 말했습니다: #bold [wm_el_seats|0]#! 650석 중 [wm_el_party.GetNameNoTier]의 과반인 [wm_el_majority|0]. [wm_el_pm.GetName]는 새로운 권한으로 다우닝가에 머뭅니다.\n"
+ wm_election_results_intro_change: "#italic 결과 밤#!\n\n 유권자들이 말했습니다: #bold [wm_el_seats|0]#! 650석 중 [wm_el_party.GetNameNoTier]의석, 그리고 [wm_el_pm.GetName]가 새로운 총리입니다. 이전 차량이 이미 10번지 밖에 있습니다.\n"
+ wm_election_results_intro_hung: "#italic 결과 밤#!\n\n 어느 정당도 다수당이 아닙니다. 가장 큰 정당은 [wm_el_party.GetNameNoTier]으로 #bold [wm_el_seats|0]#! 의석으로 326석에 부족하며, [wm_el_pm.GetName] 은 다수 없이 정부를 운영하려고 합니다.\n"
+ wm_election_results_table: "\n#bold 의석 (변경) #!"
+ wm_election_results_my_seat_held: "\n\n#bold 당신의 의석:#! 당신은 [wm_my_seat.GetNameNoTier]을 [wm_my_share|1]%의 득표율로 보유했으며, [wm_my_majority|1]점의 과반수를 차지했습니다."
+ wm_election_results_my_seat_lost: "\n\n#bold 당신의 의석:#! [wm_my_lost_seat.GetNameNoTier] 유권자들이 당신을 축출했습니다. [wm_my_lost_seat.GetHolder.GetName]은 그들의 새 국회의원이며, 당신은 녹색 벤치를 떠났습니다."
+ wm_election_results_my_seat_none: ""
+
+ wm_byelection_hold_toast: "보궐선거: [wm_by_party.GetAdjective] 유지"
+ wm_byelection_hold_toast_desc: "[wm_by_mp.GetName]가 보궐선거에서 [wm_by_seat.GetNameNoTier]를 [wm_by_party.GetNameNoTier]로 보유했습니다."
+ wm_byelection_gain_toast: "보궐선거: [wm_by_party.GetAdjective] 획득"
+ wm_byelection_gain_toast_desc: "[wm_by_mp.GetName]는 보궐선거에서 [wm_by_party.GetNameNoTier]을 위해 [wm_by_seat.GetNameNoTier]를 얻었으며, 이는 내일 신문 1면을 장식할 것입니다."
+
+ wm_election_call_decision: "총선 선언"
+ wm_election_call_decision_desc: "군주에게 의회를 해산하고 시골로 가라고 요청하세요. 모든 의석은 국민 분위기에 따라 경쟁할 것입니다: 정부 정당은 [EmptyScope.ScriptValue('wm_polls_government_poll_points')|1]%의 득표율을 기록하며, 가장 높은 순위의 경쟁자에 대해 [EmptyScope.ScriptValue('wm_polls_government_lead_points')|1]포인트 앞서 있습니다(마이너스는 뒤처져 있음). 의회는 [EmptyScope.ScriptValue('wm_election_months_sat')|0]개월째 회동했습니다; 5년 이내에 유권자 투표를 해야 합니다."
+ wm_election_call_decision_tooltip: "여론조사가 우호적인 동안이나 우호적이지 않기 전에 시골로 가세요."
+ wm_election_call_decision_confirm: "의회를 해산하다"
+ wm_election_call_decision_not_scheduled_tt: "총선이 아직 선거가 치러지지 않았다"
+ wm_election_call_decision_min_months_tt: "의회는 최소 6개월 동안 회의했습니다."
+ wm_election_call_decision_effect_tt: "국회가 해산되고 5주 후에 #bold 총선#!이 치러집니다. 의석이 바뀌면 새로운 의원에게 넘어가며, 가장 큰 정당의 지도자가 총리가 됩니다."
