@@ -1,0 +1,11 @@
+[h1]Bêta 0.5.4 — Correction du démarrage sous Windows[/h1]
+
+[list]
+[*]Correction du plantage Windows avant le menu principal en conservant les données de portraits nécessaires.
+[*]Les protections des historiques de situations et de luttes fonctionnent aussi avec les anciens paramètres du lanceur.
+[*]Ajout de tests de régression pour ces deux protections.
+[/list]
+
+Les nouvelles campagnes de 1979 et 2024 ont passé les tests Windows avec les paramètres actuels et anciens du lanceur (CK3 1.20.1.1). Des avertissements de scripts existants subsistent ; Linux et les longues campagnes restent non vérifiés.
+
+Pour tester cette mise à jour, commencez une nouvelle campagne avec Westminster comme seul mod activé.

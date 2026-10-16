@@ -6,7 +6,7 @@ deepen the House of Lords, mayors, councils and devolved politics.
 
 | | |
 |---|---|
-| Status | 0.5.4 public beta prepared for upload (Workshop currently 0.5.3). The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Status | 0.5.4 public beta on Steam Workshop. The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
 | Release | [workshop/PUBLISHING.md](workshop/PUBLISHING.md): Workshop page text, thumbnail, screenshots; `tools/release.sh <version>` checks and zips |
 | Game | CK3 1.20 (any platform; the in-game test tools are macOS-only) |
 | Prefix | `wm_` (files, variables, effects, localization keys) |

@@ -1,0 +1,11 @@
+[h1]Beta 0.5.4 — Windows-Startfehler behoben[/h1]
+
+[list]
+[*]Windows-Absturz vor dem Hauptmenü durch Beibehalten benötigter Porträtdaten behoben.
+[*]Der Schutz vor historischen Situationen und Konflikten der Grundversion funktioniert auch mit älteren Launcher-Einstellungen.
+[*]Regressionstests für beide Schutzmaßnahmen hinzugefügt.
+[/list]
+
+Neue Kampagnen ab 1979 und 2024 bestanden die Windows-Tests mit aktuellen und älteren Launcher-Einstellungen (CK3 1.20.1.1). Bestehende Skriptwarnungen bleiben; Linux und lange Kampagnen sind ungeprüft.
+
+Beginnt zum Testen dieses Updates eine neue Kampagne mit Westminster als einzigem aktivierten Mod.

@@ -1,0 +1,11 @@
+[h1]Beta 0.5.4 — Naprawa uruchamiania w Windows[/h1]
+
+[list]
+[*]Naprawiono awarię Windows przed menu głównym przez zachowanie wymaganych danych portretów.
+[*]Zabezpieczenia historii sytuacji i zmagań działają też ze starszymi ustawieniami programu uruchamiającego.
+[*]Dodano testy regresji obu zabezpieczeń.
+[/list]
+
+Nowe kampanie z 1979 i 2024 roku przeszły testy Windows z aktualnymi i starszymi ustawieniami programu uruchamiającego (CK3 1.20.1.1). Pozostają istniejące ostrzeżenia skryptów; Linux i długie kampanie nie zostały sprawdzone.
+
+Testując aktualizację, rozpocznij nową kampanię z Westminster jako jedynym włączonym modem.

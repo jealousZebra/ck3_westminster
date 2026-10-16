@@ -5,7 +5,12 @@ Lead [b]Margaret Thatcher in 1979[/b], govern as [b]Keir Starmer after the 2024 
 
 Fight elections across all 650 constituencies, manage Parliament and Cabinet, survive rebellions and confidence votes, shape public opinion and try to become Prime Minister.
 
-[h2]Beta 0.5 — Thatcher, 1979[/h2]
+[h2]Beta 0.5.4 — Windows Startup Fix[/h2]
+Fixed a reproduced Windows crash before the main menu and made startup protections work with older launcher settings. Fresh 1979 and 2024 campaigns passed on Windows with both current and outdated launcher metadata; the combined build also passed macOS startup testing on CK3 1.20.1.1. Linux and long campaigns remain unverified.
+
+[b]Please start a fresh campaign when testing this update, with Westminster as the only enabled mod.[/b]
+
+[h2]1979 and 2024 starts[/h2]
 [list]
 [*]Two playable starts: Margaret Thatcher on 4 May 1979 and Keir Starmer on 5 July 2024.
 [*]The 1979 Commons mapped across the fixed 650-seat game map.

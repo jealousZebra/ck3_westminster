@@ -5,7 +5,12 @@ Dirigez [b]Margaret Thatcher en 1979[/b], gouvernez avec [b]Keir Starmer après 
 
 Disputez les élections dans 650 circonscriptions, gérez le Parlement et le Cabinet, survivez aux rébellions et aux votes de confiance, façonnez l’opinion et tentez de devenir Premier ministre.
 
-[h2]Bêta 0.5 — Thatcher, 1979[/h2]
+[h2]Bêta 0.5.4 — Correction du démarrage sous Windows[/h2]
+Correction d’un plantage reproduit sous Windows avant le menu principal et protections au démarrage compatibles avec les anciens paramètres du lanceur. Les nouvelles campagnes de 1979 et 2024 ont été testées sous Windows avec les deux configurations ; le démarrage a aussi été vérifié sous macOS avec CK3 1.20.1.1. Linux et les longues campagnes restent non vérifiés.
+
+[b]Pour tester cette mise à jour, commencez une nouvelle campagne avec Westminster comme seul mod activé.[/b]
+
+[h2]Départs de 1979 et 2024[/h2]
 [list]
 [*][b]Deux départs jouables :[/b] le 4 mai 1979 et le 5 juillet 2024.
 [*]La Chambre des communes de 1979 sur la carte fixe de 650 sièges.

@@ -5,7 +5,12 @@ Poprowadź [b]Margaret Thatcher w 1979 r.[/b], rządź jako [b]Keir Starmer po w
 
 Walcz o głosy w 650 okręgach, kieruj parlamentem i gabinetem, przetrwaj bunty i głosowania nad wotum zaufania oraz spróbuj zostać premierem.
 
-[h2]Beta 0.5 — Thatcher, 1979[/h2]
+[h2]Beta 0.5.4 — Naprawa uruchamiania w Windows[/h2]
+Naprawiono odtworzoną awarię Windows przed menu głównym. Zabezpieczenia startowe działają też ze starszymi ustawieniami programu uruchamiającego. Nowe kampanie z 1979 i 2024 roku przeszły testy Windows z obiema konfiguracjami; uruchamianie sprawdzono też na macOS z CK3 1.20.1.1. Linux i długie kampanie pozostają niesprawdzone.
+
+[b]Testując aktualizację, rozpocznij nową kampanię z Westminster jako jedynym włączonym modem.[/b]
+
+[h2]Początki w 1979 i 2024 roku[/h2]
 [list]
 [*][b]Dwie daty startowe:[/b] 4 maja 1979 i 5 lipca 2024.
 [*]Izba Gmin z 1979 r. na stałej mapie 650 mandatów.

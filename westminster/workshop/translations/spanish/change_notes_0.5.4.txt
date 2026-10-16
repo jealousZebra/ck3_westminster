@@ -1,0 +1,11 @@
+[h1]Beta 0.5.4 — Corrección del inicio en Windows[/h1]
+
+[list]
+[*]Corregido un cierre inesperado en Windows antes del menú principal conservando los datos de retratos necesarios.
+[*]Las protecciones del historial de situaciones y contiendas también funcionan con ajustes antiguos del lanzador.
+[*]Añadidas pruebas de regresión para ambas protecciones.
+[/list]
+
+Las campañas nuevas de 1979 y 2024 superaron las pruebas en Windows con ajustes actuales y antiguos del lanzador (CK3 1.20.1.1). Persisten avisos de scripts existentes; Linux y las campañas largas siguen sin verificar.
+
+Para probar esta actualización, inicia una campaña nueva con Westminster como único mod activado.

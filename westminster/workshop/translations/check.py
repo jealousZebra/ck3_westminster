@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 EN = HERE.parent
 LANGS = ["french", "german", "spanish", "russian", "polish", "simp_chinese", "korean", "japanese"]
-FILES = ["title.txt", "description.bbcode.txt", "short_description.txt", "change_notes_0.3.txt", "change_notes_0.3.1.txt", "change_notes_0.5.3.txt"]
+FILES = ["title.txt", "description.bbcode.txt", "short_description.txt", "change_notes_0.3.txt", "change_notes_0.3.1.txt", "change_notes_0.5.3.txt", "change_notes_0.5.4.txt"]
 
 
 def tags(s):

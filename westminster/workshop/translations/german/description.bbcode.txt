@@ -5,7 +5,12 @@ Führt [b]Margaret Thatcher 1979[/b], regiert mit [b]Keir Starmer nach der Wahl 
 
 Kämpft in allen 650 Wahlkreisen um Stimmen, führt Parlament und Kabinett, übersteht Rebellionen und Vertrauensabstimmungen und versucht, Premierminister zu werden.
 
-[h2]Beta 0.5 — Thatcher, 1979[/h2]
+[h2]Beta 0.5.4 — Windows-Startfehler behoben[/h2]
+Ein reproduzierter Windows-Absturz vor dem Hauptmenü wurde behoben. Der Startschutz funktioniert nun auch mit älteren Launcher-Einstellungen. Neue Kampagnen ab 1979 und 2024 wurden unter Windows mit beiden Konfigurationen getestet; der Start wurde auch unter macOS mit CK3 1.20.1.1 geprüft. Linux und lange Kampagnen sind weiterhin ungeprüft.
+
+[b]Beginnt zum Testen dieses Updates eine neue Kampagne mit Westminster als einzigem aktivierten Mod.[/b]
+
+[h2]Starts 1979 und 2024[/h2]
 [list]
 [*][b]Zwei Starts:[/b] 4. Mai 1979 und 5. Juli 2024.
 [*]Das Unterhaus von 1979 auf der festen Karte mit 650 Sitzen.

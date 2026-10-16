@@ -5,7 +5,12 @@ Lidera a [b]Margaret Thatcher en 1979[/b], gobierna con [b]Keir Starmer tras las
 
 Disputa elecciones en las 650 circunscripciones, dirige el Parlamento y el gabinete, sobrevive a rebeliones y mociones de confianza, moldea la opinión pública e intenta llegar a primer ministro.
 
-[h2]Beta 0.5 — Thatcher, 1979[/h2]
+[h2]Beta 0.5.4 — Corrección del inicio en Windows[/h2]
+Se corrigió un cierre inesperado reproducido en Windows antes del menú principal. Las protecciones de inicio también funcionan con ajustes antiguos del lanzador. Las campañas nuevas de 1979 y 2024 superaron las pruebas en Windows con ambas configuraciones; también se comprobó el inicio en macOS con CK3 1.20.1.1. Linux y las campañas largas siguen sin verificar.
+
+[b]Para probar esta actualización, inicia una campaña nueva con Westminster como único mod activado.[/b]
+
+[h2]Inicios de 1979 y 2024[/h2]
 [list]
 [*][b]Dos inicios jugables:[/b] 4 de mayo de 1979 y 5 de julio de 2024.
 [*]La Cámara de los Comunes de 1979 sobre el mapa fijo de 650 escaños.
