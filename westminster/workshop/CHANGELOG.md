@@ -1,5 +1,14 @@
 # Westminster changelog
 
+## 0.5.4 — Windows Startup Fix
+
+- Retained the vanilla portrait-cache data used behind the main menu, fixing a reproduced Windows startup crash.
+- Added file-level overrides for vanilla situation and struggle history, so the startup protections also work when the launcher retains older mod metadata.
+- Added regression checks for portrait-cache coverage, regeneration and history overrides.
+
+Windows CK3 1.20.1.1 testing passed fresh 1979 and 2024 campaigns with both current and outdated launcher metadata.
+Existing vanilla script warnings remain; Linux and long campaigns are not verified. Start a fresh campaign when testing this update.
+
 ## 0.5.3 — Startup & Stability
 
 - Corrected duplicate main-menu visibility settings and invalid startup/event script syntax.

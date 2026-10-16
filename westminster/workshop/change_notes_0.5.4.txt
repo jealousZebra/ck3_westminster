@@ -1,0 +1,11 @@
+[h1]Beta 0.5.4 — Windows Startup Fix[/h1]
+
+[list]
+[*]Fixed a reproduced Windows crash before the main menu by retaining portrait-cache data that the game still needs behind the photo menu.
+[*]Made the situation and struggle startup protections work even when the launcher retains older mod settings.
+[*]Added regression checks for both protections.
+[/list]
+
+Fresh 1979 and 2024 campaigns passed on Windows with both current and outdated launcher metadata (CK3 1.20.1.1).
+
+Please start a fresh campaign when testing this update. Existing vanilla script warnings remain; Linux and long campaigns are not verified.

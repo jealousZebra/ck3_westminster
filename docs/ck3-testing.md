@@ -1,5 +1,15 @@
 # Testing mods in the real game
 
+## 0.5.4 release verification — 16 October 2026
+
+After pulling the Windows portrait-cache fix (`ac2ed9e`), all eight stability tests and static checks across
+749 files/nine languages passed on macOS. The retained cache matches all 341 installed vanilla portrait-cache
+files, with no duplicate top-level portrait IDs across the merged database. CK3 1.20.1.1 loaded history and
+reached the main menu in 10.1 seconds with the two situation/struggle launcher exclusions deliberately omitted.
+Original playset restored afterwards. Logs are in `westminster/tools/test_out/release_0.5.4/` (ignored output).
+The full scripted gameplay suite was not rerun for this packaging pass; campaign evidence is recorded below.
+Release packaging used `tools/release.sh --no-game 0.5.4`; nothing was uploaded to Workshop.
+
 ## Windows startup investigation — 16 October 2026
 
 CK3 1.20.1.1 on Windows 11 Pro build 26300 (DirectX 11, NVIDIA RTX 3080) crashed before character selection
