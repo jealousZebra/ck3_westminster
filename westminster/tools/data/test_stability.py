@@ -10,12 +10,39 @@ import unittest
 from pathlib import Path
 
 import build_game_start as startup
+import build_stability as stability
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "common/tools"))
 from ck3_checks import static  # noqa: E402
 
 
 class StartupRegressionTests(unittest.TestCase):
+    def test_history_is_shadowed_without_replace_path(self):
+        with tempfile.TemporaryDirectory() as folder:
+            game, mod = Path(folder) / "game", Path(folder) / "mod"
+            for rel in ("history/situations/dlc/example.txt", "history/struggles/example.txt"):
+                source = game / rel
+                source.parent.mkdir(parents=True, exist_ok=True)
+                source.write_text("1.1.1 = { effect = { start_situation = { type = old_map } } }")
+            stability.disable_vanilla_history(game, mod)
+            for source in game.rglob("*.txt"):
+                override = mod / source.relative_to(game)
+                self.assertTrue(override.is_file())
+                self.assertTrue(override.read_bytes().startswith(b"\xef\xbb\xbf"))
+                code = "\n".join(line.split("#", 1)[0] for line in override.read_text(encoding="utf-8-sig").splitlines())
+                self.assertFalse(code.strip())
+
+    @unittest.skipUnless(stability.GAME.is_dir(), "CK3 installation unavailable")
+    def test_shipped_overrides_cover_installed_vanilla_history(self):
+        for tree in stability.HISTORY_TREES:
+            sources = list((stability.GAME / tree).rglob("*.txt"))
+            self.assertTrue(sources, tree)
+            for source in sources:
+                override = stability.MOD / source.relative_to(stability.GAME)
+                self.assertTrue(override.is_file(), str(override))
+                code = "\n".join(line.split("#", 1)[0] for line in override.read_text(encoding="utf-8-sig").splitlines())
+                self.assertFalse(code.strip(), str(override))
+
     def test_old_map_provinces_are_removed_even_when_ids_overlap(self):
         src = "province:1 = { set_variable = { name = old_temple value = yes } }\nset_global_variable = { name = keep value = yes }\n"
         result = startup.clean(src, set(), [0])

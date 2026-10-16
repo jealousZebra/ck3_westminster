@@ -1,5 +1,20 @@
 # Testing mods in the real game
 
+## Westminster stale-launcher smoke test — 16 October 2026
+
+Tested the working-tree history overrides on macOS with CK3 1.20.1.1, using Westminster alone and a temporary
+launcher entry deliberately omitting `replace_path="history/situations"` and `replace_path="history/struggles"`.
+Both fresh campaigns loaded and advanced at speed 5 without crashing: Margaret Thatcher from 4 May to 5 October
+1979, and Keir Starmer from 5 July to 28 September 2024. Opening/conference events rendered and accepted input.
+No new crash report was created during the tests. Original playset restored afterwards.
+
+This is a startup and early-game smoke test, not a long-campaign or Windows/Linux verification. The logs still
+contain missing vanilla event/region references, including court schemes, title on-actions and travel points of
+interest, plus unused Westminster variable warnings. Those remain separate issues. Local screenshots and logs:
+`westminster/tools/test_out/fresh_campaign_retry/` (ignored test output).
+
+## Test tools
+
 Mods are tested by running CK3 itself, not by asking someone to click through and send screenshots. The repository-level
 tools are in `common/ck3_test/`. The mod keeps its own tests and test harness.
 
