@@ -246,7 +246,10 @@ After rebuilding the map, boot Westminster once and run
 army and activity anchors into the mod. The map builder writes the map-sized BGRA winter lookup; release checks
 require both it and the locators. `tools/data/test_stability.py` checks regressions in startup filtering and
 localization validation. The mod replaces `history/struggles` and `history/situations` so vanilla's medieval and
-Asian situations cannot start against Westminster's provinces.
+Asian situations cannot start against Westminster's provinces. The stability generator also retains vanilla's
+cached bookmark portrait data, which Windows streams behind the photo menu even when the portrait widgets are
+hidden. Keep `common/bookmark_portraits/wm_vanilla_frontend_portraits.txt` in releases and regenerate it after a
+game update; this also works with older launcher replacement settings.
 
 Copies of the game's own files (GUI layouts, council positions, event backgrounds, portrait modifiers, the start-up
 script, schemes) are made from your installed game by the scripts above, so rerun them after a CK3 patch. Their

@@ -1,5 +1,44 @@
 # Testing mods in the real game
 
+## Windows startup investigation — 16 October 2026
+
+CK3 1.20.1.1 on Windows 11 Pro build 26300 (DirectX 11, NVIDIA RTX 3080) crashed before character selection
+with both stale and complete launcher metadata. The dump led from front-end portrait streaming
+(`savegameitem.cpp::StreamBeforeFirstShow`) to `portrait_type.cpp::Request` and an access violation in
+`ntdll!RtlAcquireSRWLockExclusive`. Disabling vanilla faith history or removing the synthetic 1979 portrait
+cache did not fix it. Keeping vanilla's bookmark portrait database did.
+
+`tools/data/build_stability.py` now bundles the installed game's cached portraits alongside Westminster's,
+so cached launcher entries containing `replace_path="common/bookmark_portraits"` also work. With the generated
+bundle, both stale metadata (only the two situation/struggle replacement lines omitted) and complete metadata
+reached Westminster's main menu without a new crash. Static checks and all eight stability tests passed.
+
+After manual dismissal of the account-login prompt, all four genuinely fresh campaigns passed:
+
+| Launcher metadata | Character | Start | Saved endpoint | Crashes |
+| --- | --- | --- | --- | --- |
+| Stale | Thatcher | 4 May 1979 | 9 November 1979 | None |
+| Stale | Starmer | 5 July 2024 | 24 April 2025 | None |
+| Complete | Thatcher | 4 May 1979 | 9 November 1979 | None |
+| Complete | Starmer | 5 July 2024 | 27 September 2025 | None |
+
+Each used New Game, with Westminster alone. Separate processes tested stale and complete metadata;
+stale omitted only the situation/struggle replacement lines. All six comment-only history overrides
+were present in the complete staging copy (Workshop graphics/map assets with current repository files
+overlaid). Conference and leadership events accepted input. Saved headers verify endpoint dates and
+characters. Fast simulation overshot the minimum six months in the Starmer runs.
+
+Existing missing vanilla event/region references and unused-variable warnings persist. Retaining vanilla
+portrait caches adds two nonfatal unknown-modifier warnings: `male_empty` and
+`m_headgear_sec_mpo_mongol_war_nob_01`. This is startup/early-game verification, not a long-campaign or
+gameplay-balance guarantee. All installed DLCs were enabled; the full list is in the local report.
+
+Campaign screenshots, saves, exact metadata, logs and restoration verification are in
+`westminster/tools/test_out/windows_campaigns_20261016/`. Diagnostic crash reports remain in
+`westminster/tools/test_out/windows_fix_20261016/` and `windows_startup_20261016/` (ignored local output).
+The game was closed. The active profile originally had no CK3 user folder or saves; all temporary data
+was archived and that original absence restored. Nothing was pushed or published.
+
 ## Westminster stale-launcher smoke test — 16 October 2026
 
 Tested the working-tree history overrides on macOS with CK3 1.20.1.1, using Westminster alone and a temporary
