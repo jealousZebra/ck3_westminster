@@ -3,6 +3,18 @@
 Paths below are relative to the repository root. The playable mod is `westminster/westminster/`.
 CK3 script and localization use UTF-8 BOM. Python and JSON use UTF-8. Test history edits in a **new campaign**.
 
+## Local playtesting
+
+A clone contains script, GUI and localization, but omits generated map/interface textures. You can run source checks
+without those assets. To playtest without rebuilding the map, copy the matching generated assets from your installed
+Steam Workshop version into the clone: `map_data/*.png`, `gfx/interface/`, generated map textures, and generated flag/CoA
+textures. `.gitignore` lists the exact omitted paths. Copy assets only; preserve the clone's scripts and descriptor.
+Then run `python3 common/tools/install_mod.py westminster` and enable the local mod alone in your playset.
+
+For a full rebuild, follow [setup](../westminster/README.md#setup-install-and-test), including raw data and fonts.
+Python-only checks need no game or image-generation key. Cached source artwork is included; generating missing or new
+AI artwork through the optional fal.ai tools requires your own `FAL_KEY` and may incur charges. Never commit it.
+
 ## Where to edit
 
 | Change | Source |

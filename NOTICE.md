@@ -34,6 +34,13 @@ The licence texts ship next to the fonts.
 - **Elevation:** Copernicus DEM GLO-90. © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018, provided
   under COPERNICUS by the European Union and ESA; all rights reserved.
 - **Some dates of birth:** Wikidata, CC0.
+- **Historical Commons membership:** mySociety's [ParlParse](https://github.com/mysociety/parlparse), supplemented by
+  Parliament Members API records. Upstream material retains its own terms; the cached downloads are not committed.
+- **1945 affiliations and female MP names:** Wikipedia contributors, CC BY-SA 4.0. The factual extracts
+  `westminster/data/members_1945_affiliations.json` and `female_mps.json` retain source URLs, retrieval dates and
+  attribution. Entries are normalized/grouped for gameplay; historical snapshots adapt them to the modern map.
+
+These third-party datasets are not relicensed under the project's MIT/CC BY asset terms.
 
 Details and download commands are in [westminster/data/README.md](westminster/data/README.md).
 

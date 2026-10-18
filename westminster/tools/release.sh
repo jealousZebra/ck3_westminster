@@ -40,6 +40,7 @@ for kind in buildings activities combat siege special_building unit_stack_player
 done
 ls westminster/gfx/coat_of_arms/textured_emblems/wm_flag_*.dds >/dev/null 2>&1 || { echo "missing: flags (wm_flag_*.dds)"; missing=1; }
 [ "$missing" = 0 ] || { echo "Build the mod first (westminster/README.md, \"Setup, install and test\")."; exit 1; }
+"$PY" tools/ui/check_bookmark_assets.py
 "$PY" art/make_thumbnail.py "${VERSION:-0.3}"
 
 step "Static checks"

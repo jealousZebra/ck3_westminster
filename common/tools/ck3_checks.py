@@ -19,17 +19,25 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from ck3paths import DOCS, GAME  # noqa: E402  (CK3_GAME_DIR / CK3_DOCS_DIR override the Steam defaults)
+from ck3paths import DOCS  # noqa: E402  (CK3_DOCS_DIR overrides the Steam default)
 
 
-def same_as_vanilla(f, mod, diff):
-    """A copied vanilla file with vanilla's own (harmless) brace imbalance, e.g. braces inside format strings."""
-    v = os.path.join(str(GAME), os.path.relpath(f, mod))
-    if not os.path.exists(v):
-        return False
-    t = re.sub(r'"[^"]*"', "", open(v, encoding="utf-8-sig", errors="replace").read())
-    t = re.sub(r"#.*", "", t)
-    return t.count("{") - t.count("}") == diff
+def script_braces_balanced(text):
+    """Ignore comments and quoted format strings, including escaped quotes.
+
+    Tokenize together: stripping strings before comments lets a quote in a comment
+    consume real script. Source validation must not depend on an installed game.
+    """
+    depth = 0
+    for match in re.finditer(r'"(?:\\.|[^"\\])*"|#[^\n]*|[{}]', text):
+        token = match[0]
+        if token == "{":
+            depth += 1
+        elif token == "}":
+            depth -= 1
+            if depth < 0:
+                return False
+    return depth == 0
 
 
 def static(mod):
@@ -41,9 +49,7 @@ def static(mod):
         if not raw.startswith(b"\xef\xbb\xbf"):
             bad.append("no UTF-8 BOM: " + f)
         if f.endswith((".txt", ".gui")):
-            t = re.sub(r'"[^"]*"', "", raw.decode("utf-8-sig"))
-            t = re.sub(r"#.*", "", t)
-            if t.count("{") != t.count("}") and not same_as_vanilla(f, mod, t.count("{") - t.count("}")):
+            if not script_braces_balanced(raw.decode("utf-8-sig")):
                 bad.append("unbalanced braces: " + f)
     keys, where = {}, {}
     loc = os.path.join(mod, "localization")

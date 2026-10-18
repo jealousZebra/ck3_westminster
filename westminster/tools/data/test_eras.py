@@ -70,7 +70,7 @@ class Eras(unittest.TestCase):
             )
             self.assertFalse(set(re.findall(r"dna = (wm_dna_\w+)", text)) - dna)
 
-    def test_every_featured_character_has_cache(self):
+    def test_every_featured_character_has_source_and_runtime_cache(self):
         for year, cfg in ERAS.items():
             for name in cfg["featured"]:
                 key = f"bookmark_{year}_" + norm(name)
@@ -78,11 +78,7 @@ class Eras(unittest.TestCase):
                     (MOD / f"common/bookmark_portraits/{key}.txt").exists(), key
                 )
                 self.assertTrue(
-                    (
-                        MOD
-                        / f'gfx/interface/bookmarks/bm_{year}_{cfg["slug"]}_{key}.dds'
-                    ).exists(),
-                    key,
+                    (ROOT / f"art/bookmark_portraits/{key}.txt").exists(), key
                 )
 
     def test_portrait_caches_include_engine_rendering_data(self):

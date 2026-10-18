@@ -5,6 +5,7 @@
 - Gives the current six-start build a distinct version after several different uploads used 0.5.4.
 - Updates descriptor/launcher metadata only; gameplay and startup protections are unchanged.
 - Keeps Workshop item `3816349981`, CK3 compatibility `1.20.*` and the existing artwork.
+- Public-source preparation: clean-checkout CI, separate release artwork validation, game-independent script parsing, updated setup/contribution docs and data attribution.
 - This is not a crash fix. Compatibility with older, different 0.5.4 save formats remains unverified.
 
 ## 2026-10-18 — Six Starts & Build Your Movement (uploaded as 0.5.4)

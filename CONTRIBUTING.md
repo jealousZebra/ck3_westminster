@@ -15,11 +15,13 @@ balance changes in an issue first. Bug reports, translations, DNA improvements a
 
 ```sh
 python3 common/tools/ck3_checks.py static westminster/westminster
-python3 westminster/tools/data/test_character_overrides.py
-python3 westminster/tools/data/test_eras.py
-python3 westminster/tools/data/test_stability.py
+python3 -m unittest discover -s westminster/tools/data -p 'test_*.py'
+python3 westminster/workshop/translations/check.py
 python3 common/tools/check_secrets.py
 ```
+
+These source checks work from a clean clone with Python alone. Generated DDS artwork is checked separately by
+`westminster/tools/ui/check_bookmark_assets.py` during release preparation.
 
 [Engine test instructions](docs/ck3-testing.md) cover fresh campaigns and scripted suites. Automated window-driving
 helpers are macOS-specific; manual CK3 testing works on Windows and Linux too. There is no need to rebuild art for a text-only change.

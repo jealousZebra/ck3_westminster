@@ -5,7 +5,8 @@ after the 2024 election, play another MP, or begin as a campaigner and climb fro
 
 | | |
 |---|---|
-| Status | **0.5.4 public beta** on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981). In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Source | **0.5.5**, prepared for the next upload; version identification update, no gameplay changes. |
+| Workshop | [Public beta](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981): six-start build uploaded 18 October 2026 as **0.5.4**. |
 | Game | Crusader Kings III 1.20 |
 | Modding | [Character/DNA/policy guide](docs/modding.md), [contributing via PR](CONTRIBUTING.md) |
 | Plans | [Roadmap](ROADMAP.md), [design notes](westminster/PLAN.md) |
@@ -19,7 +20,7 @@ person. Westminster isn't affiliated with Parliament, any political party or the
 endorsed by Paradox Interactive.
 
 The 18 October 2026 upload adds 1945, 1997, 2010 and 2016 starts, movement building, government/Brexit and press gameplay.
-It retains descriptor version 0.5.4; see [the changelog](westminster/workshop/CHANGELOG.md) for the dated release.
+The source now uses 0.5.5 to distinguish that build from older uploads sharing 0.5.4. See [the changelog](westminster/workshop/CHANGELOG.md).
 
 ## What's in it
 
@@ -58,16 +59,28 @@ westminster/
 - **Crusader Kings III 1.20** from Steam. The tools find the game in the usual Steam folders on macOS, Windows and
   Linux; set `CK3_GAME_DIR` (the `Crusader Kings III/game` folder) and `CK3_DOCS_DIR` (the
   `Paradox Interactive/Crusader Kings III` user folder) if yours is elsewhere.
-- **Python 3.9 or newer:** `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
+- **Python:** 3.11 recommended. Source checks need only Python; builders need `requirements.txt`.
+  macOS/Linux: `python3 -m venv .venv`, then `.venv/bin/python -m pip install -r requirements.txt`.
+  Windows: `py -3.11 -m venv .venv`, then `.venv\Scripts\python.exe -m pip install -r requirements.txt`.
 - **Build:** a clone has the scripts, localization and GUI, but not the generated textures and map images. Build them
   as [westminster/README.md](westminster/README.md#setup-install-and-test) describes (map, character histories, all bookmarks,
   seat leans, then the interface).
 - **Play from a clone:** `python3 common/tools/install_mod.py westminster` writes the launcher's `.mod` file pointing
   at your clone; enable it in the launcher.
-- **Checks:** `python3 common/tools/ck3_checks.py static westminster/westminster`. Manual in-game testing works on
-  all platforms; automated window-driving helpers require macOS and `swiftc`. See [testing](docs/ck3-testing.md).
+- **Source checks:** run the commands below from a clone; no CK3 installation, downloaded data or generated art needed.
+  Manual in-game testing works on all platforms; window-driving helpers require macOS and `swiftc`. See [testing](docs/ck3-testing.md).
 - **Releases** go to the Workshop through the Paradox launcher: see
   [westminster/workshop/PUBLISHING.md](westminster/workshop/PUBLISHING.md).
+
+```sh
+python3 common/tools/ck3_checks.py static westminster/westminster
+python3 -m unittest discover -s westminster/tools/data -p 'test_*.py'
+python3 westminster/workshop/translations/check.py
+```
+
+On Windows use `py` in place of `python3`. Two checks against installed vanilla files skip when CK3 is absent.
+To play immediately, subscribe on Steam; the source ZIP is not a ready-to-play package.
+For script-only local testing, see [reusing generated assets](docs/modding.md#local-playtesting).
 
 ## Making changes
 

@@ -33,6 +33,6 @@ See [contributing](CONTRIBUTING.md) and the [modding guide](docs/modding.md). It
 - [ ] **Performance** — profile constituency-wide updates and reduce expensive repeated work.
 - [ ] **Windows and DLC coverage** — test fresh starts and save/load with different DLC combinations.
 
-Public release: **18 October 2026**, descriptor version **0.5.4**. All six starts, movement building, government/Brexit
+Workshop upload: **18 October 2026**, labelled **0.5.4**. Source **0.5.5** is prepared for version identification. All six starts, movement building, government/Brexit
 and press additions are published; help test and improve them. Longer-campaign and Windows checks for the new content remain open.
 Shipped changes: [changelog](westminster/workshop/CHANGELOG.md).

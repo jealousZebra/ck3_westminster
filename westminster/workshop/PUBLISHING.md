@@ -41,7 +41,7 @@ Steam changelog entries: gameplay `1792322794`, final artwork refresh `179232321
    uploads `westminster/westminster/` (the mod folder, with the generated
    textures) using `descriptor.mod` (name, version, tags, picture) and `thumbnail.png`.
 3. For a new Workshop item, begin as **Hidden** or **Friends only**. Subscribe from a second machine or after
-   disabling the local mod, start both bookmarks from the Workshop copy, and check the map, interface and a month or
+   disabling the local mod, test all six starts from the Workshop copy, and check the map, interface and a month or
    two of play before making it public.
 4. Keep `remote_file_id="3816349981"` in both descriptors so uploads update the existing item.
 5. Paste `workshop/title.txt` and `workshop/description.bbcode.txt` into Edit title & description (English), and add

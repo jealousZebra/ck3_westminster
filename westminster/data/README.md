@@ -3,7 +3,33 @@
 For character skills, traits, ideology and DNA bindings, edit [`character_overrides.json`](character_overrides.json).
 The [modding guide](../../docs/modding.md) has examples and regeneration commands. Do not edit snapshot outputs as inputs.
 
-Downloaded data goes in `raw/` (not in git). Re-download with the commands below.
+Downloaded data goes in `raw/` (not in Git). Create it first with `mkdir -p westminster/data/raw`
+(PowerShell: `New-Item -ItemType Directory -Force westminster/data/raw`). Commands below run from the repo root
+unless a section changes directory.
+
+## Fonts for a full UI rebuild
+
+The installed mod already includes the built fonts and their OFL licences. To regenerate them, populate this layout:
+
+```text
+raw/fonts/
+  PlayfairDisplay[wght].ttf
+  PlayfairDisplay-Italic[wght].ttf
+  OFL_playfair.txt
+  sourceserif/source-serif-4.005_Desktop/TTF/
+    SourceSerif4-Regular.ttf
+    SourceSerif4-Bold.ttf
+    SourceSerif4-It.ttf
+    SourceSerif4-BoldIt.ttf
+```
+
+Playfair Display comes from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/playfairdisplay); save its
+`OFL.txt` as `OFL_playfair.txt`. Source Serif comes from Adobe's
+[4.005 desktop release](https://github.com/adobe-fonts/source-serif/releases/tag/4.005R); extract the Desktop ZIP
+under `raw/fonts/sourceserif/`. Keep its licence in the extracted folder. Both families use SIL OFL 1.1.
+
+The existing source artwork in `art/fal/` and exported portraits in `art/bookmark_portraits/` are committed.
+A normal cached build does not need an image-generation key; only generating missing/new AI art uses fal.ai.
 
 ## Constituency boundaries (2024)
 

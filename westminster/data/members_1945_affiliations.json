@@ -1,6 +1,9 @@
 {
   "source": "https://en.wikipedia.org/wiki/List_of_MPs_elected_in_the_1945_United_Kingdom_general_election",
   "retrieved": "2026-10-18",
+  "attribution": "Wikipedia contributors",
+  "license": "CC-BY-SA-4.0",
+  "changes": "Extracted factual names, seats and affiliations; gameplay party grouping is performed by the builder.",
   "members": [
     {
       "old_seat": "Aberavon",
@@ -1094,7 +1097,7 @@
     },
     {
       "old_seat": "Evesham",
-      "name": "Rupert de la B\u00e8re",
+      "name": "Rupert de la Bère",
       "affiliation": "Conservative"
     },
     {
@@ -1644,7 +1647,7 @@
     },
     {
       "old_seat": "Kingston upon Hull Central",
-      "name": "Mark Hewitson \u00d7",
+      "name": "Mark Hewitson ×",
       "affiliation": "Labour"
     },
     {

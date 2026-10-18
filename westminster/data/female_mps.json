@@ -1,6 +1,9 @@
 {
   "source": "https://en.wikipedia.org/wiki/List_of_female_members_of_the_House_of_Commons_of_the_United_Kingdom",
   "retrieved": "2026-10-18",
+  "attribution": "Wikipedia contributors",
+  "license": "CC-BY-SA-4.0",
+  "changes": "Extracted factual names for historical character setup.",
   "names": [
     "Abena Oppong-Asare",
     "Abtisam Mohamed",

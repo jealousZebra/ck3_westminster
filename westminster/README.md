@@ -1,12 +1,12 @@
 # Westminster
 
 A total-conversion CK3 mod about British politics. Rise from campaigner to Prime Minister on a map of the 650
-Westminster constituencies. Play the 1979 or 2024 start; future releases will add more prime-ministerial eras and
-deepen the House of Lords, mayors, councils and devolved politics.
+Westminster constituencies. Start in 1945, 1979, 1997, 2010, 2016 or 2024. Further work includes the House of Lords,
+mayors, councils and devolved politics.
 
 | | |
 |---|---|
-| Status | 0.5.4 public beta on Steam Workshop. The 1979 and 2024 starts, the Commons, elections, campaigns, careers, parties and the newspaper interface are playable. In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
+| Status | Source 0.5.5 prepared; Workshop six-start beta uploaded as 0.5.4. English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish; some new text uses English fallback. |
 | Release | [workshop/PUBLISHING.md](workshop/PUBLISHING.md): Workshop page text, thumbnail, screenshots; `tools/release.sh <version>` checks and zips |
 | Game | CK3 1.20 (any platform; the in-game test tools are macOS-only) |
 | Prefix | `wm_` (files, variables, effects, localization keys) |
@@ -24,7 +24,7 @@ For source changes, start with the [modding guide](../docs/modding.md) and [cont
 ## 18 October 2026 update: movement and historical eras
 
 The 18 October upload adds the 1945 Attlee, 1997 Blair, 2010 Cameron coalition and 2016 May starts, alongside
-1979 and 2024. The descriptor remains 0.5.4. Fresh-start smoke tests pass; longer campaign and Windows validation of the new content remain.
+1979 and 2024. Source 0.5.5 identifies that build without gameplay changes. Fresh-start smoke tests pass; longer campaigns still need testing. See [test results](../docs/ck3-testing.md) for platform evidence.
 
 - Build Your Movement: membership drives, donors, national publicity, targeted local branches, candidate recruitment
   and an invitation to a disillusioned MP to defect. All six founded-party slots participate in elections, candidate
@@ -253,12 +253,16 @@ westminster/
 
 ## Setup, install and test
 
+For script-only changes, start with [local playtesting](../docs/modding.md#local-playtesting). A full rebuild needs the
+[downloaded source data and fonts](data/README.md), your installed CK3, and the Python packages. The shell examples
+below target macOS/Linux; on Windows use `.venv\Scripts\python.exe` for the corresponding Python steps.
+
 Everything runs from the repo root. Setup (CK3, Python and `requirements.txt`, `CK3_GAME_DIR`/`CK3_DOCS_DIR`) is in
 the [root README](../README.md#setup). The generated files that are in git (script, localization, GUI) are
 up to date, but the textures and map images aren't in git, so a clone must be built before it can be played.
 
 ```sh
-# 1. Download the source data into westminster/data/raw/ (commands in data/README.md)
+# 1. Download source data and fonts into westminster/data/raw/ (see data/README.md)
 # 2. Build, in this order (each step reads what the one before wrote)
 .venv/bin/python westminster/tools/map/build_map.py          # map_data, titles, province history, localization
 .venv/bin/python westminster/tools/data/build_2024.py        # the 2024 bookmark (needs the map's titles)
@@ -278,6 +282,7 @@ westminster/tools/ui/build_ui.sh                             # the whole interfa
 python3 common/tools/install_mod.py westminster
 # 5. Check
 python3 common/tools/ck3_checks.py static westminster/westminster
+python3 westminster/tools/ui/check_bookmark_assets.py           # release art, after the full UI build
 ```
 
 After rebuilding the map, boot Westminster once and run
