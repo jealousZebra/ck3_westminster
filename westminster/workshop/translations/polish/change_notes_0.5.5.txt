@@ -1,0 +1,5 @@
+0.5.5 — Oznaczenie wersji
+
+Numer moda zmieniono na 0.5.5, aby odróżnić obecną kompilację z sześcioma startami od wcześniejszych publikacji oznaczonych jako 0.5.4. Wydanie nie zawiera zmian rozgrywki ani poprawki awarii.
+
+Zachowuje sześć startów, budowanie ruchu, rząd/Brexit i prasę. Zgodność zapisów z innych, starszych kompilacji 0.5.4 nie została potwierdzona; dla rozszerzonej historii rozpocznij nową kampanię.

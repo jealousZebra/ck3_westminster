@@ -1,0 +1,5 @@
+0.5.5 — Identificación de versión
+
+La versión del mod pasa a 0.5.5 para distinguir la compilación actual de seis inicios de las subidas anteriores etiquetadas como 0.5.4. No incluye cambios de jugabilidad ni una corrección de cierres inesperados.
+
+Mantiene los seis inicios, los movimientos, el gobierno/Brexit y la prensa. No se ha certificado la compatibilidad de partidas de otras compilaciones antiguas 0.5.4; inicia una campaña nueva para la configuración histórica ampliada.

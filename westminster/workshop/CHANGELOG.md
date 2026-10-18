@@ -1,5 +1,12 @@
 # Westminster changelog
 
+## 0.5.5 — Version identification (prepared; not yet uploaded)
+
+- Gives the current six-start build a distinct version after several different uploads used 0.5.4.
+- Updates descriptor/launcher metadata only; gameplay and startup protections are unchanged.
+- Keeps Workshop item `3816349981`, CK3 compatibility `1.20.*` and the existing artwork.
+- This is not a crash fix. Compatibility with older, different 0.5.4 save formats remains unverified.
+
 ## 2026-10-18 — Six Starts & Build Your Movement (uploaded as 0.5.4)
 
 - Added 1945 Attlee, 1997 Blair, 2010 Cameron coalition and 2016 May/Brexit starts, alongside 1979 and 2024.

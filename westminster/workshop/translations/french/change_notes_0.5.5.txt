@@ -1,0 +1,5 @@
+0.5.5 — Identification de version
+
+Le numéro du mod passe à 0.5.5 pour distinguer la version actuelle à six départs des précédents envois étiquetés 0.5.4. Cette version ne contient aucun changement de gameplay ni correctif de plantage.
+
+Elle conserve les six départs, les mouvements, le gouvernement/Brexit et la presse. La compatibilité des sauvegardes issues des anciennes versions 0.5.4 différentes n’est pas certifiée ; commencez une nouvelle campagne pour les nouveaux départs historiques.

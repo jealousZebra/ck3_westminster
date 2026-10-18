@@ -1,0 +1,5 @@
+0.5.5 — Version identification
+
+Updates the mod version label to 0.5.5 so the current six-start build can be distinguished from earlier uploads labelled 0.5.4. No gameplay changes or crash fix are included in this release.
+
+Includes the existing six starts, movement building, government/Brexit and press content. Saves from older, different 0.5.4 builds have not been certified compatible; use a fresh campaign for the expanded historical setup.

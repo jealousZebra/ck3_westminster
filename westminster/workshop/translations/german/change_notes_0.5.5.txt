@@ -1,0 +1,5 @@
+0.5.5 — Versionskennzeichnung
+
+Die Mod-Versionsnummer wird auf 0.5.5 gesetzt, damit sich der aktuelle Stand mit sechs Startdaten von früheren Uploads mit der Nummer 0.5.4 unterscheiden lässt. Keine Gameplay-Änderungen und kein Absturz-Fix.
+
+Enthalten sind weiterhin sechs Starts, Bewegungsaufbau, Regierung/Brexit und Presse. Die Kompatibilität von Spielständen aus älteren, abweichenden 0.5.4-Builds ist nicht bestätigt; für die erweiterten historischen Starts eine neue Kampagne beginnen.

@@ -6,6 +6,12 @@
 
 Commands below are run from the repo root.
 
+## Prepared next upload — 0.5.5
+
+Version-label refresh only; no gameplay changes or crash fix. Upload to the existing Workshop item, not a new item.
+Use `change_notes_0.5.5.txt` and its translations after uploading. The current Steam release remains labelled 0.5.4
+until that upload completes. Never reuse a published version number for a different build.
+
 ## Current upload — 18 October 2026
 
 Six playable starts (1945, 1979, 1997, 2010, 2016, 2024), movement, government/Brexit and press content.
