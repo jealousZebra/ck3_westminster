@@ -1,0 +1,17 @@
+﻿l_japanese:
+ # English fallback pending translation.
+ wm_movement_decision: "Build Your Movement"
+ wm_movement_decision_desc: "Turn your party into an organisation that can win seats. Recruit members, find donors and establish local branches before polling day."
+ wm_movement_decision_tooltip: "Review your organisation and choose the next step."
+ wm_movement_decision_confirm: "Open the campaign desk"
+ wm_movement.1.t: "Build Your Movement"
+ wm_movement.1.desc: "Members: [ROOT.Char.MakeScope.Var('wm_party').Title.MakeScope.Var('wm_movement_members').GetValue|0]\nDonors: [ROOT.Char.MakeScope.Var('wm_party').Title.MakeScope.Var('wm_movement_donors').GetValue|0]\nPublic profile: [ROOT.Char.MakeScope.Var('wm_party').Title.MakeScope.Var('wm_movement_reputation').GetValue|0]/100\n\nTarget seat: [ROOT.Char.MakeScope.Var('wm_movement_target').Title.GetNameNoTier]\n\n#bold Your next steps#!\nBuild a branch and recruit a candidate in your target seat. Branches add six percentage points of local support, up to 45. Your selected candidate takes the seat if the party wins it. Switch targets to spread your organisation. Members, donors and publicity raise your national poll anchor, up to 12%."
+ wm_movement.members: "Hold a membership drive (50 prestige; +250 members)"
+ wm_movement.donors: "Meet potential donors (25 prestige; +10 donors and 20 funds)"
+ wm_movement.branch: "Build the target-seat branch (20 funds; +6% local support)"
+ wm_movement.candidate: "Recruit a candidate (30 funds; +6% local support)"
+ wm_movement.press: "Give a national interview (40 prestige; +5 public profile)"
+ wm_movement.target: "Look for another target seat"
+ wm_movement.close: "Back to Westminster"
+ wm_invite_defection_interaction: "Invite to Cross the Floor"
+ wm_invite_defection_interaction_desc: "Invite a disillusioned MP into your party. They must like you (40 opinion), dislike their current leader (-20 opinion), and be free to accept. Costs 250 prestige; once a year for each target."

@@ -117,5 +117,59 @@ wm_ui_poll_tuv = {
 	}
 }
 wm_ui_seats_tuv = { value = 0 if = { limit = { has_global_variable = wm_seats_tuv } value = global_var:wm_seats_tuv } }
+wm_ui_poll_new_1 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_1 }
+		value = global_var:wm_poll_new_1
+		divide = 10
+	}
+}
+wm_ui_seats_new_1 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_1 } value = global_var:wm_seats_new_1 } }
+wm_ui_poll_new_2 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_2 }
+		value = global_var:wm_poll_new_2
+		divide = 10
+	}
+}
+wm_ui_seats_new_2 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_2 } value = global_var:wm_seats_new_2 } }
+wm_ui_poll_new_3 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_3 }
+		value = global_var:wm_poll_new_3
+		divide = 10
+	}
+}
+wm_ui_seats_new_3 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_3 } value = global_var:wm_seats_new_3 } }
+wm_ui_poll_new_4 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_4 }
+		value = global_var:wm_poll_new_4
+		divide = 10
+	}
+}
+wm_ui_seats_new_4 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_4 } value = global_var:wm_seats_new_4 } }
+wm_ui_poll_new_5 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_5 }
+		value = global_var:wm_poll_new_5
+		divide = 10
+	}
+}
+wm_ui_seats_new_5 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_5 } value = global_var:wm_seats_new_5 } }
+wm_ui_poll_new_6 = {
+	value = 0
+	if = {
+		limit = { has_global_variable = wm_poll_new_6 }
+		value = global_var:wm_poll_new_6
+		divide = 10
+	}
+}
+wm_ui_seats_new_6 = { value = 0 if = { limit = { has_global_variable = wm_seats_new_6 } value = global_var:wm_seats_new_6 } }
 wm_ui_seats_ind = { value = 0 if = { limit = { has_global_variable = wm_seats_ind } value = global_var:wm_seats_ind } }
 wm_ui_seats_spk = { value = 0 if = { limit = { has_global_variable = wm_seats_spk } value = global_var:wm_seats_spk } }

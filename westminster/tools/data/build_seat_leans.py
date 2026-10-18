@@ -43,6 +43,8 @@ PARTIES = [
     ("uup",  "UUP",   "k_party_uup",          "UUP",       "UUP",       "Northern Ireland"),
     ("tuv",  "TUV",   "k_party_tuv",          "TUV",       "TUV",       "Northern Ireland"),
 ]
+PARTIES += [(f"new_{i}", None, f"k_party_new_{i}", name.upper(), name.upper(), None)
+            for i, name in enumerate(["Lantern Party", "Bridge Party", "Beacon Alliance", "Kestrel Party", "Compass Movement", "Hearth Party"], 1)]
 MIN_SHARE = 0.001           # shares below 0.1% aren't stored
 MIN_IND = 0.01              # independents' share is stored from 1% (it only counts for an independent incumbent)
 
@@ -70,7 +72,7 @@ def main():
     def national(cols):
         return 1000 * sum(sum(float(r["share_" + c]) for c in cols) * int(r["valid_votes"]) for r in rows) / total
 
-    base = {p[0]: round(national([p[1]]), 1) for p in PARTIES}
+    base = {p[0]: round(national([p[1]]), 1) if p[1] else 0 for p in PARTIES}
     base["oth"] = round(1000 - sum(base.values()), 1)            # independents, the Speaker and everyone else
     factor = {p[0]: (round(total / nation_votes[p[5]], 2) if p[5] else 1) for p in PARTIES}
 
@@ -83,6 +85,8 @@ def main():
     for r in rows:
         sets = []
         for p in PARTIES:
+            if not p[1]:
+                continue
             s = float(r["share_" + p[1]])
             if s >= MIN_SHARE:
                 sets.append("set_variable = { name = wm_lean_%s value = %s }" % (p[0], fmt(s * 1000)))
@@ -105,9 +109,15 @@ def main():
         sv.append("wm_polls_2024_%s = %s" % (k, fmt(base[k])))
     sv.append("\n# The anchor each party's poll drifts back to: its 2024 share, plus the government's fortunes for the PM's party.")
     for p in PARTIES:
+        if not p[1]:
+            sv.append("wm_polls_anchor_%s = { value = 0 if = { limit = { exists = title:%s.holder } value = title:%s.wm_movement_national_support } }" % (p[0], p[2], p[2]))
+            continue
         sv.append("wm_polls_anchor_%s = {\n\tvalue = wm_polls_2024_%s\n\tif = {\n\t\tlimit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:%s } }\n"
                   "\t\tadd = wm_polls_government_pressure\n\t}\n\tmin = 1\n}" % (p[0], p[0], p[2]))
     sv.append("wm_polls_anchor_oth = {\n\tvalue = wm_polls_2024_oth\n}")
+    for k in allkeys:
+        sv.append("wm_polls_baseline_%s = { value = wm_polls_2024_%s if = { limit = { has_global_variable = wm_start_poll_%s } value = global_var:wm_start_poll_%s } min = 1 }" % (k,k,k,k))
+    sv = [line.replace("value = wm_polls_2024_", "value = wm_polls_baseline_") if line.startswith("wm_polls_anchor_") and "new_" not in line else line for line in sv]
     sv.append("\n# Sum of the polls (normalised back to 1000 each month)\nwm_polls_total = {\n\tvalue = 0\n%s\n}"
               % "\n".join("\tadd = global_var:wm_poll_%s" % k for k in allkeys))
     sv.append("\n# The seat model. Scope: a seat (county title) with var:wm_lean_<party>. Half uniform swing (the 2024 share plus the\n"
@@ -115,8 +125,11 @@ def main():
               "# swing (the 2024 share scaled by poll / 2024 poll). Tenths of a percent.")
     for p in PARTIES:
         k = p[0]
+        if not p[1]:
+            sv.append("wm_election_seat_share_%s = { value = var:wm_lean_%s add = global_var:wm_poll_%s min = 0 max = 950 }" % (k, k, k))
+            continue
         sv.append("wm_election_seat_share_%s = {\t# nation factor %s\n\tvalue = var:wm_lean_%s\n\tmultiply = global_var:wm_poll_%s\n"
-                  "\tdivide = wm_polls_2024_%s\n\tadd = var:wm_lean_%s\n\tadd = {\n\t\tvalue = global_var:wm_poll_%s\n\t\tsubtract = wm_polls_2024_%s\n"
+                  "\tdivide = wm_polls_baseline_%s\n\tadd = var:wm_lean_%s\n\tadd = {\n\t\tvalue = global_var:wm_poll_%s\n\t\tsubtract = wm_polls_baseline_%s\n"
                   "\t\tmultiply = %s\n\t}\n\tdivide = 2\n\tmin = 0\n}" % (k, fmt(factor[k]) if p[5] else "1 (stands across Great Britain)",
                                                                       k, k, k, k, k, k, fmt(factor[k])))
     sv.append("\n# The governing party's poll, and the best poll of any other party (min = X raises the value to X)")
@@ -136,20 +149,32 @@ def main():
     ef = [GEN]
     historic = {"lab": 369, "con": 439, "ld": 138, "ruk": 1, "grn": 1, "snp": 16, "pc": 4,
                 "sf": 1, "dup": 5, "sdlp": 4, "apni": 1, "uup": 8, "tuv": 1, "oth": 12}
+    historic.update({f"new_{i}": 0 for i in range(1, 7)})
     ef.append("# Polls start from the active bookmark's election result.\nwm_polls_init_effect = {\n"
               "\tif = {\n\t\tlimit = { game_start_date < 1980.1.1 }\n%s\n\t}\n\telse = {\n%s\n\t}\n}" % (
         "\n".join("\t\tset_global_variable = { name = wm_poll_%s value = %s }" % (k, historic[k]) for k in allkeys),
         "\n".join("\t\tset_global_variable = { name = wm_poll_%s value = wm_polls_2024_%s }" % (k, k) for k in allkeys)))
+    # Each bookmark starts from its own national result, with no future parties.
+    era_polls = {
+        "1945.7.27": dict(lab=477, con=396, ld=90, uup=8),
+        "1997.5.2": dict(lab=432, con=307, ld=168, snp=20, pc=5, sf=4, dup=3, sdlp=6, uup=8),
+        "2010.5.12": dict(lab=290, con=361, ld=230, snp=17, pc=6, sf=6, dup=6, sdlp=4, uup=2, apni=1, grn=10),
+        "2016.7.14": dict(lab=304, con=369, ld=79, ruk=126, grn=38, snp=47, pc=6, sf=6, dup=6, sdlp=3, uup=4, apni=2, tuv=1),
+    }
+    for date, shares in era_polls.items():
+        shares["oth"] = 1000 - sum(shares.values())
+        ef[-1] = ef[-1][:-1] + "\n\tif = { limit = { game_start_date = %s }\n%s\n\t}\n}" % (date, "\n".join("\t\tset_global_variable = { name = wm_poll_%s value = %s }" % (k, shares.get(k, 0)) for k in allkeys))
+    ef[-1] = ef[-1][:-1] + "\n" + "\n".join("\tset_global_variable = { name = wm_start_poll_%s value = global_var:wm_poll_%s }" % (k,k) for k in allkeys) + "\n}"
     ef.append("# A month of poll movement for every party (wm_polls_drift_party_effect), then back to a total of 1000.\n"
               "wm_polls_drift_all_effect = {\n%s\n\twm_polls_normalise_effect = yes\n}" % "\n".join(
-                  "\twm_polls_drift_party_effect = { P = %s }" % k for k in allkeys))
+                  ("\tif = { limit = { exists = title:k_party_%s.holder } if = { limit = { NOT = { has_global_variable = wm_poll_%s } } set_global_variable = { name = wm_poll_%s value = 0 } } wm_polls_drift_party_effect = { P = %s } }\n\telse = { set_global_variable = { name = wm_poll_%s value = 0 } }" % (k, k, k, k, k)) if k.startswith("new_") else (("\tif = { limit = { exists = title:%s.holder } wm_polls_drift_party_effect = { P = %s } }\n\telse = { set_global_variable = { name = wm_poll_%s value = 0 } }" % (next(p[2] for p in PARTIES if p[0] == k), k, k)) if k != "oth" else "\twm_polls_drift_party_effect = { P = oth }") for k in allkeys))
     ef.append("wm_polls_normalise_effect = {\n\tset_global_variable = { name = wm_polls_sum value = wm_polls_total }\n"
               "\tif = {\n\t\tlimit = { global_var:wm_polls_sum > 0 }\n%s\n\t}\n}" % "\n".join(
                   "\t\tset_global_variable = {\n\t\t\tname = wm_poll_%s\n\t\t\tvalue = {\n\t\t\t\tvalue = global_var:wm_poll_%s\n"
                   "\t\t\t\tmultiply = 1000\n\t\t\t\tdivide = global_var:wm_polls_sum\n\t\t\t}\n\t\t}" % (k, k) for k in allkeys))
     ef.append("# Scope: a seat. Scores every party that stood there in 2024 (wm_election_score_party_effect).\n"
               "wm_election_score_parties_effect = {\n%s\n}" % "\n".join(
-                  "\twm_election_score_party_effect = { P = %s PARTY = %s }" % (p[0], p[2]) for p in PARTIES))
+                  ("\tif = { limit = { exists = title:%s.holder } wm_election_score_party_effect = { P = %s PARTY = %s } }" % (p[2],p[0],p[2])) if not p[1] else "\twm_election_score_party_effect = { P = %s PARTY = %s }" % (p[0], p[2]) for p in PARTIES))
     ef.append("# Seats per party into global_var:wm_seats_<party> (plus _ind for independents and _spk for the Speaker).\n"
               "wm_election_count_seats_effect = {\n%s\n\ttitle:e_united_kingdom = {\n\t\tevery_in_de_jure_hierarchy = {\n"
               "\t\t\tlimit = {\n\t\t\t\ttier = tier_county\n\t\t\t\texists = holder\n\t\t\t}\n\t\t\tholder = {\n%s\n\t\t\t}\n\t\t}\n\t}\n}" % (
@@ -309,6 +334,14 @@ wm_election_results.1 = {
     loc.append(' wm_election_row_ind: "\\nIndependents: #bold [wm_r_ind|0]#! seats ([wm_rd_ind|+0])"')
     loc.append(' wm_election_row_spk: "\\nThe Speaker: #bold [wm_r_spk|0]#! seat"')
     write("localization/english/wm_election_parties_l_english.yml", "\n".join(loc) + "\n")
+
+    for language in ("french", "german", "japanese", "korean", "polish", "russian", "simp_chinese", "spanish"):
+        path = MOD / f"localization/{language}/wm_election_parties_l_{language}.yml"
+        text = path.read_text(encoding="utf-8-sig")
+        import re
+        text = re.sub(r'^ wm_election_(?:headline_\w+|row)_new_[1-6]:.*\n?', '', text, flags=re.M)
+        extra = [line for line in loc if re.match(r' wm_election_(?:headline_\w+|row)_new_[1-6]:', line)]
+        write(str(path.relative_to(MOD)), text.rstrip() + "\n" + "\n".join(extra) + "\n")
 
     print("seats: %d, lean variables: %d" % (len(rows), n_vars))
     print("2024 national shares (tenths):", base)

@@ -1,56 +1,35 @@
-[h1]Westminster: gobierna el Reino Unido o conquista Downing Street[/h1]
-[b]Una conversión total de política británica moderna para Crusader Kings III.[/b]
+[h1]Westminster[/h1]
+Gobierna el Reino Unido o crea un movimiento y ábrete paso hasta Downing Street. Una conversión total de Crusader Kings III con 650 circunscripciones y seis fechas de inicio.
 
-Lidera a [b]Margaret Thatcher en 1979[/b], gobierna con [b]Keir Starmer tras las elecciones de 2024[/b], juega con cualquier diputado o empieza como activista y funda un nuevo partido.
-
-Disputa elecciones en las 650 circunscripciones, dirige el Parlamento y el gabinete, sobrevive a rebeliones y mociones de confianza, moldea la opinión pública e intenta llegar a primer ministro.
-
-[h2]Beta 0.5.4 — Corrección del inicio en Windows[/h2]
-Se corrigió un cierre inesperado reproducido en Windows antes del menú principal. Las protecciones de inicio también funcionan con ajustes antiguos del lanzador. Las campañas nuevas de 1979 y 2024 superaron las pruebas en Windows con ambas configuraciones; también se comprobó el inicio en macOS con CK3 1.20.1.1. Linux y las campañas largas siguen sin verificar.
-
-[b]Para probar esta actualización, inicia una campaña nueva con Westminster como único mod activado.[/b]
-
-[h2]Inicios de 1979 y 2024[/h2]
+[h2]Seis fechas de inicio[/h2]
 [list]
-[*][b]Dos inicios jugables:[/b] 4 de mayo de 1979 y 5 de julio de 2024.
-[*]La Cámara de los Comunes de 1979 sobre el mapa fijo de 650 escaños.
-[*]Líderes históricos, primer gabinete de Thatcher, Isabel II y otras figuras destacadas.
-[*]Modelos de CK3 reconocibles para los principales políticos.
-[*]Interfaz oscura inspirada en la prensa y arte político moderno.
+[*]1945 — Clement Attlee: reconstruye el país tras la guerra.
+[*]1979 — Margaret Thatcher: asume el poder tras las elecciones.
+[*]1997 — Tony Blair: convierte una victoria aplastante en reformas.
+[*]2010 — David Cameron: mantén unida la coalición.
+[*]2016 — Theresa May: negocia el Brexit y consigue una mayoría parlamentaria para un acuerdo.
+[*]2024 — Keir Starmer: dirige un nuevo gobierno.
 [/list]
 
-[b]Si te gusta Westminster, valóralo y añádelo a favoritos. Así ayudas a que otros jugadores lo descubran.[/b]
+[h2]Construye tu movimiento[/h2]
+Recluta afiliados y donantes, crea agrupaciones locales, presenta candidatos e invita a diputados a cambiar de partido. Los partidos fundados ya compiten en elecciones y aparecen en encuestas y recuentos de escaños.
 
-[h2]Elige tu camino[/h2]
+[h2]Gobierna, negocia y haz campaña[/h2]
 [list]
-[*][b]Primer ministro:[/b] nombra el gabinete, controla la agenda y mantén unido al partido.
-[*][b]Líder de partido:[/b] define las políticas, gestiona facciones y lucha por el número 10.
-[*][b]Diputado:[/b] gana influencia, rebélate contra la disciplina, consigue un cargo o desafía al líder.
-[*]Activista: crea apoyo, funda un partido y compite en elecciones. Roads to Power es necesario para jugar sin tierras.
+[*]Carrera: consultas ciudadanas, proyectos locales, un grupo por los servicios públicos e investigaciones en comisión.
+[*]Gobierno: margen fiscal, deuda, servicios públicos, confianza económica y planes ministeriales.
+[*]Brexit: elige una estrategia, negocia, somete un acuerdo al Parlamento y gestiona la transición.
+[*]Prensa: relaciones con redacciones ficticias, entrevistas, apoyos y filtraciones de borradores.
 [/list]
 
-[h2]Características[/h2]
-[list]
-[*]Las 650 circunscripciones de Westminster.
-[*]Elecciones generales y parciales, liderazgos de partido y mociones de confianza.
-[*]Gobierno, oposición, gabinete, gabinete en la sombra y carreras parlamentarias.
-[*]Opinión pública, capital político, disciplina de partido y apoyo local.
-[*]Partidos, ideologías, rasgos, estilos de vida, decisiones y eventos modernos.
-[/list]
+[h2]Empieza una campaña nueva[/h2]
+Para CK3 1.20. Inicia una campaña nueva solo con Westminster. Roads to Power es necesario para jugar sin tierras. La actualización no se puede añadir a una campaña existente.
 
-[h2]Compatibilidad[/h2]
-Para [b]Crusader Kings III 1.20[/b]. Empieza una partida nueva en 1979 o 2024.
+[h2]Notas de la beta[/h2]
+Los Parlamentos históricos usan el mapa moderno de 650 escaños; algunas asignaciones y fechas de nacimiento son aproximadas. Retratos con ADN de CK3; queda algo de ropa medieval. Los cuatro nuevos inicios superaron las comprobaciones iniciales en macOS. Faltan campañas largas, Linux y la validación en Windows del contenido nuevo. Algunos textos nuevos del juego siguen en inglés.
 
 [h2]Idiomas[/h2]
 Inglés, francés, alemán, japonés, coreano, polaco, ruso, chino simplificado y español.
 
-[h2]Notas de la beta[/h2]
-[list]
-[*]Seguimos mejorando el equilibrio de las partidas largas; algunas prendas y pantallas secundarias aún son medievales.
-[/list]
-
 [h2]Créditos[/h2]
-Creado por JealousZebra. Gracias a la comunidad de modding de CK3 y a quienes lo prueban.
-
-[h2]Aviso[/h2]
-Westminster es un mod no oficial sin afiliación con Paradox Interactive, el Parlamento británico, partidos, grupos de campaña o figuras públicas.
+Creado por JealousZebra y los colaboradores de Westminster. Proyecto no oficial, sin afiliación con Paradox Interactive, el Parlamento, partidos o figuras públicas. Los eventos son ficticios. Valorar y añadir a favoritos ayuda a que otros descubran el mod.

@@ -623,7 +623,7 @@ wm_likeness_hair = {
 				mode = add
 				gene = beards
 				template = scripted_character_beards_01
-				accessory = male_beard_western_07
+				accessory = male_beard_western_03
 			}
 			accessory = {
 				mode = add
@@ -1358,7 +1358,7 @@ wm_likeness_hair = {
 				mode = add
 				gene = beards
 				template = scripted_character_beards_01
-				accessory = male_beard_western_07
+				accessory = male_beard_western_03
 			}
 			accessory = {
 				mode = add
@@ -1477,7 +1477,7 @@ wm_likeness_hair = {
 				mode = add
 				gene = beards
 				template = scripted_character_beards_01
-				accessory = male_beard_western_07
+				accessory = male_beard_western_03
 			}
 			accessory = {
 				mode = add
@@ -2569,7 +2569,7 @@ wm_likeness_hair = {
 				mode = add
 				gene = beards
 				template = scripted_character_beards_01
-				accessory = male_beard_western_07
+				accessory = male_beard_western_03
 			}
 			accessory = {
 				mode = add
@@ -2649,6 +2649,1666 @@ wm_likeness_hair = {
 				exists = this
 				exists = character:wm_royal_lilibet
 				this = character:wm_royal_lilibet
+			}
+		}
+	}
+	wm_lk_1945_aneurin_bevan = {	# Aneurin Bevan, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_indian_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_aneurin_bevan
+				this = character:wm_1945_aneurin_bevan
+			}
+		}
+	}
+	wm_lk_1945_clement_attlee = {	# Clement Attlee, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_05
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_clement_attlee
+				this = character:wm_1945_clement_attlee
+			}
+		}
+	}
+	wm_lk_1945_clement_davies = {	# Clement Davies, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_clement_davies
+				this = character:wm_1945_clement_davies
+			}
+		}
+	}
+	wm_lk_1945_ernest_bevin = {	# Ernest Bevin, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_ernest_bevin
+				this = character:wm_1945_ernest_bevin
+			}
+		}
+	}
+	wm_lk_1945_hugh_dalton = {	# Hugh Dalton, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_hugh_dalton
+				this = character:wm_1945_hugh_dalton
+			}
+		}
+	}
+	wm_lk_1945_jack_lawson = {	# Jack Lawson, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_jack_lawson
+				this = character:wm_1945_jack_lawson
+			}
+		}
+	}
+	wm_lk_1945_james_chuter_ede = {	# James Chuter Ede, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_james_chuter_ede
+				this = character:wm_1945_james_chuter_ede
+			}
+		}
+	}
+	wm_lk_1945_winston_churchill = {	# Winston Churchill, 1945 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1945_winston_churchill
+				this = character:wm_1945_winston_churchill
+			}
+		}
+	}
+	wm_lk_1997_alex_salmond = {	# Alex Salmond, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_alex_salmond
+				this = character:wm_1997_alex_salmond
+			}
+		}
+	}
+	wm_lk_1997_dafydd_wigley = {	# Dafydd Wigley, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_dafydd_wigley
+				this = character:wm_1997_dafydd_wigley
+			}
+		}
+	}
+	wm_lk_1997_david_blunkett = {	# David Blunkett, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_03
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_david_blunkett
+				this = character:wm_1997_david_blunkett
+			}
+		}
+	}
+	wm_lk_1997_david_trimble = {	# David Trimble, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_david_trimble
+				this = character:wm_1997_david_trimble
+			}
+		}
+	}
+	wm_lk_1997_george_robertson = {	# George Robertson, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_george_robertson
+				this = character:wm_1997_george_robertson
+			}
+		}
+	}
+	wm_lk_1997_gerry_adams = {	# Gerry Adams, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_03
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_gerry_adams
+				this = character:wm_1997_gerry_adams
+			}
+		}
+	}
+	wm_lk_1997_gordon_brown = {	# Gordon Brown, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_gordon_brown
+				this = character:wm_1997_gordon_brown
+			}
+		}
+	}
+	wm_lk_1997_ian_paisley = {	# Ian Paisley, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_ian_paisley
+				this = character:wm_1997_ian_paisley
+			}
+		}
+	}
+	wm_lk_1997_jack_straw = {	# Jack Straw, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_jack_straw
+				this = character:wm_1997_jack_straw
+			}
+		}
+	}
+	wm_lk_1997_john_hume = {	# John Hume, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_john_hume
+				this = character:wm_1997_john_hume
+			}
+		}
+	}
+	wm_lk_1997_john_major = {	# John Major, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_john_major
+				this = character:wm_1997_john_major
+			}
+		}
+	}
+	wm_lk_1997_john_prescott = {	# John Prescott, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_john_prescott
+				this = character:wm_1997_john_prescott
+			}
+		}
+	}
+	wm_lk_1997_paddy_ashdown = {	# Paddy Ashdown, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_paddy_ashdown
+				this = character:wm_1997_paddy_ashdown
+			}
+		}
+	}
+	wm_lk_1997_robin_cook = {	# Robin Cook, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_03
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_robin_cook
+				this = character:wm_1997_robin_cook
+			}
+		}
+	}
+	wm_lk_1997_tony_blair = {	# Tony Blair, 1997 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_1997_tony_blair
+				this = character:wm_1997_tony_blair
+			}
+		}
+	}
+	wm_lk_2010_angus_robertson = {	# Angus Robertson, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_angus_robertson
+				this = character:wm_2010_angus_robertson
+			}
+		}
+	}
+	wm_lk_2010_caroline_lucas = {	# Caroline Lucas, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_northern_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_caroline_lucas
+				this = character:wm_2010_caroline_lucas
+			}
+		}
+	}
+	wm_lk_2010_david_cameron = {	# David Cameron, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_david_cameron
+				this = character:wm_2010_david_cameron
+			}
+		}
+	}
+	wm_lk_2010_elfyn_llwyd = {	# Elfyn Llwyd, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_elfyn_llwyd
+				this = character:wm_2010_elfyn_llwyd
+			}
+		}
+	}
+	wm_lk_2010_george_osborne = {	# George Osborne, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_george_osborne
+				this = character:wm_2010_george_osborne
+			}
+		}
+	}
+	wm_lk_2010_gerry_adams = {	# Gerry Adams, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_03
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_gerry_adams
+				this = character:wm_2010_gerry_adams
+			}
+		}
+	}
+	wm_lk_2010_gordon_brown = {	# Gordon Brown, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_gordon_brown
+				this = character:wm_2010_gordon_brown
+			}
+		}
+	}
+	wm_lk_2010_harriet_harman = {	# Harriet Harman, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_rtt_02
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_harriet_harman
+				this = character:wm_2010_harriet_harman
+			}
+		}
+	}
+	wm_lk_2010_liam_fox = {	# Liam Fox, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_liam_fox
+				this = character:wm_2010_liam_fox
+			}
+		}
+	}
+	wm_lk_2010_margaret_ritchie = {	# Margaret Ritchie, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_rtt_02
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_margaret_ritchie
+				this = character:wm_2010_margaret_ritchie
+			}
+		}
+	}
+	wm_lk_2010_michael_gove = {	# Michael Gove, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_michael_gove
+				this = character:wm_2010_michael_gove
+			}
+		}
+	}
+	wm_lk_2010_naomi_long = {	# Naomi Long, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_03
+				accessory = female_hair_fp2_iberian_christian_03
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_naomi_long
+				this = character:wm_2010_naomi_long
+			}
+		}
+	}
+	wm_lk_2010_nick_clegg = {	# Nick Clegg, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_nick_clegg
+				this = character:wm_2010_nick_clegg
+			}
+		}
+	}
+	wm_lk_2010_theresa_may = {	# Theresa May, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_northern_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_theresa_may
+				this = character:wm_2010_theresa_may
+			}
+		}
+	}
+	wm_lk_2010_william_hague = {	# William Hague, 2010 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_03
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2010_william_hague
+				this = character:wm_2010_william_hague
+			}
+		}
+	}
+	wm_lk_2016_alasdair_mcdonnell = {	# Alasdair McDonnell, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_alasdair_mcdonnell
+				this = character:wm_2016_alasdair_mcdonnell
+			}
+		}
+	}
+	wm_lk_2016_amber_rudd = {	# Amber Rudd, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_rtt_02
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_amber_rudd
+				this = character:wm_2016_amber_rudd
+			}
+		}
+	}
+	wm_lk_2016_angus_robertson = {	# Angus Robertson, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_angus_robertson
+				this = character:wm_2016_angus_robertson
+			}
+		}
+	}
+	wm_lk_2016_boris_johnson = {	# Boris Johnson, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_02
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_boris_johnson
+				this = character:wm_2016_boris_johnson
+			}
+		}
+	}
+	wm_lk_2016_caroline_lucas = {	# Caroline Lucas, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_northern_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_caroline_lucas
+				this = character:wm_2016_caroline_lucas
+			}
+		}
+	}
+	wm_lk_2016_david_davis = {	# David Davis, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_david_davis
+				this = character:wm_2016_david_davis
+			}
+		}
+	}
+	wm_lk_2016_douglas_carswell = {	# Douglas Carswell, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_douglas_carswell
+				this = character:wm_2016_douglas_carswell
+			}
+		}
+	}
+	wm_lk_2016_hywel_williams = {	# Hywel Williams, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_hywel_williams
+				this = character:wm_2016_hywel_williams
+			}
+		}
+	}
+	wm_lk_2016_jeremy_corbyn = {	# Jeremy Corbyn, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = scripted_character_beards_01
+				accessory = male_beard_western_03
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_jeremy_corbyn
+				this = character:wm_2016_jeremy_corbyn
+			}
+		}
+	}
+	wm_lk_2016_justine_greening = {	# Justine Greening, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_03
+				accessory = female_hair_fp2_iberian_christian_03
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_justine_greening
+				this = character:wm_2016_justine_greening
+			}
+		}
+	}
+	wm_lk_2016_michael_fallon = {	# Michael Fallon, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_michael_fallon
+				this = character:wm_2016_michael_fallon
+			}
+		}
+	}
+	wm_lk_2016_nigel_dodds = {	# Nigel Dodds, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_nigel_dodds
+				this = character:wm_2016_nigel_dodds
+			}
+		}
+	}
+	wm_lk_2016_pat_doherty = {	# Pat Doherty, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_pat_doherty
+				this = character:wm_2016_pat_doherty
+			}
+		}
+	}
+	wm_lk_2016_philip_hammond = {	# Philip Hammond, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_philip_hammond
+				this = character:wm_2016_philip_hammond
+			}
+		}
+	}
+	wm_lk_2016_theresa_may = {	# Theresa May, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = female_hair_northern_01
+				type = female
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_theresa_may
+				this = character:wm_2016_theresa_may
+			}
+		}
+	}
+	wm_lk_2016_tim_farron = {	# Tim Farron, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_western_01
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_tim_farron
+				this = character:wm_2016_tim_farron
+			}
+		}
+	}
+	wm_lk_2016_tom_elliott = {	# Tom Elliott, 2016 Parliament
+		dna_modifiers = {
+			accessory = {
+				mode = add
+				gene = hairstyles
+				template = scripted_character_hairstyles_01
+				accessory = male_hair_fp1_09
+			}
+			accessory = {
+				mode = add
+				gene = beards
+				template = no_beard
+				value = 0
+			}
+			accessory = {
+				mode = add
+				gene = special_headgear_spectacles
+				template = no_spectacles
+				value = 0
+			}
+		}
+		weight = {
+			base = 0
+			modifier = {
+				add = 1000
+				exists = this
+				exists = character:wm_2016_tom_elliott
+				this = character:wm_2016_tom_elliott
 			}
 		}
 	}

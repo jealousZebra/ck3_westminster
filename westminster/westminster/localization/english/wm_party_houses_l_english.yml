@@ -88,7 +88,7 @@
  wm_party_found_decision_confirm: "Launch the party"
  wm_party_found_decision_slot_tt: "There is room for another party (at most six new parties)"
  wm_party_found_decision_head_tt: "Not the head of your party's [house|E]"
- wm_party_found_decision_effect_tt: "You found a new party and become its leader, serving the Prime Minister. It has its own [house|E] and emblem, and your old party leader will remember it. New parties don't yet stand in the polls."
+ wm_party_found_decision_effect_tt: "You found a new party and become its leader, serving the Prime Minister. It has its own [house|E] and emblem, and your old party leader will remember it. Use Build Your Movement to recruit supporters, establish local branches and contest elections."
 
  # Opinions (common/opinion_modifiers/wm_party_opinions.txt)
  wm_party_crossed_floor_opinion: "Crossed the floor"

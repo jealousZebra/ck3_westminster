@@ -122,6 +122,60 @@ wm_seatchart_compute_effect = {
 		set_global_variable = { name = wm_sc_g_tuv value = 0 }
 		set_global_variable = { name = wm_sc_o_tuv value = global_var:wm_seats_tuv }
 	}
+	if = {
+		limit = { title:k_party_new_1 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_1 value = global_var:wm_seats_new_1 }
+		set_global_variable = { name = wm_sc_o_new_1 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_1 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_1 value = global_var:wm_seats_new_1 }
+	}
+	if = {
+		limit = { title:k_party_new_2 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_2 value = global_var:wm_seats_new_2 }
+		set_global_variable = { name = wm_sc_o_new_2 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_2 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_2 value = global_var:wm_seats_new_2 }
+	}
+	if = {
+		limit = { title:k_party_new_3 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_3 value = global_var:wm_seats_new_3 }
+		set_global_variable = { name = wm_sc_o_new_3 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_3 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_3 value = global_var:wm_seats_new_3 }
+	}
+	if = {
+		limit = { title:k_party_new_4 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_4 value = global_var:wm_seats_new_4 }
+		set_global_variable = { name = wm_sc_o_new_4 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_4 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_4 value = global_var:wm_seats_new_4 }
+	}
+	if = {
+		limit = { title:k_party_new_5 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_5 value = global_var:wm_seats_new_5 }
+		set_global_variable = { name = wm_sc_o_new_5 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_5 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_5 value = global_var:wm_seats_new_5 }
+	}
+	if = {
+		limit = { title:k_party_new_6 = { wm_majority_is_government_party_trigger = yes } }
+		set_global_variable = { name = wm_sc_g_new_6 value = global_var:wm_seats_new_6 }
+		set_global_variable = { name = wm_sc_o_new_6 value = 0 }
+	}
+	else = {
+		set_global_variable = { name = wm_sc_g_new_6 value = 0 }
+		set_global_variable = { name = wm_sc_o_new_6 value = global_var:wm_seats_new_6 }
+	}
 	set_global_variable = { name = wm_sc_g_ind value = 0 }
 	set_global_variable = { name = wm_sc_o_ind value = global_var:wm_seats_ind }
 	set_global_variable = { name = wm_sc_gc_0 value = global_var:wm_sc_g_lab }
@@ -137,8 +191,14 @@ wm_seatchart_compute_effect = {
 	set_global_variable = { name = wm_sc_gc_10 value = { value = global_var:wm_sc_gc_9 add = global_var:wm_sc_g_apni } }
 	set_global_variable = { name = wm_sc_gc_11 value = { value = global_var:wm_sc_gc_10 add = global_var:wm_sc_g_uup } }
 	set_global_variable = { name = wm_sc_gc_12 value = { value = global_var:wm_sc_gc_11 add = global_var:wm_sc_g_tuv } }
-	set_global_variable = { name = wm_sc_gc_13 value = { value = global_var:wm_sc_gc_12 add = global_var:wm_sc_g_ind } }
-	set_global_variable = { name = wm_sc_gov_total value = global_var:wm_sc_gc_13 }
+	set_global_variable = { name = wm_sc_gc_13 value = { value = global_var:wm_sc_gc_12 add = global_var:wm_sc_g_new_1 } }
+	set_global_variable = { name = wm_sc_gc_14 value = { value = global_var:wm_sc_gc_13 add = global_var:wm_sc_g_new_2 } }
+	set_global_variable = { name = wm_sc_gc_15 value = { value = global_var:wm_sc_gc_14 add = global_var:wm_sc_g_new_3 } }
+	set_global_variable = { name = wm_sc_gc_16 value = { value = global_var:wm_sc_gc_15 add = global_var:wm_sc_g_new_4 } }
+	set_global_variable = { name = wm_sc_gc_17 value = { value = global_var:wm_sc_gc_16 add = global_var:wm_sc_g_new_5 } }
+	set_global_variable = { name = wm_sc_gc_18 value = { value = global_var:wm_sc_gc_17 add = global_var:wm_sc_g_new_6 } }
+	set_global_variable = { name = wm_sc_gc_19 value = { value = global_var:wm_sc_gc_18 add = global_var:wm_sc_g_ind } }
+	set_global_variable = { name = wm_sc_gov_total value = global_var:wm_sc_gc_19 }
 	set_global_variable = { name = wm_sc_oc_0 value = global_var:wm_sc_o_lab }
 	set_global_variable = { name = wm_sc_oc_1 value = { value = global_var:wm_sc_oc_0 add = global_var:wm_sc_o_con } }
 	set_global_variable = { name = wm_sc_oc_2 value = { value = global_var:wm_sc_oc_1 add = global_var:wm_sc_o_ld } }
@@ -152,8 +212,14 @@ wm_seatchart_compute_effect = {
 	set_global_variable = { name = wm_sc_oc_10 value = { value = global_var:wm_sc_oc_9 add = global_var:wm_sc_o_apni } }
 	set_global_variable = { name = wm_sc_oc_11 value = { value = global_var:wm_sc_oc_10 add = global_var:wm_sc_o_uup } }
 	set_global_variable = { name = wm_sc_oc_12 value = { value = global_var:wm_sc_oc_11 add = global_var:wm_sc_o_tuv } }
-	set_global_variable = { name = wm_sc_oc_13 value = { value = global_var:wm_sc_oc_12 add = global_var:wm_sc_o_ind } }
-	set_global_variable = { name = wm_sc_opp_total value = global_var:wm_sc_oc_13 }
+	set_global_variable = { name = wm_sc_oc_13 value = { value = global_var:wm_sc_oc_12 add = global_var:wm_sc_o_new_1 } }
+	set_global_variable = { name = wm_sc_oc_14 value = { value = global_var:wm_sc_oc_13 add = global_var:wm_sc_o_new_2 } }
+	set_global_variable = { name = wm_sc_oc_15 value = { value = global_var:wm_sc_oc_14 add = global_var:wm_sc_o_new_3 } }
+	set_global_variable = { name = wm_sc_oc_16 value = { value = global_var:wm_sc_oc_15 add = global_var:wm_sc_o_new_4 } }
+	set_global_variable = { name = wm_sc_oc_17 value = { value = global_var:wm_sc_oc_16 add = global_var:wm_sc_o_new_5 } }
+	set_global_variable = { name = wm_sc_oc_18 value = { value = global_var:wm_sc_oc_17 add = global_var:wm_sc_o_new_6 } }
+	set_global_variable = { name = wm_sc_oc_19 value = { value = global_var:wm_sc_oc_18 add = global_var:wm_sc_o_ind } }
+	set_global_variable = { name = wm_sc_opp_total value = global_var:wm_sc_oc_19 }
 }
 
 # Any scope. Every snapshot at today's values (the first time).

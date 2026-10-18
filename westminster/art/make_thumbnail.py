@@ -11,7 +11,7 @@ from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE.parent / "westminster" / "thumbnail.png"
-SOURCE = HERE / "thumbnail_westminster_v3.png"
+SOURCE = HERE / "thumbnail_westminster_v4.png"
 SIZE = 1024
 
 

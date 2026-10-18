@@ -1,0 +1,17 @@
+[b]2026-10-18 — Sechs Startdaten / Baue deine Bewegung auf (0.5.4)[/b]
+
+[list]
+[*]1945 — Clement Attlee: Wiederaufbau nach dem Krieg.
+[*]1997 — Tony Blair: einen Erdrutschsieg in Reformen umsetzen.
+[*]2010 — David Cameron: die Koalition zusammenhalten.
+[*]2016 — Theresa May: Brexit verhandeln und eine Unterhausmehrheit für ein Abkommen gewinnen.
+[*]Wirb Mitglieder und Spender an, gründe Ortsverbände, rekrutiere Kandidaten und lade Abgeordnete zum Übertritt ein. Gegründete Parteien nehmen nun an Wahlen teil und erscheinen in Umfragen und Sitzverteilungen.
+[*]Karriere: Bürgersprechstunden, lokale Projekte, eine Gruppe für öffentliche Dienste und Ausschussuntersuchungen.
+[*]Regierung: Haushaltsspielraum, Schulden, öffentliche Dienste, Wirtschaftsvertrauen und Ministerpläne.
+[*]Brexit: Strategie wählen, verhandeln, ein Abkommen im Parlament abstimmen lassen und den Übergang gestalten.
+[*]Presse: fiktive Redaktionskontakte, Interviews, Wahlempfehlungen und durchgesickerte Entwürfe.
+[/list]
+
+Für CK3 1.20. Beginne eine neue Kampagne nur mit Westminster. Landloses Spielen erfordert Roads to Power. Diese Aktualisierung lässt sich nicht zu einer bestehenden Kampagne hinzufügen.
+
+Historische Parlamente nutzen die moderne Karte mit 650 Sitzen; manche Zuordnungen und Geburtsdaten sind angenähert. Porträts nutzen CK3-DNA; mittelalterliche Kleidung bleibt teilweise erhalten. Die vier neuen Starts bestanden Anfangstests auf macOS. Lange Kampagnen, Linux und die Windows-Prüfung der neuen Inhalte stehen aus. Neue Spieltexte können teilweise Englisch verwenden.

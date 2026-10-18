@@ -199,6 +199,11 @@ wm_commons_setup_business_effect = {
 			set_global_variable = { name = wm_commons_opp_whip value = 1 }
 		}
 	}
+	else_if = {
+		limit = { global_var:wm_commons_bill_type = 6 }
+		set_global_variable = { name = wm_commons_bill_lean value = 0 }
+		set_global_variable = { name = wm_commons_bill_controversy value = 35 }
+	}
 	else = {	# Motion of no confidence: MPs rarely bring down their own government
 		set_global_variable = { name = wm_commons_bill_lean value = 0 }
 		set_global_variable = { name = wm_commons_bill_controversy value = -25 }
@@ -552,6 +557,7 @@ wm_commons_withdraw_whip_effect = {
 
 # Scope: the Prime Minister. What the division's result does.
 wm_commons_apply_result_effect = {
+	if = { limit = { NOT = { global_var:wm_commons_result = 1 } } remove_global_variable = wm_era_programme_pending }
 	save_temporary_scope_as = wm_commons_pm
 	if = {
 		limit = { global_var:wm_commons_bill_type = 5 }
@@ -615,7 +621,9 @@ wm_commons_apply_result_effect = {
 
 # Scope: the Prime Minister. A bill has passed: what it does (halved, roughly, if concessions watered it down).
 wm_commons_bill_passed_effect = {
-	if = {
+	wm_era_programme_passed_effect = yes
+	if = { limit = { global_var:wm_commons_bill_type = 6 } wm_brexit_deal_passed_effect = yes }
+	else_if = {
 		limit = { global_var:wm_commons_bill_type = 1 }	# Finance Bill
 		if = {
 			limit = { global_var:wm_commons_bill_strength >= 100 }

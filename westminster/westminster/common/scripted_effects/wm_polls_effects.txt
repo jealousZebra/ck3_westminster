@@ -23,6 +23,7 @@ wm_polls_monthly_effect = {
 			wm_election_init_effect = yes
 		}
 		# Campaign spending moves the polls before they drift (wm_spend_effects.txt)
+		wm_governing_monthly_effect = yes
 		wm_spend_monthly_effect = yes
 		wm_polls_drift_all_effect = yes
 		change_global_variable = { name = wm_el_months add = 1 }

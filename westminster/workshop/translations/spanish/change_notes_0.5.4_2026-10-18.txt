@@ -1,0 +1,17 @@
+[b]2026-10-18 — Seis fechas de inicio / Construye tu movimiento (0.5.4)[/b]
+
+[list]
+[*]1945 — Clement Attlee: reconstruye el país tras la guerra.
+[*]1997 — Tony Blair: convierte una victoria aplastante en reformas.
+[*]2010 — David Cameron: mantén unida la coalición.
+[*]2016 — Theresa May: negocia el Brexit y consigue una mayoría parlamentaria para un acuerdo.
+[*]Recluta afiliados y donantes, crea agrupaciones locales, presenta candidatos e invita a diputados a cambiar de partido. Los partidos fundados ya compiten en elecciones y aparecen en encuestas y recuentos de escaños.
+[*]Carrera: consultas ciudadanas, proyectos locales, un grupo por los servicios públicos e investigaciones en comisión.
+[*]Gobierno: margen fiscal, deuda, servicios públicos, confianza económica y planes ministeriales.
+[*]Brexit: elige una estrategia, negocia, somete un acuerdo al Parlamento y gestiona la transición.
+[*]Prensa: relaciones con redacciones ficticias, entrevistas, apoyos y filtraciones de borradores.
+[/list]
+
+Para CK3 1.20. Inicia una campaña nueva solo con Westminster. Roads to Power es necesario para jugar sin tierras. La actualización no se puede añadir a una campaña existente.
+
+Los Parlamentos históricos usan el mapa moderno de 650 escaños; algunas asignaciones y fechas de nacimiento son aproximadas. Retratos con ADN de CK3; queda algo de ropa medieval. Los cuatro nuevos inicios superaron las comprobaciones iniciales en macOS. Faltan campañas largas, Linux y la validación en Windows del contenido nuevo. Algunos textos nuevos del juego siguen en inglés.

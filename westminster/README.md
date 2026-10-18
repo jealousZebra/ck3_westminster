@@ -19,6 +19,41 @@ person. Some birth dates are approximate, and MPs' spouses and families are inve
 Parliament, any political party or the Royal Household. Murder, abduction and seduction schemes are switched off
 (`tools/data/build_safeguards.py`), so no real person can be their target.
 
+For source changes, start with the [modding guide](../docs/modding.md) and [contribution workflow](../CONTRIBUTING.md).
+
+## 18 October 2026 update: movement and historical eras
+
+The 18 October upload adds the 1945 Attlee, 1997 Blair, 2010 Cameron coalition and 2016 May starts, alongside
+1979 and 2024. The descriptor remains 0.5.4. Fresh-start smoke tests pass; longer campaign and Windows validation of the new content remain.
+
+- Build Your Movement: membership drives, donors, national publicity, targeted local branches, candidate recruitment
+  and an invitation to a disillusioned MP to defect. All six founded-party slots participate in elections, candidate
+  selection, seat counts, government formation, results and the polls/chamber panel.
+- Your Political Career: constituency surgeries and local projects build an incumbent's personal vote; a backbench
+  public-service caucus changes rebellion pressure; ministers can publish delivery plans and face a six-month review.
+- Press Desk: editorial relationships, interviews, endorsements, and a fictional leaked-draft event with public or private responses. Committee inquiries build standing and strengthen the public-service caucus.
+- Government Programme: fiscal room, borrowing, debt pressure, public services, economic confidence and negotiated
+  backbench concessions. The historical opening programmes go through an ordinary Public Services Bill.
+- Brexit: a 2016 mandate, a choice between close alignment and regulatory independence, funded negotiating rounds,
+  a parliamentary settlement, defeat/retry and transition. These are simplified gameplay outcomes, not economic forecasts.
+- Era-specific likeness DNA and bookmark caches for the major historical politicians. Underlying faces remain stable
+  across the new eras; the DNA is an approximation using CK3's portrait system.
+
+Historical constituencies are mapped to the fixed modern map. The 1945 map has ten explicitly notional MPs, 1997
+keeps nine real MPs unlanded, and the dated 2010/2016 snapshots each contain one notional map filler. Most minor
+characters' birth dates remain approximate. English copy is used as a fallback for new content in the other eight
+languages. These limitations remain in the published beta.
+
+Checks: `python3 tools/data/test_eras.py` from this directory audits the map, featured portraits and history/DNA
+references. Validation on 18 October 2026: the combined suite passed all 30 engine checks. Fresh campaigns in 1945, 1997, 2010 and 2016 passed all 26 opening assertions (prime minister, 650 seats, governing state, cabinet, polling anchor, monarch, coalition and Brexit mandate where applicable), with no failures or crashes observed. The existing 1979 start also loaded successfully. Eight historical/localization/portrait audits and eight stability tests pass; static validation covers 864 files in nine languages. These are opening smoke tests, not full campaign or Windows certification.
+
+The combined 30-check in-game suite is `tools/ck3_test/gen_expansion.py`; its components are `gen_movement.py` and `gen_governing.py`. Fresh-start checks are in `gen_eras.py` (the last
+requires a fresh campaign in each new start). Generated map/interface textures are ignored; source art and exported bookmark portraits are committed. Historical bookmark portrait caches now come from CK3 exports, including engine entity/tags data; the generator rejects missing exports instead of inventing incomplete caches. Attlee uses the moustache accessory.
+
+Build order after regenerating the 2024 data: `build_1979.py`, `build_eras.py`, `build_movement.py`,
+`build_governing.py`, `build_press.py`, `build_seat_leans.py`, then `build_likenesses.py`. Run `tools/ui/build_ui.sh` to rebuild the
+bookmark maps/caches and the polls UI. All data generators live in `tools/data/`.
+
 ## Foundations (the technical spikes)
 
 These were the first experiments, proving that CK3 can model each piece. `tools/run_spikes.sh` still tests every one
@@ -228,6 +263,10 @@ up to date, but the textures and map images aren't in git, so a clone must be bu
 .venv/bin/python westminster/tools/map/build_map.py          # map_data, titles, province history, localization
 .venv/bin/python westminster/tools/data/build_2024.py        # the 2024 bookmark (needs the map's titles)
 .venv/bin/python westminster/tools/data/build_1979.py        # the 1979 bookmark and election baseline
+.venv/bin/python westminster/tools/data/build_eras.py        # the four new dated starts (after 2024/1979)
+.venv/bin/python westminster/tools/data/build_movement.py    # movement script/localization
+.venv/bin/python westminster/tools/data/build_governing.py   # career, government programme, Brexit
+.venv/bin/python westminster/tools/data/build_press.py       # press and committee script/localization
 .venv/bin/python westminster/tools/data/build_seat_leans.py  # election and poll script (needs ge2024_results.csv)
 westminster/tools/ui/build_ui.sh                             # the whole interface, flags and CREDITS.txt
 # 3. Then, only when their inputs change (each writes its own files)

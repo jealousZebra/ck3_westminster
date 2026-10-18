@@ -85,7 +85,8 @@ HAIRSTYLE = {
 BEARD = {
     "none": None,
     "stubble": "male_beard_western_04",
-    "short": "male_beard_western_07",
+    "short": "male_beard_western_03",
+    "moustache": "male_beard_western_05",
     "full": "male_beard_western_03",
     "trimmed": "male_beard_western_02",
 }
@@ -328,6 +329,9 @@ PEOPLE = {
         build="average", height="average", face=["round_face"]),
 }
 
+from era_likenesses import people as era_people
+PEOPLE.update(era_people())
+
 # Birth dates and sex of people not in wm_2024_mps.txt (the royal family file is read for the rest)
 DNA_KEYS = {cid: "wm_dna_" + re.sub(r"^wm_(mp_|char_|royal_|)", lambda m: "royal_" if m.group(1) == "royal_" else "", cid)
             for cid in PEOPLE}
@@ -444,7 +448,7 @@ def set_morph(dna, genes, gene, offset):
 
 def build_dna(cid, p, genes, eth, birth, female):
     age = p.get("portrait_year", START_YEAR) - birth
-    rnd = random.Random("wm_likeness_" + cid)
+    rnd = random.Random("wm_likeness_" + re.sub(r"^wm_(1945|1997|2010|2016)_", "wm_historical_", cid))
     dna = sample(resolve(eth, ETHNICITY[p["heritage"]]), rnd)
     # Colours
     hx, hy = HAIR[p["hair"]]

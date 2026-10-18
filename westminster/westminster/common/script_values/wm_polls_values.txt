@@ -16,11 +16,17 @@ wm_polls_2024_sdlp = 3
 wm_polls_2024_apni = 4.1
 wm_polls_2024_uup = 3.3
 wm_polls_2024_tuv = 1.7
+wm_polls_2024_new_1 = 0
+wm_polls_2024_new_2 = 0
+wm_polls_2024_new_3 = 0
+wm_polls_2024_new_4 = 0
+wm_polls_2024_new_5 = 0
+wm_polls_2024_new_6 = 0
 wm_polls_2024_oth = 36
 
 # The anchor each party's poll drifts back to: its 2024 share, plus the government's fortunes for the PM's party.
 wm_polls_anchor_lab = {
-	value = wm_polls_2024_lab
+	value = wm_polls_baseline_lab
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_labour } }
 		add = wm_polls_government_pressure
@@ -28,7 +34,7 @@ wm_polls_anchor_lab = {
 	min = 1
 }
 wm_polls_anchor_con = {
-	value = wm_polls_2024_con
+	value = wm_polls_baseline_con
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_conservative } }
 		add = wm_polls_government_pressure
@@ -36,7 +42,7 @@ wm_polls_anchor_con = {
 	min = 1
 }
 wm_polls_anchor_ld = {
-	value = wm_polls_2024_ld
+	value = wm_polls_baseline_ld
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_lib_dem } }
 		add = wm_polls_government_pressure
@@ -44,7 +50,7 @@ wm_polls_anchor_ld = {
 	min = 1
 }
 wm_polls_anchor_ruk = {
-	value = wm_polls_2024_ruk
+	value = wm_polls_baseline_ruk
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_reform } }
 		add = wm_polls_government_pressure
@@ -52,7 +58,7 @@ wm_polls_anchor_ruk = {
 	min = 1
 }
 wm_polls_anchor_grn = {
-	value = wm_polls_2024_grn
+	value = wm_polls_baseline_grn
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_green } }
 		add = wm_polls_government_pressure
@@ -60,7 +66,7 @@ wm_polls_anchor_grn = {
 	min = 1
 }
 wm_polls_anchor_snp = {
-	value = wm_polls_2024_snp
+	value = wm_polls_baseline_snp
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_snp } }
 		add = wm_polls_government_pressure
@@ -68,7 +74,7 @@ wm_polls_anchor_snp = {
 	min = 1
 }
 wm_polls_anchor_pc = {
-	value = wm_polls_2024_pc
+	value = wm_polls_baseline_pc
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_plaid } }
 		add = wm_polls_government_pressure
@@ -76,7 +82,7 @@ wm_polls_anchor_pc = {
 	min = 1
 }
 wm_polls_anchor_sf = {
-	value = wm_polls_2024_sf
+	value = wm_polls_baseline_sf
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_sinn_fein } }
 		add = wm_polls_government_pressure
@@ -84,7 +90,7 @@ wm_polls_anchor_sf = {
 	min = 1
 }
 wm_polls_anchor_dup = {
-	value = wm_polls_2024_dup
+	value = wm_polls_baseline_dup
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_dup } }
 		add = wm_polls_government_pressure
@@ -92,7 +98,7 @@ wm_polls_anchor_dup = {
 	min = 1
 }
 wm_polls_anchor_sdlp = {
-	value = wm_polls_2024_sdlp
+	value = wm_polls_baseline_sdlp
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_sdlp } }
 		add = wm_polls_government_pressure
@@ -100,7 +106,7 @@ wm_polls_anchor_sdlp = {
 	min = 1
 }
 wm_polls_anchor_apni = {
-	value = wm_polls_2024_apni
+	value = wm_polls_baseline_apni
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_alliance } }
 		add = wm_polls_government_pressure
@@ -108,7 +114,7 @@ wm_polls_anchor_apni = {
 	min = 1
 }
 wm_polls_anchor_uup = {
-	value = wm_polls_2024_uup
+	value = wm_polls_baseline_uup
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_uup } }
 		add = wm_polls_government_pressure
@@ -116,16 +122,42 @@ wm_polls_anchor_uup = {
 	min = 1
 }
 wm_polls_anchor_tuv = {
-	value = wm_polls_2024_tuv
+	value = wm_polls_baseline_tuv
 	if = {
 		limit = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_tuv } }
 		add = wm_polls_government_pressure
 	}
 	min = 1
 }
+wm_polls_anchor_new_1 = { value = 0 if = { limit = { exists = title:k_party_new_1.holder } value = title:k_party_new_1.wm_movement_national_support } }
+wm_polls_anchor_new_2 = { value = 0 if = { limit = { exists = title:k_party_new_2.holder } value = title:k_party_new_2.wm_movement_national_support } }
+wm_polls_anchor_new_3 = { value = 0 if = { limit = { exists = title:k_party_new_3.holder } value = title:k_party_new_3.wm_movement_national_support } }
+wm_polls_anchor_new_4 = { value = 0 if = { limit = { exists = title:k_party_new_4.holder } value = title:k_party_new_4.wm_movement_national_support } }
+wm_polls_anchor_new_5 = { value = 0 if = { limit = { exists = title:k_party_new_5.holder } value = title:k_party_new_5.wm_movement_national_support } }
+wm_polls_anchor_new_6 = { value = 0 if = { limit = { exists = title:k_party_new_6.holder } value = title:k_party_new_6.wm_movement_national_support } }
 wm_polls_anchor_oth = {
-	value = wm_polls_2024_oth
+	value = wm_polls_baseline_oth
 }
+wm_polls_baseline_lab = { value = wm_polls_2024_lab if = { limit = { has_global_variable = wm_start_poll_lab } value = global_var:wm_start_poll_lab } min = 1 }
+wm_polls_baseline_con = { value = wm_polls_2024_con if = { limit = { has_global_variable = wm_start_poll_con } value = global_var:wm_start_poll_con } min = 1 }
+wm_polls_baseline_ld = { value = wm_polls_2024_ld if = { limit = { has_global_variable = wm_start_poll_ld } value = global_var:wm_start_poll_ld } min = 1 }
+wm_polls_baseline_ruk = { value = wm_polls_2024_ruk if = { limit = { has_global_variable = wm_start_poll_ruk } value = global_var:wm_start_poll_ruk } min = 1 }
+wm_polls_baseline_grn = { value = wm_polls_2024_grn if = { limit = { has_global_variable = wm_start_poll_grn } value = global_var:wm_start_poll_grn } min = 1 }
+wm_polls_baseline_snp = { value = wm_polls_2024_snp if = { limit = { has_global_variable = wm_start_poll_snp } value = global_var:wm_start_poll_snp } min = 1 }
+wm_polls_baseline_pc = { value = wm_polls_2024_pc if = { limit = { has_global_variable = wm_start_poll_pc } value = global_var:wm_start_poll_pc } min = 1 }
+wm_polls_baseline_sf = { value = wm_polls_2024_sf if = { limit = { has_global_variable = wm_start_poll_sf } value = global_var:wm_start_poll_sf } min = 1 }
+wm_polls_baseline_dup = { value = wm_polls_2024_dup if = { limit = { has_global_variable = wm_start_poll_dup } value = global_var:wm_start_poll_dup } min = 1 }
+wm_polls_baseline_sdlp = { value = wm_polls_2024_sdlp if = { limit = { has_global_variable = wm_start_poll_sdlp } value = global_var:wm_start_poll_sdlp } min = 1 }
+wm_polls_baseline_apni = { value = wm_polls_2024_apni if = { limit = { has_global_variable = wm_start_poll_apni } value = global_var:wm_start_poll_apni } min = 1 }
+wm_polls_baseline_uup = { value = wm_polls_2024_uup if = { limit = { has_global_variable = wm_start_poll_uup } value = global_var:wm_start_poll_uup } min = 1 }
+wm_polls_baseline_tuv = { value = wm_polls_2024_tuv if = { limit = { has_global_variable = wm_start_poll_tuv } value = global_var:wm_start_poll_tuv } min = 1 }
+wm_polls_baseline_new_1 = { value = wm_polls_2024_new_1 if = { limit = { has_global_variable = wm_start_poll_new_1 } value = global_var:wm_start_poll_new_1 } min = 1 }
+wm_polls_baseline_new_2 = { value = wm_polls_2024_new_2 if = { limit = { has_global_variable = wm_start_poll_new_2 } value = global_var:wm_start_poll_new_2 } min = 1 }
+wm_polls_baseline_new_3 = { value = wm_polls_2024_new_3 if = { limit = { has_global_variable = wm_start_poll_new_3 } value = global_var:wm_start_poll_new_3 } min = 1 }
+wm_polls_baseline_new_4 = { value = wm_polls_2024_new_4 if = { limit = { has_global_variable = wm_start_poll_new_4 } value = global_var:wm_start_poll_new_4 } min = 1 }
+wm_polls_baseline_new_5 = { value = wm_polls_2024_new_5 if = { limit = { has_global_variable = wm_start_poll_new_5 } value = global_var:wm_start_poll_new_5 } min = 1 }
+wm_polls_baseline_new_6 = { value = wm_polls_2024_new_6 if = { limit = { has_global_variable = wm_start_poll_new_6 } value = global_var:wm_start_poll_new_6 } min = 1 }
+wm_polls_baseline_oth = { value = wm_polls_2024_oth if = { limit = { has_global_variable = wm_start_poll_oth } value = global_var:wm_start_poll_oth } min = 1 }
 
 # Sum of the polls (normalised back to 1000 each month)
 wm_polls_total = {
@@ -143,6 +175,12 @@ wm_polls_total = {
 	add = global_var:wm_poll_apni
 	add = global_var:wm_poll_uup
 	add = global_var:wm_poll_tuv
+	add = global_var:wm_poll_new_1
+	add = global_var:wm_poll_new_2
+	add = global_var:wm_poll_new_3
+	add = global_var:wm_poll_new_4
+	add = global_var:wm_poll_new_5
+	add = global_var:wm_poll_new_6
 	add = global_var:wm_poll_oth
 }
 
@@ -152,11 +190,11 @@ wm_polls_total = {
 wm_election_seat_share_lab = {	# nation factor 1 (stands across Great Britain)
 	value = var:wm_lean_lab
 	multiply = global_var:wm_poll_lab
-	divide = wm_polls_2024_lab
+	divide = wm_polls_baseline_lab
 	add = var:wm_lean_lab
 	add = {
 		value = global_var:wm_poll_lab
-		subtract = wm_polls_2024_lab
+		subtract = wm_polls_baseline_lab
 		multiply = 1
 	}
 	divide = 2
@@ -165,11 +203,11 @@ wm_election_seat_share_lab = {	# nation factor 1 (stands across Great Britain)
 wm_election_seat_share_con = {	# nation factor 1 (stands across Great Britain)
 	value = var:wm_lean_con
 	multiply = global_var:wm_poll_con
-	divide = wm_polls_2024_con
+	divide = wm_polls_baseline_con
 	add = var:wm_lean_con
 	add = {
 		value = global_var:wm_poll_con
-		subtract = wm_polls_2024_con
+		subtract = wm_polls_baseline_con
 		multiply = 1
 	}
 	divide = 2
@@ -178,11 +216,11 @@ wm_election_seat_share_con = {	# nation factor 1 (stands across Great Britain)
 wm_election_seat_share_ld = {	# nation factor 1 (stands across Great Britain)
 	value = var:wm_lean_ld
 	multiply = global_var:wm_poll_ld
-	divide = wm_polls_2024_ld
+	divide = wm_polls_baseline_ld
 	add = var:wm_lean_ld
 	add = {
 		value = global_var:wm_poll_ld
-		subtract = wm_polls_2024_ld
+		subtract = wm_polls_baseline_ld
 		multiply = 1
 	}
 	divide = 2
@@ -191,11 +229,11 @@ wm_election_seat_share_ld = {	# nation factor 1 (stands across Great Britain)
 wm_election_seat_share_ruk = {	# nation factor 1 (stands across Great Britain)
 	value = var:wm_lean_ruk
 	multiply = global_var:wm_poll_ruk
-	divide = wm_polls_2024_ruk
+	divide = wm_polls_baseline_ruk
 	add = var:wm_lean_ruk
 	add = {
 		value = global_var:wm_poll_ruk
-		subtract = wm_polls_2024_ruk
+		subtract = wm_polls_baseline_ruk
 		multiply = 1
 	}
 	divide = 2
@@ -204,11 +242,11 @@ wm_election_seat_share_ruk = {	# nation factor 1 (stands across Great Britain)
 wm_election_seat_share_grn = {	# nation factor 1 (stands across Great Britain)
 	value = var:wm_lean_grn
 	multiply = global_var:wm_poll_grn
-	divide = wm_polls_2024_grn
+	divide = wm_polls_baseline_grn
 	add = var:wm_lean_grn
 	add = {
 		value = global_var:wm_poll_grn
-		subtract = wm_polls_2024_grn
+		subtract = wm_polls_baseline_grn
 		multiply = 1
 	}
 	divide = 2
@@ -217,11 +255,11 @@ wm_election_seat_share_grn = {	# nation factor 1 (stands across Great Britain)
 wm_election_seat_share_snp = {	# nation factor 11.9
 	value = var:wm_lean_snp
 	multiply = global_var:wm_poll_snp
-	divide = wm_polls_2024_snp
+	divide = wm_polls_baseline_snp
 	add = var:wm_lean_snp
 	add = {
 		value = global_var:wm_poll_snp
-		subtract = wm_polls_2024_snp
+		subtract = wm_polls_baseline_snp
 		multiply = 11.9
 	}
 	divide = 2
@@ -230,11 +268,11 @@ wm_election_seat_share_snp = {	# nation factor 11.9
 wm_election_seat_share_pc = {	# nation factor 21.8
 	value = var:wm_lean_pc
 	multiply = global_var:wm_poll_pc
-	divide = wm_polls_2024_pc
+	divide = wm_polls_baseline_pc
 	add = var:wm_lean_pc
 	add = {
 		value = global_var:wm_poll_pc
-		subtract = wm_polls_2024_pc
+		subtract = wm_polls_baseline_pc
 		multiply = 21.8
 	}
 	divide = 2
@@ -243,11 +281,11 @@ wm_election_seat_share_pc = {	# nation factor 21.8
 wm_election_seat_share_sf = {	# nation factor 36.9
 	value = var:wm_lean_sf
 	multiply = global_var:wm_poll_sf
-	divide = wm_polls_2024_sf
+	divide = wm_polls_baseline_sf
 	add = var:wm_lean_sf
 	add = {
 		value = global_var:wm_poll_sf
-		subtract = wm_polls_2024_sf
+		subtract = wm_polls_baseline_sf
 		multiply = 36.9
 	}
 	divide = 2
@@ -256,11 +294,11 @@ wm_election_seat_share_sf = {	# nation factor 36.9
 wm_election_seat_share_dup = {	# nation factor 36.9
 	value = var:wm_lean_dup
 	multiply = global_var:wm_poll_dup
-	divide = wm_polls_2024_dup
+	divide = wm_polls_baseline_dup
 	add = var:wm_lean_dup
 	add = {
 		value = global_var:wm_poll_dup
-		subtract = wm_polls_2024_dup
+		subtract = wm_polls_baseline_dup
 		multiply = 36.9
 	}
 	divide = 2
@@ -269,11 +307,11 @@ wm_election_seat_share_dup = {	# nation factor 36.9
 wm_election_seat_share_sdlp = {	# nation factor 36.9
 	value = var:wm_lean_sdlp
 	multiply = global_var:wm_poll_sdlp
-	divide = wm_polls_2024_sdlp
+	divide = wm_polls_baseline_sdlp
 	add = var:wm_lean_sdlp
 	add = {
 		value = global_var:wm_poll_sdlp
-		subtract = wm_polls_2024_sdlp
+		subtract = wm_polls_baseline_sdlp
 		multiply = 36.9
 	}
 	divide = 2
@@ -282,11 +320,11 @@ wm_election_seat_share_sdlp = {	# nation factor 36.9
 wm_election_seat_share_apni = {	# nation factor 36.9
 	value = var:wm_lean_apni
 	multiply = global_var:wm_poll_apni
-	divide = wm_polls_2024_apni
+	divide = wm_polls_baseline_apni
 	add = var:wm_lean_apni
 	add = {
 		value = global_var:wm_poll_apni
-		subtract = wm_polls_2024_apni
+		subtract = wm_polls_baseline_apni
 		multiply = 36.9
 	}
 	divide = 2
@@ -295,11 +333,11 @@ wm_election_seat_share_apni = {	# nation factor 36.9
 wm_election_seat_share_uup = {	# nation factor 36.9
 	value = var:wm_lean_uup
 	multiply = global_var:wm_poll_uup
-	divide = wm_polls_2024_uup
+	divide = wm_polls_baseline_uup
 	add = var:wm_lean_uup
 	add = {
 		value = global_var:wm_poll_uup
-		subtract = wm_polls_2024_uup
+		subtract = wm_polls_baseline_uup
 		multiply = 36.9
 	}
 	divide = 2
@@ -308,16 +346,22 @@ wm_election_seat_share_uup = {	# nation factor 36.9
 wm_election_seat_share_tuv = {	# nation factor 36.9
 	value = var:wm_lean_tuv
 	multiply = global_var:wm_poll_tuv
-	divide = wm_polls_2024_tuv
+	divide = wm_polls_baseline_tuv
 	add = var:wm_lean_tuv
 	add = {
 		value = global_var:wm_poll_tuv
-		subtract = wm_polls_2024_tuv
+		subtract = wm_polls_baseline_tuv
 		multiply = 36.9
 	}
 	divide = 2
 	min = 0
 }
+wm_election_seat_share_new_1 = { value = var:wm_lean_new_1 add = global_var:wm_poll_new_1 min = 0 max = 950 }
+wm_election_seat_share_new_2 = { value = var:wm_lean_new_2 add = global_var:wm_poll_new_2 min = 0 max = 950 }
+wm_election_seat_share_new_3 = { value = var:wm_lean_new_3 add = global_var:wm_poll_new_3 min = 0 max = 950 }
+wm_election_seat_share_new_4 = { value = var:wm_lean_new_4 add = global_var:wm_poll_new_4 min = 0 max = 950 }
+wm_election_seat_share_new_5 = { value = var:wm_lean_new_5 add = global_var:wm_poll_new_5 min = 0 max = 950 }
+wm_election_seat_share_new_6 = { value = var:wm_lean_new_6 add = global_var:wm_poll_new_6 min = 0 max = 950 }
 
 # The governing party's poll, and the best poll of any other party (min = X raises the value to X)
 wm_polls_government_poll = {
@@ -413,6 +457,48 @@ wm_polls_government_poll = {
 		}
 		value = global_var:wm_poll_tuv
 	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_1
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_1 }
+		}
+		value = global_var:wm_poll_new_1
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_2
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_2 }
+		}
+		value = global_var:wm_poll_new_2
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_3
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_3 }
+		}
+		value = global_var:wm_poll_new_3
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_4
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_4 }
+		}
+		value = global_var:wm_poll_new_4
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_5
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_5 }
+		}
+		value = global_var:wm_poll_new_5
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_6
+			title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_6 }
+		}
+		value = global_var:wm_poll_new_6
+	}
 }
 wm_polls_best_opposition_poll = {
 	value = 0
@@ -507,6 +593,48 @@ wm_polls_best_opposition_poll = {
 		}
 		min = global_var:wm_poll_tuv
 	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_1
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_1 } }
+		}
+		min = global_var:wm_poll_new_1
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_2
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_2 } }
+		}
+		min = global_var:wm_poll_new_2
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_3
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_3 } }
+		}
+		min = global_var:wm_poll_new_3
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_4
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_4 } }
+		}
+		min = global_var:wm_poll_new_4
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_5
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_5 } }
+		}
+		min = global_var:wm_poll_new_5
+	}
+	if = {
+		limit = {
+			has_global_variable = wm_poll_new_6
+			NOT = { title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_6 } }
+		}
+		min = global_var:wm_poll_new_6
+	}
 }
 # The government's lead over the best-placed other party (negative when behind)
 wm_polls_government_lead = {
@@ -530,6 +658,12 @@ wm_election_total_seats = {
 	add = global_var:wm_seats_apni
 	add = global_var:wm_seats_uup
 	add = global_var:wm_seats_tuv
+	add = global_var:wm_seats_new_1
+	add = global_var:wm_seats_new_2
+	add = global_var:wm_seats_new_3
+	add = global_var:wm_seats_new_4
+	add = global_var:wm_seats_new_5
+	add = global_var:wm_seats_new_6
 	add = global_var:wm_seats_ind
 	add = global_var:wm_seats_spk
 }

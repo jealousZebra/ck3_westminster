@@ -1,0 +1,1 @@
+﻿wm_royal_george_vi = { name = "George" dynasty = wm_dyn_royal_windsor culture = english religion = wm_faith_not_stated 1895.12.14 = { birth = yes } 1952.2.6 = { death = yes } }

@@ -8,6 +8,14 @@ __pycache__/
 # The suite each gen_*.py writes into the test harness (run a generator before a test; see docs/ck3-testing.md)
 */tools/ck3_test/harness/common/scripted_effects/rf_test_effects.txt
 .venv/
+# Local credentials and machine settings (examples may be committed).
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.idea/
+.vscode/
 # Downloaded source data and test output for Westminster (see westminster/data/README.md)
 westminster/data/raw/
 westminster/tools/test_out/

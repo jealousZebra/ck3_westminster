@@ -1,10 +1,16 @@
 # Publishing Westminster to the Steam Workshop
 
-- Workshop item: [Westminster: UK Politics 1979–2024 | CK3 Total Conversion](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981).
+- Workshop item: [Westminster: UK Politics 1945–2024 | CK3 Total Conversion](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981).
 - General steps, Steam's limits and how to edit the page in the browser:
   [docs/steam-workshop.md](../../docs/steam-workshop.md).
 
 Commands below are run from the repo root.
+
+## Current upload — 18 October 2026
+
+Six playable starts (1945, 1979, 1997, 2010, 2016, 2024), movement, government/Brexit and press content.
+The launcher upload kept descriptor version 0.5.4; dated notes are `change_notes_0.5.4_2026-10-18.txt`.
+Steam changelog entries: gameplay `1792322794`, final artwork refresh `1792323212`. Keep the older 0.5.4 Windows-fix notes intact.
 
 ## Before each release
 
@@ -25,7 +31,7 @@ Commands below are run from the repo root.
 ## Uploading (by the mod owner)
 
 1. Close CK3. Open the Paradox launcher.
-2. Mods → Upload Mod → **Westminster: UK Politics 1979–2024 | CK3 Total Conversion** → Steam Workshop. The launcher
+2. Mods → Upload Mod → **Westminster: UK Politics 1945–2024 | CK3 Total Conversion** → Steam Workshop. The launcher
    uploads `westminster/westminster/` (the mod folder, with the generated
    textures) using `descriptor.mod` (name, version, tags, picture) and `thumbnail.png`.
 3. For a new Workshop item, begin as **Hidden** or **Friends only**. Subscribe from a second machine or after
@@ -62,7 +68,7 @@ The current tags are Total Conversion, Gameplay, Historical, Character Focuses a
 
 `westminster/thumbnail.png` (1024 × 1024, under 1 MB) is built by
 `.venv/bin/python westminster/art/make_thumbnail.py`. The approved source is
-`art/thumbnail_westminster_v3.png`: Thatcher and Starmer flank Parliament, with the title and date range inside the
+`art/thumbnail_westminster_v4.png`: Attlee, Thatcher, Blair and Starmer appear before Parliament, with the title and date range inside the
 middle band that survives the launcher's centred 2:1 crop.
 
 ## Screenshots

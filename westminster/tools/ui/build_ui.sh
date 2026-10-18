@@ -8,6 +8,11 @@ $PY westminster/tools/ui/build_frontend.py       # main menu (starts from build_
 $PY westminster/tools/ui/fal_images.py           # pictures and tab icons (cached in westminster/art/fal)
 $PY westminster/tools/ui/build_illustrations.py  # scene lists and loading screens
 $PY westminster/tools/ui/build_bookmark_screen.py # new-game screen: election map, character places and portraits, paper chrome (after fal_images and build_theme)
+$PY westminster/tools/ui/build_bookmark_screen.py --1945
+$PY westminster/tools/ui/build_bookmark_screen.py --1979
+$PY westminster/tools/ui/build_bookmark_screen.py --1997
+$PY westminster/tools/ui/build_bookmark_screen.py --2010
+$PY westminster/tools/ui/build_bookmark_screen.py --2016
 $PY westminster/tools/ui/build_portraits.py      # no crowns, hats or cloaks
 $PY westminster/tools/ui/build_event_backgrounds.py   # event window backdrops
 $PY westminster/tools/ui/build_terms.py              # modern terminology (localization/english/replace/wm_terms_*)

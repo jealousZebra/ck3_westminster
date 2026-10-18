@@ -6,7 +6,7 @@ tags={
 	"Character Focuses"
 	"Interface"
 }
-name="Westminster: UK Politics 1979–2024 | CK3 Total Conversion"
+name="Westminster: UK Politics 1945–2024 | CK3 Total Conversion"
 picture="thumbnail.png"
 replace_path="common/landed_titles"
 replace_path="common/decisions"

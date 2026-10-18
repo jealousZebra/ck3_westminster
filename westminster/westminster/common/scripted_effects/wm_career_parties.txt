@@ -18,6 +18,12 @@ wm_career_find_candidate_effect = {
 	wm_career_find_candidate_party_effect = { P = apni PARTY = k_party_alliance }
 	wm_career_find_candidate_party_effect = { P = uup PARTY = k_party_uup }
 	wm_career_find_candidate_party_effect = { P = tuv PARTY = k_party_tuv }
+	wm_career_find_candidate_party_effect = { P = new_1 PARTY = k_party_new_1 }
+	wm_career_find_candidate_party_effect = { P = new_2 PARTY = k_party_new_2 }
+	wm_career_find_candidate_party_effect = { P = new_3 PARTY = k_party_new_3 }
+	wm_career_find_candidate_party_effect = { P = new_4 PARTY = k_party_new_4 }
+	wm_career_find_candidate_party_effect = { P = new_5 PARTY = k_party_new_5 }
+	wm_career_find_candidate_party_effect = { P = new_6 PARTY = k_party_new_6 }
 }
 
 # Scope: a seat going to a by-election. Every party with a real chance there (a 15% share in 2024) selects a
@@ -36,6 +42,12 @@ wm_career_open_byelection_selections_effect = {
 	wm_career_open_byelection_party_effect = { P = apni PARTY = k_party_alliance }
 	wm_career_open_byelection_party_effect = { P = uup PARTY = k_party_uup }
 	wm_career_open_byelection_party_effect = { P = tuv PARTY = k_party_tuv }
+	wm_career_open_byelection_party_effect = { P = new_1 PARTY = k_party_new_1 }
+	wm_career_open_byelection_party_effect = { P = new_2 PARTY = k_party_new_2 }
+	wm_career_open_byelection_party_effect = { P = new_3 PARTY = k_party_new_3 }
+	wm_career_open_byelection_party_effect = { P = new_4 PARTY = k_party_new_4 }
+	wm_career_open_byelection_party_effect = { P = new_5 PARTY = k_party_new_5 }
+	wm_career_open_byelection_party_effect = { P = new_6 PARTY = k_party_new_6 }
 }
 
 # Each party opens a selection in one seat it could win (wm_career_open_target_party_effect).
@@ -53,6 +65,12 @@ wm_career_open_target_selections_effect = {
 	wm_career_open_target_party_effect = { P = apni PARTY = k_party_alliance }
 	wm_career_open_target_party_effect = { P = uup PARTY = k_party_uup }
 	wm_career_open_target_party_effect = { P = tuv PARTY = k_party_tuv }
+	wm_career_open_target_party_effect = { P = new_1 PARTY = k_party_new_1 }
+	wm_career_open_target_party_effect = { P = new_2 PARTY = k_party_new_2 }
+	wm_career_open_target_party_effect = { P = new_3 PARTY = k_party_new_3 }
+	wm_career_open_target_party_effect = { P = new_4 PARTY = k_party_new_4 }
+	wm_career_open_target_party_effect = { P = new_5 PARTY = k_party_new_5 }
+	wm_career_open_target_party_effect = { P = new_6 PARTY = k_party_new_6 }
 }
 
 # Scope: a seat with selections open. Closes those whose time is up.
@@ -70,4 +88,10 @@ wm_career_close_due_selections_effect = {
 	wm_career_close_due_party_effect = { P = apni PARTY = k_party_alliance }
 	wm_career_close_due_party_effect = { P = uup PARTY = k_party_uup }
 	wm_career_close_due_party_effect = { P = tuv PARTY = k_party_tuv }
+	wm_career_close_due_party_effect = { P = new_1 PARTY = k_party_new_1 }
+	wm_career_close_due_party_effect = { P = new_2 PARTY = k_party_new_2 }
+	wm_career_close_due_party_effect = { P = new_3 PARTY = k_party_new_3 }
+	wm_career_close_due_party_effect = { P = new_4 PARTY = k_party_new_4 }
+	wm_career_close_due_party_effect = { P = new_5 PARTY = k_party_new_5 }
+	wm_career_close_due_party_effect = { P = new_6 PARTY = k_party_new_6 }
 }

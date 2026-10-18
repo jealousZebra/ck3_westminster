@@ -1,0 +1,76 @@
+﻿bm_1997_blair = {
+	start_date = 1997.5.2
+	is_playable = yes
+	group = bm_group_1997
+	weight = { value = 110 }
+	character = {
+		name = "bookmark_1997_tony_blair"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1953.5.6
+		title = e_united_kingdom
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1997_tony_blair
+		position = { 955 410 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1997_john_major"
+		dynasty_house = wm_house_party_conservative
+		type = male
+		birth = 1943.3.29
+		title = k_party_conservative
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_one_nation
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1997_john_major
+		position = { 1090 705 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1997_paddy_ashdown"
+		dynasty_house = wm_house_party_lib_dem
+		type = male
+		birth = 1941.2.27
+		title = k_party_lib_dem
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_liberal
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1997_paddy_ashdown
+		position = { 510 780 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1997_gordon_brown"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1951.2.20
+		title = c_cowdenbeath_and_kirkcaldy
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1997_gordon_brown
+		position = { 905 170 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1997_john_prescott"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1938.5.31
+		title = c_kingston_upon_hull_east
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1997_john_prescott
+		position = { 625 530 }
+		animation = personality_rational
+	}
+}

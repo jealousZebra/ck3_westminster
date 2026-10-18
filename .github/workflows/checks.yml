@@ -1,0 +1,21 @@
+name: Source checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: CK3 script and localization
+        run: python common/tools/ck3_checks.py static westminster/westminster
+      - name: Authoring and regression checks (no game installation)
+        run: python -m unittest discover -s westminster/tools/data -p 'test_*.py'
+      - name: Credential patterns
+        run: python common/tools/check_secrets.py

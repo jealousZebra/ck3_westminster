@@ -1,14 +1,15 @@
 # Westminster
 
-**Modern UK politics for Crusader Kings III.** A total conversion with playable starts on 4 May 1979 and 5 July
-2024, with historical MPs mapped onto 650 modern constituencies. Lead Margaret Thatcher's first government, govern
+**Modern UK politics for Crusader Kings III.** A total conversion with six playable starts across 1945–2024, with historical MPs mapped onto 650 modern constituencies. Lead Margaret Thatcher's first government, govern
 after the 2024 election, play another MP, or begin as a campaigner and climb from the doorstep to Downing Street.
 
 | | |
 |---|---|
 | Status | **0.5.4 public beta** on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3816349981). In-game localization: English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish. |
 | Game | Crusader Kings III 1.20 |
-| Plans | [ROADMAP.md](ROADMAP.md): the next updates. Design decisions: [westminster/PLAN.md](westminster/PLAN.md) |
+| Modding | [Character/DNA/policy guide](docs/modding.md), [contributing via PR](CONTRIBUTING.md) |
+| Plans | [Roadmap](ROADMAP.md), [design notes](westminster/PLAN.md) |
+| Forks | Welcome; see [branding and credit](BRANDING.md) |
 | The mod in detail | [westminster/README.md](westminster/README.md): gameplay, the look, layout, build and test |
 | Licence | Code [MIT](LICENSE); original assets [CC BY 4.0](LICENSE-ASSETS.md), AI images CC0; third-party material in [NOTICE.md](NOTICE.md) |
 
@@ -17,9 +18,12 @@ real names. All events are generic and fictional, and nothing in the mod says or
 person. Westminster isn't affiliated with Parliament, any political party or the Royal Household, and it isn't made or
 endorsed by Paradox Interactive.
 
+The 18 October 2026 upload adds 1945, 1997, 2010 and 2016 starts, movement building, government/Brexit and press gameplay.
+It retains descriptor version 0.5.4; see [the changelog](westminster/workshop/CHANGELOG.md) for the dated release.
+
 ## What's in it
 
-- Two eras: the 1979 Commons and Thatcher's first government, and the 2024 Parliament with all 650 elected MPs.
+- Six starts: Attlee 1945, Thatcher 1979, Blair 1997, Cameron 2010, May 2016 and Starmer 2024.
 - A career from activist to Prime Minister; parties as houses (Cross the Floor, Found a Party); leadership contests
   and the Speaker's election.
 - Elections with monthly polls, seat-by-seat swing, by-elections, disputed results and coalitions; the House of
@@ -46,7 +50,7 @@ westminster/
   tools/             generators (map/, data/, ui/), in-game tests (ck3_test/), release.sh
   art/, data/        source art (fal.ai cache) and source data notes
   workshop/          Steam page text in 9 languages, screenshots, changelog, PUBLISHING.md
-  PLAN.md            design: how CK3 systems map to British politics
+  PLAN.md            design notes: how CK3 systems map to British politics
 ```
 
 ## Setup
@@ -56,11 +60,20 @@ westminster/
   `Paradox Interactive/Crusader Kings III` user folder) if yours is elsewhere.
 - **Python 3.9 or newer:** `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`.
 - **Build:** a clone has the scripts, localization and GUI, but not the generated textures and map images. Build them
-  as [westminster/README.md](westminster/README.md#setup-install-and-test) describes (map, both bookmarks, seat
-  leans, then the interface).
+  as [westminster/README.md](westminster/README.md#setup-install-and-test) describes (map, character histories, all bookmarks,
+  seat leans, then the interface).
 - **Play from a clone:** `python3 common/tools/install_mod.py westminster` writes the launcher's `.mod` file pointing
   at your clone; enable it in the launcher.
-- **In-game tests** (`common/ck3_test/`) are macOS-only: they drive the game window with small Swift helpers and
-  need `swiftc` (Xcode command-line tools). The generators and static checks work anywhere.
+- **Checks:** `python3 common/tools/ck3_checks.py static westminster/westminster`. Manual in-game testing works on
+  all platforms; automated window-driving helpers require macOS and `swiftc`. See [testing](docs/ck3-testing.md).
 - **Releases** go to the Workshop through the Paradox launcher: see
   [westminster/workshop/PUBLISHING.md](westminster/workshop/PUBLISHING.md).
+
+## Making changes
+
+Start with [the modding guide](docs/modding.md): it lists the source for each common edit and its rebuild command.
+Character overrides are in `westminster/data/character_overrides.json`; no map or art rebuild is needed for stats.
+Send changes as a [pull request](CONTRIBUTING.md). Please retain [credit when forking](BRANDING.md).
+
+Before publishing source, run `python3 common/tools/check_secrets.py --history`. It scans tracked/unignored files
+and locally reachable Git history without printing matched values; heuristic scanning cannot prove the absence of secrets.

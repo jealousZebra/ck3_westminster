@@ -18,6 +18,12 @@ wm_polls_init_effect = {
 		set_global_variable = { name = wm_poll_apni value = 1 }
 		set_global_variable = { name = wm_poll_uup value = 8 }
 		set_global_variable = { name = wm_poll_tuv value = 1 }
+		set_global_variable = { name = wm_poll_new_1 value = 0 }
+		set_global_variable = { name = wm_poll_new_2 value = 0 }
+		set_global_variable = { name = wm_poll_new_3 value = 0 }
+		set_global_variable = { name = wm_poll_new_4 value = 0 }
+		set_global_variable = { name = wm_poll_new_5 value = 0 }
+		set_global_variable = { name = wm_poll_new_6 value = 0 }
 		set_global_variable = { name = wm_poll_oth value = 12 }
 	}
 	else = {
@@ -34,25 +40,169 @@ wm_polls_init_effect = {
 		set_global_variable = { name = wm_poll_apni value = wm_polls_2024_apni }
 		set_global_variable = { name = wm_poll_uup value = wm_polls_2024_uup }
 		set_global_variable = { name = wm_poll_tuv value = wm_polls_2024_tuv }
+		set_global_variable = { name = wm_poll_new_1 value = wm_polls_2024_new_1 }
+		set_global_variable = { name = wm_poll_new_2 value = wm_polls_2024_new_2 }
+		set_global_variable = { name = wm_poll_new_3 value = wm_polls_2024_new_3 }
+		set_global_variable = { name = wm_poll_new_4 value = wm_polls_2024_new_4 }
+		set_global_variable = { name = wm_poll_new_5 value = wm_polls_2024_new_5 }
+		set_global_variable = { name = wm_poll_new_6 value = wm_polls_2024_new_6 }
 		set_global_variable = { name = wm_poll_oth value = wm_polls_2024_oth }
 	}
+
+	if = { limit = { game_start_date = 1945.7.27 }
+		set_global_variable = { name = wm_poll_lab value = 477 }
+		set_global_variable = { name = wm_poll_con value = 396 }
+		set_global_variable = { name = wm_poll_ld value = 90 }
+		set_global_variable = { name = wm_poll_ruk value = 0 }
+		set_global_variable = { name = wm_poll_grn value = 0 }
+		set_global_variable = { name = wm_poll_snp value = 0 }
+		set_global_variable = { name = wm_poll_pc value = 0 }
+		set_global_variable = { name = wm_poll_sf value = 0 }
+		set_global_variable = { name = wm_poll_dup value = 0 }
+		set_global_variable = { name = wm_poll_sdlp value = 0 }
+		set_global_variable = { name = wm_poll_apni value = 0 }
+		set_global_variable = { name = wm_poll_uup value = 8 }
+		set_global_variable = { name = wm_poll_tuv value = 0 }
+		set_global_variable = { name = wm_poll_new_1 value = 0 }
+		set_global_variable = { name = wm_poll_new_2 value = 0 }
+		set_global_variable = { name = wm_poll_new_3 value = 0 }
+		set_global_variable = { name = wm_poll_new_4 value = 0 }
+		set_global_variable = { name = wm_poll_new_5 value = 0 }
+		set_global_variable = { name = wm_poll_new_6 value = 0 }
+		set_global_variable = { name = wm_poll_oth value = 29 }
+	}
+
+	if = { limit = { game_start_date = 1997.5.2 }
+		set_global_variable = { name = wm_poll_lab value = 432 }
+		set_global_variable = { name = wm_poll_con value = 307 }
+		set_global_variable = { name = wm_poll_ld value = 168 }
+		set_global_variable = { name = wm_poll_ruk value = 0 }
+		set_global_variable = { name = wm_poll_grn value = 0 }
+		set_global_variable = { name = wm_poll_snp value = 20 }
+		set_global_variable = { name = wm_poll_pc value = 5 }
+		set_global_variable = { name = wm_poll_sf value = 4 }
+		set_global_variable = { name = wm_poll_dup value = 3 }
+		set_global_variable = { name = wm_poll_sdlp value = 6 }
+		set_global_variable = { name = wm_poll_apni value = 0 }
+		set_global_variable = { name = wm_poll_uup value = 8 }
+		set_global_variable = { name = wm_poll_tuv value = 0 }
+		set_global_variable = { name = wm_poll_new_1 value = 0 }
+		set_global_variable = { name = wm_poll_new_2 value = 0 }
+		set_global_variable = { name = wm_poll_new_3 value = 0 }
+		set_global_variable = { name = wm_poll_new_4 value = 0 }
+		set_global_variable = { name = wm_poll_new_5 value = 0 }
+		set_global_variable = { name = wm_poll_new_6 value = 0 }
+		set_global_variable = { name = wm_poll_oth value = 47 }
+	}
+
+	if = { limit = { game_start_date = 2010.5.12 }
+		set_global_variable = { name = wm_poll_lab value = 290 }
+		set_global_variable = { name = wm_poll_con value = 361 }
+		set_global_variable = { name = wm_poll_ld value = 230 }
+		set_global_variable = { name = wm_poll_ruk value = 0 }
+		set_global_variable = { name = wm_poll_grn value = 10 }
+		set_global_variable = { name = wm_poll_snp value = 17 }
+		set_global_variable = { name = wm_poll_pc value = 6 }
+		set_global_variable = { name = wm_poll_sf value = 6 }
+		set_global_variable = { name = wm_poll_dup value = 6 }
+		set_global_variable = { name = wm_poll_sdlp value = 4 }
+		set_global_variable = { name = wm_poll_apni value = 1 }
+		set_global_variable = { name = wm_poll_uup value = 2 }
+		set_global_variable = { name = wm_poll_tuv value = 0 }
+		set_global_variable = { name = wm_poll_new_1 value = 0 }
+		set_global_variable = { name = wm_poll_new_2 value = 0 }
+		set_global_variable = { name = wm_poll_new_3 value = 0 }
+		set_global_variable = { name = wm_poll_new_4 value = 0 }
+		set_global_variable = { name = wm_poll_new_5 value = 0 }
+		set_global_variable = { name = wm_poll_new_6 value = 0 }
+		set_global_variable = { name = wm_poll_oth value = 67 }
+	}
+
+	if = { limit = { game_start_date = 2016.7.14 }
+		set_global_variable = { name = wm_poll_lab value = 304 }
+		set_global_variable = { name = wm_poll_con value = 369 }
+		set_global_variable = { name = wm_poll_ld value = 79 }
+		set_global_variable = { name = wm_poll_ruk value = 126 }
+		set_global_variable = { name = wm_poll_grn value = 38 }
+		set_global_variable = { name = wm_poll_snp value = 47 }
+		set_global_variable = { name = wm_poll_pc value = 6 }
+		set_global_variable = { name = wm_poll_sf value = 6 }
+		set_global_variable = { name = wm_poll_dup value = 6 }
+		set_global_variable = { name = wm_poll_sdlp value = 3 }
+		set_global_variable = { name = wm_poll_apni value = 2 }
+		set_global_variable = { name = wm_poll_uup value = 4 }
+		set_global_variable = { name = wm_poll_tuv value = 1 }
+		set_global_variable = { name = wm_poll_new_1 value = 0 }
+		set_global_variable = { name = wm_poll_new_2 value = 0 }
+		set_global_variable = { name = wm_poll_new_3 value = 0 }
+		set_global_variable = { name = wm_poll_new_4 value = 0 }
+		set_global_variable = { name = wm_poll_new_5 value = 0 }
+		set_global_variable = { name = wm_poll_new_6 value = 0 }
+		set_global_variable = { name = wm_poll_oth value = 9 }
+	}
+
+	set_global_variable = { name = wm_start_poll_lab value = global_var:wm_poll_lab }
+	set_global_variable = { name = wm_start_poll_con value = global_var:wm_poll_con }
+	set_global_variable = { name = wm_start_poll_ld value = global_var:wm_poll_ld }
+	set_global_variable = { name = wm_start_poll_ruk value = global_var:wm_poll_ruk }
+	set_global_variable = { name = wm_start_poll_grn value = global_var:wm_poll_grn }
+	set_global_variable = { name = wm_start_poll_snp value = global_var:wm_poll_snp }
+	set_global_variable = { name = wm_start_poll_pc value = global_var:wm_poll_pc }
+	set_global_variable = { name = wm_start_poll_sf value = global_var:wm_poll_sf }
+	set_global_variable = { name = wm_start_poll_dup value = global_var:wm_poll_dup }
+	set_global_variable = { name = wm_start_poll_sdlp value = global_var:wm_poll_sdlp }
+	set_global_variable = { name = wm_start_poll_apni value = global_var:wm_poll_apni }
+	set_global_variable = { name = wm_start_poll_uup value = global_var:wm_poll_uup }
+	set_global_variable = { name = wm_start_poll_tuv value = global_var:wm_poll_tuv }
+	set_global_variable = { name = wm_start_poll_new_1 value = global_var:wm_poll_new_1 }
+	set_global_variable = { name = wm_start_poll_new_2 value = global_var:wm_poll_new_2 }
+	set_global_variable = { name = wm_start_poll_new_3 value = global_var:wm_poll_new_3 }
+	set_global_variable = { name = wm_start_poll_new_4 value = global_var:wm_poll_new_4 }
+	set_global_variable = { name = wm_start_poll_new_5 value = global_var:wm_poll_new_5 }
+	set_global_variable = { name = wm_start_poll_new_6 value = global_var:wm_poll_new_6 }
+	set_global_variable = { name = wm_start_poll_oth value = global_var:wm_poll_oth }
 }
 
 # A month of poll movement for every party (wm_polls_drift_party_effect), then back to a total of 1000.
 wm_polls_drift_all_effect = {
-	wm_polls_drift_party_effect = { P = lab }
-	wm_polls_drift_party_effect = { P = con }
-	wm_polls_drift_party_effect = { P = ld }
-	wm_polls_drift_party_effect = { P = ruk }
-	wm_polls_drift_party_effect = { P = grn }
-	wm_polls_drift_party_effect = { P = snp }
-	wm_polls_drift_party_effect = { P = pc }
-	wm_polls_drift_party_effect = { P = sf }
-	wm_polls_drift_party_effect = { P = dup }
-	wm_polls_drift_party_effect = { P = sdlp }
-	wm_polls_drift_party_effect = { P = apni }
-	wm_polls_drift_party_effect = { P = uup }
-	wm_polls_drift_party_effect = { P = tuv }
+	if = { limit = { exists = title:k_party_labour.holder } wm_polls_drift_party_effect = { P = lab } }
+	else = { set_global_variable = { name = wm_poll_lab value = 0 } }
+	if = { limit = { exists = title:k_party_conservative.holder } wm_polls_drift_party_effect = { P = con } }
+	else = { set_global_variable = { name = wm_poll_con value = 0 } }
+	if = { limit = { exists = title:k_party_lib_dem.holder } wm_polls_drift_party_effect = { P = ld } }
+	else = { set_global_variable = { name = wm_poll_ld value = 0 } }
+	if = { limit = { exists = title:k_party_reform.holder } wm_polls_drift_party_effect = { P = ruk } }
+	else = { set_global_variable = { name = wm_poll_ruk value = 0 } }
+	if = { limit = { exists = title:k_party_green.holder } wm_polls_drift_party_effect = { P = grn } }
+	else = { set_global_variable = { name = wm_poll_grn value = 0 } }
+	if = { limit = { exists = title:k_party_snp.holder } wm_polls_drift_party_effect = { P = snp } }
+	else = { set_global_variable = { name = wm_poll_snp value = 0 } }
+	if = { limit = { exists = title:k_party_plaid.holder } wm_polls_drift_party_effect = { P = pc } }
+	else = { set_global_variable = { name = wm_poll_pc value = 0 } }
+	if = { limit = { exists = title:k_party_sinn_fein.holder } wm_polls_drift_party_effect = { P = sf } }
+	else = { set_global_variable = { name = wm_poll_sf value = 0 } }
+	if = { limit = { exists = title:k_party_dup.holder } wm_polls_drift_party_effect = { P = dup } }
+	else = { set_global_variable = { name = wm_poll_dup value = 0 } }
+	if = { limit = { exists = title:k_party_sdlp.holder } wm_polls_drift_party_effect = { P = sdlp } }
+	else = { set_global_variable = { name = wm_poll_sdlp value = 0 } }
+	if = { limit = { exists = title:k_party_alliance.holder } wm_polls_drift_party_effect = { P = apni } }
+	else = { set_global_variable = { name = wm_poll_apni value = 0 } }
+	if = { limit = { exists = title:k_party_uup.holder } wm_polls_drift_party_effect = { P = uup } }
+	else = { set_global_variable = { name = wm_poll_uup value = 0 } }
+	if = { limit = { exists = title:k_party_tuv.holder } wm_polls_drift_party_effect = { P = tuv } }
+	else = { set_global_variable = { name = wm_poll_tuv value = 0 } }
+	if = { limit = { exists = title:k_party_new_1.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_1 } } set_global_variable = { name = wm_poll_new_1 value = 0 } } wm_polls_drift_party_effect = { P = new_1 } }
+	else = { set_global_variable = { name = wm_poll_new_1 value = 0 } }
+	if = { limit = { exists = title:k_party_new_2.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_2 } } set_global_variable = { name = wm_poll_new_2 value = 0 } } wm_polls_drift_party_effect = { P = new_2 } }
+	else = { set_global_variable = { name = wm_poll_new_2 value = 0 } }
+	if = { limit = { exists = title:k_party_new_3.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_3 } } set_global_variable = { name = wm_poll_new_3 value = 0 } } wm_polls_drift_party_effect = { P = new_3 } }
+	else = { set_global_variable = { name = wm_poll_new_3 value = 0 } }
+	if = { limit = { exists = title:k_party_new_4.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_4 } } set_global_variable = { name = wm_poll_new_4 value = 0 } } wm_polls_drift_party_effect = { P = new_4 } }
+	else = { set_global_variable = { name = wm_poll_new_4 value = 0 } }
+	if = { limit = { exists = title:k_party_new_5.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_5 } } set_global_variable = { name = wm_poll_new_5 value = 0 } } wm_polls_drift_party_effect = { P = new_5 } }
+	else = { set_global_variable = { name = wm_poll_new_5 value = 0 } }
+	if = { limit = { exists = title:k_party_new_6.holder } if = { limit = { NOT = { has_global_variable = wm_poll_new_6 } } set_global_variable = { name = wm_poll_new_6 value = 0 } } wm_polls_drift_party_effect = { P = new_6 } }
+	else = { set_global_variable = { name = wm_poll_new_6 value = 0 } }
 	wm_polls_drift_party_effect = { P = oth }
 	wm_polls_normalise_effect = yes
 }
@@ -166,6 +316,54 @@ wm_polls_normalise_effect = {
 			}
 		}
 		set_global_variable = {
+			name = wm_poll_new_1
+			value = {
+				value = global_var:wm_poll_new_1
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
+			name = wm_poll_new_2
+			value = {
+				value = global_var:wm_poll_new_2
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
+			name = wm_poll_new_3
+			value = {
+				value = global_var:wm_poll_new_3
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
+			name = wm_poll_new_4
+			value = {
+				value = global_var:wm_poll_new_4
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
+			name = wm_poll_new_5
+			value = {
+				value = global_var:wm_poll_new_5
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
+			name = wm_poll_new_6
+			value = {
+				value = global_var:wm_poll_new_6
+				multiply = 1000
+				divide = global_var:wm_polls_sum
+			}
+		}
+		set_global_variable = {
 			name = wm_poll_oth
 			value = {
 				value = global_var:wm_poll_oth
@@ -191,6 +389,12 @@ wm_election_score_parties_effect = {
 	wm_election_score_party_effect = { P = apni PARTY = k_party_alliance }
 	wm_election_score_party_effect = { P = uup PARTY = k_party_uup }
 	wm_election_score_party_effect = { P = tuv PARTY = k_party_tuv }
+	if = { limit = { exists = title:k_party_new_1.holder } wm_election_score_party_effect = { P = new_1 PARTY = k_party_new_1 } }
+	if = { limit = { exists = title:k_party_new_2.holder } wm_election_score_party_effect = { P = new_2 PARTY = k_party_new_2 } }
+	if = { limit = { exists = title:k_party_new_3.holder } wm_election_score_party_effect = { P = new_3 PARTY = k_party_new_3 } }
+	if = { limit = { exists = title:k_party_new_4.holder } wm_election_score_party_effect = { P = new_4 PARTY = k_party_new_4 } }
+	if = { limit = { exists = title:k_party_new_5.holder } wm_election_score_party_effect = { P = new_5 PARTY = k_party_new_5 } }
+	if = { limit = { exists = title:k_party_new_6.holder } wm_election_score_party_effect = { P = new_6 PARTY = k_party_new_6 } }
 }
 
 # Seats per party into global_var:wm_seats_<party> (plus _ind for independents and _spk for the Speaker).
@@ -208,6 +412,12 @@ wm_election_count_seats_effect = {
 	set_global_variable = { name = wm_seats_apni value = 0 }
 	set_global_variable = { name = wm_seats_uup value = 0 }
 	set_global_variable = { name = wm_seats_tuv value = 0 }
+	set_global_variable = { name = wm_seats_new_1 value = 0 }
+	set_global_variable = { name = wm_seats_new_2 value = 0 }
+	set_global_variable = { name = wm_seats_new_3 value = 0 }
+	set_global_variable = { name = wm_seats_new_4 value = 0 }
+	set_global_variable = { name = wm_seats_new_5 value = 0 }
+	set_global_variable = { name = wm_seats_new_6 value = 0 }
 	set_global_variable = { name = wm_seats_ind value = 0 }
 	set_global_variable = { name = wm_seats_spk value = 0 }
 	title:e_united_kingdom = {
@@ -270,6 +480,30 @@ wm_election_count_seats_effect = {
 					change_global_variable = { name = wm_seats_tuv add = 1 }
 				}
 				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_1 }
+					change_global_variable = { name = wm_seats_new_1 add = 1 }
+				}
+				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_2 }
+					change_global_variable = { name = wm_seats_new_2 add = 1 }
+				}
+				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_3 }
+					change_global_variable = { name = wm_seats_new_3 add = 1 }
+				}
+				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_4 }
+					change_global_variable = { name = wm_seats_new_4 add = 1 }
+				}
+				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_5 }
+					change_global_variable = { name = wm_seats_new_5 add = 1 }
+				}
+				else_if = {
+					limit = { var:wm_party ?= title:k_party_new_6 }
+					change_global_variable = { name = wm_seats_new_6 add = 1 }
+				}
+				else_if = {
 					limit = { has_character_flag = wm_speaker }
 					change_global_variable = { name = wm_seats_spk add = 1 }
 				}
@@ -296,6 +530,12 @@ wm_election_copy_prev_seats_effect = {
 	set_global_variable = { name = wm_seats_prev_apni value = global_var:wm_seats_apni }
 	set_global_variable = { name = wm_seats_prev_uup value = global_var:wm_seats_uup }
 	set_global_variable = { name = wm_seats_prev_tuv value = global_var:wm_seats_tuv }
+	set_global_variable = { name = wm_seats_prev_new_1 value = global_var:wm_seats_new_1 }
+	set_global_variable = { name = wm_seats_prev_new_2 value = global_var:wm_seats_new_2 }
+	set_global_variable = { name = wm_seats_prev_new_3 value = global_var:wm_seats_new_3 }
+	set_global_variable = { name = wm_seats_prev_new_4 value = global_var:wm_seats_new_4 }
+	set_global_variable = { name = wm_seats_prev_new_5 value = global_var:wm_seats_new_5 }
+	set_global_variable = { name = wm_seats_prev_new_6 value = global_var:wm_seats_new_6 }
 	set_global_variable = { name = wm_seats_prev_ind value = global_var:wm_seats_ind }
 	set_global_variable = { name = wm_seats_prev_spk value = global_var:wm_seats_spk }
 }
@@ -472,6 +712,84 @@ wm_election_find_largest_effect = {
 		set_global_variable = { name = wm_el_largest value = title:k_party_tuv }
 		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_tuv }
 	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_1 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_1 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_1 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_1 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_1 }
+	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_2 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_2 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_2 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_2 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_2 }
+	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_3 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_3 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_3 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_3 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_3 }
+	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_4 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_4 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_4 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_4 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_4 }
+	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_5 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_5 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_5 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_5 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_5 }
+	}
+	if = {
+		limit = {
+			OR = {
+				global_var:wm_seats_new_6 > global_var:wm_el_largest_seats
+				AND = {
+					global_var:wm_seats_new_6 = global_var:wm_el_largest_seats
+					title:e_united_kingdom.holder ?= { var:wm_party ?= title:k_party_new_6 }
+				}
+			}
+		}
+		set_global_variable = { name = wm_el_largest value = title:k_party_new_6 }
+		set_global_variable = { name = wm_el_largest_seats value = global_var:wm_seats_new_6 }
+	}
 }
 
 # Every party leader without a seat (MPs are handled by wm_election_rewire_effect) serves the Prime Minister. Needs scope:wm_el_rewire (a title and
@@ -598,6 +916,66 @@ wm_election_party_leaders_serve_pm_effect = {
 		}
 	}
 	title:k_party_tuv.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_1.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_2.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_3.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_4.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_5.holder ?= {
+		if = {
+			limit = {
+				NOT = { this = scope:wm_el_pm }
+				NOT = { wm_is_mp_trigger = yes }
+				NOT = { liege ?= scope:wm_el_pm }
+			}
+			change_liege = { liege = scope:wm_el_pm change = scope:wm_el_rewire }
+		}
+	}
+	title:k_party_new_6.holder ?= {
 		if = {
 			limit = {
 				NOT = { this = scope:wm_el_pm }

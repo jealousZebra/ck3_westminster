@@ -1,57 +1,35 @@
-[h1]Westminster: run Britain—or fight your way to Downing Street[/h1]
-[b]A modern UK politics total conversion for Crusader Kings III.[/b]
+[h1]Westminster[/h1]
+Run Britain—or build a movement and fight your way to Downing Street. A modern UK politics total conversion for Crusader Kings III, with 650 constituencies and six playable starts.
 
-Lead [b]Margaret Thatcher in 1979[/b], govern as [b]Keir Starmer after the 2024 election[/b], play any MP, or begin as an activist and build a new political party.
-
-Fight elections across all 650 constituencies, manage Parliament and Cabinet, survive rebellions and confidence votes, shape public opinion and try to become Prime Minister.
-
-[h2]Beta 0.5.4 — Windows Startup Fix[/h2]
-Fixed a reproduced Windows crash before the main menu and made startup protections work with older launcher settings. Fresh 1979 and 2024 campaigns passed on Windows with both current and outdated launcher metadata; the combined build also passed macOS startup testing on CK3 1.20.1.1. Linux and long campaigns remain unverified.
-
-[b]Please start a fresh campaign when testing this update, with Westminster as the only enabled mod.[/b]
-
-[h2]1979 and 2024 starts[/h2]
+[h2]Six starting dates[/h2]
 [list]
-[*]Two playable starts: Margaret Thatcher on 4 May 1979 and Keir Starmer on 5 July 2024.
-[*]The 1979 Commons mapped across the fixed 650-seat game map.
-[*]Historical party leaders, the first Thatcher Cabinet, Elizabeth II and other significant figures.
-[*]Recognisable CK3 character models for leading politicians.
-[*]A redesigned dark newspaper interface, modern political artwork and nine supported languages.
+[*]1945 — Clement Attlee: rebuild Britain after the war.
+[*]1979 — Margaret Thatcher: take office after the election.
+[*]1997 — Tony Blair: turn a landslide into reform.
+[*]2010 — David Cameron: hold the coalition together.
+[*]2016 — Theresa May: negotiate Brexit and win a Commons majority for a settlement.
+[*]2024 — Keir Starmer: lead a new government.
 [/list]
 
-[b]If you enjoy Westminster, please rate and favourite it on Steam. Ratings help other CK3 players discover the mod.[/b]
+[h2]Build Your Movement[/h2]
+Recruit members and donors, build local branches, recruit candidates and invite MPs to defect. Founded parties now compete in elections and appear in polls and seat counts. Organize locally to build support.
 
-[h2]Choose your path[/h2]
+[h2]Govern, negotiate and campaign[/h2]
 [list]
-[*][b]Prime Minister:[/b] appoint a Cabinet, control the parliamentary timetable, survive confidence votes and keep your party together.
-[*][b]Party leader:[/b] set policy, manage internal factions and fight for Number 10.
-[*][b]Backbench MP:[/b] build influence, rebel against the whip, seek promotion or challenge the leadership.
-[*][b]Independent and activist:[/b] build support, create a party and contest elections. Roads to Power is required for unlanded play.
+[*]Career actions: constituency surgeries, local projects, a public-service caucus and committee inquiries.
+[*]Government: fiscal room, debt, public services, economic confidence and ministerial delivery plans.
+[*]Brexit: choose a strategy, negotiate, put a settlement before Parliament and manage the transition.
+[*]Press: fictional editorial relationships, interviews, endorsements and leaked-draft events.
 [/list]
 
-[h2]Modern political Britain[/h2]
-[list]
-[*]All 650 Westminster constituencies represented on the map.
-[*]General elections, by-elections, party leadership contests and confidence votes.
-[*]Government, opposition, Cabinet, shadow Cabinet and parliamentary careers.
-[*]Public opinion, political capital, party discipline and constituency support.
-[*]Modern parties, ideologies, traits, lifestyles, decisions and events.
-[*]A contemporary newspaper-inspired interface built for dark mode.
-[/list]
+[h2]Start a fresh campaign[/h2]
+For CK3 1.20. Start a new campaign with Westminster as the only enabled mod. Roads to Power is required for landless play. This update cannot be added to an existing campaign.
+
+[h2]Beta notes[/h2]
+Historical Parliaments use the fixed modern 650-seat map; some seat assignments and minor characters’ birth dates are approximate. Likenesses use CK3 DNA. Some medieval clothing remains. The four new starts passed opening checks on macOS; long campaigns, Linux and Windows validation of the new content remain outstanding. New in-game text may use English fallback in other languages.
 
 [h2]Languages[/h2]
 English, French, German, Japanese, Korean, Polish, Russian, Simplified Chinese and Spanish.
 
-[h2]Compatibility[/h2]
-Built for [b]Crusader Kings III 1.20[/b]. Start a new game from the 1979 or 2024 bookmark; the mod cannot be added to an existing save.
-
-[h2]Beta notes[/h2]
-[list]
-Westminster is actively developed. Long campaigns may still need balance work, some characters retain CK3-era clothing, and a few less-used screens still contain medieval presentation. The 1979 Commons is mapped onto the modern 650-seat constituency layout, using the closest appropriate seat where boundaries differ.
-[/list]
-
 [h2]Credits[/h2]
-Created by JealousZebra. Thanks to the CK3 modding community and everyone testing, reporting issues and suggesting improvements.
-
-[h2]Disclaimer[/h2]
-Westminster is an unofficial fan-made modification and is not affiliated with or endorsed by Paradox Interactive, the UK Parliament, any political party, campaign group or public figure. Political representation is included for historical and gameplay purposes.
+Created by JealousZebra and the Westminster contributors. Unofficial; not affiliated with Paradox Interactive, Parliament, political parties or public figures. Events are fictional. If you enjoy the mod, a rating and favourite help others find it.

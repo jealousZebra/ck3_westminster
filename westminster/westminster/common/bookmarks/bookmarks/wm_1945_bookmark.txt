@@ -1,0 +1,76 @@
+﻿bm_1945_attlee = {
+	start_date = 1945.7.27
+	is_playable = yes
+	group = bm_group_1945
+	weight = { value = 110 }
+	character = {
+		name = "bookmark_1945_clement_attlee"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1883.1.3
+		title = e_united_kingdom
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1945_clement_attlee
+		position = { 335 315 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1945_winston_churchill"
+		dynasty_house = wm_house_party_conservative
+		type = male
+		birth = 1874.11.30
+		title = k_party_conservative
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_one_nation
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1945_winston_churchill
+		position = { 1080 765 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1945_aneurin_bevan"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1897.11.15
+		title = c_blaenau_gwent_and_rhymney
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1945_aneurin_bevan
+		position = { 505 780 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1945_ernest_bevin"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1881.3.9
+		title = c_manchester_central
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1945_ernest_bevin
+		position = { 1015 495 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_1945_hugh_dalton"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1887.8.16
+		title = c_bishop_auckland
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_1945_hugh_dalton
+		position = { 885 255 }
+		animation = personality_rational
+	}
+}

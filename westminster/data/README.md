@@ -1,5 +1,8 @@
 # Westminster source data
 
+For character skills, traits, ideology and DNA bindings, edit [`character_overrides.json`](character_overrides.json).
+The [modding guide](../../docs/modding.md) has examples and regeneration commands. Do not edit snapshot outputs as inputs.
+
 Downloaded data goes in `raw/` (not in git). Re-download with the commands below.
 
 ## Constituency boundaries (2024)
@@ -228,3 +231,25 @@ Socialist Campaign Group's list.
 | Cardiff | `c_cardiff_south_and_penarth` | [Flag of Cardiff.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Cardiff.svg) | City_of_Cardiff_flag.png: The College of Arms / The Flag Institute derivative work: NikNaks talk - gallery - wikipedia | Public domain |
 | Belfast | `c_belfast_south_and_mid_down` | [Flag of Belfast.svg](https://commons.wikimedia.org/wiki/File:Flag_of_Belfast.svg) | CityOfBelfastFlag.PNG: The College of Arms / The Flag Institute derivative work: NikNaks talk - gallery - wikipedia | Public domain |
 <!-- flags:end -->
+
+
+### Additional historical eras (development build)
+
+`tools/data/build_eras.py` reads dated Commons memberships from the cached mySociety ParlParse people export,
+filtering posts by `organization_id = house-of-commons` so devolved memberships cannot enter the Commons. Sources:
+<https://github.com/mysociety/parlparse> and <https://members-api.parliament.uk/>. The raw membership export is already
+used by the 1979 builder. Snapshots in `data/snapshots/{1945,1997,2010,2016}.json` record every mapping, notional seat
+and unlanded historical MP. Numerical national baselines are rounded election shares, not reconstructed local results.
+
+The older membership export lacks party labels. `members_1945_affiliations.json` records the factual 640-member
+1945 table from [List of MPs elected in the 1945 United Kingdom general election](https://en.wikipedia.org/wiki/List_of_MPs_elected_in_the_1945_United_Kingdom_general_election),
+retrieved 18 October 2026; Wikipedia contributors, CC BY-SA 4.0. Source URL and retrieval date are retained in the
+file. Labour Co-operative members join the Labour group; National Liberals and Scottish Unionists join the
+Conservative group. Minor parties without a represented party group are currently independent. This is a gameplay
+grouping, not a claim that their original party identities were identical.
+
+The Commons Library's [election dataset](https://commonslibrary.parliament.uk/research-briefings/cbp-8647/)
+explains historical boundaries and multi-member/university seats. Historical geography is approximated on the fixed
+650-seat modern map; local vote baselines are notional winner-based leans, not historical constituency vote shares.
+
+`female_mps.json` caches the factual names from Wikipedia contributors' [list of female Commons members](https://en.wikipedia.org/wiki/List_of_female_members_of_the_House_of_Commons_of_the_United_Kingdom), retrieved 18 October 2026, CC BY-SA 4.0. The historical builder also uses cached Parliament API gender records and explicit documented name aliases; it does not infer gender from first names.

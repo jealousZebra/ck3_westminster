@@ -20,10 +20,11 @@
 # Game start (and old saves): polls, seat leans and seat counts.
 wm_election_init_effect = {
 	wm_polls_init_effect = yes
-	if = {
-		limit = { game_start_date < 1980.1.1 }
-		wm_init_1979_seat_leans_effect = yes
-	}
+	if = { limit = { game_start_date = 1945.7.27 } wm_init_1945_seat_leans_effect = yes }
+	else_if = { limit = { game_start_date = 1979.5.4 } wm_init_1979_seat_leans_effect = yes }
+	else_if = { limit = { game_start_date = 1997.5.2 } wm_init_1997_seat_leans_effect = yes }
+	else_if = { limit = { game_start_date = 2010.5.12 } wm_init_2010_seat_leans_effect = yes }
+	else_if = { limit = { game_start_date = 2016.7.14 } wm_init_2016_seat_leans_effect = yes }
 	else = { wm_init_seat_leans_effect = yes }
 	if = {
 		limit = { NOT = { has_global_variable = wm_el_months } }
@@ -251,6 +252,7 @@ wm_election_score_party_effect = {
 		if = {
 			limit = { var:wm_el_inc ?= title:$PARTY$ }
 			change_variable = { name = wm_el_score add = wm_election_incumbency_bonus }
+			if = { limit = { holder ?= { has_variable = wm_personal_vote } } change_variable = { name = wm_el_score add = holder.var:wm_personal_vote } }
 			set_variable = { name = wm_el_inc_score value = var:wm_el_score }
 		}
 		if = {

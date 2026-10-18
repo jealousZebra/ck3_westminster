@@ -39,7 +39,7 @@ wm_mp_aberdeen_north = {	# Kirsty Blackman (MNIS 4357), aberdeen north
 }
 wm_mp_aberdeen_south = {	# Stephen Flynn (MNIS 4735), aberdeen south
 	name = wm_name_mp_aberdeen_south
-	dna = wm_dna_aberdeen_south	# likeness: build_likenesses.py
+	dna = wm_dna_aberdeen_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_snp
 	culture = scottish
 	religion = wm_ideo_scottish_nationalist	# party fallback (the snp mainstream)
@@ -221,7 +221,7 @@ wm_mp_arundel_and_south_downs = {	# Andrew Griffith (MNIS 4874), arundel and sou
 }
 wm_mp_ashfield = {	# Lee Anderson (MNIS 4743), ashfield
 	name = wm_name_mp_ashfield
-	dna = wm_dna_ashfield	# likeness: build_likenesses.py
+	dna = wm_dna_ashfield	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_reform
 	culture = english
 	religion = wm_ideo_populist_right	# party fallback (the reform mainstream) after caucus national_conservative outside the party's range
@@ -250,7 +250,7 @@ wm_mp_ashford = {	# Sojan Joseph (MNIS 5247), ashford
 }
 wm_mp_ashton_under_lyne = {	# Angela Rayner (MNIS 4356), ashton under lyne
 	name = wm_name_mp_ashton_under_lyne
-	dna = wm_dna_ashton_under_lyne	# likeness: build_likenesses.py
+	dna = wm_dna_ashton_under_lyne	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -524,7 +524,7 @@ wm_mp_bedford = {	# Mohammad Yasin (MNIS 4598), bedford
 }
 wm_mp_belfast_east = {	# Gavin Robinson (MNIS 4360), belfast east
 	name = wm_name_mp_belfast_east
-	dna = wm_dna_belfast_east	# likeness: build_likenesses.py
+	dna = wm_dna_belfast_east	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_dup
 	culture = irish
 	religion = wm_ideo_unionist	# party fallback (the dup mainstream)
@@ -756,7 +756,7 @@ wm_mp_birmingham_hodge_hill_and_solihull_north = {	# Liam Byrne (MNIS 1171), bir
 }
 wm_mp_birmingham_ladywood = {	# Shabana Mahmood (MNIS 3914), birmingham ladywood
 	name = wm_name_mp_birmingham_ladywood
-	dna = wm_dna_birmingham_ladywood	# likeness: build_likenesses.py
+	dna = wm_dna_birmingham_ladywood	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -1029,7 +1029,7 @@ wm_mp_bootle = {	# Peter Dowd (MNIS 4397), bootle
 }
 wm_mp_boston_and_skegness = {	# Richard Tice (MNIS 5161), boston and skegness
 	name = wm_name_mp_boston_and_skegness
-	dna = wm_dna_boston_and_skegness	# likeness: build_likenesses.py
+	dna = wm_dna_boston_and_skegness	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_reform
 	culture = english
 	religion = wm_ideo_populist_right	# party fallback (the reform mainstream)
@@ -1133,7 +1133,7 @@ wm_mp_bradford_west = {	# Naz Shah (MNIS 4409), bradford west
 }
 wm_mp_braintree = {	# James Cleverly (MNIS 4366), braintree
 	name = wm_name_mp_braintree
-	dna = wm_dna_braintree	# likeness: build_likenesses.py
+	dna = wm_dna_braintree	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_national_conservative	# caucus: European Research Group: chairs and subscribers
@@ -1297,7 +1297,7 @@ wm_mp_brighton_kemptown_and_peacehaven = {	# Chris Ward (MNIS 5276), brighton ke
 }
 wm_mp_brighton_pavilion = {	# Siân Berry (MNIS 5314), brighton pavilion
 	name = wm_name_mp_brighton_pavilion
-	dna = wm_dna_brighton_pavilion	# likeness: build_likenesses.py
+	dna = wm_dna_brighton_pavilion	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_green
 	female = yes
 	culture = english
@@ -1311,7 +1311,7 @@ wm_mp_brighton_pavilion = {	# Siân Berry (MNIS 5314), brighton pavilion
 }
 wm_mp_bristol_central = {	# Carla Denyer (MNIS 5102), bristol central
 	name = wm_name_mp_bristol_central
-	dna = wm_dna_bristol_central	# likeness: build_likenesses.py
+	dna = wm_dna_bristol_central	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_green
 	female = yes
 	culture = english
@@ -1355,7 +1355,7 @@ wm_mp_bristol_north_east = {	# Damien Egan (MNIS 5010), bristol north east
 }
 wm_mp_bristol_north_west = {	# Darren Jones (MNIS 4621), bristol north west
 	name = wm_name_mp_bristol_north_west
-	dna = wm_dna_bristol_north_west	# likeness: build_likenesses.py
+	dna = wm_dna_bristol_north_west	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -1661,7 +1661,7 @@ wm_mp_canterbury = {	# Rosie Duffield (MNIS 4616), canterbury
 }
 wm_mp_cardiff_east = {	# Jo Stevens (MNIS 4425), cardiff east
 	name = wm_name_mp_cardiff_east
-	dna = wm_dna_cardiff_east	# likeness: build_likenesses.py
+	dna = wm_dna_cardiff_east	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = welsh
@@ -1779,7 +1779,7 @@ wm_mp_central_ayrshire = {	# Alan Gemmell (MNIS 5185), central ayrshire
 }
 wm_mp_central_devon = {	# Mel Stride (MNIS 3935), central devon
 	name = wm_name_mp_central_devon
-	dna = wm_dna_central_devon	# likeness: build_likenesses.py
+	dna = wm_dna_central_devon	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_national_conservative	# party fallback (seeded within the conservative range)
@@ -2005,7 +2005,7 @@ wm_mp_chipping_barnet = {	# Dan Tomlinson (MNIS 5282), chipping barnet
 }
 wm_mp_chorley = {	# Lindsay Hoyle (MNIS 467), chorley
 	name = wm_name_mp_chorley
-	dna = wm_dna_chorley	# likeness: build_likenesses.py
+	dna = wm_dna_chorley	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_independent
 	culture = english
 	religion = wm_faith_not_stated	# the Speaker: impartial
@@ -2066,7 +2066,7 @@ wm_mp_city_of_durham = {	# Mary Foy (MNIS 4753), city of durham
 }
 wm_mp_clacton = {	# Nigel Farage (MNIS 5091), clacton
 	name = wm_name_mp_clacton
-	dna = wm_dna_clacton	# likeness: build_likenesses.py
+	dna = wm_dna_clacton	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_reform
 	culture = english
 	religion = wm_ideo_populist_right	# party fallback (the reform mainstream)
@@ -2325,7 +2325,7 @@ wm_mp_croydon_east = {	# Natasha Irons (MNIS 5119), croydon east
 }
 wm_mp_croydon_south = {	# Chris Philp (MNIS 4503), croydon south
 	name = wm_name_mp_croydon_south
-	dna = wm_dna_croydon_south	# likeness: build_likenesses.py
+	dna = wm_dna_croydon_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_free_market	# party fallback (seeded within the conservative range)
@@ -2529,7 +2529,7 @@ wm_mp_doncaster_east_and_the_isle_of_axholme = {	# Lee Pitcher (MNIS 5233), donc
 }
 wm_mp_doncaster_north = {	# Ed Miliband (MNIS 1510), doncaster north
 	name = wm_name_mp_doncaster_north
-	dna = wm_dna_doncaster_north	# likeness: build_likenesses.py
+	dna = wm_dna_doncaster_north	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -2691,7 +2691,7 @@ wm_mp_dunstable_and_leighton_buzzard = {	# Alex Mayer (MNIS 5141), dunstable and
 }
 wm_mp_dwyfor_meirionnydd = {	# Liz Saville Roberts (MNIS 4521), dwyfor meirionnydd
 	name = wm_name_mp_dwyfor_meirionnydd
-	dna = wm_dna_dwyfor_meirionnydd	# likeness: build_likenesses.py
+	dna = wm_dna_dwyfor_meirionnydd	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_plaid
 	female = yes
 	culture = welsh
@@ -2999,7 +2999,7 @@ wm_mp_edinburgh_north_and_leith = {	# Tracy Gilbert (MNIS 5188), edinburgh north
 }
 wm_mp_edinburgh_south = {	# Ian Murray (MNIS 3966), edinburgh south
 	name = wm_name_mp_edinburgh_south
-	dna = wm_dna_edinburgh_south	# likeness: build_likenesses.py
+	dna = wm_dna_edinburgh_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = scottish
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -3233,7 +3233,7 @@ wm_mp_falkirk = {	# Euan Stainbank (MNIS 5110), falkirk
 }
 wm_mp_fareham_and_waterlooville = {	# Suella Braverman (MNIS 4475), fareham and waterlooville
 	name = wm_name_mp_fareham_and_waterlooville
-	dna = wm_dna_fareham_and_waterlooville	# likeness: build_likenesses.py
+	dna = wm_dna_fareham_and_waterlooville	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	female = yes
 	culture = english
@@ -3372,7 +3372,7 @@ wm_mp_forest_of_dean = {	# Matt Bishop (MNIS 5323), forest of dean
 }
 wm_mp_foyle = {	# Colum Eastwood (MNIS 4846), foyle
 	name = wm_name_mp_foyle
-	dna = wm_dna_foyle	# likeness: build_likenesses.py
+	dna = wm_dna_foyle	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_sdlp
 	culture = irish
 	religion = wm_ideo_irish_nationalist	# party fallback (the sdlp mainstream)
@@ -3603,7 +3603,7 @@ wm_mp_gloucester = {	# Alex McIntyre (MNIS 5349), gloucester
 }
 wm_mp_godalming_and_ash = {	# Jeremy Hunt (MNIS 1572), godalming and ash
 	name = wm_name_mp_godalming_and_ash
-	dna = wm_dna_godalming_and_ash	# likeness: build_likenesses.py
+	dna = wm_dna_godalming_and_ash	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_national_conservative	# party fallback (seeded within the conservative range)
@@ -3784,7 +3784,7 @@ wm_mp_guildford = {	# Zöe Franklin (MNIS 5313), guildford
 }
 wm_mp_hackney_north_and_stoke_newington = {	# Diane Abbott (MNIS 172), hackney north and stoke newington
 	name = wm_name_mp_hackney_north_and_stoke_newington
-	dna = wm_dna_hackney_north_and_stoke_newington	# likeness: build_likenesses.py
+	dna = wm_dna_hackney_north_and_stoke_newington	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -4165,7 +4165,7 @@ wm_mp_hertford_and_stortford = {	# Joshua Robert Abraham Dean (MNIS 5187), hertf
 }
 wm_mp_hertsmere = {	# Oliver Dowden (MNIS 4441), hertsmere
 	name = wm_name_mp_hertsmere
-	dna = wm_dna_hertsmere	# likeness: build_likenesses.py
+	dna = wm_dna_hertsmere	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# party fallback (seeded within the conservative range)
@@ -4255,7 +4255,7 @@ wm_mp_hitchin = {	# Alistair Strathern (MNIS 5000), hitchin
 }
 wm_mp_holborn_and_st_pancras = {	# Keir Starmer (MNIS 4514), holborn and st pancras
 	name = wm_name_mp_holborn_and_st_pancras
-	dna = wm_dna_holborn_and_st_pancras	# likeness: build_likenesses.py
+	dna = wm_dna_holborn_and_st_pancras	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (the labour mainstream)
@@ -4326,7 +4326,7 @@ wm_mp_horsham = {	# John Milne (MNIS 5329), horsham
 }
 wm_mp_houghton_and_sunderland_south = {	# Bridget Phillipson (MNIS 4046), houghton and sunderland south
 	name = wm_name_mp_houghton_and_sunderland_south
-	dna = wm_dna_houghton_and_sunderland_south	# likeness: build_likenesses.py
+	dna = wm_dna_houghton_and_sunderland_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -4343,7 +4343,7 @@ wm_mp_houghton_and_sunderland_south = {	# Bridget Phillipson (MNIS 4046), hought
 }
 wm_mp_hove_and_portslade = {	# Peter Kyle (MNIS 4505), hove and portslade
 	name = wm_name_mp_hove_and_portslade
-	dna = wm_dna_hove_and_portslade	# likeness: build_likenesses.py
+	dna = wm_dna_hove_and_portslade	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -4405,7 +4405,7 @@ wm_mp_hyndburn = {	# Sarah Smith (MNIS 5117), hyndburn
 }
 wm_mp_ilford_north = {	# Wes Streeting (MNIS 4504), ilford north
 	name = wm_name_mp_ilford_north
-	dna = wm_dna_ilford_north	# likeness: build_likenesses.py
+	dna = wm_dna_ilford_north	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -4506,7 +4506,7 @@ wm_mp_isle_of_wight_west = {	# Richard Quigley (MNIS 5144), isle of wight west
 }
 wm_mp_islington_north = {	# Jeremy Corbyn (MNIS 185), islington north
 	name = wm_name_mp_islington_north
-	dna = wm_dna_islington_north	# likeness: build_likenesses.py
+	dna = wm_dna_islington_north	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_independent
 	culture = english
 	religion = wm_ideo_socialist	# caucus: Socialist Campaign Group: members expelled from Labour in 2024 or later
@@ -4515,7 +4515,7 @@ wm_mp_islington_north = {	# Jeremy Corbyn (MNIS 185), islington north
 }
 wm_mp_islington_south_and_finsbury = {	# Emily Thornberry (MNIS 1536), islington south and finsbury
 	name = wm_name_mp_islington_south_and_finsbury
-	dna = wm_dna_islington_south_and_finsbury	# likeness: build_likenesses.py
+	dna = wm_dna_islington_south_and_finsbury	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -4621,7 +4621,7 @@ wm_mp_kilmarnock_and_loudoun = {	# Lillian Jones (MNIS 5043), kilmarnock and lou
 }
 wm_mp_kingston_and_surbiton = {	# Ed Davey (MNIS 188), kingston and surbiton
 	name = wm_name_mp_kingston_and_surbiton
-	dna = wm_dna_kingston_and_surbiton	# likeness: build_likenesses.py
+	dna = wm_dna_kingston_and_surbiton	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_lib_dem
 	culture = english
 	religion = wm_ideo_liberal	# party fallback (the lib_dem mainstream)
@@ -4711,7 +4711,7 @@ wm_mp_knowsley = {	# Anneliese Midgley (MNIS 5038), knowsley
 }
 wm_mp_lagan_valley = {	# Sorcha-Lucy Eastwood (MNIS 5125), lagan valley
 	name = wm_name_mp_lagan_valley
-	dna = wm_dna_lagan_valley	# likeness: build_likenesses.py
+	dna = wm_dna_lagan_valley	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_alliance
 	female = yes
 	culture = irish
@@ -4801,7 +4801,7 @@ wm_mp_leeds_north_west = {	# Katie White (MNIS 5260), leeds north west
 }
 wm_mp_leeds_south = {	# Hilary Benn (MNIS 413), leeds south
 	name = wm_name_mp_leeds_south
-	dna = wm_dna_leeds_south	# likeness: build_likenesses.py
+	dna = wm_dna_leeds_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -4832,7 +4832,7 @@ wm_mp_leeds_south_west_and_morley = {	# Mark Sewards (MNIS 5166), leeds south we
 }
 wm_mp_leeds_west_and_pudsey = {	# Rachel Reeves (MNIS 4031), leeds west and pudsey
 	name = wm_name_mp_leeds_west_and_pudsey
-	dna = wm_dna_leeds_west_and_pudsey	# likeness: build_likenesses.py
+	dna = wm_dna_leeds_west_and_pudsey	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -4871,7 +4871,7 @@ wm_mp_leicester_south = {	# Shockat Adam (MNIS 5120), leicester south
 }
 wm_mp_leicester_west = {	# Liz Kendall (MNIS 4026), leicester west
 	name = wm_name_mp_leicester_west
-	dna = wm_dna_leicester_west	# likeness: build_likenesses.py
+	dna = wm_dna_leicester_west	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -5275,7 +5275,7 @@ wm_mp_maldon = {	# John Whittingdale (MNIS 39), maldon
 }
 wm_mp_manchester_central = {	# Lucy Powell (MNIS 4263), manchester central
 	name = wm_name_mp_manchester_central
-	dna = wm_dna_manchester_central	# likeness: build_likenesses.py
+	dna = wm_dna_manchester_central	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -5773,7 +5773,7 @@ wm_mp_new_forest_west = {	# Desmond Swayne (MNIS 55), new forest west
 }
 wm_mp_newark = {	# Robert Jenrick (MNIS 4320), newark
 	name = wm_name_mp_newark
-	dna = wm_dna_newark	# likeness: build_likenesses.py
+	dna = wm_dna_newark	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_national_conservative	# party fallback (seeded within the conservative range)
@@ -5950,7 +5950,7 @@ wm_mp_normanton_and_hemsworth = {	# Jon Trickett (MNIS 410), normanton and hemsw
 }
 wm_mp_north_antrim = {	# Jim Allister (MNIS 5356), north antrim
 	name = wm_name_mp_north_antrim
-	dna = wm_dna_north_antrim	# likeness: build_likenesses.py
+	dna = wm_dna_north_antrim	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_tuv
 	culture = irish
 	religion = wm_ideo_unionist	# party fallback (the tuv mainstream)
@@ -6253,7 +6253,7 @@ wm_mp_north_west_cambridgeshire = {	# Sam Carling (MNIS 5308), north west cambri
 }
 wm_mp_north_west_essex = {	# Kemi Badenoch (MNIS 4597), north west essex
 	name = wm_name_mp_north_west_essex
-	dna = wm_dna_north_west_essex	# likeness: build_likenesses.py
+	dna = wm_dna_north_west_essex	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	female = yes
 	culture = english
@@ -6702,7 +6702,7 @@ wm_mp_plymouth_sutton_and_devonport = {	# Luke Pollard (MNIS 4682), plymouth sut
 }
 wm_mp_pontefract_castleford_and_knottingley = {	# Yvette Cooper (MNIS 420), pontefract castleford and knottingley
 	name = wm_name_mp_pontefract_castleford_and_knottingley
-	dna = wm_dna_pontefract_castleford_and_knottingley	# likeness: build_likenesses.py
+	dna = wm_dna_pontefract_castleford_and_knottingley	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -6840,7 +6840,7 @@ wm_mp_queen_s_park_and_maida_vale = {	# Georgia Gould (MNIS 5305), queen s park 
 }
 wm_mp_rawmarsh_and_conisbrough = {	# John Healey (MNIS 400), rawmarsh and conisbrough
 	name = wm_name_mp_rawmarsh_and_conisbrough
-	dna = wm_dna_rawmarsh_and_conisbrough	# likeness: build_likenesses.py
+	dna = wm_dna_rawmarsh_and_conisbrough	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -6977,7 +6977,7 @@ wm_mp_ribble_valley = {	# Maya Ellis (MNIS 5228), ribble valley
 }
 wm_mp_richmond_and_northallerton = {	# Rishi Sunak (MNIS 4483), richmond and northallerton
 	name = wm_name_mp_richmond_and_northallerton
-	dna = wm_dna_richmond_and_northallerton	# likeness: build_likenesses.py
+	dna = wm_dna_richmond_and_northallerton	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# party fallback (the conservative mainstream)
@@ -7368,7 +7368,7 @@ wm_mp_sheffield_hallam = {	# Olivia Blake (MNIS 4864), sheffield hallam
 }
 wm_mp_sheffield_heeley = {	# Louise Haigh (MNIS 4473), sheffield heeley
 	name = wm_name_mp_sheffield_heeley
-	dna = wm_dna_sheffield_heeley	# likeness: build_likenesses.py
+	dna = wm_dna_sheffield_heeley	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -7536,7 +7536,7 @@ wm_mp_solihull_west_and_shirley = {	# Neil Shastri-Hurst (MNIS 5197), solihull w
 }
 wm_mp_south_antrim = {	# Robin Swann (MNIS 5319), south antrim
 	name = wm_name_mp_south_antrim
-	dna = wm_dna_south_antrim	# likeness: build_likenesses.py
+	dna = wm_dna_south_antrim	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_uup
 	culture = irish
 	religion = wm_ideo_unionist	# party fallback (the uup mainstream)
@@ -7959,7 +7959,7 @@ wm_mp_spen_valley = {	# Kim Leadbeater (MNIS 4923), spen valley
 }
 wm_mp_st_albans = {	# Daisy Cooper (MNIS 4769), st albans
 	name = wm_name_mp_st_albans
-	dna = wm_dna_st_albans	# likeness: build_likenesses.py
+	dna = wm_dna_st_albans	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_lib_dem
 	female = yes
 	culture = english
@@ -8074,7 +8074,7 @@ wm_mp_staffordshire_moorlands = {	# Karen Bradley (MNIS 4110), staffordshire moo
 }
 wm_mp_stalybridge_and_hyde = {	# Jonathan Reynolds (MNIS 4119), stalybridge and hyde
 	name = wm_name_mp_stalybridge_and_hyde
-	dna = wm_dna_stalybridge_and_hyde	# likeness: build_likenesses.py
+	dna = wm_dna_stalybridge_and_hyde	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -8278,7 +8278,7 @@ wm_mp_stratford_on_avon = {	# Manuela Perteghella (MNIS 5122), stratford on avon
 }
 wm_mp_streatham_and_croydon_north = {	# Steve Reed (MNIS 4268), streatham and croydon north
 	name = wm_name_mp_streatham_and_croydon_north
-	dna = wm_dna_streatham_and_croydon_north	# likeness: build_likenesses.py
+	dna = wm_dna_streatham_and_croydon_north	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -8437,7 +8437,7 @@ wm_mp_swindon_north = {	# Will Stone (MNIS 5035), swindon north
 }
 wm_mp_swindon_south = {	# Heidi Alexander (MNIS 4038), swindon south
 	name = wm_name_mp_swindon_south
-	dna = wm_dna_swindon_south	# likeness: build_likenesses.py
+	dna = wm_dna_swindon_south	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -8616,7 +8616,7 @@ wm_mp_tiverton_and_minehead = {	# Rachel Gilmour (MNIS 5252), tiverton and mineh
 }
 wm_mp_tonbridge = {	# Tom Tugendhat (MNIS 4462), tonbridge
 	name = wm_name_mp_tonbridge
-	dna = wm_dna_tonbridge	# likeness: build_likenesses.py
+	dna = wm_dna_tonbridge	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# caucus: One Nation Conservatives caucus: members identified by the press
@@ -8690,7 +8690,7 @@ wm_mp_torridge_and_tavistock = {	# Geoffrey Cox (MNIS 1508), torridge and tavist
 }
 wm_mp_tottenham = {	# David Lammy (MNIS 206), tottenham
 	name = wm_name_mp_tottenham
-	dna = wm_dna_tottenham	# likeness: build_likenesses.py
+	dna = wm_dna_tottenham	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -8749,7 +8749,7 @@ wm_mp_twickenham = {	# Munira Wilson (MNIS 4776), twickenham
 }
 wm_mp_tynemouth = {	# Alan Campbell (MNIS 529), tynemouth
 	name = wm_name_mp_tynemouth
-	dna = wm_dna_tynemouth	# likeness: build_likenesses.py
+	dna = wm_dna_tynemouth	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_social_democrat	# party fallback (seeded within the labour range)
@@ -8958,7 +8958,7 @@ wm_mp_watford = {	# Matt Turmaine (MNIS 5130), watford
 }
 wm_mp_waveney_valley = {	# Adrian Ramsay (MNIS 5320), waveney valley
 	name = wm_name_mp_waveney_valley
-	dna = wm_dna_waveney_valley	# likeness: build_likenesses.py
+	dna = wm_dna_waveney_valley	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_green
 	culture = english
 	religion = wm_ideo_green	# party fallback (the green mainstream)
@@ -9232,7 +9232,7 @@ wm_mp_widnes_and_halewood = {	# Derek Twigg (MNIS 429), widnes and halewood
 }
 wm_mp_wigan = {	# Lisa Nandy (MNIS 4082), wigan
 	name = wm_name_mp_wigan
-	dna = wm_dna_wigan	# likeness: build_likenesses.py
+	dna = wm_dna_wigan	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	female = yes
 	culture = english
@@ -9304,7 +9304,7 @@ wm_mp_wirral_west = {	# Matthew Patrick (MNIS 5162), wirral west
 }
 wm_mp_witham = {	# Priti Patel (MNIS 4066), witham
 	name = wm_name_mp_witham
-	dna = wm_dna_witham	# likeness: build_likenesses.py
+	dna = wm_dna_witham	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	female = yes
 	culture = english
@@ -9376,7 +9376,7 @@ wm_mp_wolverhampton_north_east = {	# Sureena Brackenridge (MNIS 5152), wolverham
 }
 wm_mp_wolverhampton_south_east = {	# Pat McFadden (MNIS 1587), wolverhampton south east
 	name = wm_name_mp_wolverhampton_south_east
-	dna = wm_dna_wolverhampton_south_east	# likeness: build_likenesses.py
+	dna = wm_dna_wolverhampton_south_east	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_centrist	# party fallback (seeded within the labour range)
@@ -9568,7 +9568,7 @@ wm_mp_york_outer = {	# Luke Charters (MNIS 5199), york outer
 }
 wm_char_mary_lou_mcdonald = {	# Mary Lou McDonald
 	name = wm_name_char_mary_lou_mcdonald
-	dna = wm_dna_mary_lou_mcdonald	# likeness: build_likenesses.py
+	dna = wm_dna_mary_lou_mcdonald	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_sinn_fein
 	female = yes
 	culture = irish
@@ -9582,7 +9582,7 @@ wm_char_mary_lou_mcdonald = {	# Mary Lou McDonald
 }
 wm_char_john_swinney = {	# John Swinney
 	name = wm_name_char_john_swinney
-	dna = wm_dna_john_swinney	# likeness: build_likenesses.py
+	dna = wm_dna_john_swinney	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_snp
 	culture = scottish
 	religion = wm_ideo_scottish_nationalist	# party fallback (the snp mainstream)
@@ -9595,7 +9595,7 @@ wm_char_john_swinney = {	# John Swinney
 }
 wm_char_michelle_oneill = {	# Michelle O'Neill
 	name = wm_name_char_michelle_oneill
-	dna = wm_dna_michelle_oneill	# likeness: build_likenesses.py
+	dna = wm_dna_michelle_oneill	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_sinn_fein
 	female = yes
 	culture = irish
@@ -9609,7 +9609,7 @@ wm_char_michelle_oneill = {	# Michelle O'Neill
 }
 wm_char_vaughan_gething = {	# Vaughan Gething
 	name = wm_name_char_vaughan_gething
-	dna = wm_dna_vaughan_gething	# likeness: build_likenesses.py
+	dna = wm_dna_vaughan_gething	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = welsh
 	religion = wm_ideo_social_democrat	# party fallback (the labour mainstream)
@@ -9622,7 +9622,7 @@ wm_char_vaughan_gething = {	# Vaughan Gething
 }
 wm_char_john_major = {	# John Major
 	name = wm_name_char_john_major
-	dna = wm_dna_john_major	# likeness: build_likenesses.py
+	dna = wm_dna_john_major	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# party fallback (the conservative mainstream)
@@ -9636,7 +9636,7 @@ wm_char_john_major = {	# John Major
 }
 wm_char_tony_blair = {	# Tony Blair
 	name = wm_name_char_tony_blair
-	dna = wm_dna_tony_blair	# likeness: build_likenesses.py
+	dna = wm_dna_tony_blair	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = english
 	religion = wm_ideo_centrist	# public record: New Labour; founding patron of Progress (Wikipedia)
@@ -9650,7 +9650,7 @@ wm_char_tony_blair = {	# Tony Blair
 }
 wm_char_gordon_brown = {	# Gordon Brown
 	name = wm_name_char_gordon_brown
-	dna = wm_dna_gordon_brown	# likeness: build_likenesses.py
+	dna = wm_dna_gordon_brown	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_labour
 	culture = scottish
 	religion = wm_ideo_social_democrat	# party fallback (the labour mainstream)
@@ -9664,7 +9664,7 @@ wm_char_gordon_brown = {	# Gordon Brown
 }
 wm_char_david_cameron = {	# David Cameron, life peer
 	name = wm_name_char_david_cameron
-	dna = wm_dna_david_cameron	# likeness: build_likenesses.py
+	dna = wm_dna_david_cameron	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# party fallback (the conservative mainstream)
@@ -9678,7 +9678,7 @@ wm_char_david_cameron = {	# David Cameron, life peer
 }
 wm_char_theresa_may = {	# Theresa May, life peer
 	name = wm_name_char_theresa_may
-	dna = wm_dna_theresa_may	# likeness: build_likenesses.py
+	dna = wm_dna_theresa_may	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	female = yes
 	culture = english
@@ -9693,7 +9693,7 @@ wm_char_theresa_may = {	# Theresa May, life peer
 }
 wm_char_boris_johnson = {	# Boris Johnson
 	name = wm_name_char_boris_johnson
-	dna = wm_dna_boris_johnson	# likeness: build_likenesses.py
+	dna = wm_dna_boris_johnson	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	culture = english
 	religion = wm_ideo_one_nation	# party fallback (the conservative mainstream)
@@ -9707,7 +9707,7 @@ wm_char_boris_johnson = {	# Boris Johnson
 }
 wm_char_liz_truss = {	# Liz Truss
 	name = wm_name_char_liz_truss
-	dna = wm_dna_liz_truss	# likeness: build_likenesses.py
+	dna = wm_dna_liz_truss	# likeness: build_likenesses.py or character_overrides.json
 	dynasty_house = wm_house_party_conservative
 	female = yes
 	culture = english

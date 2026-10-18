@@ -204,7 +204,6 @@ def watercolor(land, width, height):
 
 if __name__ == "__main__" and "--detail-maps" in sys.argv:
     # Shrinks and compresses the mod's existing full-size detail maps without rebuilding the map
-    from PIL import Image
     gt = Path(__file__).resolve().parents[2] / "westminster" / "gfx" / "map" / "terrain"
     index = np.array(Image.open(gt / "detail_index.tga"))
     inten = np.array(Image.open(gt / "detail_intensity.tga"))

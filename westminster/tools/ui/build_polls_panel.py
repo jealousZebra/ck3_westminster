@@ -53,6 +53,9 @@ PARTIES = [
     ("uup", "k_party_uup", "UUP", (0.28, 0.45, 0.70)),
     ("tuv", "k_party_tuv", "TUV", (0.05, 0.20, 0.45)),
 ]
+PARTIES += [(f"new_{i}", f"k_party_new_{i}", name, tuple(v / 255 for v in colour)) for i, (name, colour) in enumerate([
+    ("Lantern Party", (22,46,92)), ("Bridge Party", (70,140,125)), ("Beacon Alliance", (235,165,40)),
+    ("Kestrel Party", (130,65,100)), ("Compass Movement", (65,130,160)), ("Hearth Party", (160,85,55))], 1)]
 IND = ("ind", None, "Independent", (0.55, 0.55, 0.55))
 CHART = PARTIES + [IND]          # the order along each bench
 TRACKED = ["lab", "con", "ld", "ruk", "grn", "snp"]   # the tracker's columns
@@ -259,8 +262,8 @@ def rule(w, h=1, color=LINE):
 
 
 def text(key, w, h=20, align="left", fmt="#high", extra=""):
-    return ('text_single = { text = "%s" autoresize = no size = { %d %d } align = %s|nobaseline default_format = "%s" %s}'
-            % (key, w, h, align, fmt, extra))
+    return ('text_single = { %s = "%s" autoresize = no size = { %d %d } align = %s|nobaseline default_format = "%s" %s}'
+            % ("raw_text" if key.startswith("[") else "text", key, w, h, align, fmt, extra))
 
 
 def bench(side):
@@ -305,9 +308,11 @@ def build_gui():
 					%s
 					%s
 				}
-""" % (text("WM_UI_PARTY_%s" % c.upper(), 190, 22), EMPTY, r, g, b, c,
+""" % (text("[GetTitleByKey('%s').GetNameNoTier]" % t, 190, 22), EMPTY, r, g, b, c,
        text("[EmptyScope.ScriptValue('wm_ui_poll_%s')|1]%%" % c, 70, 22, "right"),
        text("[EmptyScope.ScriptValue('wm_ui_seats_%s')|0]" % c, 70, 22, "right", "#medium")))
+        if c.startswith("new_"):
+            rows[-1] = rows[-1].replace('hbox = {', 'hbox = { visible = "[GetTitleByKey(\'%s\').GetHolder.IsValid]"' % t, 1)
     poll_tab = """		vbox = {
 			name = "wm_polls_tab_poll"
 			visible = "[Not( Or( GetPlayer.MakeScope.Var('wm_ui_tab_chamber').IsSet, GetPlayer.MakeScope.Var('wm_ui_tab_tracker').IsSet ) )]"
@@ -565,6 +570,13 @@ def build_loc():
     for c, _, name, _ in PARTIES:
         loc.append(' WM_UI_PARTY_%s: "%s"' % (c.upper(), name))
     write("localization/english/wm_ui_polls_l_english.yml", "\n".join(loc) + "\n")
+    import re
+    for language in ("french","german","japanese","korean","polish","russian","simp_chinese","spanish"):
+        p = MOD / f"localization/{language}/wm_ui_polls_l_{language}.yml"
+        source = p.read_text(encoding="utf-8-sig")
+        source = re.sub(r'^ (?:WM_UI_PARTY|WM_SC_LEGEND)_NEW_[1-6]:.*\n?', '', source, flags=re.M)
+        extra = [line for line in loc if re.match(r' (?:WM_UI_PARTY|WM_SC_LEGEND)_NEW_[1-6]:', line)]
+        write(str(p.relative_to(MOD)), source.rstrip() + "\n" + "\n".join(extra) + "\n")
 
 
 def main():

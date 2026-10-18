@@ -1,0 +1,17 @@
+[b]2026-10-18 — Six starting dates / Build Your Movement (0.5.4)[/b]
+
+[list]
+[*]1945 — Clement Attlee: rebuild Britain after the war.
+[*]1997 — Tony Blair: turn a landslide into reform.
+[*]2010 — David Cameron: hold the coalition together.
+[*]2016 — Theresa May: negotiate Brexit and win a Commons majority for a settlement.
+[*]Recruit members and donors, build local branches, recruit candidates and invite MPs to defect. Founded parties now compete in elections and appear in polls and seat counts. Organize locally to build support.
+[*]Career actions: constituency surgeries, local projects, a public-service caucus and committee inquiries.
+[*]Government: fiscal room, debt, public services, economic confidence and ministerial delivery plans.
+[*]Brexit: choose a strategy, negotiate, put a settlement before Parliament and manage the transition.
+[*]Press: fictional editorial relationships, interviews, endorsements and leaked-draft events.
+[/list]
+
+For CK3 1.20. Start a new campaign with Westminster as the only enabled mod. Roads to Power is required for landless play. This update cannot be added to an existing campaign.
+
+Historical Parliaments use the fixed modern 650-seat map; some seat assignments and minor characters’ birth dates are approximate. Likenesses use CK3 DNA. Some medieval clothing remains. The four new starts passed opening checks on macOS; long campaigns, Linux and Windows validation of the new content remain outstanding. New in-game text may use English fallback in other languages.

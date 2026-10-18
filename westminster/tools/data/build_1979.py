@@ -15,9 +15,10 @@ import sys
 import unicodedata
 import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
 from difflib import SequenceMatcher
 from pathlib import Path
+
+from character_overrides import dna_for, extra_history_lines, faith_for
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 MOD = ROOT / "westminster"
@@ -212,7 +213,7 @@ def main():
     unresolved = [m for m in members if not m["party"]]
     for m, party in zip(sorted(unresolved, key=lambda x: x["name"]), vacancies + [None] * len(unresolved)):
         m["party"] = party
-    modern = map_seats(members)
+    map_seats(members)
     by_name = {m["name"]: m for m in members}
     for m in members:
         m["id"] = "wm_1979_" + norm(m["name"])
@@ -237,12 +238,15 @@ def main():
         lines += ["%s = {\t# %s; 1979 seat: %s" % (m["id"], m["name"], m["old_seat"]),
                   "\tname = wm_name_%s" % m["id"][3:],
                   "\tdynasty_house = %s" % ("wm_house_party_" + m["party"] if m["party"] else "wm_house_independent")]
-        if m["id"] in SIGNIFICANT_IDS:
-            lines.append("\tdna = wm_dna_%s" % m["id"][3:])
+        dna = dna_for(m["id"], "wm_dna_" + m["id"][3:] if m["id"] in SIGNIFICANT_IDS else None)
+        if dna:
+            lines.append("\tdna = " + dna)
         if m["female"]:
             lines.append("\tfemale = yes")
-        lines += ["\tculture = %s" % m["culture"], "\treligion = %s" % IDEOLOGY.get(m["party"], "wm_faith_not_stated"),
-                  "\t%s = { birth = yes }" % m["birth"]]
+        lines.append("\tculture = %s" % m["culture"])
+        lines.append("\treligion = " + faith_for(m["id"], IDEOLOGY.get(m["party"], "wm_faith_not_stated")))
+        lines.extend(extra_history_lines(m["id"]))
+        lines.append("\t%s = { birth = yes }" % m["birth"])
         if m["party"]:
             lines.append("\t%s = { effect = { set_variable = { name = wm_party value = title:k_party_%s } } }" %
                          (START, m["party"]))
@@ -316,7 +320,7 @@ def main():
         bm += ["\tcharacter = {", '\t\tname = "%s"' % key, "\t\tdynasty_house = wm_house_party_%s" % m["party"],
                "\t\ttype = %s" % ("female" if m["female"] else "male"), "\t\tbirth = %s" % m["birth"],
                "\t\ttitle = %s" % featured_title, "\t\tgovernment = feudal_government", "\t\tculture = %s" % m["culture"],
-               "\t\treligion = %s" % IDEOLOGY[m["party"]], '\t\tdifficulty = "BOOKMARK_CHARACTER_DIFFICULTY_%s"' % difficulty,
+               "\t\treligion = %s" % faith_for(m["id"], IDEOLOGY[m["party"]]), '\t\tdifficulty = "BOOKMARK_CHARACTER_DIFFICULTY_%s"' % difficulty,
                "\t\thistory_id = %s" % m["id"], "\t\tposition = { %d %d }" % (x, y), "\t\tanimation = %s" % anim, "\t}"]
         bloc += [' %s: "%s"' % (key, name), ' %s_subheading: "%s"' % (key, sub),
                  ' %s_desc: "%s"' % (key, desc.replace('"', "'"))]

@@ -25,7 +25,6 @@ dark paper and light hairlines in the night edition; the party colours stay).
 Runs after fal_images.py and build_theme.py (build_ui.sh), whose outputs it overwrites.
 """
 import csv
-import hashlib
 import re
 import sys
 from pathlib import Path
@@ -42,9 +41,14 @@ from build_theme import DARK, GAME, MOD, ROOT, THEME, gui_color, grain, save_dds
 W, H = 1920, 1080              # vanilla's bookmark backgrounds; the GUI shows them in a 1920 x 1080 frame
 CHAR_DY = 60                   # characters sit in the 1920 x 1200 widget around it: position y = image y + 60
 SS = 2                         # drawn at twice the size, then reduced (anti-aliasing)
-HISTORIC = "--1979" in sys.argv
-BOOKMARK = "bm_1979_thatcher" if HISTORIC else "bm_2024_starmer"
-YEAR = 1979 if HISTORIC else 2024
+ERA = next((int(arg[2:]) for arg in sys.argv if arg in ("--1945", "--1997", "--2010", "--2016")), None)
+HISTORIC = "--1979" in sys.argv or ERA is not None
+YEAR = ERA or (1979 if HISTORIC else 2024)
+if ERA:
+    from era_definitions import ERAS
+    BOOKMARK = "bm_%s_%s" % (YEAR, ERAS[YEAR]["slug"])
+else:
+    BOOKMARK = "bm_1979_thatcher" if HISTORIC else "bm_2024_starmer"
 OUT = MOD / "gfx" / "interface" / "bookmarks"
 FONTS = ROOT / "data" / "raw" / "fonts"
 TEST_OUT = ROOT / "tools" / "test_out" / "bookmark"
@@ -156,10 +160,14 @@ def featured():
     """(seat key, bookmark name) of each featured character."""
     if HISTORIC:
         import json
-        from build_1979 import FEATURED, norm
-        snap = json.loads((ROOT / "data/snapshots/1979.json").read_text())
+        from build_1979 import norm
+        if ERA:
+            historical_featured = [(name,) for name in ERAS[YEAR]["featured"]]
+        else:
+            from build_1979 import FEATURED as historical_featured
+        snap = json.loads((ROOT / ("data/snapshots/%s.json" % YEAR)).read_text())
         by_person = {m["name"]: m["seat"] for m in snap["members"]}
-        return [(by_person[f[0]], "bookmark_1979_" + norm(f[0])) for f in FEATURED]
+        return [(by_person[f[0]], "bookmark_%s_" % YEAR + norm(f[0])) for f in historical_featured]
     from build_2024 import FEATURED, key
     return [(f[0], "bookmark_2024_" + key(f[1])) for f in FEATURED]
 
@@ -170,9 +178,9 @@ def apply_bookmark_winners():
         return
     import json
     party = {"conservative": "con", "labour": "lab", "lib_dem": "ld", "snp": "snp", "plaid": "pc",
-             "uup": "uup", "dup": "dup", "sdlp": "sdlp", None: "ind"}
-    snap = json.loads((ROOT / "data/snapshots/1979.json").read_text())
-    winners = {m["seat"]: party[m["party"]] for m in snap["members"]}
+             "uup": "uup", "dup": "dup", "sdlp": "sdlp", "sinn_fein": "sf", "alliance": "apni", "green": "grn", None: "ind"}
+    snap = json.loads((ROOT / ("data/snapshots/%s.json" % YEAR)).read_text())
+    winners = {m["seat"]: party[m["party"]] for m in snap["members"] if m["seat"]}
     for seat in seats():
         seat["winner"] = winners[seat["seat"]]
 
@@ -367,7 +375,7 @@ def legend(d, colours, names):
     bold = font("serif_bold", 15)
     d.line([x * SS, y * SS, (x + 250) * SS, y * SS], fill=INK, width=SS * 3)
     d.text((x * SS, (y + 8) * SS), "General election", font=title, fill=INK)
-    election_date = "Seats won, 3 May 1979" if HISTORIC else "Seats won, 4 July 2024"
+    election_date = ("%s Parliament (modern map)" % YEAR) if ERA else ("Seats won, 3 May 1979" if HISTORIC else "Seats won, 4 July 2024")
     d.text((x * SS, (y + 38) * SS), election_date, font=small, fill=THEME["coast"] if DARK else (70, 70, 66))
     y += 70
     for c in order:
@@ -589,7 +597,9 @@ def import_dumps():
     for _, name in featured():
         f = USER_DUMPS / (name + ".txt")
         if f.exists():
-            (DUMPS / f.name).write_bytes(f.read_bytes())
+            text = f.read_text(encoding="utf-8-sig")
+            text = "\n".join(re.sub(r"^ +(?=\t)", "", line).rstrip() for line in text.splitlines()).rstrip() + "\n"
+            (DUMPS / f.name).write_text(text, encoding="utf-8")
             n += 1
     return n
 
@@ -605,58 +615,20 @@ def build_portraits():
     done = []
     for _, name in featured():
         dump = DUMPS / (name + ".txt")
-        if not dump.exists() and HISTORIC:
-            done.append(build_portrait_from_dna(name, out_dir))
-            continue
+        if not dump.exists():
+            raise FileNotFoundError("Export this bookmark from CK3 with dump_bookmark_portraits, then run --import-dump: " + name)
         src = dump.read_text(encoding="utf-8-sig")
         body = src.split("\n", 2)[2] if src.startswith("# Auto generated") else src
         body, k = re.subn(r'clothes=\{ "[a-z0-9_]+" \d+', 'clothes={ "%s" %d' % CLOTHES, body)
         assert k == 1, name
         body = re.sub(r'headgear=\{ "[a-z0-9_]+"', 'headgear={ "no_headgear"', body)
         body = re.sub(r'cloaks=\{ "[a-z0-9_]+"', 'cloaks={ "no_cloak"', body)
+        body = "\n".join(re.sub(r"^ +(?=\t)", "", line).rstrip() for line in body.splitlines()).rstrip() + "\n"
         head = ("# Generated by westminster/tools/ui/build_bookmark_screen.py - edit there. From the game's own dump\n"
                 "# (console command dump_bookmark_portraits, art/bookmark_portraits/%s.txt), with plain clothes.\n" % name)
         (out_dir / (name + ".txt")).write_text(head + body, encoding="utf-8-sig")
         done.append(name)
     return done
-
-
-def _balanced(text, brace):
-    depth = 0
-    for i in range(brace, len(text)):
-        if text[i] == "{": depth += 1
-        elif text[i] == "}":
-            depth -= 1
-            if depth == 0: return text[brace + 1:i]
-    raise ValueError("unbalanced portrait DNA")
-
-
-def build_portrait_from_dna(name, out_dir):
-    """Make the bookmark cache directly from our fixed DNA when a game-generated dump does not exist yet."""
-    from build_1979 import SIGNIFICANT_BIRTHS
-    from build_likenesses import BEARD, HAIRSTYLE, PEOPLE
-    person = name.replace("bookmark_1979_", "wm_1979_")
-    dna_key = "wm_dna_" + person[3:]
-    text = (MOD / "common/dna_data/wm_likenesses_dna.txt").read_text(encoding="utf-8-sig")
-    start = text.index(dna_key + " = {")
-    portrait = text.index("portrait_info", start)
-    genes_at = text.index("genes = {", portrait)
-    genes = _balanced(text, text.index("{", genes_at))
-    p = PEOPLE[person]
-    style = HAIRSTYLE[p["style"]]
-    beard = BEARD[p.get("beard", "none")]
-    genes = re.sub(r'hairstyles=\{[^\n]+', 'hairstyles={ "%s" 255 "all_hairstyles" 0 }' % style, genes)
-    genes = re.sub(r'beards=\{[^\n]+', 'beards={ "%s" 255 "no_beard" 0 }' % (beard or "no_beard"), genes)
-    genes = re.sub(r'clothes=\{[^\n]+', 'clothes={ "%s" %d "most_clothes" 0 }' % CLOTHES, genes)
-    birth = SIGNIFICANT_BIRTHS[name.replace("bookmark_1979_", "").replace("_", " ").title()]
-    age = YEAR - int(birth.split(".")[0])
-    female = person == "wm_1979_margaret_thatcher"
-    stable = int(hashlib.sha1(name.encode()).hexdigest(), 16)
-    body = "%s={\n\ttype=%s\n\tid=%d\n\trandom_seed=%d\n\tage=%.6f\n\tgenes={%s\n\t}\n}\n" % (
-        name, "female" if female else "male", stable % 1000000, (stable >> 32) % 4294967295,
-        age / 100, genes)
-    (out_dir / (name + ".txt")).write_text("# Generated directly from Westminster's fixed DNA.\n" + body, encoding="utf-8-sig")
-    return name
 
 
 # ------------------------------------------------------------------------------------------------ main
@@ -665,17 +637,26 @@ def main():
     apply_bookmark_winners()
     colours, names = party_colours()
     positions = layout()
+    if ERA:
+        bookmark_path = MOD / ("common/bookmarks/bookmarks/wm_%s_bookmark.txt" % YEAR)
+        bookmark_text = bookmark_path.read_text(encoding="utf-8-sig")
+        for name, (x, y) in positions.items():
+            pattern = r'(name = "' + re.escape(name) + r'".*?position = \{ )\d+ \d+( \})'
+            bookmark_text = re.sub(pattern, lambda m: m[1] + "%d %d" % (x, y) + m[2], bookmark_text, flags=re.S)
+        bookmark_path.write_text(bookmark_text, encoding="utf-8-sig")
     bg = background(colours, names, positions)
     OUT.mkdir(parents=True, exist_ok=True)
     bg.convert("RGBA").save(OUT / (BOOKMARK + ".dds"), pixel_format="DXT1")
     print("background:", OUT / (BOOKMARK + ".dds"))
-    if HISTORIC:
+    if ERA:
+        FEATURED = [(name,) for name in ERAS[YEAR]["featured"]]
+    elif HISTORIC:
         from build_1979 import FEATURED
     else:
         from build_2024 import FEATURED
     by_seat = {r["seat"]: r for r in seats()}
     for (seat, name), f in zip(featured(), FEATURED):
-        party = by_seat[seat]["winner"] if (f[0] in ("Margaret Thatcher", "James Callaghan", "David Steel") if HISTORIC else f[4]) else None
+        party = by_seat[seat]["winner"] if ERA else (by_seat[seat]["winner"] if (f[0] in ("Margaret Thatcher", "James Callaghan", "David Steel") if HISTORIC else f[4]) else None)
         im = location_image(seat, party)
         im.save(OUT / ("%s_%s.dds" % (BOOKMARK, name)), pixel_format="DXT5")
         print("location image:", name, positions[name])

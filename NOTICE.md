@@ -44,7 +44,7 @@ National, county and city flags come from Wikimedia Commons. Each file's author 
 
 ## Real people
 
-Westminster uses the real names of members of the 1979 and 2024 Parliaments, other public figures and the royal
+Westminster uses the real names of members of the historical and modern Parliaments, other public figures and the royal
 family. All events are generic and fictional. Nothing in the mod says or implies anything about any real person.
 Some birth dates are approximate. Spouses and family of MPs are invented. The mod isn't affiliated with Parliament,
 any political party or the Royal Household. Party emblems are simplified designs inspired by the parties' symbols,

@@ -51,6 +51,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_likenesses import DNA_KEYS  # noqa: E402
 from build_spouses import make_spouses  # noqa: E402
+from character_overrides import OVERRIDES, dna_for, extra_history_lines, ideology_for  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent.parent          # westminster/
 RAW = ROOT / "data" / "raw"
@@ -841,7 +842,7 @@ DECISIONS_LOC = [
     ' wm_party_found_decision_confirm: "Launch the party"',
     ' wm_party_found_decision_slot_tt: "There is room for another party (at most six new parties)"',
     ' wm_party_found_decision_head_tt: "Not the head of your party\'s [house|E]"',
-    ' wm_party_found_decision_effect_tt: "You found a new party and become its leader, serving the Prime Minister. It has its own [house|E] and emblem, and your old party leader will remember it. New parties don\'t yet stand in the polls."',
+    ' wm_party_found_decision_effect_tt: "You found a new party and become its leader, serving the Prime Minister. It has its own [house|E] and emblem, and your old party leader will remember it. Use Build Your Movement to recruit supporters, establish local branches and contest elections."',
     "",
     " # Opinions (common/opinion_modifiers/wm_party_opinions.txt)",
     ' wm_party_crossed_floor_opinion: "Crossed the floor"',
@@ -957,6 +958,9 @@ def main():
     caucus = caucus_ideologies()
     for c in chars:
         c["ideology"], c["ideology_source"] = assign_ideology(c, caucus, set(leader.values()))
+        if "ideology" in OVERRIDES.get(c["id"], {}):
+            c["ideology"] = ideology_for(c["id"], c["ideology"])
+            c["ideology_source"] = "data/character_overrides.json"
     seat_faith = {c["seat"]: faith_key(seat_ideology(c)) for c in chars if c["seat"]}
     for row in out_rows:
         row["winner_ideology"] = seat_faith[row["title"][2:]]
@@ -982,13 +986,15 @@ def main():
                                                (", " + c["seat"].replace("_", " ")) if c["seat"] else "",
                                                ", life peer" if c.get("peer") else ""))
         lines.append("\tname = %s" % name_key(c))
-        if c["id"] in DNA_KEYS:
-            lines.append("\tdna = %s\t# likeness: build_likenesses.py" % DNA_KEYS[c["id"]])
+        dna = dna_for(c["id"], DNA_KEYS.get(c["id"]))
+        if dna:
+            lines.append("\tdna = %s\t# likeness: build_likenesses.py or character_overrides.json" % dna)
         lines.append("\tdynasty_house = %s" % house_of(c))
         if c["female"]:
             lines.append("\tfemale = yes")
         lines.append("\tculture = %s" % c["culture"])
         lines.append("\treligion = %s\t# %s" % (faith_key(c["ideology"]), c["ideology_source"]))
+        lines.extend(extra_history_lines(c["id"]))
         lines.append("\t%s = { birth = yes }" % c["birth"])
         sp = spouse_of.get(c["id"])
         if sp:

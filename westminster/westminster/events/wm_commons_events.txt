@@ -132,6 +132,7 @@ wm_commons.2 = {
 				trigger = { global_var:wm_commons_bill_type = 4 }
 				desc = wm_commons_bill_4_desc
 			}
+			triggered_desc = { trigger = { global_var:wm_commons_bill_type = 6 } desc = wm_commons_bill_6_desc }
 			desc = wm_commons_bill_5_desc
 		}
 		desc = wm_commons.2.numbers
@@ -331,6 +332,7 @@ wm_commons.4 = {
 				trigger = { global_var:wm_commons_bill_type = 4 }
 				desc = wm_commons_bill_4_name
 			}
+			triggered_desc = { trigger = { global_var:wm_commons_bill_type = 6 } desc = wm_commons_bill_6_name }
 			desc = wm_commons_bill_5_name
 		}
 		desc = wm_commons.4.lobbies
@@ -429,6 +431,7 @@ wm_commons.5 = {
 				trigger = { global_var:wm_commons_bill_type = 4 }
 				desc = wm_commons_bill_4_desc
 			}
+			triggered_desc = { trigger = { global_var:wm_commons_bill_type = 6 } desc = wm_commons_bill_6_desc }
 			desc = wm_commons_bill_5_desc
 		}
 		first_valid = {

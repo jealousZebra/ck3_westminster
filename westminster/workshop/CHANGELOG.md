@@ -1,5 +1,21 @@
 # Westminster changelog
 
+## 2026-10-18 — Six Starts & Build Your Movement (uploaded as 0.5.4)
+
+- Added 1945 Attlee, 1997 Blair, 2010 Cameron coalition and 2016 May/Brexit starts, alongside 1979 and 2024.
+- Added historical major-character likenesses and engine-exported bookmark portrait caches.
+- Expanded movement building: members, donors, branches, candidates and defections; founded parties now take part in elections, polls and seat counts.
+- Added constituency work, local projects, a public-service caucus, committee inquiries and ministerial delivery plans.
+- Added government programme choices, shared fiscal/service indicators and a parliamentary Brexit settlement route.
+- Added fictional press relationships, interviews, endorsements and leaked-draft events.
+- Cleaned up authoring tools and added character overrides, modding/contribution guidance, fork credits and contributor tasks.
+- Updated Workshop copy in nine languages and the 1945–2024 title/artwork.
+
+Validation: 26 opening assertions across the four new starts, 30 expansion engine checks, and 20 authoring/regression tests passed. Long-campaign, Linux and Windows validation of the new content remain outstanding. Historical geography uses the fixed modern map; some characters/dates are approximate. Some new in-game text uses English fallback. Start a fresh campaign.
+
+The upload retained version 0.5.4 in its descriptor; the date distinguishes it from the earlier Windows fix below.
+Steam entries: gameplay `1792322794`, final artwork refresh `1792323212`. New artwork and title are presentation updates made after the gameplay upload.
+
 ## 0.5.4 — Windows Startup Fix
 
 - Retained the vanilla portrait-cache data used behind the main menu, fixing a reproduced Windows startup crash.

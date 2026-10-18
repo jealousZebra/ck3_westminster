@@ -49,6 +49,8 @@ wm_commons_whip_strength_value = {
 # controversial one (30) a few dozen, mostly from the wing it offends.
 wm_commons_dissent_value = {
 	value = global_var:wm_commons_bill_controversy
+	# Backbench public-service caucus: concessions buy support for six months.
+	if = { limit = { has_variable = wm_public_services_caucus } add = 15 if = { limit = { has_global_variable = wm_services_concession } add = -30 } }
 	add = -15	# the loyalty of a government backbencher
 	# Their wing against the bill: +15 if it offends their wing, -10 if it pleases it
 	if = {

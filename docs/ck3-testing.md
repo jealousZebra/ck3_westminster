@@ -1,5 +1,14 @@
 # Testing mods in the real game
 
+For ordinary contributions, run the short check list in [CONTRIBUTING.md](../CONTRIBUTING.md).
+Automated window control below requires macOS; manual fresh-campaign tests work on Windows/Linux too.
+
+## Development starts — 18 October 2026
+
+Fresh 1945, 1997, 2010 and 2016 campaigns passed 26 opening assertions with no observed crashes;
+1979 also loaded. The expansion suite passed 30 checks. These are opening/feature tests, not long-campaign or
+Windows certification for the new content. See `gen_eras.py` and `gen_expansion.py` in `westminster/tools/ck3_test/`.
+
 ## 0.5.4 release verification — 16 October 2026
 
 After pulling the Windows portrait-cache fix (`ac2ed9e`), all eight stability tests and static checks across

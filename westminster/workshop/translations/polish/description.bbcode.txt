@@ -1,56 +1,35 @@
-[h1]Westminster: rządź Wielką Brytanią lub wywalcz drogę na Downing Street[/h1]
-[b]Totalna konwersja CK3 o współczesnej polityce brytyjskiej.[/b]
+[h1]Westminster[/h1]
+Rządź Wielką Brytanią albo zbuduj ruch i wywalcz drogę na Downing Street. Pełna konwersja Crusader Kings III z 650 okręgami i sześcioma datami startowymi.
 
-Poprowadź [b]Margaret Thatcher w 1979 r.[/b], rządź jako [b]Keir Starmer po wyborach 2024 r.[/b], zagraj dowolnym posłem albo zacznij jako aktywista i załóż własną partię.
-
-Walcz o głosy w 650 okręgach, kieruj parlamentem i gabinetem, przetrwaj bunty i głosowania nad wotum zaufania oraz spróbuj zostać premierem.
-
-[h2]Beta 0.5.4 — Naprawa uruchamiania w Windows[/h2]
-Naprawiono odtworzoną awarię Windows przed menu głównym. Zabezpieczenia startowe działają też ze starszymi ustawieniami programu uruchamiającego. Nowe kampanie z 1979 i 2024 roku przeszły testy Windows z obiema konfiguracjami; uruchamianie sprawdzono też na macOS z CK3 1.20.1.1. Linux i długie kampanie pozostają niesprawdzone.
-
-[b]Testując aktualizację, rozpocznij nową kampanię z Westminster jako jedynym włączonym modem.[/b]
-
-[h2]Początki w 1979 i 2024 roku[/h2]
+[h2]Sześć dat startowych[/h2]
 [list]
-[*][b]Dwie daty startowe:[/b] 4 maja 1979 i 5 lipca 2024.
-[*]Izba Gmin z 1979 r. na stałej mapie 650 mandatów.
-[*]Historyczni liderzy, pierwszy gabinet Thatcher, Elżbieta II i ważne postacie epoki.
-[*]Rozpoznawalne modele CK3 czołowych polityków.
-[*]Ciemny interfejs inspirowany gazetą i nowoczesna oprawa polityczna.
+[*]1945 — Clement Attlee: odbudowa kraju po wojnie.
+[*]1979 — Margaret Thatcher: objęcie władzy po wyborach.
+[*]1997 — Tony Blair: przełożenie wielkiego zwycięstwa na reformy.
+[*]2010 — David Cameron: utrzymanie koalicji.
+[*]2016 — Theresa May: negocjacje Brexitu i większość w Izbie Gmin dla porozumienia.
+[*]2024 — Keir Starmer: kierowanie nowym rządem.
 [/list]
 
-[b]Jeśli podoba Ci się Westminster, oceń mod i dodaj go do ulubionych. Pomoże to innym graczom go znaleźć.[/b]
+[h2]Zbuduj swój ruch[/h2]
+Pozyskuj członków i darczyńców, buduj lokalne struktury, rekrutuj kandydatów i zapraszaj posłów do zmiany partii. Założone partie uczestniczą w wyborach, sondażach i podziale mandatów.
 
-[h2]Wybierz drogę[/h2]
+[h2]Rządź, negocjuj i prowadź kampanię[/h2]
 [list]
-[*][b]Premier:[/b] powołuj gabinet, kontroluj porządek obrad i utrzymuj jedność partii.
-[*][b]Lider partii:[/b] wyznaczaj program, zarządzaj frakcjami i walcz o Downing Street.
-[*][b]Poseł:[/b] buduj wpływy, buntuj się przeciw dyscyplinie, awansuj lub rzuć wyzwanie liderowi.
-[*]Aktywista: zdobywaj poparcie, załóż partię i startuj w wyborach. Gra bez ziemi wymaga Roads to Power.
+[*]Kariera: dyżury poselskie, projekty lokalne, grupa na rzecz usług publicznych i dochodzenia komisji.
+[*]Rząd: przestrzeń fiskalna, dług, usługi publiczne, zaufanie do gospodarki i plany ministrów.
+[*]Brexit: wybór strategii, negocjacje, głosowanie nad porozumieniem i okres przejściowy.
+[*]Prasa: fikcyjne redakcje, wywiady, poparcie i przecieki projektów.
 [/list]
 
-[h2]Funkcje[/h2]
-[list]
-[*]Wszystkie 650 okręgów Westminsteru.
-[*]Wybory powszechne i uzupełniające, wybory liderów i głosowania nad zaufaniem.
-[*]Rząd, opozycja, gabinet, gabinet cieni i kariery parlamentarne.
-[*]Opinia publiczna, kapitał polityczny, dyscyplina partyjna i poparcie lokalne.
-[*]Współczesne partie, ideologie, cechy, style życia, decyzje i wydarzenia.
-[/list]
+[h2]Rozpocznij nową kampanię[/h2]
+CK3 1.20. Rozpocznij nową kampanię tylko z Westminster. Gra bez ziem wymaga Roads to Power. Aktualizacji nie można dodać do istniejącej kampanii.
 
-[h2]Zgodność[/h2]
-Dla [b]Crusader Kings III 1.20[/b]. Rozpocznij nową grę w 1979 lub 2024 r.
+[h2]Uwagi o becie[/h2]
+Historyczne parlamenty korzystają ze współczesnej mapy 650 mandatów; część przypisań i dat urodzenia jest przybliżona. Portrety używają DNA CK3; pozostają niektóre średniowieczne stroje. Cztery nowe starty przeszły kontrole początkowe na macOS. Długie kampanie, Linux i nowa zawartość na Windows wymagają dalszych testów. Część nowych tekstów w grze pozostaje po angielsku.
 
 [h2]Języki[/h2]
 Angielski, francuski, niemiecki, japoński, koreański, polski, rosyjski, chiński uproszczony i hiszpański.
 
-[h2]Uwagi do wersji beta[/h2]
-[list]
-[*]Balans długich rozgrywek jest nadal rozwijany; część strojów i rzadziej używanych ekranów pozostaje średniowieczna.
-[/list]
-
 [h2]Autorzy[/h2]
-Mod stworzył JealousZebra. Podziękowania dla społeczności modderskiej CK3 i testerów.
-
-[h2]Zastrzeżenie[/h2]
-Westminster jest nieoficjalnym modem fanowskim, niezwiązanym z Paradox Interactive, parlamentem Wielkiej Brytanii, partiami, organizacjami ani osobami publicznymi.
+Autorzy: JealousZebra i współtwórcy Westminster. Projekt nieoficjalny, niezwiązany z Paradox Interactive, parlamentem, partiami ani osobami publicznymi. Wydarzenia są fikcyjne. Oceny i ulubione pomagają innym znaleźć mod.

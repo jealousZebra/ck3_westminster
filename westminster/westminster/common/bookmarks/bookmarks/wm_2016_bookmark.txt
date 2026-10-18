@@ -1,0 +1,76 @@
+﻿bm_2016_may = {
+	start_date = 2016.7.14
+	is_playable = yes
+	group = bm_group_2016
+	weight = { value = 110 }
+	character = {
+		name = "bookmark_2016_theresa_may"
+		dynasty_house = wm_house_party_conservative
+		type = female
+		birth = 1956.10.1
+		title = e_united_kingdom
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_one_nation
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_2016_theresa_may
+		position = { 1060 835 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_2016_jeremy_corbyn"
+		dynasty_house = wm_house_party_labour
+		type = male
+		birth = 1949.5.26
+		title = k_party_labour
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_social_democrat
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_2016_jeremy_corbyn
+		position = { 335 315 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_2016_boris_johnson"
+		dynasty_house = wm_house_party_conservative
+		type = male
+		birth = 1964.6.19
+		title = c_uxbridge_and_south_ruislip
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_one_nation
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_2016_boris_johnson
+		position = { 335 780 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_2016_tim_farron"
+		dynasty_house = wm_house_party_lib_dem
+		type = male
+		birth = 1970.5.27
+		title = k_party_lib_dem
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_liberal
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_2016_tim_farron
+		position = { 940 385 }
+		animation = personality_rational
+	}
+	character = {
+		name = "bookmark_2016_david_davis"
+		dynasty_house = wm_house_party_conservative
+		type = male
+		birth = 1948.12.23
+		title = c_goole_and_pocklington
+		government = feudal_government
+		culture = english
+		religion = wm_ideo_one_nation
+		difficulty = "BOOKMARK_CHARACTER_DIFFICULTY_MEDIUM"
+		history_id = wm_2016_david_davis
+		position = { 615 630 }
+		animation = personality_rational
+	}
+}

@@ -1,0 +1,3206 @@
+{
+  "source": "https://en.wikipedia.org/wiki/List_of_MPs_elected_in_the_1945_United_Kingdom_general_election",
+  "retrieved": "2026-10-18",
+  "members": [
+    {
+      "old_seat": "Aberavon",
+      "name": "William Cove",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Aberdare",
+      "name": "George Hall",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Aberdeen North",
+      "name": "Hector Hughes",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Aberdeen South",
+      "name": "Sir Douglas Thomson, Bt",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Aberdeenshire Central",
+      "name": "Henry Spence",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Aberdeenshire East",
+      "name": "Robert Boothby",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Aberdeenshire West and Kincardine",
+      "name": "Colin Thornton-Kemsley",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Abertillery",
+      "name": "George Daggar",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Abingdon",
+      "name": "Sir Ralph Glyn, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Accrington",
+      "name": "Walter Scott-Elliot",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Acton",
+      "name": "Joseph Sparks",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Aldershot",
+      "name": "Oliver Lyttelton",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Altrincham and Sale",
+      "name": "Frederick Erroll",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Anglesey",
+      "name": "Lady Megan Lloyd George",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Antrim (Two members)",
+      "name": "Hon. Sir Hugh O'Neill",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Antrim (Two members)",
+      "name": "Samuel Gillmor Haughton",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Argyllshire",
+      "name": "Duncan McCallum",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Armagh",
+      "name": "Sir William Allen",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Ashford",
+      "name": "Edward Percy Smith",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ashton-under-Lyne",
+      "name": "Sir William Jowitt",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Aylesbury",
+      "name": "Sir Stanley Reed",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ayr Burghs",
+      "name": "Thomas Moore",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Ayrshire North and Bute",
+      "name": "Sir Charles MacAndrew",
+      "affiliation": "Scottish Unionist"
+    },
+    {
+      "old_seat": "Ayrshire South",
+      "name": "Alexander Sloan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Balham and Tooting",
+      "name": "Richard Adams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Banbury",
+      "name": "Douglas Dodds-Parker",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Banff",
+      "name": "Sir William Duthie",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Barking",
+      "name": "Somerville Hastings",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Barkston Ash",
+      "name": "Leonard Ropner",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Barnard Castle",
+      "name": "Sydney Lavers",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Barnet",
+      "name": "Stephen Taylor",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Barnsley",
+      "name": "Frank Collindridge",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Barnstaple",
+      "name": "Christopher Peto",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Barrow-in-Furness",
+      "name": "Walter Monslow",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Basingstoke",
+      "name": "Patrick Donner",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bassetlaw",
+      "name": "Frederick Bellenger",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bath",
+      "name": "James Pitman",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Batley and Morley",
+      "name": "Hubert Beaumont",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Battersea North",
+      "name": "Francis Douglas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Battersea South",
+      "name": "Caroline Ganley",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Bedford",
+      "name": "Thomas Skeffington-Lodge",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bedfordshire Mid",
+      "name": "Alan Lennox-Boyd",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bedwellty",
+      "name": "Sir Charles Edwards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Belfast, East",
+      "name": "Thomas Loftus Cole",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Belfast, North",
+      "name": "William Neill",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Belfast, South",
+      "name": "Conolly Gage",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Belfast, West",
+      "name": "Jack Beattie",
+      "affiliation": "Northern Ireland Labour"
+    },
+    {
+      "old_seat": "Belper",
+      "name": "George Brown",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bermondsey West",
+      "name": "Richard Sargood",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Berwick and Haddington",
+      "name": "John Robertson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Berwick-on-Tweed",
+      "name": "Robert Thorp",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bethnal Green North-East",
+      "name": "Daniel Chater",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Bethnal Green South-West",
+      "name": "Percy Holman",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Bewdley",
+      "name": "Roger Conant",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bexley",
+      "name": "Jennie Adamson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birkenhead East",
+      "name": "Frank Soskice",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birkenhead West",
+      "name": "Percy Collick",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Acock's Green",
+      "name": "Henry Usborne",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Aston",
+      "name": "Woodrow Wyatt",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Deritend",
+      "name": "Fred Longden",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Birmingham Duddeston",
+      "name": "Edith Wills",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Birmingham Edgbaston",
+      "name": "Sir Peter Bennett",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Birmingham Erdington",
+      "name": "Julius Silverman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Handsworth",
+      "name": "Harold Roberts",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Birmingham King's Norton",
+      "name": "Raymond Blackburn",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Ladywood",
+      "name": "Victor Yates",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Moseley",
+      "name": "Sir Patrick Hannon",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Birmingham Sparkbrook",
+      "name": "Percy Shurmer",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham West",
+      "name": "Charles Simmons",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Birmingham Yardley",
+      "name": "Wesley Perrins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bishop Auckland",
+      "name": "Hugh Dalton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Blackburn (Two members)",
+      "name": "John Edwards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Blackburn (Two members)",
+      "name": "Barbara Castle",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Blackpool North",
+      "name": "Toby Low",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Blackpool South",
+      "name": "Roland Robinson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Blaydon",
+      "name": "William Whiteley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bodmin",
+      "name": "Douglas Marshall",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bolton (Two members)",
+      "name": "Jack Jones",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bolton (Two members)",
+      "name": "John Lewis",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bootle",
+      "name": "John Kinley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bosworth",
+      "name": "Arthur Allen",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bothwell",
+      "name": "John Timmons",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bournemouth",
+      "name": "Sir Leonard Lyle, Bt.",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bow and Bromley",
+      "name": "Charles Key",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bradford Central",
+      "name": "Maurice Webb",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bradford East",
+      "name": "Frank McLeavy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bradford North",
+      "name": "Muriel Nichol",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bradford South",
+      "name": "Meredith Titterington",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Brecon and Radnor",
+      "name": "Tudor Watkins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Brentford and Chiswick",
+      "name": "Francis Noel-Baker",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bridgwater",
+      "name": "Vernon Bartlett",
+      "affiliation": "Indep. Progressive"
+    },
+    {
+      "old_seat": "Brigg",
+      "name": "Tom Williamson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Brighton (Two members)",
+      "name": "William Teeling",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Brighton (Two members)",
+      "name": "Anthony Marlowe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bristol Central",
+      "name": "Stan Awbery",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bristol East",
+      "name": "Hon. Sir Stafford Cripps",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bristol North",
+      "name": "Will Coldrick",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Bristol South",
+      "name": "Will Wilkins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bristol West",
+      "name": "Hon. Oliver Stanley",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Brixton",
+      "name": "Marcus Lipton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bromley",
+      "name": "Sir Edward Campbell, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Broxtowe",
+      "name": "Seymour Cocks",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Buckingham",
+      "name": "Aidan Crawley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bucklow",
+      "name": "William Shepherd",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Buckrose",
+      "name": "George Wadsworth",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Burnley",
+      "name": "Wilfrid Burke",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Burslem",
+      "name": "Albert Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Burton",
+      "name": "Arthur William Lyne",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Bury",
+      "name": "Walter Fletcher",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Bury St. Edmunds",
+      "name": "Geoffrey Clifton-Brown",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Caerphilly",
+      "name": "Ness Edwards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Caithness and Sutherland",
+      "name": "Eric Gandar Dower",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Camberwell North",
+      "name": "Cecil Manning",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Camberwell North West",
+      "name": "Freda Corbet",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Camborne",
+      "name": "Peter Agnew",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Cambridge",
+      "name": "Arthur Symonds",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cambridge University (Two members)",
+      "name": "Kenneth Pickthorn",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Cambridge University (Two members)",
+      "name": "Wilson Harris",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Cambridgeshire",
+      "name": "Albert Stubbs",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cannock",
+      "name": "Jennie Lee",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Canterbury",
+      "name": "John Baker White",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Cardiff Central",
+      "name": "George Thomas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cardiff East",
+      "name": "Hilary Marquand",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cardiff South",
+      "name": "James Callaghan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cardiganshire",
+      "name": "Roderic Bowen",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Carlisle",
+      "name": "Edgar Grierson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Carmarthen",
+      "name": "Rhys Hopkin Morris",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Carnarvon Boroughs",
+      "name": "David Price-White",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Carnarvonshire",
+      "name": "Goronwy Roberts",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Carshalton",
+      "name": "Antony Head",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Chatham",
+      "name": "Arthur Bottomley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Chelmsford",
+      "name": "Ernest Millington",
+      "affiliation": "Common Wealth"
+    },
+    {
+      "old_seat": "Chelsea",
+      "name": "Allan Noble",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Cheltenham",
+      "name": "Daniel Lipson",
+      "affiliation": "Independent Conservative"
+    },
+    {
+      "old_seat": "Chertsey",
+      "name": "Arthur Marsden",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Chesterfield",
+      "name": "George Benson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Chester-le-Street",
+      "name": "Jack Lawson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Chichester",
+      "name": "Hon. Lancelot Joynson-Hicks",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Chippenham",
+      "name": "David Eccles",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Chislehurst",
+      "name": "George Wallace",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Chorley",
+      "name": "Clifford Kenyon",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cirencester and Tewkesbury",
+      "name": "William Morrison",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "City of Chester",
+      "name": "Basil Nield",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "City of London (Two members)",
+      "name": "Sir Andrew Duncan",
+      "affiliation": "National"
+    },
+    {
+      "old_seat": "City of London (Two members)",
+      "name": "Sir George Broadbridge, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Clapham",
+      "name": "John Battley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Clay Cross",
+      "name": "Harold Neal",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cleveland",
+      "name": "Octavius Willey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Clitheroe",
+      "name": "Harry Randall",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Coatbridge",
+      "name": "Jean Mann",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Colchester",
+      "name": "George Smith",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Colne Valley",
+      "name": "Glenvil Hall",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Combined English Universities (Two members)",
+      "name": "Eleanor Rathbone",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Combined English Universities (Two members)",
+      "name": "Kenneth Lindsay",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Combined Scottish Universities (Three members)",
+      "name": "Sir John Anderson",
+      "affiliation": "National"
+    },
+    {
+      "old_seat": "Combined Scottish Universities (Three members)",
+      "name": "Sir John Boyd Orr",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Combined Scottish Universities (Three members)",
+      "name": "Sir John Graham Kerr",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Cornwall North",
+      "name": "Tom Horabin",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Consett",
+      "name": "James Glanville",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Coventry East",
+      "name": "Richard Crossman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Coventry West",
+      "name": "Maurice Edelman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Crewe",
+      "name": "Scholefield Allen",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Croydon North",
+      "name": "Henry Willink",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Croydon South",
+      "name": "David Rees-Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Cumberland North",
+      "name": "Wilfrid Roberts",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Dagenham",
+      "name": "John Parker",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Darlington",
+      "name": "David Hardman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dartford",
+      "name": "Norman Dodds",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Darwen",
+      "name": "Stanley Prescott",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Daventry",
+      "name": "Reginald Manningham-Buller",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Denbigh",
+      "name": "Sir Henry Morris-Jones",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Deptford",
+      "name": "John Wilmot",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Derby (Two members)",
+      "name": "Clifford Wilcock",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Derby (Two members)",
+      "name": "Philip Noel-Baker",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Derbyshire North East",
+      "name": "Henry White",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Derbyshire South",
+      "name": "Arthur Champion",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Derbyshire West",
+      "name": "Charles Frederick White",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Devizes",
+      "name": "Christopher Hollis",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Dewsbury",
+      "name": "William Paling",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Doncaster",
+      "name": "Evelyn Walkden",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Don Valley",
+      "name": "Tom Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dorset East",
+      "name": "Mervyn Wheatley",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Dorset North",
+      "name": "Frank Byers",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Dorset South",
+      "name": "Victor Montagu",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Dorset West",
+      "name": "Simon Wingfield Digby",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Dover",
+      "name": "John Thomas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Down (Two members)",
+      "name": "James Little",
+      "affiliation": "Independent Ulster Unionist"
+    },
+    {
+      "old_seat": "Down (Two members)",
+      "name": "W. D. Smiles",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Dudley",
+      "name": "George Wigg",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dulwich",
+      "name": "Wilfrid Vernon",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dumbarton Burghs",
+      "name": "David Kirkwood",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dumfriesshire",
+      "name": "Niall Macpherson",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Dunbartonshire",
+      "name": "Adam McKinlay",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dundee (Two members)",
+      "name": "Thomas Cook",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dundee (Two members)",
+      "name": "John Strachey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Dunfermline Burghs",
+      "name": "William McLean Watson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Durham",
+      "name": "Charles Grey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ealing East",
+      "name": "Sir Frank Sanderson, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ealing West",
+      "name": "James Hudson",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Eastbourne",
+      "name": "Charles Taylor",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "East Grinstead",
+      "name": "Ralph Clarke",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "East Ham North",
+      "name": "Percy Daines",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "East Ham South",
+      "name": "Alfred Barnes",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Ebbw Vale",
+      "name": "Aneurin Bevan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Eccles",
+      "name": "William Proctor",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Eddisbury",
+      "name": "Sir John Barlow, Bt",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Edinburgh Central",
+      "name": "Andrew Gilzean",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Edinburgh East",
+      "name": "Frederick Pethick-Lawrence",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Edinburgh North",
+      "name": "George Willis",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Edinburgh South",
+      "name": "Sir William Darling",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Edinburgh West",
+      "name": "Ian Clark Hutchison",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Edmonton",
+      "name": "Evan Durbin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Elland",
+      "name": "Frederick Cobb",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Enfield",
+      "name": "Ernest Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Epping",
+      "name": "Leah Manning",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Epsom",
+      "name": "Sir Archibald Southby, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Essex South East",
+      "name": "Ray Gunter",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Eton and Slough",
+      "name": "Benn Levy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Evesham",
+      "name": "Rupert de la B\u00e8re",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Exeter",
+      "name": "John Maude",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Eye",
+      "name": "Edgar Granville",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Fareham",
+      "name": "Sir Dymoke White, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Farnham",
+      "name": "Godfrey Nicholson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Farnworth",
+      "name": "George Tomlinson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Faversham",
+      "name": "Percy Wells",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Fermanagh and Tyrone (Two members)",
+      "name": "Patrick Cunningham",
+      "affiliation": "Irish Nationalist"
+    },
+    {
+      "old_seat": "Fermanagh and Tyrone (Two members)",
+      "name": "Anthony Mulvey",
+      "affiliation": "Irish Nationalist"
+    },
+    {
+      "old_seat": "Fife East",
+      "name": "James Henderson-Stewart",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Fife West",
+      "name": "Willie Gallacher",
+      "affiliation": "Communist"
+    },
+    {
+      "old_seat": "Finchley",
+      "name": "John Crowder",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Finsbury",
+      "name": "John Platts-Mills",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Flintshire",
+      "name": "Nigel Birch",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Forest of Dean",
+      "name": "M. Philips Price",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Forfarshire",
+      "name": "Hon. Simon Ramsay",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Frome",
+      "name": "Walter Farthing",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Fulham East",
+      "name": "Michael Stewart",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Fulham West",
+      "name": "Edith Summerskill",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Fylde",
+      "name": "Claude Lancaster",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Gainsborough",
+      "name": "Harry Crookshank",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Galloway",
+      "name": "John Mackie",
+      "affiliation": "Independent Conservative"
+    },
+    {
+      "old_seat": "Gateshead",
+      "name": "Konni Zilliacus",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Gillingham",
+      "name": "Joseph Binns",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Glasgow Bridgeton",
+      "name": "James Maxton",
+      "affiliation": "Independent Labour Party"
+    },
+    {
+      "old_seat": "Glasgow Camlachie",
+      "name": "Campbell Stephen",
+      "affiliation": "Independent Labour Party"
+    },
+    {
+      "old_seat": "Glasgow Cathcart",
+      "name": "Francis Beattie",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Glasgow Central",
+      "name": "James Hutchison",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Glasgow Gorbals",
+      "name": "George Buchanan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Glasgow Govan",
+      "name": "Neil Maclean",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Glasgow Hillhead",
+      "name": "James Reid",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Glasgow Kelvingrove",
+      "name": "John Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Glasgow Maryhill",
+      "name": "William Hannan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Glasgow Partick",
+      "name": "Arthur Young",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Glasgow Pollok",
+      "name": "Thomas Galbraith",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Glasgow St. Rollox",
+      "name": "William Leonard",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Glasgow Shettleston",
+      "name": "John McGovern",
+      "affiliation": "Independent Labour Party"
+    },
+    {
+      "old_seat": "Glasgow Springburn",
+      "name": "John Forman",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Glasgow Tradeston",
+      "name": "John Rankin",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Gloucester",
+      "name": "Moss Turner-Samuels",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Gower",
+      "name": "David Grenfell",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Grantham",
+      "name": "Denis Kendall",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Gravesend",
+      "name": "Garry Allighan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Great Yarmouth",
+      "name": "Ernest Kinghorn",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Greenock",
+      "name": "Hector McNeil",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Greenwich",
+      "name": "Joseph Reeves",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Grimsby",
+      "name": "Kenneth Younger",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Guildford",
+      "name": "Sir John Jarvis, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hackney Central",
+      "name": "Harry Hynd",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hackney North",
+      "name": "Henry Edwin Goodrich",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hackney South",
+      "name": "Herbert Butler",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Halifax",
+      "name": "Dryden Brook",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hamilton",
+      "name": "Tom Fraser",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hammersmith North",
+      "name": "Denis Pritt",
+      "affiliation": "Independent Labour"
+    },
+    {
+      "old_seat": "Hammersmith South",
+      "name": "William Thomas Adams",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Hampstead",
+      "name": "Charles Challen",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hanley",
+      "name": "Barnett Stross",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Harborough",
+      "name": "Humphrey Attewell",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Harrow East",
+      "name": "Frederick Skinnard",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Harrow West",
+      "name": "Norman Bower",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "The Hartlepools",
+      "name": "D. T. Jones",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Harwich",
+      "name": "Sir Stanley Holmes",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Hastings",
+      "name": "Neill Cooper-Key",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hemel Hempstead",
+      "name": "Frances Davidson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hemsworth",
+      "name": "George Griffiths",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hendon North",
+      "name": "Barbara Ayrton-Gould",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hendon South",
+      "name": "Sir Hugh Lucas-Tooth, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Henley",
+      "name": "Sir Gifford Fox, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hereford",
+      "name": "James Thomas",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hertford",
+      "name": "Derek Walker-Smith",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Heston and Isleworth",
+      "name": "William Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hexham",
+      "name": "Douglas Clifton Brown",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Heywood and Radcliffe",
+      "name": "John Whittaker",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "High Peak",
+      "name": "Hugh Molson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hitchin",
+      "name": "Philip Asterley Jones",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Holborn",
+      "name": "Hon. Max Aitken",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Holderness",
+      "name": "Gurney Braithwaite",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Holland-with-Boston",
+      "name": "Herbert Butcher",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Honiton",
+      "name": "Cedric Drewe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Horncastle",
+      "name": "John Maitland",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Hornchurch",
+      "name": "Geoffrey Bing",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Hornsey",
+      "name": "David Gammans",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Horsham",
+      "name": "The Earl Winterton",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Houghton-le-Spring",
+      "name": "Billy Blyton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Howdenshire",
+      "name": "Clifford Glossop",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Huddersfield",
+      "name": "Joseph Mallalieu",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Huntingdonshire",
+      "name": "David Renton",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Hythe",
+      "name": "Harry Mackeson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ilford, North",
+      "name": "Mabel Ridealgh",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Ilford, South",
+      "name": "Jim Ranger",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ilkeston",
+      "name": "George Oliver",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ince",
+      "name": "Tom Brown",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Inverness",
+      "name": "Sir Murdo Macdonald",
+      "affiliation": "Indep. National Liberal"
+    },
+    {
+      "old_seat": "Ipswich",
+      "name": "Richard Stokes",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Isle of Ely",
+      "name": "Harry Legge-Bourke",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Isle of Thanet",
+      "name": "Hon. Edward Carson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Isle of Wight",
+      "name": "Peter Macdonald",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Islington East",
+      "name": "Eric Fletcher",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Islington North",
+      "name": "Leslie Haden Guest",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Islington South",
+      "name": "William Cluse",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Islington West",
+      "name": "Frederick Montague",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Jarrow",
+      "name": "Ellen Wilkinson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Keighley",
+      "name": "Ivor Thomas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kennington",
+      "name": "Charles Gibson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kensington North",
+      "name": "George Rogers",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kensington South",
+      "name": "Sir William Davison",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Kettering",
+      "name": "Gilbert Mitchison",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kidderminster",
+      "name": "Louis Tolley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kilmarnock",
+      "name": "Clarice Shaw",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "King's Lynn",
+      "name": "Frederick Wise",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kingston upon Hull Central",
+      "name": "Mark Hewitson \u00d7",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kingston upon Hull East",
+      "name": "Harry Pursey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kingston upon Hull North West",
+      "name": "Kim Mackay",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kingston upon Hull South West",
+      "name": "Sydney Smith",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kingston-upon-Thames",
+      "name": "John Boyd-Carpenter",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Kingswinford",
+      "name": "Arthur Henderson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Kinross & West Perthshire",
+      "name": "William McNair Snadden",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Kirkcaldy Burghs",
+      "name": "Thomas Hubbard",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Knutsford",
+      "name": "Walter Bromley-Davenport",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Lambeth North",
+      "name": "George Strauss",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lanark",
+      "name": "Tom Steele",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lanarkshire North",
+      "name": "Margaret Herbison",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lancaster",
+      "name": "Fitzroy Maclean",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Leeds Central",
+      "name": "George Porter",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leeds North",
+      "name": "Osbert Peake",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Leeds North East",
+      "name": "Alice Bacon",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leeds South",
+      "name": "Hugh Gaitskell",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leeds South East",
+      "name": "James Milner",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leeds West",
+      "name": "Tom Stamford",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leek",
+      "name": "Harold Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leicester East",
+      "name": "Terence Donovan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leicester South",
+      "name": "Bert Bowden",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leicester West",
+      "name": "Barnett Janner",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leigh",
+      "name": "Harold Boardman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leith",
+      "name": "James Hoy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leominster",
+      "name": "Archer Baldwin",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Lewes",
+      "name": "Tufton Beamish",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Lewisham East",
+      "name": "Herbert Morrison",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lewisham West",
+      "name": "Arthur Skeffington",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leyton East",
+      "name": "Albert Bechervaise",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Leyton West",
+      "name": "Reginald Sorensen",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lichfield",
+      "name": "Cecil Poole",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Lincoln",
+      "name": "George Deer",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Linlithgowshire",
+      "name": "George Mathers",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool East Toxteth",
+      "name": "Patrick Buchan-Hepburn",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Liverpool Edge Hill",
+      "name": "Richard Clitherow",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Everton",
+      "name": "Bertie Kirby",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Exchange",
+      "name": "Bessie Braddock",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Fairfield",
+      "name": "Arthur Moody",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Kirkdale",
+      "name": "William Keenan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Scotland",
+      "name": "David Logan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Walton",
+      "name": "James Haworth",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Liverpool Wavertree",
+      "name": "Victor Raikes",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Liverpool West Derby",
+      "name": "Sir David Maxwell Fyfe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Liverpool West Toxteth",
+      "name": "Joseph Gibbins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Llandaff and Barry",
+      "name": "Lynn Ungoed-Thomas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Llanelly",
+      "name": "Jim Griffiths",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "London University",
+      "name": "Sir Ernest Graham-Little",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Londonderry",
+      "name": "Sir Ronald Ross, Bt",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Lonsdale",
+      "name": "Sir Ian Fraser",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Loughborough",
+      "name": "Mont Follick",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Louth",
+      "name": "Cyril Osborne",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Lowestoft",
+      "name": "Edward Evans",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ludlow",
+      "name": "Uvedale Corbett",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Luton",
+      "name": "William Warbey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Macclesfield",
+      "name": "Arthur Vere Harvey",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Maidstone",
+      "name": "Alfred Bossom",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Maldon",
+      "name": "Tom Driberg",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Ardwick",
+      "name": "Joseph Henderson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Blackley",
+      "name": "Jack Diamond",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Clayton",
+      "name": "Harry Thorneycroft",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Exchange",
+      "name": "Harold Lever",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Gorton",
+      "name": "William Oldfield",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Hulme",
+      "name": "Frederick Lee",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Moss Side",
+      "name": "William Griffiths",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Platting",
+      "name": "Hugh Delargy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Rusholme",
+      "name": "Lester Hutchinson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Manchester Withington",
+      "name": "Edward Fleming",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Mansfield",
+      "name": "Bernard Taylor",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Melton",
+      "name": "Anthony Nutting",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Merioneth",
+      "name": "Emrys Roberts",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Merthyr",
+      "name": "S. O. Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Middlesbrough East",
+      "name": "Alfred Edwards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Middlesbrough West",
+      "name": "Geoffrey Cooper",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Middleton and Prestwich",
+      "name": "Ernest Gates",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Midlothian North",
+      "name": "Lord John Hope",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Midlothian South and Peebles",
+      "name": "David Pryde",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Mitcham",
+      "name": "Tom Braddock",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Monmouth",
+      "name": "Leslie Pym",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Montgomery",
+      "name": "Clement Davies",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Montrose Burghs",
+      "name": "Hon. John Maclay",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Moray & Nairn",
+      "name": "Hon. James Stuart",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Morpeth",
+      "name": "Robert Taylor",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Mossley",
+      "name": "George Woods",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Motherwell",
+      "name": "Alexander Anderson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Neath",
+      "name": "D. J. Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Nelson and Colne",
+      "name": "Sydney Silverman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Newark",
+      "name": "Sidney Shephard",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Newbury",
+      "name": "Anthony Hurd",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Newcastle-under-Lyme",
+      "name": "John Mack",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Newcastle-upon-Tyne Central",
+      "name": "Lyall Wilkes",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Newcastle-upon-Tyne East",
+      "name": "Arthur Blenkinsop",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Newcastle-upon-Tyne North",
+      "name": "Sir Cuthbert Headlam, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Newcastle-upon-Tyne West",
+      "name": "Ernest Popplewell",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "New Forest and Christchurch",
+      "name": "Oliver Crosthwaite-Eyre",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Newport",
+      "name": "Peter Freeman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Newton",
+      "name": "Sir Robert Young",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Norfolk East",
+      "name": "Frank Medlicott",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Norfolk North",
+      "name": "Edwin Gooch",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Norfolk South",
+      "name": "Christopher Mayhew",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Norfolk South-West",
+      "name": "Sidney Dye",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Normanton",
+      "name": "Tom Smith",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Northampton",
+      "name": "Reginald Paget",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Northwich",
+      "name": "John Foster",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Norwich (Two members)",
+      "name": "Lady Noel-Buxton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Norwich (Two members)",
+      "name": "John Paton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Norwood",
+      "name": "Ron Chamberlain",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Nottingham Central",
+      "name": "Geoffrey de Freitas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Nottingham East",
+      "name": "James Harrison",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Nottingham South",
+      "name": "Norman Smith",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Nottingham West",
+      "name": "Tom O'Brien",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Nuneaton",
+      "name": "Frank Bowles",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ogmore",
+      "name": "Edward Williams",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Oldham (Two members)",
+      "name": "Frank Fairhurst",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Oldham (Two members)",
+      "name": "Leslie Hale",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Orkney and Shetland",
+      "name": "Basil Neven-Spence",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ormskirk",
+      "name": "Harold Wilson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Orpington",
+      "name": "Sir Waldron Smithers",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Oswestry",
+      "name": "Oliver Poole",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Oxford",
+      "name": "Hon. Quintin Hogg",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Oxford University (Two members)",
+      "name": "Sir Arthur Salter",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Oxford University (Two members)",
+      "name": "Alan Herbert",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Paddington North",
+      "name": "Sir Noel Mason-Macfarlane",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Paddington South",
+      "name": "Ernest Augustus Taylor",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Paisley",
+      "name": "Viscount Corvedale",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Peckham",
+      "name": "Lewis Silkin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Pembrokeshire",
+      "name": "Hon. Gwilym Lloyd George",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Penistone",
+      "name": "Henry McGhee",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Penrith and Cockermouth",
+      "name": "Alan Gandar-Dower",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Penryn and Falmouth",
+      "name": "Evelyn King",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Perth",
+      "name": "Alan Gomme-Duncan",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Peterborough",
+      "name": "Stanley Tiffany",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Petersfield",
+      "name": "George Jeffreys",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Plymouth Devonport",
+      "name": "Michael Foot",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Plymouth Drake",
+      "name": "Hubert Medland",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Plymouth Sutton",
+      "name": "Lucy Middleton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Pontefract",
+      "name": "Percy Barstow",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Pontypool",
+      "name": "Arthur Jenkins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Pontypridd",
+      "name": "Arthur Pearson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Poplar South",
+      "name": "William Henry Guy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Portsmouth Central",
+      "name": "Julian Snow",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Portsmouth North",
+      "name": "Donald Bruce",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Portsmouth South",
+      "name": "Sir Jocelyn Lucas, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Preston (Two members)",
+      "name": "Samuel Segal",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Preston (Two members)",
+      "name": "John William Sunderland",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Pudsey and Otley",
+      "name": "Malcolm Stoddart-Scott",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Putney",
+      "name": "Hugh Linstead",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Queen's University of Belfast",
+      "name": "Douglas Savory",
+      "affiliation": "Ulster Unionist"
+    },
+    {
+      "old_seat": "Reading",
+      "name": "Ian Mikardo",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Reigate",
+      "name": "Gordon Touche",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Renfrewshire, East",
+      "name": "Guy Lloyd",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Renfrewshire, West",
+      "name": "Thomas Scollan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rhondda East",
+      "name": "William Mainwaring",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rhondda West",
+      "name": "William John",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Richmond, Surrey",
+      "name": "George Harvie-Watt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Richmond, Yorkshire",
+      "name": "Sir Thomas Dugdale, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Ripon",
+      "name": "Christopher York",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Rochdale",
+      "name": "Hyacinth Morgan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Romford",
+      "name": "Thomas Macpherson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Ross and Cromarty",
+      "name": "John MacLeod",
+      "affiliation": "Indep. National Liberal"
+    },
+    {
+      "old_seat": "Rossendale",
+      "name": "George Henry Walker",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rother Valley",
+      "name": "David Griffiths",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rotherham",
+      "name": "William Dobbie",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rotherhithe",
+      "name": "Sir Ben Smith",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rothwell",
+      "name": "Thomas Brooks",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Roxburgh and Selkirk",
+      "name": "Lord William Montagu Douglas Scott",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Royton",
+      "name": "Harold Sutcliffe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Rugby",
+      "name": "William Brown",
+      "affiliation": "Independent"
+    },
+    {
+      "old_seat": "Rushcliffe",
+      "name": "Florence Paton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rutherglen",
+      "name": "Gilbert McAllister",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Rutland and Stamford",
+      "name": "Lord Willoughby de Eresby",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Rye",
+      "name": "William Cuthbert",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Saffron Walden",
+      "name": "Rab Butler",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "St Albans",
+      "name": "Cyril Dumpleton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "St Helens",
+      "name": "Hartley Shawcross",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "St Ives",
+      "name": "Alec Beechman",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "St Marylebone",
+      "name": "Sir Wavell Wakefield",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "St Pancras North",
+      "name": "George House",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "St Pancras South East",
+      "name": "Santo Jeger",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "St Pancras South West",
+      "name": "Haydn Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Salford North",
+      "name": "William McAdam",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Salford South",
+      "name": "Edward Hardy",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Salford West",
+      "name": "Charles Royle",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Salisbury",
+      "name": "John Morrison",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Scarborough and Whitby",
+      "name": "Alexander Spearman",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Seaham",
+      "name": "Manny Shinwell",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sedgefield",
+      "name": "John Leslie",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sevenoaks",
+      "name": "Charles Ponsonby",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Sheffield, Attercliffe",
+      "name": "John Hynd",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sheffield, Brightside",
+      "name": "Fred Marshall",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sheffield, Central",
+      "name": "Harry Morris",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sheffield, Ecclesall",
+      "name": "Peter Roberts",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Sheffield, Hallam",
+      "name": "Roland Jennings",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Sheffield, Hillsborough",
+      "name": "A. V. Alexander",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Sheffield, Park",
+      "name": "Thomas Burden",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Shipley",
+      "name": "Arthur Creech Jones",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Shoreditch",
+      "name": "Ernest Thurtle",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Shrewsbury",
+      "name": "John Langford-Holt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Skipton",
+      "name": "Burnaby Drayson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Smethwick",
+      "name": "Alfred Dobbs",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Solihull",
+      "name": "Martin Lindsay",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Southall",
+      "name": "Walter Ayles",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southampton (Two members)",
+      "name": "Ralph Morley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southampton (Two members)",
+      "name": "Tommy Lewis",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southend-on-Sea",
+      "name": "Henry Channon",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "South Molton",
+      "name": "Hon. George Lambert",
+      "affiliation": "Liberal National"
+    },
+    {
+      "old_seat": "Southport",
+      "name": "Robert Hudson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "South Shields",
+      "name": "James Chuter Ede",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southwark Central",
+      "name": "John Hanbury Martin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southwark North",
+      "name": "George Isaacs",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Southwark South East",
+      "name": "Thomas Naylor",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sowerby",
+      "name": "John Belcher",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Spelthorne",
+      "name": "George Pargiter",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Spennymoor",
+      "name": "James Murray",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Spen Valley",
+      "name": "Granville Maynard Sharp",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stafford",
+      "name": "Stephen Swingler",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stalybridge and Hyde",
+      "name": "Gordon Lang",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stepney Limehouse",
+      "name": "Clement Attlee",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stepney Mile End",
+      "name": "Phil Piratin",
+      "affiliation": "Communist"
+    },
+    {
+      "old_seat": "Stirling and Falkirk",
+      "name": "Joseph Westwood",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stirlingshire East and Clackmannan",
+      "name": "Arthur Woodburn",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stirlingshire West",
+      "name": "Alfred Balfour",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stockport (Two members)",
+      "name": "Sir Arnold Gridley",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Stockport (Two members)",
+      "name": "Norman Hulbert",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Stockton on Tees",
+      "name": "George Chetwynd",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stoke Newington",
+      "name": "David Weitzman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stoke-on-Trent",
+      "name": "Ellis Smith",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stone",
+      "name": "Hugh Fraser",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Stourbridge",
+      "name": "Arthur Moyle",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Streatham",
+      "name": "David Robertson",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Stretford",
+      "name": "Herschel Austin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Stroud",
+      "name": "Ben Parkin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sudbury",
+      "name": "Roland Hamilton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sunderland (Two members)",
+      "name": "Fred Willey",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Sunderland (Two members)",
+      "name": "Richard Ewart",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Surrey East",
+      "name": "Hon. Michael Astor",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Sutton and Cheam",
+      "name": "Sydney Marshall",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Sutton Coldfield",
+      "name": "Sir John Mellor, Bt",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Swansea East",
+      "name": "David Mort",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Swansea West",
+      "name": "Percy Morris",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Swindon",
+      "name": "Thomas Reid",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Taunton",
+      "name": "Victor Collins",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Tavistock",
+      "name": "Henry Studholme",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Thirsk and Malton",
+      "name": "Robin Turton",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Thornbury",
+      "name": "Joseph Alpass",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Thurrock",
+      "name": "Leslie Solley",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Tiverton",
+      "name": "Derick Heathcoat-Amory",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Tonbridge",
+      "name": "Gerald Wellington Williams",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Torquay",
+      "name": "Charles Williams",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Totnes",
+      "name": "Ralph Rayner",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Tottenham North",
+      "name": "Robert Morrison",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Tottenham South",
+      "name": "Frederick Messer",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Twickenham",
+      "name": "Edward Keeling",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Tynemouth",
+      "name": "Grace Colman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "University of Wales",
+      "name": "William John Gruffydd",
+      "affiliation": "Liberal"
+    },
+    {
+      "old_seat": "Uxbridge",
+      "name": "Frank Beswick",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Wakefield",
+      "name": "Arthur Greenwood",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wallasey",
+      "name": "Ernest Marples",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Wallsend",
+      "name": "John McKay",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Walsall",
+      "name": "William Wells",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Walthamstow East",
+      "name": "Harry Wallace",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Walthamstow West",
+      "name": "Valentine McEntee",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wandsworth Central",
+      "name": "Ernest Bevin",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wansbeck",
+      "name": "Alfred Robens",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Warrington",
+      "name": "Edward Porter",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Warwick and Leamington",
+      "name": "Anthony Eden",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Waterloo",
+      "name": "Malcolm Bullock",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Watford",
+      "name": "John Freeman",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wednesbury",
+      "name": "Stanley Evans",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wellingborough",
+      "name": "George Lindgren",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wells",
+      "name": "Dennis Coleridge Boles",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Wembley North",
+      "name": "Charles Hobson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wembley South",
+      "name": "Clarence Barton",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wentworth",
+      "name": "Wilfred Paling",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "West Bromwich",
+      "name": "John Dugdale",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "West Ham Plaistow",
+      "name": "Elwyn Jones",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "West Ham Silvertown",
+      "name": "Louis Comyns",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "West Ham Stratford",
+      "name": "Henry Nicholls",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "West Ham Upton",
+      "name": "Arthur Lewis",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Westbury",
+      "name": "Robert Grimston",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Western Isles",
+      "name": "Malcolm Macmillan",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Westhoughton",
+      "name": "Rhys Davies",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Westminster Abbey",
+      "name": "Sir Harold Webbe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Westminster St George's",
+      "name": "Arthur Howard",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Westmorland",
+      "name": "William Fletcher-Vane",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Weston-super-Mare",
+      "name": "Ian Orr-Ewing",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Whitechapel",
+      "name": "Walter Edwards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Whitehaven",
+      "name": "Frank Anderson",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Widnes",
+      "name": "Christopher Shawcross",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wigan",
+      "name": "William Foster",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Willesden East",
+      "name": "Maurice Orbach",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Willesden West",
+      "name": "Samuel Viant",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wimbledon",
+      "name": "Arthur Palmer",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Winchester",
+      "name": "George Jeger",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Windsor",
+      "name": "Charles Mott-Radclyffe",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Wirral",
+      "name": "Selwyn Lloyd",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Wolverhampton Bilston",
+      "name": "Will Nally",
+      "affiliation": "Labour Co-op"
+    },
+    {
+      "old_seat": "Wolverhampton East",
+      "name": "John Baird",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wolverhampton West",
+      "name": "Billy Hughes",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Woodbridge",
+      "name": "Hon. John Hare",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Woodford",
+      "name": "Winston Churchill",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Wood Green",
+      "name": "Sir Beverley Baxter",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Woolwich East",
+      "name": "George Hicks",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Woolwich West",
+      "name": "Henry Berry",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Worcester",
+      "name": "Hon. George Ward",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "Workington",
+      "name": "Fred Peart",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Worthing",
+      "name": "Otho Prior-Palmer",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "The Wrekin",
+      "name": "Ivor Owen Thomas",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wrexham",
+      "name": "Robert Richards",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Wycombe",
+      "name": "John Haire",
+      "affiliation": "Labour"
+    },
+    {
+      "old_seat": "Yeovil",
+      "name": "William Kingsmill",
+      "affiliation": "Conservative"
+    },
+    {
+      "old_seat": "York",
+      "name": "John Corlett",
+      "affiliation": "Labour"
+    }
+  ]
+}

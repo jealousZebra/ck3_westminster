@@ -104,6 +104,48 @@ wm_election_results.1 = {
 			}
 			triggered_desc = {
 				trigger = {
+					global_var:wm_el_largest = title:k_party_new_1
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_1
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_2
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_2
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_3
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_3
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_4
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_4
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_5
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_5
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_6
+					global_var:wm_el_largest_seats >= 400
+				}
+				desc = wm_election_headline_landslide_new_6
+			}
+			triggered_desc = {
+				trigger = {
 					global_var:wm_el_largest = title:k_party_labour
 					global_var:wm_el_largest_seats < 336
 				}
@@ -192,6 +234,48 @@ wm_election_results.1 = {
 					global_var:wm_el_largest_seats < 336
 				}
 				desc = wm_election_headline_narrow_tuv
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_1
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_1
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_2
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_2
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_3
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_3
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_4
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_4
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_5
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_5
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_6
+					global_var:wm_el_largest_seats < 336
+				}
+				desc = wm_election_headline_narrow_new_6
 			}
 			triggered_desc = {
 				trigger = {
@@ -286,6 +370,48 @@ wm_election_results.1 = {
 			}
 			triggered_desc = {
 				trigger = {
+					global_var:wm_el_largest = title:k_party_new_1
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_1
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_2
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_2
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_3
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_3
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_4
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_4
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_5
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_5
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_6
+					has_global_variable = wm_el_gov_changed
+				}
+				desc = wm_election_headline_gain_new_6
+			}
+			triggered_desc = {
+				trigger = {
 					global_var:wm_el_largest = title:k_party_labour
 				}
 				desc = wm_election_headline_hold_lab
@@ -361,6 +487,42 @@ wm_election_results.1 = {
 					global_var:wm_el_largest = title:k_party_tuv
 				}
 				desc = wm_election_headline_hold_tuv
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_1
+				}
+				desc = wm_election_headline_hold_new_1
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_2
+				}
+				desc = wm_election_headline_hold_new_2
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_3
+				}
+				desc = wm_election_headline_hold_new_3
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_4
+				}
+				desc = wm_election_headline_hold_new_4
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_5
+				}
+				desc = wm_election_headline_hold_new_5
+			}
+			triggered_desc = {
+				trigger = {
+					global_var:wm_el_largest = title:k_party_new_6
+				}
+				desc = wm_election_headline_hold_new_6
 			}
 			desc = wm_election_headline_generic
 		}
@@ -494,6 +656,60 @@ wm_election_results.1 = {
 				}
 			}
 			desc = wm_election_row_tuv
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_1 > 0
+					scope:wm_rp_new_1 > 0
+				}
+			}
+			desc = wm_election_row_new_1
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_2 > 0
+					scope:wm_rp_new_2 > 0
+				}
+			}
+			desc = wm_election_row_new_2
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_3 > 0
+					scope:wm_rp_new_3 > 0
+				}
+			}
+			desc = wm_election_row_new_3
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_4 > 0
+					scope:wm_rp_new_4 > 0
+				}
+			}
+			desc = wm_election_row_new_4
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_5 > 0
+					scope:wm_rp_new_5 > 0
+				}
+			}
+			desc = wm_election_row_new_5
+		}
+		triggered_desc = {
+			trigger = {
+				OR = {
+					scope:wm_r_new_6 > 0
+					scope:wm_rp_new_6 > 0
+				}
+			}
+			desc = wm_election_row_new_6
 		}
 		triggered_desc = {
 			trigger = {
@@ -652,6 +868,60 @@ wm_election_results.1 = {
 			value = {
 				value = global_var:wm_seats_tuv
 				subtract = global_var:wm_seats_prev_tuv
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_1 value = global_var:wm_seats_new_1 }
+		save_scope_value_as = { name = wm_rp_new_1 value = global_var:wm_seats_prev_new_1 }
+		save_scope_value_as = {
+			name = wm_rd_new_1
+			value = {
+				value = global_var:wm_seats_new_1
+				subtract = global_var:wm_seats_prev_new_1
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_2 value = global_var:wm_seats_new_2 }
+		save_scope_value_as = { name = wm_rp_new_2 value = global_var:wm_seats_prev_new_2 }
+		save_scope_value_as = {
+			name = wm_rd_new_2
+			value = {
+				value = global_var:wm_seats_new_2
+				subtract = global_var:wm_seats_prev_new_2
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_3 value = global_var:wm_seats_new_3 }
+		save_scope_value_as = { name = wm_rp_new_3 value = global_var:wm_seats_prev_new_3 }
+		save_scope_value_as = {
+			name = wm_rd_new_3
+			value = {
+				value = global_var:wm_seats_new_3
+				subtract = global_var:wm_seats_prev_new_3
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_4 value = global_var:wm_seats_new_4 }
+		save_scope_value_as = { name = wm_rp_new_4 value = global_var:wm_seats_prev_new_4 }
+		save_scope_value_as = {
+			name = wm_rd_new_4
+			value = {
+				value = global_var:wm_seats_new_4
+				subtract = global_var:wm_seats_prev_new_4
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_5 value = global_var:wm_seats_new_5 }
+		save_scope_value_as = { name = wm_rp_new_5 value = global_var:wm_seats_prev_new_5 }
+		save_scope_value_as = {
+			name = wm_rd_new_5
+			value = {
+				value = global_var:wm_seats_new_5
+				subtract = global_var:wm_seats_prev_new_5
+			}
+		}
+		save_scope_value_as = { name = wm_r_new_6 value = global_var:wm_seats_new_6 }
+		save_scope_value_as = { name = wm_rp_new_6 value = global_var:wm_seats_prev_new_6 }
+		save_scope_value_as = {
+			name = wm_rd_new_6
+			value = {
+				value = global_var:wm_seats_new_6
+				subtract = global_var:wm_seats_prev_new_6
 			}
 		}
 		save_scope_value_as = { name = wm_r_ind value = global_var:wm_seats_ind }

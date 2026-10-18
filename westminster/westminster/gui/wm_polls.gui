@@ -104,7 +104,7 @@ window = {
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_LAB" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_labour').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -117,13 +117,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_lab') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_lab')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_lab')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_lab')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_lab')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_CON" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_conservative').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -136,13 +136,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_con') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_con')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_con')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_con')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_con')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_LD" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_lib_dem').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -155,13 +155,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_ld') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_ld')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_ld')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_ld')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_ld')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_RUK" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_reform').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -174,13 +174,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_ruk') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_ruk')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_ruk')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_ruk')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_ruk')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_GRN" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_green').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -193,13 +193,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_grn') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_grn')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_grn')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_grn')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_grn')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_SNP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_snp').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -212,13 +212,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_snp') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_snp')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_snp')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_snp')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_snp')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_PC" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_plaid').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -231,13 +231,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_pc') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_pc')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_pc')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_pc')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_pc')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_SF" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_sinn_fein').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -250,13 +250,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_sf') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_sf')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_sf')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_sf')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_sf')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_DUP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_dup').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -269,13 +269,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_dup') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_dup')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_dup')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_dup')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_dup')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_SDLP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_sdlp').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -288,13 +288,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_sdlp') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_sdlp')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_sdlp')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_sdlp')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_sdlp')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_APNI" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_alliance').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -307,13 +307,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_apni') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_apni')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_apni')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_apni')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_apni')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_UUP" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_uup').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -326,13 +326,13 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_uup') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_uup')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_uup')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_uup')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_uup')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 				hbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 8
-					text_single = { text = "WM_UI_PARTY_TUV" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[GetTitleByKey('k_party_tuv').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
 					widget = {
 						size = { 300 16 }
 						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
@@ -345,8 +345,122 @@ window = {
 							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_tuv') )]"
 						}
 					}
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_poll_tuv')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
-					text_single = { text = "[EmptyScope.ScriptValue('wm_ui_seats_tuv')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_tuv')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_tuv')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_1').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_1').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.09 0.18 0.36 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_1') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_1')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_1')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_2').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_2').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.27 0.55 0.49 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_2') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_2')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_2')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_3').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_3').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.92 0.65 0.16 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_3') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_3')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_3')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_4').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_4').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.51 0.25 0.39 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_4') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_4')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_4')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_5').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_5').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.25 0.51 0.63 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_5') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_5')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_5')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
+				}
+				hbox = { visible = "[GetTitleByKey('k_party_new_6').GetHolder.IsValid]"
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+					text_single = { raw_text = "[GetTitleByKey('k_party_new_6').GetNameNoTier]" autoresize = no size = { 190 22 } align = left|nobaseline default_format = "#high" }
+					widget = {
+						size = { 300 16 }
+						icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.227 0.239 0.259 1 } }
+						progressbar = {
+							size = { 100% 100% }
+							texture = "gfx/interface/colors/white.dds"
+							color = { 0.63 0.33 0.22 1 }
+							min = 0
+							max = 50
+							value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_ui_poll_new_6') )]"
+						}
+					}
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_poll_new_6')|1]%" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#high" }
+					text_single = { raw_text = "[EmptyScope.ScriptValue('wm_ui_seats_new_6')|0]" autoresize = no size = { 70 22 } align = right|nobaseline default_format = "#medium" }
 				}
 			}
 			widget = { size = { 760 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
@@ -389,7 +503,13 @@ window = {
 						widget = {
 							position = { 0 32 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_0_10') )]" }
@@ -407,7 +527,13 @@ window = {
 						widget = {
 							position = { 0 24 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_1_10') )]" }
@@ -425,7 +551,13 @@ window = {
 						widget = {
 							position = { 0 16 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_2_10') )]" }
@@ -443,7 +575,13 @@ window = {
 						widget = {
 							position = { 0 8 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_3_10') )]" }
@@ -461,7 +599,13 @@ window = {
 						widget = {
 							position = { 0 0 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_g_4_10') )]" }
@@ -500,7 +644,13 @@ window = {
 						widget = {
 							position = { 0 0 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_0_10') )]" }
@@ -518,7 +668,13 @@ window = {
 						widget = {
 							position = { 0 8 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_1_10') )]" }
@@ -536,7 +692,13 @@ window = {
 						widget = {
 							position = { 0 16 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_2_10') )]" }
@@ -554,7 +716,13 @@ window = {
 						widget = {
 							position = { 0 24 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_3_10') )]" }
@@ -572,7 +740,13 @@ window = {
 						widget = {
 							position = { 0 32 }
 							size = { 720 8 }
-							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_13') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_19') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_18') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_17') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_16') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_15') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_14') )]" }
+							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_13') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.05 0.20 0.45 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_12') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.28 0.45 0.70 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_11') )]" }
 							progressbar = { size = { 720 8 } texture = "gfx/interface/colors/white.dds" color = { 0.96 0.77 0.10 1 } min = 0 max = 90 value = "[FixedPointToFloat( EmptyScope.ScriptValue('wm_sc_row_o_4_10') )]" }
@@ -700,6 +874,48 @@ window = {
 					}
 					flowcontainer = {
 						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_1'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.09 0.18 0.36 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_1" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_2'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.27 0.55 0.49 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_2" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_3'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.92 0.65 0.16 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_3" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_4'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.51 0.25 0.39 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_4" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_5'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.25 0.51 0.63 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_5" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
+						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_new_6'), '(CFixedPoint)0' )]"
+						spacing = 4
+						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.63 0.33 0.22 1 } } }
+						text_single = { text = "WM_SC_LEGEND_NEW_6" default_format = "#high" }
+					}
+					flowcontainer = {
+						direction = horizontal
 						visible = "[GreaterThan_CFixedPoint( EmptyScope.ScriptValue('wm_ui_seats_ind'), '(CFixedPoint)0' )]"
 						spacing = 4
 						widget = { size = { 10 10 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.55 0.55 0.55 1 } } }
@@ -732,84 +948,84 @@ window = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_NOW" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_WEEK" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M1" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M3" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M6" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M9" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M13" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_lab')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_con')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_ld')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_ruk')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_grn')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_p_snp')|1]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			widget = { size = { 10 8 } }
@@ -832,91 +1048,91 @@ window = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_NOW" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_now_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_now_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_WEEK" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_week_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_week_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M1" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m1_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M3" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m3_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M6" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m6_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M9" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m9_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 4
 				text_single = { text = "WM_SC_ROW_M13" autoresize = no size = { 150 20 } align = left|nobaseline default_format = "#medium" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
-				text_single = { text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_lab')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_con')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_ld')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_ruk')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_grn')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_s_snp')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
+				text_single = { raw_text = "[EmptyScope.ScriptValue('wm_sc_cell_m13_maj')|0]" autoresize = no size = { 82 20 } align = right|nobaseline default_format = "#high" }
 				expand = {}
 			}
 			widget = { size = { 780 1 } icon = { size = { 100% 100% } texture = "gfx/interface/colors/white.dds" color = { 0.463 0.455 0.431 1 } } }
